@@ -19,3 +19,6 @@ SPYROpenGL/bin/
 
 SPYROpenGL/*.layout
 SPYROpenGL/*.depend
+
+# Backup files when merging
+SPYROpenGL/*.orig
