@@ -35,6 +35,7 @@ void DessinSphere(float taille, int NP, int N);
 void DessinCone(float hauteur, float rayon, int NM);
 void DessinTriangle(float rayonSphere);
 void DessinTetraedre(float, float, float = 1);
+void DessinCube(float taille);
 
 int main(int argc,char **argv)
 {
@@ -90,6 +91,8 @@ void affichage()
 	//Test du Tetraedre
     //DessinTetraedre(0.5, 0.8, 2);
 
+    DessinCube(1);
+
     //Repère
     //axe x en rouge
     glBegin(GL_LINES);
@@ -114,10 +117,10 @@ void affichage()
 
 
   //changement de la caméra
-  /*glMatrixMode(GL_PROJECTION);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(-6, 14, -10, 10, -10, 10);
-  glMatrixMode(GL_MODELVIEW);*/
+  glMatrixMode(GL_MODELVIEW);
 
   //On echange les buffers
   glutSwapBuffers();
@@ -391,5 +394,61 @@ void DessinTetraedre(float longeur, float hauteur, float coeffAgrandissement){
     glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+}
+
+void DessinCube(float taille){
+    // base bas
+    glBegin(GL_POLYGON);
+    glColor3f(0.4, 0.6, 0.2);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, taille);
+    glVertex3f(taille, 0, taille);
+    glVertex3f(taille, 0, 0);
+    glEnd();
+
+    // base haut
+    glBegin(GL_POLYGON);
+    glColor3f(0.2, 0.2, 0.2);
+    glVertex3f(0, taille, 0);
+    glVertex3f(0, taille, taille);
+    glVertex3f(taille, taille, taille);
+    glVertex3f(taille, taille, 0);
+    glEnd();
+
+    // face devant
+    glBegin(GL_POLYGON);
+    glColor3f(0.6, 0.6, 0.2);
+    glVertex3f(0, 0, taille);
+    glVertex3f(taille, 0, taille);
+    glVertex3f(taille, taille, taille);
+    glVertex3f(0, taille, taille);
+    glEnd();
+
+    // face droite
+    glBegin(GL_POLYGON);
+    glColor3f(0.4, 0.4, 0.2);
+    glVertex3f(taille, 0, taille);
+    glVertex3f(taille, 0, 0);
+    glVertex3f(taille, taille, 0);
+    glVertex3f(taille, taille, taille);
+    glEnd();
+
+    // face derrière
+    glBegin(GL_POLYGON);
+    glColor3f(0.6, 0.6, 0.6);
+    glVertex3f(taille, 0, 0);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, taille, 0);
+    glVertex3f(taille, taille, 0);
+    glEnd();
+
+    // face gauche
+    glBegin(GL_POLYGON);
+    glColor3f(0.2, 0.6, 0.2);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, taille);
+    glVertex3f(0, taille, taille);
+    glVertex3f(0, taille, 0);
     glEnd();
 }
