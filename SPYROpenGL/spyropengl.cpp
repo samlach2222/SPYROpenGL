@@ -31,7 +31,8 @@ void reshape(int x,int y);
 void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
-void DessinSphere(int taille, int NP, int N);
+void DessinSphere(float taille, int NP, int N);
+void DessinCone(float hauteur, float rayon, int NM);
 
 int main(int argc,char **argv)
 {
@@ -72,8 +73,12 @@ void affichage()
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
-   //Dessin de la tête de SPYRO
-    DessinSphere(1, 5, 5);
+    //Dessin de la tête de SPYRO
+    //DessinSphere(1, 5, 5);
+
+    //Dessin des cornes de SPYRO
+    DessinCone(1, 0.25, 100);
+    //DessinCone(1, 0.25, 100);
 
     //Repère
     //axe x en rouge
@@ -169,7 +174,7 @@ void mousemotion(int x,int y)
   }
 
 
-  void DessinSphere(int taille, int NP, int NM)
+void DessinSphere(float taille, int NP, int NM)
 {
     float x[NM*NP];
     float y[NM*NP];
@@ -216,5 +221,44 @@ void mousemotion(int x,int y)
 
             glEnd();
         }
+    }
+}
+void DessinCone(float hauteur, float rayon, int NM)
+{
+    float x[NM]; // NM --> taille du nombre de subdivison de la base
+    float z[NM];
+
+    float fCone[NM][3]; // NM faces sur la même circonférence de 3 points
+
+    // dessin de la base
+    for(int i = 0; i < NM; i++)
+    {
+        x[i] = rayon*cos(2*i*M_PI/NM);
+        z[i] = rayon*sin(2*i*M_PI/NM);
+    }
+
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < NM; i++)
+    {
+        glColor3f(0.2*i, 0.2*i, 0.2*i);
+        glVertex3f(x[i], 0, z[i]);  // y toujours égal à 0 car le pentagone est en 2D
+    }
+    glEnd();
+
+    // dessin du volume
+    for(int i = 0; i < NM; i++)
+    {
+        glBegin(GL_POLYGON);
+
+        glColor3f(0.4, 0.4, 0.6);
+        glVertex3f(x[i], 0, z[i]); // Premier point du triangle
+
+        glColor3f(0.6, 0.4, 0.6);
+        glVertex3f(x[(i+1)%NM], 0, z[(i+1)%NM]); // Deuxième point du triangle
+
+        glColor3f(0.4, 0.4, 0.2);
+        glVertex3f(0, hauteur, 0);  // Sommet du triangle
+
+        glEnd();
     }
 }
