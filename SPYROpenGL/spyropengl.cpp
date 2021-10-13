@@ -33,6 +33,7 @@ void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void DessinSphere(float taille, int NP, int N);
 void DessinCone(float hauteur, float rayon, int NM);
+void DessinTriangle(float rayonSphere);
 void DessinTetraedreStandard(float, float);
 
 int main(int argc,char **argv)
@@ -79,9 +80,13 @@ void affichage()
 
     //Dessin des cornes de SPYRO
     //DessinCone(1, 0.25, 100);
+    //DessinCone(1, 0.25, 100);
 
 	//Test du Tetraedre
-    DessinTetraedreStandard(0.5, 0.8);
+    //DessinTetraedreStandard(0.5, 0.8);
+    
+    //Dessin de la crinière de SPYRO
+    //DessinTriangle(1);
 
     //Repère
     //axe x en rouge
@@ -104,6 +109,13 @@ void affichage()
     glEnd();
 
   glFlush();
+
+
+  //changement de la caméra
+  /*glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glOrtho(-6, 14, -10, 10, -10, 10);
+  glMatrixMode(GL_MODELVIEW);*/
 
   //On echange les buffers
   glutSwapBuffers();
@@ -183,7 +195,7 @@ void DessinSphere(float taille, int NP, int NM)
     float y[NM*NP];
     float z[NM*NP];
 
-    float fSphere[NM][NP][4];
+    float fSphere[NP][NM][4];
 
     for(int j = 0; j < NP; j++)
     {
@@ -204,6 +216,9 @@ void DessinSphere(float taille, int NP, int NM)
             fSphere[j][i][2] = i+(j+1)*NM;
             fSphere[j][i][3] = i+j*NM;
 
+            glPushMatrix();
+            glRotatef(90,-1,0,0);
+            glRotatef(90,0,0,-1);
             glBegin(GL_POLYGON);
 
             //glTexCoord2f(0,0); //texture
@@ -223,6 +238,7 @@ void DessinSphere(float taille, int NP, int NM)
             glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
 
             glEnd();
+            glPopMatrix();
         }
     }
 }
@@ -264,6 +280,61 @@ void DessinCone(float hauteur, float rayon, int NM)
 
         glEnd();
     }
+}
+
+void DessinTriangle(float rayonSphere)
+{
+    /*
+        ma base est au centre de la sphère
+        Voici son orientation :
+
+            _____
+            \    |
+             \   |
+              \  |
+               \ |
+                \|
+
+        L'arête gauche fait 2r avec r rayon de la sphère.
+        L'arête du dessus fait 2r avec r rayon de la sphère.re.
+        Ainsi l'hypothénuse sqrt(4r²) --> Pythagore.
+
+        Les angles sont respectivement 90°, 45° et 45°.
+        L'hypothénuse passe en son milieu sur le centre de la sphère.
+        Elle est en 2D située sur l'axe Z, Y. En effet X est nul.
+
+        Je construit mon triangle avec le point du bas en 0,0,0 afin d'avoir des coordonnées faciles.
+    */
+    float x;
+    float y;
+    float z;
+
+    glPushMatrix();
+    /*
+        J'effectue une translation afin de positionner mon triangle :
+        Je recule sur le derrière de la tête le triangle d'une longueur du rayon de la sphère.
+        Je descend sur le dessous de la tête le triangle des 3/4 du rayon de la sphère afin de garder une partie débordante de la crinière
+        _____
+        \    |
+         \   |  ⋀
+          \  |  | =  -3/4*rayonSphere   <--- = -rayonSphere
+           \ |  |
+            \|
+    */
+    glTranslatef(0,-rayonSphere*3/4, -rayonSphere);
+    glBegin(GL_POLYGON);
+
+    glColor3f(0.2, 0.4, 0.6);
+    glVertex3f(0, 0, 0); // Point du bas (à l'origine)
+
+    glColor3f(0.6, 0.4, 0.6);
+    glVertex3f(0, 2*rayonSphere, 0); // Point haut droit
+
+    glColor3f(0.2, 0.2, 0.6);
+    glVertex3f(0, 2*rayonSphere, 2*rayonSphere); // Point haut gauche
+
+    glEnd();
+    glPopMatrix();
 }
 
 void DessinTetraedreStandard(float longeur, float hauteur){
