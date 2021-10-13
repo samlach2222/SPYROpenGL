@@ -12,6 +12,7 @@
 #include <GL/glut.h>   /* Pour les autres systemes */
 #endif
 #include <cstdlib>
+#include <math.h>
 
 #include "Point.h"
 
@@ -30,6 +31,7 @@ void reshape(int x,int y);
 void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
+void DessinSphere(int taille, int NP, int N);
 
 int main(int argc,char **argv)
 {
@@ -70,12 +72,8 @@ void affichage()
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
-   //Dessin de la base parallélépipède
-    glPushMatrix();
-    glColor3f(0.2, 0.4, 0.698039215686);
-    glScalef(2,0.5,1);
-    glutSolidCube(1);
-    glPopMatrix();
+   //Dessin de la tête de SPYRO
+    DessinSphere(1, 5, 5);
 
     //Repère
     //axe x en rouge
@@ -169,3 +167,54 @@ void mousemotion(int x,int y)
     xold=x; /* sauvegarde des valeurs courante de le position de la souris */
     yold=y;
   }
+
+
+  void DessinSphere(int taille, int NP, int NM)
+{
+    float x[NM*NP];
+    float y[NM*NP];
+    float z[NM*NP];
+
+    float fSphere[NM][NP][4];
+
+    for(int j = 0; j < NP; j++)
+    {
+        for(int i = 0; i < NM; i++)
+        {
+            x[i+j*NM] = taille*cos(2*i*M_PI/NM)*cos(-M_PI/2+j*M_PI/(NP-1));
+            y[i+j*NM] = taille*sin(2*i*M_PI/NM)*cos(-M_PI/2+j*M_PI/(NP-1));
+            z[i+j*NM] = taille*sin(-M_PI/2+j*M_PI/(NP-1));
+        }
+    }
+    for(int j = 0; j < NP -1; j++)
+    {
+
+        for(int i = 0; i < NM; i++)
+        {
+            fSphere[j][i][0] = ((i+1)%NM) + j*NM;
+            fSphere[j][i][1] = ((i+1)%NM) + (j+1)*NM;
+            fSphere[j][i][2] = i+(j+1)*NM;
+            fSphere[j][i][3] = i+j*NM;
+
+            glBegin(GL_POLYGON);
+
+            //glTexCoord2f(0,0); //texture
+            glColor3f(0.2, 0.4, 0.6);
+            glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
+
+            //glTexCoord2f(0,1); //texture
+            glColor3f(0.4, 0.4, 0.6);
+            glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
+
+            //glTexCoord2f(1,1); //texture
+            glColor3f(0.2, 0.6, 0.6);
+            glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
+
+            //glTexCoord2f(1,0); //texture
+            glColor3f(0.2, 0.4, 0.2);
+            glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
+
+            glEnd();
+        }
+    }
+}
