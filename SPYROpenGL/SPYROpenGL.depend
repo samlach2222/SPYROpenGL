@@ -1,16 +1,16 @@
 # depslib dependency file v1.0
-1634123652 source:/media/sf_SPYROpenGL/SPYROpenGL/src/Point.cpp
+1634123652 source:src/Point.cpp
 	"Point.h"
 
-1634123641 /media/sf_SPYROpenGL/SPYROpenGL/include/Point.h
+1634123641 include/Point.h
 
-1634124121 source:/media/sf_SPYROpenGL/SPYROpenGL/src/Actions.cpp
+1634124121 source:src/Actions.cpp
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<cstdlib>
 	"Actions.h"
 	"Point.h"
 
-1634124129 /media/sf_SPYROpenGL/SPYROpenGL/include/Actions.h
+1634124129 include/Actions.h
 	"Point.h"
 

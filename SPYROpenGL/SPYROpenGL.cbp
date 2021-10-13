@@ -37,7 +37,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="cube.cpp" />
+		<Unit filename="include/Actions.h" />
+		<Unit filename="include/Point.h" />
+		<Unit filename="spyropengl.cpp" />
+		<Unit filename="src/Actions.cpp" />
+		<Unit filename="src/Point.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
