@@ -82,16 +82,57 @@ void affichage()
     //Dessin des cornes de SPYRO
     //DessinCone(1, 0.25, 100);
 
-	//Test du Tetraedre
-    //DessinTetraedreStandard(0.5, 0.8);
-
     //Dessin de la crinière de SPYRO
     //DessinTriangle(1);
 
-	//Test du Tetraedre
-    //DessinPrisme(0.5, 0.2, 0.8, 2, 0.5);
+	//Dessin des pieds
+	float taille = 0.5;
 
-    //DessinCube(1);
+	// ******** DESSIN DES PIEDS ********
+	glPushMatrix();
+	glRotatef(90,0,0,1);
+	glTranslatef(0,0,taille);
+    DessinPrisme(taille, 1, taille);
+    glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-taille,0,0);
+	DessinCube(taille);
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(45,0,-1,0);
+	glTranslatef(-sqrt((taille*taille)/2),0,0);
+
+    DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+    glPopMatrix();
+
+    // plus loin
+    glTranslatef(2*taille,0,0);
+
+    // pied 2
+    glPushMatrix();
+	glRotatef(90,0,0,1);
+	glTranslatef(0,0,taille);
+    DessinPrisme(taille, 1, taille);
+    glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-taille,0,0);
+	DessinCube(taille);
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(45,0,-1,0);
+	glTranslatef(-sqrt((taille*taille)/2),0,0);
+
+    DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+    glPopMatrix();
+
+    // retour origine
+    glTranslatef(-2*taille,0,0);
+
+    //******** FIN DESSIN PIED ********
 
     //Repère
     //axe x en rouge
@@ -121,7 +162,6 @@ void affichage()
   glLoadIdentity();
   glOrtho(-6, 14, -10, 10, -10, 10);
   glMatrixMode(GL_MODELVIEW);*/
-
   //On echange les buffers
   glutSwapBuffers();
 }
@@ -394,5 +434,61 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
     glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+}
+
+void DessinCube(float taille){
+    // base bas
+    glBegin(GL_POLYGON);
+    glColor3f(0.4, 0.6, 0.2);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, taille);
+    glVertex3f(taille, 0, taille);
+    glVertex3f(taille, 0, 0);
+    glEnd();
+
+    // base haut
+    glBegin(GL_POLYGON);
+    glColor3f(0.2, 0.2, 0.2);
+    glVertex3f(0, taille, 0);
+    glVertex3f(0, taille, taille);
+    glVertex3f(taille, taille, taille);
+    glVertex3f(taille, taille, 0);
+    glEnd();
+
+    // face devant
+    glBegin(GL_POLYGON);
+    glColor3f(0.6, 0.6, 0.2);
+    glVertex3f(0, 0, taille);
+    glVertex3f(taille, 0, taille);
+    glVertex3f(taille, taille, taille);
+    glVertex3f(0, taille, taille);
+    glEnd();
+
+    // face droite
+    glBegin(GL_POLYGON);
+    glColor3f(0.4, 0.4, 0.2);
+    glVertex3f(taille, 0, taille);
+    glVertex3f(taille, 0, 0);
+    glVertex3f(taille, taille, 0);
+    glVertex3f(taille, taille, taille);
+    glEnd();
+
+    // face derrière
+    glBegin(GL_POLYGON);
+    glColor3f(0.6, 0.6, 0.6);
+    glVertex3f(taille, 0, 0);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, taille, 0);
+    glVertex3f(taille, taille, 0);
+    glEnd();
+
+    // face gauche
+    glBegin(GL_POLYGON);
+    glColor3f(0.2, 0.6, 0.2);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, taille);
+    glVertex3f(0, taille, taille);
+    glVertex3f(0, taille, 0);
     glEnd();
 }
