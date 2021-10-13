@@ -1,0 +1,16 @@
+# C++ objects and libs
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.so.*
+*.dll
+*.dylib
+
+# Codeblocks folders for compilation
+
+SPYROpenGL/obj/
+SPYROpenGL/bin/
