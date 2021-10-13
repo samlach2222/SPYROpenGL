@@ -33,6 +33,7 @@ void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void DessinSphere(float taille, int NP, int N);
 void DessinCone(float hauteur, float rayon, int NM);
+void DessinTetraedreStandard(float, float);
 
 int main(int argc,char **argv)
 {
@@ -77,8 +78,10 @@ void affichage()
     //DessinSphere(1, 5, 5);
 
     //Dessin des cornes de SPYRO
-    DessinCone(1, 0.25, 100);
     //DessinCone(1, 0.25, 100);
+
+	//Test du Tetraedre
+    DessinTetraedreStandard(0.5, 0.8);
 
     //Repère
     //axe x en rouge
@@ -261,4 +264,50 @@ void DessinCone(float hauteur, float rayon, int NM)
 
         glEnd();
     }
+}
+
+void DessinTetraedreStandard(float longeur, float hauteur){
+
+    //base bas
+    glBegin(GL_POLYGON);
+    glColor3f(0.8, 0.1, 0.1);
+    glVertex3f(longeur, 0, 0);
+    glVertex3f(0, 0, longeur);
+    glVertex3f(0, 0, 0);
+    glEnd();
+
+    //base haut
+    glBegin(GL_POLYGON);
+    glColor3f(0.1, 0.8, 0.1);
+    glVertex3f(0, hauteur, longeur);
+    glVertex3f(0, hauteur, 0);
+    glVertex3f(longeur, hauteur, 0);
+    glEnd();
+
+    //côté hypothénuse
+    glBegin(GL_POLYGON);
+    glColor3f(0.8, 0.1, 0.8);
+    glVertex3f(0, 0, longeur);
+    glVertex3f(0, hauteur, longeur);
+    glVertex3f(longeur, hauteur, 0);
+    glVertex3f(longeur, 0, 0);
+    glEnd();
+
+    //côté axe x
+    glBegin(GL_POLYGON);
+    glColor3f(0.8, 0.8, 0.1);
+    glVertex3f(longeur, 0, 0);
+    glVertex3f(longeur, hauteur, 0);
+    glVertex3f(0, hauteur, 0);
+    glVertex3f(0, 0, 0);
+    glEnd();
+
+    //côté axe z
+    glBegin(GL_POLYGON);
+    glColor3f(0.1, 0.1, 0.8);
+    glVertex3f(0, 0, longeur);
+    glVertex3f(0, hauteur, longeur);
+    glVertex3f(0, hauteur, 0);
+    glVertex3f(0, 0, 0);
+    glEnd();
 }
