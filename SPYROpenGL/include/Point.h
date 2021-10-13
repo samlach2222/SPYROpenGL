@@ -1,8 +1,10 @@
 #ifndef POINT_H
 #define POINT_H
 
-class Point{
-    public :
+
+class Point
+{
+    public:
         Point();
         virtual ~Point();
         //coordonnées x, y et z du point

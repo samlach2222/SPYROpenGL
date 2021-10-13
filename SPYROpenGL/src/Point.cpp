@@ -2,10 +2,10 @@
 
 Point::Point()
 {
-
+    //ctor
 }
 
 Point::~Point()
 {
-
+    //dtor
 }

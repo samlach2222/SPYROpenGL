@@ -13,9 +13,23 @@
 #endif
 #include <cstdlib>
 
-#include "Actions.h"
+#include "Point.h"
 
+char presse;
+int anglex;
+int angley;
+int x;
+int y;
+int xold;
+int yold;
+
+/* Prototype des fonctions */;
 void affichage();
+void clavier(unsigned char touche,int x,int y);
+void reshape(int x,int y);
+void idle();
+void mouse(int bouton,int etat,int x,int y);
+void mousemotion(int x,int y);
 
 int main(int argc,char **argv)
 {
@@ -34,12 +48,11 @@ int main(int argc,char **argv)
   glEnable(GL_DEPTH_TEST);
 
   /* enregistrement des fonctions de rappel */
-  Actions a = Actions();
   glutDisplayFunc(affichage);
-  glutKeyboardFunc(a.clavier);
-  glutReshapeFunc(a.reshape);
-  glutMouseFunc(a.mouse);
-  glutMotionFunc(a.mousemotion);
+  glutKeyboardFunc(clavier);
+  glutReshapeFunc(reshape);
+  glutMouseFunc(mouse);
+  glutMotionFunc(mousemotion);
 
   /* Entree dans la boucle principale glut */
   glutMainLoop();
@@ -89,3 +102,70 @@ void affichage()
   //On echange les buffers
   glutSwapBuffers();
 }
+
+void clavier(unsigned char touche,int x,int y)
+{
+  switch (touche)
+    {
+    case 'p': /* affichage du carre plein */
+      glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+      glutPostRedisplay();
+      break;
+    case 'f': /* affichage en mode fil de fer */
+      glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+      glutPostRedisplay();
+      break;
+    case 's' : /* Affichage en mode sommets seuls */
+      glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);
+      glutPostRedisplay();
+      break;
+    case 'd':
+      glEnable(GL_DEPTH_TEST);
+      glutPostRedisplay();
+      break;
+    case 'D':
+      glDisable(GL_DEPTH_TEST);
+      glutPostRedisplay();
+      break;
+    case 'q' : /*la touche 'q' permet de quitter le programme */
+      exit(0);
+    }
+}
+
+void reshape(int x,int y)
+{
+  if (x<y)
+    glViewport(0,(y-x)/2,x,x);
+  else
+    glViewport((x-y)/2,0,y,y);
+}
+
+void mouse(int button, int state,int x,int y)
+{
+  /* si on appuie sur le bouton gauche */
+  if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+  {
+    presse = 1; /* le booleen presse passe a 1 (vrai) */
+    xold = x; /* on sauvegarde la position de la souris */
+    yold=y;
+  }
+  /* si on relache le bouton gauche */
+  if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+    presse=0; /* le booleen presse passe a 0 (faux) */
+}
+
+void mousemotion(int x,int y)
+  {
+    if (presse) /* si le bouton gauche est presse */
+    {
+      /* on modifie les angles de rotation de l'objet
+	 en fonction de la position actuelle de la souris et de la derniere
+	 position sauvegardee */
+      anglex=anglex+(x-xold);
+      angley=angley+(y-yold);
+      glutPostRedisplay(); /* on demande un rafraichissement de l'affichage */
+    }
+
+    xold=x; /* sauvegarde des valeurs courante de le position de la souris */
+    yold=y;
+  }
