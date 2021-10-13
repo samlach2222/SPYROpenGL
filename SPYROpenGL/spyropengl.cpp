@@ -34,7 +34,7 @@ void mousemotion(int x,int y);
 void DessinSphere(float taille, int NP, int N);
 void DessinCone(float hauteur, float rayon, int NM);
 void DessinTriangle(float rayonSphere);
-void DessinTetraedreStandard(float, float);
+void DessinTetraedre(float, float, float = 1);
 
 int main(int argc,char **argv)
 {
@@ -80,13 +80,15 @@ void affichage()
 
     //Dessin des cornes de SPYRO
     //DessinCone(1, 0.25, 100);
-    //DessinCone(1, 0.25, 100);
 
 	//Test du Tetraedre
     //DessinTetraedreStandard(0.5, 0.8);
-    
+
     //Dessin de la crinière de SPYRO
     //DessinTriangle(1);
+
+	//Test du Tetraedre
+    //DessinTetraedre(0.5, 0.8, 2);
 
     //Repère
     //axe x en rouge
@@ -337,48 +339,57 @@ void DessinTriangle(float rayonSphere)
     glPopMatrix();
 }
 
-void DessinTetraedreStandard(float longeur, float hauteur){
+void DessinTetraedre(float longeur, float hauteur, float coeffAgrandissement){
+
+    float coordPoints[6][3] = {
+        {0, 0, 0},
+        {longeur, 0, 0},
+        {0, 0, longeur},
+        {0, hauteur, 0},
+        {longeur*coeffAgrandissement, hauteur, 0},
+        {0, hauteur, longeur*coeffAgrandissement}
+    };
 
     //base bas
     glBegin(GL_POLYGON);
     glColor3f(0.8, 0.1, 0.1);
-    glVertex3f(longeur, 0, 0);
-    glVertex3f(0, 0, longeur);
-    glVertex3f(0, 0, 0);
+    glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+    glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+    glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
 
     //base haut
     glBegin(GL_POLYGON);
     glColor3f(0.1, 0.8, 0.1);
-    glVertex3f(0, hauteur, longeur);
-    glVertex3f(0, hauteur, 0);
-    glVertex3f(longeur, hauteur, 0);
+    glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+    glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+    glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
     glEnd();
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
     glColor3f(0.8, 0.1, 0.8);
-    glVertex3f(0, 0, longeur);
-    glVertex3f(0, hauteur, longeur);
-    glVertex3f(longeur, hauteur, 0);
-    glVertex3f(longeur, 0, 0);
+    glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+    glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+    glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+    glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
     glEnd();
 
     //côté axe x
     glBegin(GL_POLYGON);
     glColor3f(0.8, 0.8, 0.1);
-    glVertex3f(longeur, 0, 0);
-    glVertex3f(longeur, hauteur, 0);
-    glVertex3f(0, hauteur, 0);
-    glVertex3f(0, 0, 0);
+    glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+    glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+    glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+    glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
 
     //côté axe z
     glBegin(GL_POLYGON);
     glColor3f(0.1, 0.1, 0.8);
-    glVertex3f(0, 0, longeur);
-    glVertex3f(0, hauteur, longeur);
-    glVertex3f(0, hauteur, 0);
-    glVertex3f(0, 0, 0);
+    glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+    glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+    glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+    glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
 }
