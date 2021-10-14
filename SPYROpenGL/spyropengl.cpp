@@ -36,6 +36,7 @@ void DessinCone(float hauteur, float rayon, int NM);
 void DessinTriangle(float rayonSphere);
 void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX = 1, float coeffZ = 1);
 void DessinCube(float taille);
+void DessinPrismeRotationFaceHaut(float longueurX, float longueurZ, float hauteur, bool sens);
 
 int main(int argc,char **argv)
 {
@@ -88,45 +89,58 @@ void affichage()
 	//Dessin des pieds
 	float taille = 0.5;
 
-	// ******** DESSIN DES PIEDS ********
+	// ******** DESSIN DES PIEDS + JAMBES ********
+	// PIED 1
 	glPushMatrix();
-	glRotatef(90,0,0,1);
-	glTranslatef(0,0,taille);
-    DessinPrisme(taille, 1, taille);
+        glRotatef(90,0,0,1);
+        glTranslatef(0,0,taille);
+        DessinPrisme(taille, 1, taille);
     glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-taille,0,0);
-	DessinCube(taille);
+        glTranslatef(-taille,0,0);
+        DessinCube(taille);
 	glPopMatrix();
 
 	glPushMatrix();
-	glRotatef(45,0,-1,0);
-	glTranslatef(-sqrt((taille*taille)/2),0,0);
-
-    DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+        glRotatef(45,0,-1,0);
+        glTranslatef(-sqrt((taille*taille)/2),0,0);
+        DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
     glPopMatrix();
 
-    // plus loin
+    // JAMBE 1
+    glPushMatrix();
+        glRotatef(45,0,-1,0);
+        glTranslatef(-sqrt((taille*taille)/2),taille,0);
+        DessinPrismeRotationFaceHaut(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, false);
+    glPopMatrix();
+
+    // TRANSLATION 2EME
     glTranslatef(2*taille,0,0);
 
-    // pied 2
+    // PIED 2
     glPushMatrix();
-	glRotatef(90,0,0,1);
-	glTranslatef(0,0,taille);
-    DessinPrisme(taille, 1, taille);
+        glRotatef(90,0,0,1); //Doigts du pieds
+        glTranslatef(0,0,taille);
+        DessinPrisme(taille, 1, taille);
     glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-taille,0,0);
-	DessinCube(taille);
+        glTranslatef(-taille,0,0); // Centre du pieds
+        DessinCube(taille);
 	glPopMatrix();
 
 	glPushMatrix();
-	glRotatef(45,0,-1,0);
-	glTranslatef(-sqrt((taille*taille)/2),0,0);
+        glRotatef(45,0,-1,0); //  Arrière du pieds
+        glTranslatef(-sqrt((taille*taille)/2),0,0);
+        DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+    glPopMatrix();
 
-    DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+    // JAMBE 2
+    glPushMatrix();
+        glRotatef(45,0,-1,0);
+        glTranslatef(-sqrt((taille*taille)/2),taille,0);
+        DessinPrismeRotationFaceHaut(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, true);
     glPopMatrix();
 
     // retour origine
@@ -158,10 +172,10 @@ void affichage()
 
 
   //changement de la caméra
-  /*glMatrixMode(GL_PROJECTION);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(-6, 14, -10, 10, -10, 10);
-  glMatrixMode(GL_MODELVIEW);*/
+  glMatrixMode(GL_MODELVIEW);
   //On echange les buffers
   glutSwapBuffers();
 }
@@ -435,6 +449,119 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
+}
+
+void DessinPrismeRotationFaceHaut(float longueurX, float longueurZ, float hauteur, bool sens){
+
+    float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypothénuse du triangle du dessus
+    if(sens)
+    {
+        float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
+            {0, hauteur+((h/2)/(tan(M_PI/4))), 0},
+            {longueurX, hauteur+(h/(tan(M_PI/4))), 0},
+            {0, hauteur, longueurZ}
+        };
+
+        //base bas
+        glBegin(GL_POLYGON);
+        glColor3f(0.8, 0.1, 0.1);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+        glEnd();
+
+        //base haut
+        glBegin(GL_POLYGON);
+        glColor3f(0.1, 0.8, 0.1);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glEnd();
+
+        //côté hypothénuse
+        glBegin(GL_POLYGON);
+        glColor3f(0.8, 0.1, 0.8);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glEnd();
+
+        //côté axe x
+        glBegin(GL_POLYGON);
+        glColor3f(0.8, 0.8, 0.1);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+        glEnd();
+
+        //côté axe z
+        glBegin(GL_POLYGON);
+        glColor3f(0.1, 0.1, 0.8);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+        glEnd();
+    }
+    else
+    {
+        float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
+            {0, hauteur+((h/2)/(tan(M_PI/4))), 0},
+            {longueurX, hauteur, 0},
+            {0, hauteur+(h/(tan(M_PI/4))), longueurZ}
+        };
+
+        //base bas
+        glBegin(GL_POLYGON);
+        glColor3f(0.8, 0.1, 0.1);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+        glEnd();
+
+        //base haut
+        glBegin(GL_POLYGON);
+        glColor3f(0.1, 0.8, 0.1);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glEnd();
+
+        //côté hypothénuse
+        glBegin(GL_POLYGON);
+        glColor3f(0.8, 0.1, 0.8);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glEnd();
+
+        //côté axe x
+        glBegin(GL_POLYGON);
+        glColor3f(0.8, 0.8, 0.1);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+        glEnd();
+
+        //côté axe z
+        glBegin(GL_POLYGON);
+        glColor3f(0.1, 0.1, 0.8);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+        glEnd();
+    }
 }
 
 void DessinCube(float taille){
