@@ -48,6 +48,7 @@ void CreationPieds(float taille);
 void CreationJambes(float taille, float hauteur, bool sens);
 void CreationComposantsTete(float taille, float hauteurCorne, float largeurCorne);
 void CreationQueue(float taille = 1);
+void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart);
 
 // Prototype des autres fonctions
 void RandomColor3f();
@@ -101,6 +102,8 @@ void affichage()
 	//float taille = 0.5;
 	//float hauteurJambes = 3;
 	//CreationJambesPlusPieds(taille, hauteurJambes);
+
+	DessinPyramideTronquee(0.10, 0.35, 0.75, 0.10);
 
     //Repère
     //axe x en rouge
@@ -616,6 +619,75 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
     glEnd();
 }
 
+void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart){
+    /*
+        l = largeur
+        L = longueur
+        h = hauteur
+
+        liste des différents points:
+        0 (0,0,0)       4 (0,h,0)
+        1 (0,0,l)       5 (0,h,l)
+        2 (L,0,l)       6 (L,h,l)
+        3 (L,0,0)       7 (L,h,0)
+    */
+
+    // base bas (0,1,2,3)
+    glBegin(GL_POLYGON);
+        glColor3f(0.4, 0.6, 0.2);
+        glVertex3f(0, 0, 0);
+        glVertex3f(0-ecart, 0, largeur);
+        glVertex3f(longueur+ecart, 0, largeur);
+        glVertex3f(longueur, 0, 0);
+    glEnd();
+
+    // base haut (4,5,6,7)
+    glBegin(GL_POLYGON);
+        glColor3f(0.2, 0.2, 0.2);
+        glVertex3f(0, hauteur, 0);
+        glVertex3f(0-ecart, hauteur, largeur);
+        glVertex3f(longueur+ecart, hauteur, largeur);
+        glVertex3f(longueur, hauteur, 0);
+    glEnd();
+
+    // face devant (1,2,6,5)
+    glBegin(GL_POLYGON);
+        glColor3f(0.6, 0.6, 0.2);
+        glVertex3f(0-ecart, 0, largeur);
+        glVertex3f(longueur+ecart, 0, largeur);
+        glVertex3f(longueur+ecart, hauteur, largeur);
+        glVertex3f(0-ecart, hauteur, largeur);
+    glEnd();
+
+    // face droite (2,3,7,6)
+    glBegin(GL_POLYGON);
+        glColor3f(0.4, 0.4, 0.2);
+        glVertex3f(longueur+ecart, 0, largeur);
+        glVertex3f(longueur, 0, 0);
+        glVertex3f(longueur, hauteur, 0);
+        glVertex3f(longueur+ecart, hauteur, largeur);
+    glEnd();
+
+    // face derrière (3,0,4,7)
+    glBegin(GL_POLYGON);
+        glColor3f(0.6, 0.6, 0.6);
+        glVertex3f(longueur, 0, 0);
+        glVertex3f(0, 0, 0);
+        glVertex3f(0, hauteur, 0);
+        glVertex3f(longueur, hauteur, 0);
+    glEnd();
+
+    // face gauche (0,1,5,4)
+    glBegin(GL_POLYGON);
+        glColor3f(0.2, 0.6, 0.2);
+        glVertex3f(0, 0, 0);
+        glVertex3f(0-ecart, 0, largeur);
+        glVertex3f(0-ecart, hauteur, largeur);
+        glVertex3f(0, hauteur, 0);
+    glEnd();
+}
+
+
 void CreationJambes(float taille, float hauteur, bool sens)
 {
     glPushMatrix();
@@ -710,3 +782,4 @@ void RandomColor3f(){
 
     glColor3f(r,g,b);
 }
+
