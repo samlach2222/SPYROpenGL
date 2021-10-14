@@ -13,6 +13,7 @@
 #endif
 #include <cstdlib>
 #include <math.h>
+#include <time.h>
 
 #include "Point.h"
 
@@ -699,3 +700,10 @@ void CreationQueue(float taille)
     glPopMatrix();
 }
 
+void RandomColor3f(){
+    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);  //Donne une valeur entre 0.0 et 1.0 inclus
+    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+    glColor3f(r,g,b);
+}
