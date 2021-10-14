@@ -44,6 +44,7 @@ void DessinJambes(float longueurX, float longueurZ, float hauteur, bool sens);
 void CreationJambesPlusPieds(float taille, float hauteurJambes);
 void CreationPieds(float taille);
 void CreationJambes(float taille, float hauteur, bool sens);
+void CreationComposantsTete(float taille, float hauteurCorne, float largeurCorne);
 
 int main(int argc,char **argv)
 {
@@ -84,19 +85,12 @@ void affichage()
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
-    //Dessin de la tête de SPYRO
-    //DessinSphere(1, 5, 5);
+    CreationComposantsTete(0.5, 1, 0.15);
 
-    //Dessin des cornes de SPYRO
-    //DessinCone(1, 0.25, 100);
-
-    //Dessin de la crinière de SPYRO
-    //DessinCriniere(1);
-
-	//Dessin des pieds
+	/*//Dessin des pieds
 	float taille = 0.5;
 	float hauteurJambes = 3;
-	CreationJambesPlusPieds(taille, hauteurJambes);
+	CreationJambesPlusPieds(taille, hauteurJambes);*/
 
     //Repère
     //axe x en rouge
@@ -122,10 +116,10 @@ void affichage()
 
 
   //changement de la caméra
-  glMatrixMode(GL_PROJECTION);
+  /*glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(-6, 14, -10, 10, -10, 10);
-  glMatrixMode(GL_MODELVIEW);
+  glMatrixMode(GL_MODELVIEW);*/
   //On echange les buffers
   glutSwapBuffers();
 }
@@ -609,4 +603,26 @@ void CreationJambesPlusPieds(float taille, float hauteurJambes)
     CreationJambes(taille, hauteurJambes, true); // JAMBE 2
     glTranslatef(-2*taille,0,0); // RETOUR ORIGINE
     // ******** FIN DESSIN PIED + JAMBES ********
+}
+
+void CreationComposantsTete(float taille, float hauteurCorne, float largeurCorne)
+{
+    //Dessin de la tête de SPYRO
+    DessinSphere(taille, 5, 5);
+
+    //Dessin de la crinière de SPYRO
+    DessinCriniere(taille);
+
+    //Dessin des cornes de SPYRO
+    glPushMatrix();
+        glRotatef(15,1,0,-1);
+        glTranslatef(taille/10,0,taille/7);
+        DessinCone(hauteurCorne, largeurCorne, 100);
+    glPopMatrix();
+
+    glPushMatrix();
+        glRotatef(15,1,0,1);
+        glTranslatef(-taille/10,0,taille/7);
+        DessinCone(hauteurCorne, largeurCorne, 100);
+    glPopMatrix();
 }
