@@ -33,10 +33,10 @@ void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void DessinSphere(float taille, int NP, int N);
 void DessinCone(float hauteur, float rayon, int NM);
-void DessinTriangle(float rayonSphere);
+void DessinCriniere(float rayonSphere);
 void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX = 1, float coeffZ = 1);
 void DessinCube(float taille);
-void DessinPrismeRotationFaceHaut(float longueurX, float longueurZ, float hauteur, bool sens);
+void DessinJambes(float longueurX, float longueurZ, float hauteur, bool sens);
 
 int main(int argc,char **argv)
 {
@@ -84,7 +84,7 @@ void affichage()
     //DessinCone(1, 0.25, 100);
 
     //Dessin de la crinière de SPYRO
-    //DessinTriangle(1);
+    //DessinCriniere(1);
 
 	//Dessin des pieds
 	float taille = 0.5;
@@ -112,7 +112,7 @@ void affichage()
     glPushMatrix();
         glRotatef(45,0,-1,0);
         glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        DessinPrismeRotationFaceHaut(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, false);
+        DessinJambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, false);
     glPopMatrix();
 
     // TRANSLATION 2EME
@@ -140,7 +140,7 @@ void affichage()
     glPushMatrix();
         glRotatef(45,0,-1,0);
         glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        DessinPrismeRotationFaceHaut(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, true);
+        DessinJambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, true);
     glPopMatrix();
 
     // retour origine
@@ -341,7 +341,7 @@ void DessinCone(float hauteur, float rayon, int NM)
     }
 }
 
-void DessinTriangle(float rayonSphere)
+void DessinCriniere(float rayonSphere)
 {
     /*
         ma base est au centre de la sphère
@@ -451,7 +451,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
     glEnd();
 }
 
-void DessinPrismeRotationFaceHaut(float longueurX, float longueurZ, float hauteur, bool sens){
+void DessinJambes(float longueurX, float longueurZ, float hauteur, bool sens){
 
     float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypothénuse du triangle du dessus
     if(sens)
@@ -460,8 +460,8 @@ void DessinPrismeRotationFaceHaut(float longueurX, float longueurZ, float hauteu
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
-            {0, hauteur+((h/2)/(tan(M_PI/4))), 0},
-            {longueurX, hauteur+(h/(tan(M_PI/4))), 0},
+            {0, hauteur+((h/2)/(tan(M_PI/4))), 0}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {longueurX, hauteur+(h/(tan(M_PI/4))), 0}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
             {0, hauteur, longueurZ}
         };
 
@@ -514,9 +514,9 @@ void DessinPrismeRotationFaceHaut(float longueurX, float longueurZ, float hauteu
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
-            {0, hauteur+((h/2)/(tan(M_PI/4))), 0},
+            {0, hauteur+((h/2)/(tan(M_PI/4))), 0}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
             {longueurX, hauteur, 0},
-            {0, hauteur+(h/(tan(M_PI/4))), longueurZ}
+            {0, hauteur+(h/(tan(M_PI/4))), longueurZ} // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
         };
 
         //base bas
