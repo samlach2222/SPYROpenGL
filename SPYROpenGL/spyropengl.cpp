@@ -1,7 +1,7 @@
 /********************************************************/
-/*                     cube.cpp                         */
+/*                     spyropengl.cpp                   */
 /********************************************************/
-/*                Affiche a l'ecran un cube en 3D       */
+/*       Affiche aune version rédute de Spyro en 3D     */
 /********************************************************/
 
 /* inclusion des fichiers d'en-tete freeglut */
