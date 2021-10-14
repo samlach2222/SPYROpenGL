@@ -91,11 +91,11 @@ void affichage()
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
-	//Dessin de la tête
+    //Dessin de la tête
 	//CreationComposantsTete(0.5, 1, 0.15);
 
-	//Dessin de la queue
-	//CreationQueue(1);
+    //Dessin de la queue
+    //CreationQueue(1);
 
 	//Dessin des pieds
 	//float taille = 0.5;
@@ -363,7 +363,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //base bas
     glBegin(GL_POLYGON);
-    glColor3f(0.8, 0.1, 0.1);
+    RandomColor3f();
     glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
     glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -371,7 +371,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //base haut
     glBegin(GL_POLYGON);
-    glColor3f(0.1, 0.8, 0.1);
+    RandomColor3f();
     glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -379,7 +379,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-    glColor3f(0.8, 0.1, 0.8);
+    RandomColor3f();
     glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
     glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
     glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -388,7 +388,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //côté axe x
     glBegin(GL_POLYGON);
-    glColor3f(0.8, 0.8, 0.1);
+    RandomColor3f();
     glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
     glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -397,7 +397,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //côté axe z
     glBegin(GL_POLYGON);
-    glColor3f(0.1, 0.1, 0.8);
+    RandomColor3f();
     glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
     glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -585,7 +585,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //base bas
     glBegin(GL_POLYGON);
-    glColor3f(0.13, 0.89, 0.27);
+    RandomColor3f();
     glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
     glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -593,7 +593,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-    glColor3f(0.62, 0.8, 0.03);
+    RandomColor3f();
     glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
@@ -601,7 +601,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //côté axe x
     glBegin(GL_POLYGON);
-    glColor3f(0.53, 0.28, 0.06);
+    RandomColor3f();
     glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -609,7 +609,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //côté axe z
     glBegin(GL_POLYGON);
-    glColor3f(0.15, 0.88, 0.94);
+    RandomColor3f();
     glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
     glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
     glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -682,10 +682,12 @@ void CreationComposantsTete(float taille, float hauteurCorne, float largeurCorne
 void CreationQueue(float taille)
 {
     //Dessin de la première partie de la queue de SPYRO
+    srand(32);
     const float longueurPremierePartieQueue = 2.0;
     DessinPrisme(0.8*taille,0.8*taille,longueurPremierePartieQueue*taille,0.25,0.25);
 
     //Dessin de la deuxième partie de la queue
+    srand(64);
     const float longueurDeuxiemePartieQueue = 0.2;
     glPushMatrix();
     glTranslatef(0,longueurPremierePartieQueue*taille,0);
@@ -693,6 +695,7 @@ void CreationQueue(float taille)
     glPopMatrix();
 
     //Dessin de la troisième partie de la queue
+    srand(128);
     const float longueurTroisiemePartieQueue = 0.4;
     glPushMatrix();
     glTranslatef(0, longueurPremierePartieQueue*taille + longueurDeuxiemePartieQueue*taille, 0);
