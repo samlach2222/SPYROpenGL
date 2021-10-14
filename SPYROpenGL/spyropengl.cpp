@@ -31,12 +31,19 @@ void reshape(int x,int y);
 void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
+
+// Prototype des fonctions de dessin
 void DessinSphere(float taille, int NP, int N);
 void DessinCone(float hauteur, float rayon, int NM);
 void DessinCriniere(float rayonSphere);
 void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX = 1, float coeffZ = 1);
 void DessinCube(float taille);
 void DessinJambes(float longueurX, float longueurZ, float hauteur, bool sens);
+
+// Prototype des fonctions de création
+void CreationJambesPlusPieds(float taille, float hauteurJambes);
+void CreationPieds(float taille);
+void CreationJambes(float taille, float hauteur, bool sens);
 
 int main(int argc,char **argv)
 {
@@ -88,65 +95,8 @@ void affichage()
 
 	//Dessin des pieds
 	float taille = 0.5;
-
-	// ******** DESSIN DES PIEDS + JAMBES ********
-	// PIED 1
-	glPushMatrix();
-        glRotatef(90,0,0,1);
-        glTranslatef(0,0,taille);
-        DessinPrisme(taille, 1, taille);
-    glPopMatrix();
-
-	glPushMatrix();
-        glTranslatef(-taille,0,0);
-        DessinCube(taille);
-	glPopMatrix();
-
-	glPushMatrix();
-        glRotatef(45,0,-1,0);
-        glTranslatef(-sqrt((taille*taille)/2),0,0);
-        DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
-    glPopMatrix();
-
-    // JAMBE 1
-    glPushMatrix();
-        glRotatef(45,0,-1,0);
-        glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        DessinJambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, false);
-    glPopMatrix();
-
-    // TRANSLATION 2EME
-    glTranslatef(2*taille,0,0);
-
-    // PIED 2
-    glPushMatrix();
-        glRotatef(90,0,0,1); //Doigts du pieds
-        glTranslatef(0,0,taille);
-        DessinPrisme(taille, 1, taille);
-    glPopMatrix();
-
-	glPushMatrix();
-        glTranslatef(-taille,0,0); // Centre du pieds
-        DessinCube(taille);
-	glPopMatrix();
-
-	glPushMatrix();
-        glRotatef(45,0,-1,0); //  Arrière du pieds
-        glTranslatef(-sqrt((taille*taille)/2),0,0);
-        DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
-    glPopMatrix();
-
-    // JAMBE 2
-    glPushMatrix();
-        glRotatef(45,0,-1,0);
-        glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        DessinJambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), 3, true);
-    glPopMatrix();
-
-    // retour origine
-    glTranslatef(-2*taille,0,0);
-
-    //******** FIN DESSIN PIED ********
+	float hauteurJambes = 3;
+	CreationJambesPlusPieds(taille, hauteurJambes);
 
     //Repère
     //axe x en rouge
@@ -618,4 +568,45 @@ void DessinCube(float taille){
     glVertex3f(0, taille, taille);
     glVertex3f(0, taille, 0);
     glEnd();
+}
+
+void CreationJambes(float taille, float hauteur, bool sens)
+{
+    glPushMatrix();
+        glRotatef(45,0,-1,0);
+        glTranslatef(-sqrt((taille*taille)/2),taille,0);
+        DessinJambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens);
+    glPopMatrix();
+}
+
+void CreationPieds(float taille)
+{
+    glPushMatrix();
+        glRotatef(90,0,0,1);
+        glTranslatef(0,0,taille);
+        DessinPrisme(taille, 1, taille);
+    glPopMatrix();
+
+	glPushMatrix();
+        glTranslatef(-taille,0,0);
+        DessinCube(taille);
+	glPopMatrix();
+
+	glPushMatrix();
+        glRotatef(45,0,-1,0);
+        glTranslatef(-sqrt((taille*taille)/2),0,0);
+        DessinPrisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+    glPopMatrix();
+}
+
+void CreationJambesPlusPieds(float taille, float hauteurJambes)
+{
+    // ******** DESSIN DES PIEDS + JAMBES ********
+    CreationPieds(taille); // PIED 1
+    CreationJambes(taille, hauteurJambes, false); // JAMBE 1
+    glTranslatef(2*taille,0,0); // TRANSLATION 2EME PARTIE
+    CreationPieds(taille); // PIED 2
+    CreationJambes(taille, hauteurJambes, true); // JAMBE 2
+    glTranslatef(-2*taille,0,0); // RETOUR ORIGINE
+    // ******** FIN DESSIN PIED + JAMBES ********
 }
