@@ -1,7 +1,7 @@
 /********************************************************/
 /*                     spyropengl.cpp                   */
 /********************************************************/
-/*       Affiche aune version rédute de Spyro en 3D     */
+/*       Affiche une version rédute de Spyro en 3D     */
 /********************************************************/
 
 /* inclusion des fichiers d'en-tete freeglut */
@@ -41,6 +41,8 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX 
 void DessinCube(float taille);
 void DessinJambes(float longueurX, float longueurZ, float hauteur, bool sens);
 void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX = 0, float decalageBZ = 0, float decalageSX = 0, float decalageSZ = 0);
+void DessinCylindre(int NM, float rayon, float hauteur);
+void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart);
 
 // Prototype des fonctions de création
 void CreationJambesPlusPieds(float taille, float hauteurJambes);
@@ -48,7 +50,6 @@ void CreationPieds(float taille);
 void CreationJambes(float taille, float hauteur, bool sens);
 void CreationComposantsTete(float taille, float hauteurCorne, float largeurCorne);
 void CreationQueue(float taille = 1);
-void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart);
 
 // Prototype des autres fonctions
 void RandomColor3f();
@@ -103,7 +104,11 @@ void affichage()
 	//float hauteurJambes = 3;
 	//CreationJambesPlusPieds(taille, hauteurJambes);
 
-	DessinPyramideTronquee(0.10, 0.35, 0.75, 0.10);
+	//DessinPyramideTronquee(0.10, 0.35, 0.75, 0.10);
+	
+	//Dessin du corps
+	//srand(256);
+	//DessinCylindre(5, 0.5, 2);
 
     //Repère
     //axe x en rouge
@@ -260,8 +265,6 @@ void DessinCone(float hauteur, float rayon, int NM)
 {
     float x[NM]; // NM --> taille du nombre de subdivison de la base
     float z[NM];
-
-    float fCone[NM][3]; // NM faces sur la même circonférence de 3 points
 
     // dessin de la base
     for(int i = 0; i < NM; i++)
@@ -611,6 +614,56 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
+}
+
+void DessinCylindre(int NM, float rayon, float hauteur){
+
+    float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
+    float y[NM*2];
+    float z[NM*2];
+
+    // Remplissage des coordonnées des points dans x et y et z;
+    for(int i = 0; i < NM*2; i++)
+    {
+        x[i] = rayon*cos(2*i*M_PI/NM);
+        z[i] = rayon*sin(2*i*M_PI/NM);
+
+        if (i < NM){  //Base du bas
+            y[i] = 0;
+        }
+        else{  //Base du haut
+            y[i] = hauteur;
+        }
+    }
+
+    //Dessin de la base bas
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < NM; i++)
+    {
+        RandomColor3f();
+        glVertex3f(x[i], y[i], z[i]);
+    }
+    glEnd();
+
+    //Dessin de la base haut
+    glBegin(GL_POLYGON);
+    for(int i = NM; i < NM*2; i++)
+    {
+        RandomColor3f();
+        glVertex3f(x[i], y[i], z[i]);
+    }
+    glEnd();
+
+    //Dessin des faces sur les côtés
+    for (int i = 0; i < NM; i++){
+        glBegin(GL_POLYGON);
+        RandomColor3f();
+        glVertex3f(x[i], y[i], z[i]);
+        glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
+        glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
+        glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
+        glEnd();
+    }
 }
 
 void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart){
