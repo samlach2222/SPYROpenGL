@@ -657,11 +657,11 @@ void DessinCylindre(int NM, float rayon, float hauteur){
     //Dessin des faces sur les côtés
     for (int i = 0; i < NM; i++){
         glBegin(GL_POLYGON);
-        RandomColor3f();
-        glVertex3f(x[i], y[i], z[i]);
-        glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
-        glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
-        glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
+			RandomColor3f();
+			glVertex3f(x[i], y[i], z[i]);
+			glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
+			glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
+			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
         glEnd();
     }
 }
