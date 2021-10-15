@@ -1,7 +1,0 @@
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:6: warning: Compound Point is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:11: warning: Member x (variable) of class Point is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:12: warning: Member y (variable) of class Point is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:13: warning: Member z (variable) of class Point is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:15: warning: Member r (variable) of class Point is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:16: warning: Member g (variable) of class Point is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Point.h:17: warning: Member b (variable) of class Point is not documented.

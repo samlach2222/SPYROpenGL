@@ -49,7 +49,7 @@
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
-				<doxyfile_project output_directory="Doxygen" output_language="French" />
+				<doxyfile_project output_directory="../Doxygen" output_language="French" />
 				<doxyfile_build />
 				<doxyfile_warnings warn_if_undocumented="1" />
 				<doxyfile_output latex="1" />

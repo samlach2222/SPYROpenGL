@@ -10,9 +10,9 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = SPYROpenGL
-PROJECT_NUMBER         = 
-PROJECT_BRIEF          =
-PROJECT_LOGO           =
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Projet SPYROpenGL"
+PROJECT_LOGO           = Logo_SPYROpenGL.png
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = French
@@ -22,7 +22,7 @@ ABBREVIATE_BRIEF       =
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = NO
-STRIP_FROM_PATH        =
+STRIP_FROM_PATH        = ../SPYROpenGL
 STRIP_FROM_INC_PATH    =
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = NO
@@ -30,7 +30,7 @@ QT_AUTOBRIEF           = NO
 MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
-TAB_SIZE               = 8
+TAB_SIZE               = 4
 ALIASES                =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
@@ -91,17 +91,15 @@ WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = YES
 WARN_FORMAT            = "$file:$line: $text"
-WARN_LOGFILE            = "/media/sf_SPYROpenGL/SPYROpenGL/Doxygen/doxygen.log"
+WARN_LOGFILE           = DoxygenWarnings.txt
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = \
-	"../spyropengl.cpp" \
-	"../include/Point.h" \
-	"../src/Point.cpp" 
+INPUT                  = ../SPYROpenGL
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
-RECURSIVE              = NO
+# RECURSIVE is used to specify whether or not subdirectories should be search
+RECURSIVE              = YES
 EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
@@ -152,7 +150,7 @@ DOCSET_BUNDLE_ID       = org.doxygen.Project
 DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
 DOCSET_PUBLISHER_NAME  = Publisher
 GENERATE_HTMLHELP      = NO
-CHM_FILE               = "../SPYROpenGL.chm"
+CHM_FILE               = SPYROpenGL.chm
 HHC_LOCATION           =
 GENERATE_CHI           = NO
 CHM_INDEX_ENCODING     =
@@ -183,7 +181,7 @@ SERVER_BASED_SEARCH    = NO
 #---------------------------------------------------------------------------
 # configuration options related to the LaTeX output
 #---------------------------------------------------------------------------
-GENERATE_LATEX         = YES
+GENERATE_LATEX         = NO
 LATEX_OUTPUT           = latex
 LATEX_CMD_NAME         = latex
 MAKEINDEX_CMD_NAME     = makeindex
