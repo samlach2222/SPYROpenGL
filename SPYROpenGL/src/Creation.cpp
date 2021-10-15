@@ -119,3 +119,24 @@ const void Creation::Queue(float taille)
         Dessin::Tetraedre(0.4*taille, 0.4*taille, longueurTroisiemePartieQueue*taille, -0.1*taille, -0.1*taille);
     glPopMatrix();
 }
+
+const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur) // ici 0.2
+{
+    // Dessin de la pyramide tronquée
+    glPushMatrix();
+        float angleRotationRadian = atan(ecart/largeur); // TOA
+        float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
+        glRotatef(angleRotationDegree, 0, 1, 0);
+        glPushMatrix();
+            Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
+
+            // dessi du tétraèdre
+            srand(128);
+            glTranslatef(longueur, hauteur, 0);
+            glRotatef(angleRotationDegree, 0, 1, 0);
+            glRotatef(90,0,0,-1);
+
+            Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
+        glPopMatrix();
+    glPopMatrix();
+}

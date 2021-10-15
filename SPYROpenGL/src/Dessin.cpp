@@ -541,3 +541,60 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
         glVertex3f(0, hauteur, 0);
     glEnd();
 }
+
+const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float translationX, float translationZ)
+{
+    /*
+        l = largeur
+        L = longueur
+        h = hauteur
+
+        liste des différents points:
+        0 (0,0,0)
+        1 (0,0,l)
+        2 (L,0,l)
+        3 (L,0,0)
+        4 (translationX,h,translationZ)
+    */
+
+    // base bas (0,1,2,3)
+    glBegin(GL_POLYGON);
+        glColor3f(0.4, 0.6, 0.2);
+        glVertex3f(0, 0, 0);
+        glVertex3f(0, 0, largeur);
+        glVertex3f(longueur, 0, largeur);
+        glVertex3f(longueur, 0, 0);
+    glEnd();
+
+    // base gauche (1,4,0)
+    glBegin(GL_POLYGON);
+        glColor3f(0.2, 0.2, 0.2);
+        glVertex3f(0, 0, largeur);
+        glVertex3f(translationX, hauteur, translationZ);
+        glVertex3f(0, 0, 0);
+    glEnd();
+
+    // face devant (2,4,1)
+    glBegin(GL_POLYGON);
+        glColor3f(0.6, 0.6, 0.2);
+        glVertex3f(longueur, 0, largeur);
+        glVertex3f(translationX, hauteur, translationZ);
+        glVertex3f(0, 0, largeur);
+    glEnd();
+
+    // face droite (3,4,2)
+    glBegin(GL_POLYGON);
+        glColor3f(0.4, 0.4, 0.2);
+        glVertex3f(longueur, 0, 0);
+        glVertex3f(translationX, hauteur, translationZ);
+        glVertex3f(longueur, 0, largeur);
+    glEnd();
+
+    // face derrière (0,4,3)
+    glBegin(GL_POLYGON);
+        glColor3f(0.6, 0.6, 0.6);
+        glVertex3f(0, 0, 0);
+        glVertex3f(translationX, hauteur, translationZ);
+        glVertex3f(longueur, 0, 0);
+    glEnd();
+}

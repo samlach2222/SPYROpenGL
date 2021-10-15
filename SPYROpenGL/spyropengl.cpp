@@ -101,6 +101,7 @@ void affichage()
 	//Dessin::Cylindre(5, 0.3, 0.8);
 
 	//Dessin::PyramideTronquee(0.10, 0.35, 0.75, 0.10);
+	Creation::Aile(0.1, 0.4, 0.8, 0.05);
 
     //Repère
     //axe x en rouge
@@ -126,10 +127,10 @@ void affichage()
 
 
   //changement de la caméra
-  /*glMatrixMode(GL_PROJECTION);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(-3, 3, -3, 3, -3, 3);
-  glMatrixMode(GL_MODELVIEW);*/
+  glMatrixMode(GL_MODELVIEW);
   //On echange les buffers
   glutSwapBuffers();
 }

@@ -20,6 +20,7 @@ class Creation
         static const void JambesPlusPieds(float taille, float hauteurJambes);
         static const void ComposantsTete(float taille, float hauteurCorne, float largeurCorne);
         static const void Queue(float taille = 1);
+        static const void Aile(float ecart, float largeur, float longueur, float hauteur);
 };
 
 #endif // CREATION_H
