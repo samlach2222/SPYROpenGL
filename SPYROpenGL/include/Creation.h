@@ -1,7 +1,17 @@
+/**
+ * @file Creation.h
+ * @brief Contient les définition des méthodes de création des parties de Spyro
+ * @author Samuel LACHAUD
+ * @version 1.0
+ * @date 15/10/2021
+ */
+
 #ifndef CREATION_H
 #define CREATION_H
 
-
+/**
+ * @brief Classe de création des parties de Spyro
+ */
 class Creation
 {
     public:

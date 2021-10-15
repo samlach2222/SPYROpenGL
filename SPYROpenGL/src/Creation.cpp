@@ -8,6 +8,12 @@
 #include "Dessin.h"
 #include "math.h"
 
+/**
+ * @brief Méthode de création des jambes de Spyro
+ * @param[in] taille     largeur de la jambe
+ * @param[in] hauteur     hauteur de la jambe
+ * @param[in] sens      sens de la rotation de la face supérieure
+ */
 const void Creation::Jambes(float taille, float hauteur, bool sens)
 {
     glPushMatrix();
@@ -17,6 +23,10 @@ const void Creation::Jambes(float taille, float hauteur, bool sens)
     glPopMatrix();
 }
 
+/**
+ * @brief Méthode des créations des pieds de Spyro
+ * @param[in] taille     taille des éléments du pieds
+ */
 const void Creation::Pieds(float taille)
 {
     glPushMatrix();
@@ -37,6 +47,11 @@ const void Creation::Pieds(float taille)
     glPopMatrix();
 }
 
+/**
+ * @brief Méthode de combinaison des pieds et des jambes de Spyro
+ * @param[in] taille     taille de l'ensemble
+ * @param[in] hauteurJambes     hauteur de la jambe
+ */
 const void Creation::JambesPlusPieds(float taille, float hauteurJambes)
 {
     // ******** DESSIN DES PIEDS + JAMBES ********
@@ -49,6 +64,12 @@ const void Creation::JambesPlusPieds(float taille, float hauteurJambes)
     // ******** FIN DESSIN PIED + JAMBES ********
 }
 
+/**
+ * @brief Méthode de combinaison de la têtes, des cornes et de la crinière
+ * @param[in] taille     rayon de la tête
+ * @param[in] hauteurCorne     hauteur des cornes
+ * @param[in] largeurCorne      largeur des cornes
+ */
 const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne)
 {
     //Dessin de la tête de SPYRO
@@ -71,6 +92,10 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
     glPopMatrix();
 }
 
+/**
+ * @brief Méthode de création de la queue de Spyro
+ * @param[in] taille     taille de la queue
+ */
 const void Creation::Queue(float taille)
 {
     //Dessin de la première partie de la queue de SPYRO
