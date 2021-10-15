@@ -16,6 +16,7 @@
 #include <time.h>
 
 #include "Point.h"
+#include "Dessin.h"
 
 char presse;
 int anglex;
@@ -41,7 +42,6 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX 
 void DessinCube(float taille);
 void DessinJambes(float longueurX, float longueurZ, float hauteur, bool sens);
 void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX = 0, float decalageBZ = 0, float decalageSX = 0, float decalageSZ = 0);
-void DessinCylindre(int NM, float rayon, float hauteur);
 void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart);
 
 // Prototype des fonctions de création
@@ -50,9 +50,6 @@ void CreationPieds(float taille);
 void CreationJambes(float taille, float hauteur, bool sens);
 void CreationComposantsTete(float taille, float hauteurCorne, float largeurCorne);
 void CreationQueue(float taille = 1);
-
-// Prototype des autres fonctions
-void RandomColor3f();
 
 int main(int argc,char **argv)
 {
@@ -105,10 +102,10 @@ void affichage()
 	//CreationJambesPlusPieds(taille, hauteurJambes);
 
 	//DessinPyramideTronquee(0.10, 0.35, 0.75, 0.10);
-	
+
 	//Dessin du corps
-	//srand(256);
-	//DessinCylindre(5, 0.5, 2);
+	srand(256);
+	Dessin::Cylindre(5, 0.3, 0.8);
 
     //Repère
     //axe x en rouge
@@ -363,7 +360,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //base bas
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -371,7 +368,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //base haut
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -379,7 +376,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -388,7 +385,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //côté axe x
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -397,7 +394,7 @@ void DessinPrisme(float longueurX, float longueurZ, float hauteur, float coeffX,
 
     //côté axe z
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -585,7 +582,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //base bas
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -593,7 +590,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
@@ -601,7 +598,7 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //côté axe x
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -609,61 +606,11 @@ void DessinTetraedre(float longueurX, float longueurZ, float hauteur, float deca
 
     //côté axe z
     glBegin(GL_POLYGON);
-        RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
-}
-
-void DessinCylindre(int NM, float rayon, float hauteur){
-
-    float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
-    float y[NM*2];
-    float z[NM*2];
-
-    // Remplissage des coordonnées des points dans x et y et z;
-    for(int i = 0; i < NM*2; i++)
-    {
-        x[i] = rayon*cos(2*i*M_PI/NM);
-        z[i] = rayon*sin(2*i*M_PI/NM);
-
-        if (i < NM){  //Base du bas
-            y[i] = 0;
-        }
-        else{  //Base du haut
-            y[i] = hauteur;
-        }
-    }
-
-    //Dessin de la base bas
-    glBegin(GL_POLYGON);
-    for(int i = 0; i < NM; i++)
-    {
-        RandomColor3f();
-        glVertex3f(x[i], y[i], z[i]);
-    }
-    glEnd();
-
-    //Dessin de la base haut
-    glBegin(GL_POLYGON);
-    for(int i = NM; i < NM*2; i++)
-    {
-        RandomColor3f();
-        glVertex3f(x[i], y[i], z[i]);
-    }
-    glEnd();
-
-    //Dessin des faces sur les côtés
-    for (int i = 0; i < NM; i++){
-        glBegin(GL_POLYGON);
-			RandomColor3f();
-			glVertex3f(x[i], y[i], z[i]);
-			glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
-			glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
-			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
-        glEnd();
-    }
 }
 
 void DessinPyramideTronquee(float hauteur, float largeur, float longueur, float ecart){
@@ -820,13 +767,5 @@ void CreationQueue(float taille)
         glTranslatef(0, longueurPremierePartieQueue*taille + longueurDeuxiemePartieQueue*taille, 0);
         DessinTetraedre(0.4*taille, 0.4*taille, longueurTroisiemePartieQueue*taille, -0.1*taille, -0.1*taille);
     glPopMatrix();
-}
-
-void RandomColor3f(){
-    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);  //Donne une valeur entre 0.0 et 1.0 inclus
-    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-    glColor3f(r,g,b);
 }
 
