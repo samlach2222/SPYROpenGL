@@ -74,22 +74,33 @@ void affichage()
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
-    //Dessin de la tête
+    /*****************************/
+    /***** Dessin de la tête *****/
+    /*****************************/
+    //srand(256);
 	//Creation::ComposantsTete(0.5, 1, 0.15);
 
-    //Dessin de la queue
+    /******************************/
+    /***** Dessin de la queue *****/
+    /******************************/
+    //srand(256);
     //Creation::Queue(1);
 
-	//Dessin des pieds
-	float taille = 0.5;
-	float hauteurJambes = 3;
-	Creation::JambesPlusPieds(taille, hauteurJambes);
+	/****************************/
+    /***** Dessin des pieds *****/
+    /****************************/
+    //srand(256);
+	//float taille = 0.5;
+	//float hauteurJambes = 3;
+	//Creation::JambesPlusPieds(taille, hauteurJambes);
 
-	//Dessin::PyramideTronquee(0.10, 0.35, 0.75, 0.10);
-
-	//Dessin du corps
+	/****************************/
+    /***** Dessin du corps  *****/
+    /****************************/
 	//srand(256);
 	//Dessin::Cylindre(5, 0.3, 0.8);
+
+	//Dessin::PyramideTronquee(0.10, 0.35, 0.75, 0.10);
 
     //Repère
     //axe x en rouge
