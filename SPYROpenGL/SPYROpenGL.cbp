@@ -39,11 +39,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="include/Point.h" />
+		<Unit filename="include/Creation.h" />
 		<Unit filename="include/Dessin.h" />
+		<Unit filename="include/Point.h" />
 		<Unit filename="spyropengl.cpp" />
-		<Unit filename="src/Point.cpp" />
+		<Unit filename="src/Creation.cpp" />
 		<Unit filename="src/Dessin.cpp" />
+		<Unit filename="src/Point.cpp" />
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
