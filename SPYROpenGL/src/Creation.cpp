@@ -120,14 +120,24 @@ const void Creation::Queue(float taille)
     glPopMatrix();
 }
 
-const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur) // ici 0.2
+/**
+ * @brief Méthode permettant de créer les deux ailes de Spyro
+ * @param[in] ecart écart du rectaugle au trapèze
+ * @param[in] largeur largeur de l'aile
+ * @param[in] longueur de l'aile
+ * @param[in] hauteur de l'aile
+ */
+const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur)
 {
-    // Dessin de la pyramide tronquée
+    float angleRotationRadian = atan(ecart/largeur); // TOA
+    float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
+
+    // Aile 1
+
     glPushMatrix();
-        float angleRotationRadian = atan(ecart/largeur); // TOA
-        float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
         glRotatef(angleRotationDegree, 0, 1, 0);
         glPushMatrix();
+            // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
 
             // dessi du tétraèdre
@@ -137,6 +147,28 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             glRotatef(90,0,0,-1);
 
             Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
+        glPopMatrix();
+    glPopMatrix();
+
+    // Aile 2
+
+    glPushMatrix();
+        // Transformation pour passer à l'autre coté
+        glRotatef(180,0,0,1);
+        glTranslatef(0,-hauteur,0);
+
+        glRotatef(angleRotationDegree, 0, 1, 0);
+        glPushMatrix();
+            // Dessin de la pyramide tronquée
+            Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
+
+            // dessi du tétraèdre
+            srand(128);
+            glTranslatef(longueur, hauteur, 0);
+            glRotatef(angleRotationDegree, 0, 1, 0);
+            glRotatef(90,0,0,-1);
+
+            Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, -hauteur, 0);
         glPopMatrix();
     glPopMatrix();
 }
