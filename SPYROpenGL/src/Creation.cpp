@@ -135,7 +135,16 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
     // Aile 1
 
     glPushMatrix();
+        // Dessin de la sphère de jonction
+        glPushMatrix();
+            glTranslatef(0,0,largeur/4);
+            glTranslatef(largeur,0,0);
+            glTranslatef(0,hauteur/2,0); // mise au centre de l'aile
+            Dessin::Sphere(largeur/2,30,30);
+        glPopMatrix();
+
         glRotatef(angleRotationDegree, 0, 1, 0);
+        glTranslatef(largeur,0,0); // décallage du centre
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
@@ -157,7 +166,16 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         glRotatef(180,0,0,1);
         glTranslatef(0,-hauteur,0);
 
+        // Dessin de la sphère de jonction
+        glPushMatrix();
+            glTranslatef(0,0,largeur/4); // même niveau que l'aile
+            glTranslatef(largeur,0,0);
+            glTranslatef(0,hauteur/2,0); // mise au centre de l'aile
+            Dessin::Sphere(largeur/2,30,30);
+        glPopMatrix();
+
         glRotatef(angleRotationDegree, 0, 1, 0);
+        glTranslatef(largeur,0,0); // décallage du centre
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
