@@ -35,6 +35,7 @@ int x;
 int y;
 int xold;
 int yold;
+float champDeVision;  // /!\ Correspond à une valeur de dézoom
 
 /* Prototype des fonctions */;
 void affichage();
@@ -46,6 +47,8 @@ void mousemotion(int x,int y);
 
 int main(int argc,char **argv)
 {
+    champDeVision = 3;  //Valeur de dézoom initiale
+
   /* initialisation de glut et creation
      de la fenetre */
   glutInit(&argc,argv);
@@ -80,6 +83,7 @@ void affichage()
     glShadeModel(GL_SMOOTH);
 
     glLoadIdentity();
+    glOrtho(-champDeVision, champDeVision, -champDeVision, champDeVision, -1, 1);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
@@ -135,12 +139,6 @@ void affichage()
 
   glFlush();
 
-
-  //changement de la caméra
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(-4, 4, -4, 4, -4, 4);
-  glMatrixMode(GL_MODELVIEW);
   //On echange les buffers
   glutSwapBuffers();
 }
@@ -169,6 +167,24 @@ void clavier(unsigned char touche,int x,int y)
       glDisable(GL_DEPTH_TEST);
       glutPostRedisplay();
       break;
+    case '+':
+        //Zoom
+        champDeVision -= 0.05;
+        if (champDeVision < 0.05){
+            //Zoom maximum
+            champDeVision = 0.05;
+        }
+        glutPostRedisplay();
+        break;
+    case '-':
+        //Dézoom
+        champDeVision += 0.05;
+        if (champDeVision > 6){
+            //Dézoom maximum
+            champDeVision = 6;
+        }
+        glutPostRedisplay();
+        break;
     case 'q' : /*la touche 'q' permet de quitter le programme */
       exit(0);
     }
