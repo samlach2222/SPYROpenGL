@@ -1,5 +1,5 @@
 /**
- * @file Point.h
+ * @file include/Point.h
  * @brief Contient la définition de la classe gérant un point et ses coordonnées
  * @author Samuel LACHAUD
  * @version 1.0
@@ -11,7 +11,7 @@
 
 
 /**
- * @brief classee de création d'un point
+ * @brief Classe de création d'un point
  */
 class Point
 {

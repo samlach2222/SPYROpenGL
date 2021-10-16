@@ -1,3 +1,12 @@
+/**
+ * @file spyropengl.cpp
+ * @brief Gère le démarrage de l'application
+ * @author Samuel LACHAUD
+ * @author Loïs PAZOLA
+ * @version 1.0
+ * @date 16/10/2021
+ */
+
 /********************************************************/
 /*                     spyropengl.cpp                   */
 /********************************************************/
@@ -77,22 +86,23 @@ void affichage()
     /*****************************/
     /***** Dessin de la tête *****/
     /*****************************/
-    //srand(256);
+    //srand(4);
 	//Creation::ComposantsTete(0.5, 1, 0.15);
 
     /******************************/
     /***** Dessin de la queue *****/
     /******************************/
-    //srand(256);
+    //srand(7);
     //Creation::Queue(1);
 
 	/****************************/
     /***** Dessin des pieds *****/
     /****************************/
-    srand(256);
+    srand(13);
+    Dessin::Pyramide(0.5,0.5,1,1,0);
 	float taille = 0.5;
 	float hauteurJambes = 3;
-	Creation::JambesPlusPieds(taille, hauteurJambes);
+	//Creation::JambesPlusPieds(taille, hauteurJambes);
 
 	/****************************/
     /***** Dessin du corps  *****/

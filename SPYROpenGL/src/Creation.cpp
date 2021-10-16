@@ -1,3 +1,12 @@
+/**
+ * @file src/Creation.cpp
+ * @brief Implémentation des méthodes de création des parties de Spyro
+ * @author Samuel LACHAUD
+ * @author Loïs PAZOLA
+ * @version 1.0
+ * @date 16/10/2021
+ */
+
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
