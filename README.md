@@ -7,3 +7,23 @@
 Projet de Synthèse d'image portant sur la création d'un dragon (ici Spyro en version PS1) avec c++ et OpenGL.
 
 https://samlach22-notes.mycozy.cloud/public/?sharecode=MuuPqmvLAbrb
+
+# Répartition + Avancement
+## LOIS PAZOLA
+### Fini
+- Queue
+### Non Fini
+- Corps
+- Bouche
+- Nez
+
+## SAMUEL LACHAUD
+### Fini
+- Jambes
+- Pieds
+- Ailes
+- Tête
+- Cornes
+- Crinière
+### Non Fini
+- Cou
