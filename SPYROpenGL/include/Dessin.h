@@ -1,12 +1,22 @@
+/**
+ * @file include/Dessin.h
+ * @brief Contient les définition des méthodes de création des formes géométrique et sous-parties de Spyro
+ * @author Loïs PAZOLA
+ * @version 1.0
+ * @date 16/10/2021
+ */
+
 #ifndef DESSIN_H
 #define DESSIN_H
 
 
+/**
+ * @brief Classe de création des formes géométrique et sous-parties de Spyro
+ */
 class Dessin
 {
     public:
         static const void Cylindre(int NM, float rayon, float hauteur);
-        static const void RandomColor3f();
         static const void Sphere(float taille, int NP, int NM);
         static const void Cone(float hauteur, float rayon, int NM);
         static const void Criniere(float rayonSphere);
@@ -16,6 +26,7 @@ class Dessin
         static const void Tetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX = 0, float decalageBZ = 0, float decalageSX = 0, float decalageSZ = 0);
         static const void PyramideTronquee(float hauteur, float largeur, float longueur, float ecart);
         static const void Pyramide(float largeur, float longueur, float hauteur, float translationX = 0, float translationZ = 0);
+        static const void RandomColor3f();
 };
 
 #endif // DESSIN_H

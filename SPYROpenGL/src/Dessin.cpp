@@ -1,3 +1,12 @@
+/**
+ * @file src/Dessin.cpp
+ * @brief Implémentation des méthodes de création des formes géométrique et sous-parties de Spyro
+ * @author Loïs PAZOLA
+ * @author Samuel LACHAUD
+ * @version 1.0
+ * @date 16/10/2021
+ */
+
 #include "Dessin.h"
 
 #ifdef __APPLE__
@@ -7,6 +16,12 @@
 #endif
 #include "math.h"
 
+/**
+ * @brief Méthode de création d'un cylindre
+ * @param NM    Nombre de côtés (à l'horizontale)
+ * @param rayon     Longueur du rayon
+ * @param hauteur   Hauteur du cylindre
+ */
 const void Dessin::Cylindre(int NM, float rayon, float hauteur){
 
     float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
@@ -57,14 +72,12 @@ const void Dessin::Cylindre(int NM, float rayon, float hauteur){
     }
 }
 
-const void Dessin::RandomColor3f(){
-    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);  //Donne une valeur entre 0.0 et 1.0 inclus
-    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-    glColor3f(r,g,b);
-}
-
+/**
+ * @brief Méthode de création d'une sphère
+ * @param taille    Taille de la sphère
+ * @param NP    Nombre de côtés à la verticale
+ * @param NM    Nombre de côtés à l'horizontale
+ */
 const void Dessin::Sphere(float taille, int NP, int NM)
 {
     float x[NM*NP];
@@ -117,6 +130,12 @@ const void Dessin::Sphere(float taille, int NP, int NM)
     }
 }
 
+/**
+ * @brief Méthode de création d'un cône
+ * @param hauteur    Hauteur du cône
+ * @param rayon     Longueur du rayon
+ * @param NM    Nombre de côtés (à l'horizontale)
+ */
 const void Dessin::Cone(float hauteur, float rayon, int NM)
 {
     float x[NM]; // NM --> taille du nombre de subdivison de la base
@@ -153,6 +172,10 @@ const void Dessin::Cone(float hauteur, float rayon, int NM)
     }
 }
 
+/**
+ * @brief Méthode de création d'une crinière
+ * @param rayonSphere    Longueur du rayon de la sphère utilisé pour créer la crinière
+ */
 const void Dessin::Criniere(float rayonSphere)
 {
     /*
@@ -206,6 +229,16 @@ const void Dessin::Criniere(float rayonSphere)
     glPopMatrix();
 }
 
+/**
+ * @brief Méthode de création d'un prisme (isocèle, rectangle)
+ * @param longueurX     Longueur du prisme sur l'axe X
+ * @param longueurZ     Longueur du prisme sur l'axe Z
+ * @param hauteur       Hauteur du prisme
+ * @param coeffX        Coefficient d'agrandissement de la surface haute du prisme par rapport à la surface basse sur l'axe X (optionnelle, défaut: 1)
+ * @param coeffZ        Coefficient d'agrandissement de la surface haute du prisme par rapport à la surface basse sur l'axe Z (optionnelle, défaut: 1)
+ * @param decalageSX    Décalage sur l'axe X du point de la surface haute se trouvant à l'angle droit (optionnelle, défaut: 0)
+ * @param decalageSZ    Décalage sur l'axe Z du point de la surface haute se trouvant à l'angle droit (optionnelle, défaut: 0)
+ */
 const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float coeffX, float coeffZ, float decalageSX, float decalageSZ)
 {
     float coordPoints[6][3] = {
@@ -261,6 +294,14 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
     glEnd();
 }
 
+/**
+ * @brief Méthode de création des jambes
+ * @param longueurX     Longueur des jambes sur l'axe X
+ * @param longueurZ     Longueur des jambes sur l'axe Z
+ * @param hauteur   Hauteur des jambes
+ * @param sens      Sens des jambes
+ * @param agrandissement    Agrandissement de la surface du haut
+ */
 const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement)
 {
     float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypothénuse du triangle du dessus
@@ -385,6 +426,10 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     }
 }
 
+/**
+ * @brief Méthode de création d'un cube
+ * @param taille    Taille du cube
+ */
 const void Dessin::Cube(float taille)
 {
     // base bas
@@ -442,6 +487,16 @@ const void Dessin::Cube(float taille)
     glEnd();
 }
 
+/**
+ * @brief Méthode de création d'un tétraèdre (le sommet se trouve par défaut au milieu de l'hypoténuse)
+ * @param longueurX     Longueur du tétraèdre sur l'axe X
+ * @param longueurZ     Longueur du tétraèdre sur l'axe Z
+ * @param hauteur       Hauteur du tétraèdre
+ * @param decalageBX    Décalage sur l'axe X du point de la surface basse se trouvant à l'angle droit (optionnelle, défaut: 0)
+ * @param decalageBZ    Décalage sur l'axe Z du point de la surface basse se trouvant à l'angle droit (optionnelle, défaut: 0)
+ * @param decalageSX    Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0)
+ * @param decalageSZ    Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0)
+ */
 const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX, float decalageBZ, float decalageSX, float decalageSZ)
 {
     float coordPoints[4][3] = {
@@ -484,6 +539,13 @@ const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, fl
     glEnd();
 }
 
+/**
+ * @brief Méthode de création d'une pyramide tronquée
+ * @param hauteur     Hauteur du prisme tronquée
+ * @param largeur     Largeur du prisme tronquée
+ * @param longueur    Longueur du prisme tronquée
+ * @param ecart     Longueur du décalage de deux points dans une direction opposée
+ */
 const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur, float ecart)
 {
     /*
@@ -553,6 +615,14 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
     glEnd();
 }
 
+/**
+ * @brief Méthode de création d'une pyramide
+ * @param largeur     Largeur de la pyramide
+ * @param longueur     Longueur de la pyramide
+ * @param hauteur     Hauteur de la pyramide
+ * @param translationX    Longueur de la translation du point du sommet sur l'axe X
+ * @param translationZ    Longueur de la translation du point du sommet sur l'axe Z
+ */
 const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float translationX, float translationZ)
 {
     /*
@@ -608,4 +678,15 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
         glVertex3f(translationX, hauteur, translationZ);
         glVertex3f(longueur, 0, 0);
     glEnd();
+}
+
+/**
+ * @brief Méthode appelant la méthode glColor3f avec des valeurs aléatoires
+ */
+const void Dessin::RandomColor3f(){
+    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);  //Donne une valeur entre 0.0 et 1.0 inclus
+    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+    glColor3f(r,g,b);
 }
