@@ -89,10 +89,10 @@ void affichage()
 	/****************************/
     /***** Dessin des pieds *****/
     /****************************/
-    //srand(256);
-	//float taille = 0.5;
-	//float hauteurJambes = 3;
-	//Creation::JambesPlusPieds(taille, hauteurJambes);
+    srand(256);
+	float taille = 0.5;
+	float hauteurJambes = 3;
+	Creation::JambesPlusPieds(taille, hauteurJambes);
 
 	/****************************/
     /***** Dessin du corps  *****/
@@ -101,7 +101,7 @@ void affichage()
 	//Dessin::Cylindre(5, 0.3, 0.8);
 
 	//Dessin::PyramideTronquee(0.10, 0.35, 0.75, 0.10);
-	Creation::Aile(0.1, 0.4, 0.8, 0.05);
+	//Creation::Aile(0.1, 0.4, 0.8, 0.05);
 
     //Repère
     //axe x en rouge
@@ -129,7 +129,7 @@ void affichage()
   //changement de la caméra
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  glOrtho(-3, 3, -3, 3, -3, 3);
+  glOrtho(-4, 4, -4, 4, -4, 4);
   glMatrixMode(GL_MODELVIEW);
   //On echange les buffers
   glutSwapBuffers();

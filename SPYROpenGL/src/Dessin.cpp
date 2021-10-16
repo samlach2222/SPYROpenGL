@@ -261,19 +261,30 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
     glEnd();
 }
 
-const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens)
+const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement)
 {
     float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypothénuse du triangle du dessus
+    float t = agrandissement;
+    float tx = sqrt(t*t/2);
     if(sens)
     {
         float coordPoints[6][3] = {
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
-            {0, hauteur+((h/2)/(tan(M_PI/4))), 0}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {longueurX, hauteur+(h/(tan(M_PI/4))), 0}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {0, hauteur, longueurZ}
+            {0-tx, hauteur, 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {0, hauteur+((h/2)/(tan(M_PI/4))), longueurZ+t}
         };
+
+        /*float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
+            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {longueurX+t, hauteur, 0},
+            {0, hauteur+(h/(tan(M_PI/4))), longueurZ+t} // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+        };*/
 
         //base bas
         glBegin(GL_POLYGON);
@@ -324,9 +335,9 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
-            {0, hauteur+((h/2)/(tan(M_PI/4))), 0}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {longueurX, hauteur, 0},
-            {0, hauteur+(h/(tan(M_PI/4))), longueurZ} // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {longueurX+t, hauteur, 0},
+            {0, hauteur+(h/(tan(M_PI/4))), longueurZ+t} // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
         };
 
         //base bas
