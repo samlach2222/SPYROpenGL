@@ -102,25 +102,23 @@ void affichage()
     /******************************/
     /***** Dessin de la queue *****/
     /******************************/
-    Creation::Queue(0.2);
+    //Creation::Queue(0.2);
 
 	/****************************/
     /***** Dessin des pieds *****/
     /****************************/
-    //Dessin::Pyramide(0.5,0.5,1,1,0);
-	//float taille = 0.5;
-	//float hauteurJambes = 3;
-	//Creation::JambesPlusPieds(taille, hauteurJambes);
+	float taille = 0.5;
+	float hauteurJambes = 3;
+	Creation::JambesPlusPieds(taille, hauteurJambes);
 
 	/***************************/
     /***** Dessin du corps *****/
     /***************************/
-	Creation::Corps(5,0.2,1);
+	//Creation::Corps(5,0.2,1);
 
     /****************************/
     /***** Dessin des ailes *****/
     /****************************/
-	//Dessin::PyramideTronquee(0.10, 0.35, 0.75, 0.10);
 	//Creation::Aile(0.1, 0.4, 0.8, 0.05);
 
     //Repère
