@@ -83,7 +83,7 @@ void affichage()
     glShadeModel(GL_SMOOTH);
 
     glLoadIdentity();
-    glOrtho(-champDeVision, champDeVision, -champDeVision, champDeVision, -1, 1);  //Gère le zoom/dézoom
+    glOrtho(-champDeVision, champDeVision, -champDeVision, champDeVision, -1000, 1);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
