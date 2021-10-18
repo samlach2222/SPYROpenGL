@@ -25,5 +25,4 @@ https://samlach22-notes.mycozy.cloud/public/?sharecode=MuuPqmvLAbrb
 - Tête
 - Cornes
 - Crinière
-### Non Fini
 - Cou
