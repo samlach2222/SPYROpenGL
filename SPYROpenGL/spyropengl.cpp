@@ -57,7 +57,7 @@ int main(int argc,char **argv)
   glutInit(&argc,argv);
   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
   glutInitWindowPosition(200,200);
-  glutInitWindowSize(500,500);
+  glutInitWindowSize(1600,900);
   glutCreateWindow("cube");
 
   /* Initialisation d'OpenGL */
@@ -86,13 +86,15 @@ void affichage()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glShadeModel(GL_SMOOTH);
 
+
+    float Wsize = (float) glutGet(GLUT_WINDOW_WIDTH)/ (float) glutGet(GLUT_WINDOW_HEIGHT);
     glLoadIdentity();
-    glOrtho(-champDeVision, champDeVision, -champDeVision, champDeVision, -1000, 1);  //Gère le zoom/dézoom
+    glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -1000, 1000);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
     glTranslatef(0, translationY, 0);  //Décalage sur Y de tout
 
-    srand(713705);
+    srand(39738);
 
     /*****************************/
     /***** Dessin de la tête *****/
@@ -215,10 +217,7 @@ void specialInput(int key, int x, int y){
 
 void reshape(int x,int y)
 {
-  if (x<y)
-    glViewport(0,(y-x)/2,x,x);
-  else
-    glViewport((x-y)/2,0,y,y);
+
 }
 
 void mouse(int button, int state,int x,int y)
