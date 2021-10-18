@@ -199,3 +199,11 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         glPopMatrix();
     glPopMatrix();
 }
+
+const void Creation::Corps(int NM, float rayon, float longueur){
+    glPushMatrix();
+        //glRotatef(90,1,0,0);
+        glRotatef((3*M_PI/10)*(180/M_PI), 0, 1, 0);  //angle en radians * 180/pi --> angle en degrés
+        Dessin::Cylindre(NM, rayon, longueur);
+    glPopMatrix();
+}

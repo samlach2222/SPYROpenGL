@@ -101,6 +101,13 @@ void affichage()
     /*****************************/
 	//Creation::ComposantsTete(0.5, 1, 0.15);
 
+    /***************************/
+    /***** Dessin du corps *****/
+    /***************************/
+    const float rayonCorps = 0.2;
+    const float nombreDeCotesCorps = 5;
+	Creation::Corps(nombreDeCotesCorps,rayonCorps,1);
+
     /******************************/
     /***** Dessin de la queue *****/
     /******************************/
