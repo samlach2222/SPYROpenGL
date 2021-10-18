@@ -94,7 +94,7 @@ void affichage()
     glRotatef(anglex,0.0,1.0,0.0);
     glTranslatef(0, translationY, 0);  //Décalage sur Y de tout
 
-    srand(39738);
+    srand(713705);
 
     /*****************************/
     /***** Dessin de la tête *****/
@@ -217,7 +217,7 @@ void specialInput(int key, int x, int y){
 
 void reshape(int x,int y)
 {
-
+	glViewport(0,0,x,y);
 }
 
 void mouse(int button, int state,int x,int y)
