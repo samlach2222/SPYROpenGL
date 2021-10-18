@@ -36,6 +36,7 @@ int y;
 int xold;
 int yold;
 float champDeVision;  // /!\ Correspond à une valeur de dézoom
+float translationY;
 
 /* Prototype des fonctions */;
 void affichage();
@@ -44,10 +45,12 @@ void reshape(int x,int y);
 void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
+void specialInput(int key, int x, int y);  //similaire au clavier mais avec des touches non-ascii
 
 int main(int argc,char **argv)
 {
     champDeVision = 3;  //Valeur de dézoom initiale
+    translationY = 0;  //Valeur par défaut de la translation Y sur tout
 
   /* initialisation de glut et creation
      de la fenetre */
@@ -69,6 +72,7 @@ int main(int argc,char **argv)
   glutReshapeFunc(reshape);
   glutMouseFunc(mouse);
   glutMotionFunc(mousemotion);
+  glutSpecialFunc(specialInput);  //similaire à glutKeyboardFunc mais pour les touches non-ascii
 
   /* Entree dans la boucle principale glut */
   glutMainLoop();
@@ -86,6 +90,7 @@ void affichage()
     glOrtho(-champDeVision, champDeVision, -champDeVision, champDeVision, -1000, 1);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
+    glTranslatef(0, translationY, 0);  //Décalage sur Y de tout
 
     /*****************************/
     /***** Dessin de la tête *****/
@@ -188,6 +193,25 @@ void clavier(unsigned char touche,int x,int y)
     case 'q' : /*la touche 'q' permet de quitter le programme */
       exit(0);
     }
+}
+
+void specialInput(int key, int x, int y){
+    switch(key)
+    {
+        case GLUT_KEY_UP:
+        translationY += 0.1;
+            break;
+        case GLUT_KEY_DOWN:
+        translationY -= 0.1;
+            break;
+        case GLUT_KEY_LEFT:
+        //do something here
+            break;
+        case GLUT_KEY_RIGHT:
+        //do something here
+            break;
+    }
+    glutPostRedisplay();
 }
 
 void reshape(int x,int y)
