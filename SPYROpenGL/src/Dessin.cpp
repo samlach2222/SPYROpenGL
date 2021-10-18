@@ -656,7 +656,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
 
     // face droite (3,4,2)
     glBegin(GL_POLYGON);
-        gDessin::RandomColor3f();
+        Dessin::RandomColor3f();
         glVertex3f(longueur, 0, 0);
         glVertex3f(translationX, hauteur, translationZ);
         glVertex3f(longueur, 0, largeur);
