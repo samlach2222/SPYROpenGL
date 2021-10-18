@@ -92,33 +92,34 @@ void affichage()
     glRotatef(anglex,0.0,1.0,0.0);
     glTranslatef(0, translationY, 0);  //Décalage sur Y de tout
 
+    srand(713705);
+
     /*****************************/
     /***** Dessin de la tête *****/
     /*****************************/
-    //srand(4);
 	//Creation::ComposantsTete(0.5, 1, 0.15);
 
     /******************************/
     /***** Dessin de la queue *****/
     /******************************/
-    //srand(7);
-    //Creation::Queue(1);
+    Creation::Queue(0.2);
 
 	/****************************/
     /***** Dessin des pieds *****/
     /****************************/
-    srand(13);
-    Dessin::Pyramide(0.5,0.5,1,1,0);
-	float taille = 0.5;
-	float hauteurJambes = 3;
+    //Dessin::Pyramide(0.5,0.5,1,1,0);
+	//float taille = 0.5;
+	//float hauteurJambes = 3;
 	//Creation::JambesPlusPieds(taille, hauteurJambes);
 
-	/****************************/
-    /***** Dessin du corps  *****/
-    /****************************/
-	//srand(256);
-	//Dessin::Cylindre(5, 0.3, 0.8);
+	/***************************/
+    /***** Dessin du corps *****/
+    /***************************/
+	Creation::Corps(5,0.2,1);
 
+    /****************************/
+    /***** Dessin des ailes *****/
+    /****************************/
 	//Dessin::PyramideTronquee(0.10, 0.35, 0.75, 0.10);
 	//Creation::Aile(0.1, 0.4, 0.8, 0.05);
 
