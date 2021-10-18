@@ -109,9 +109,9 @@ void affichage()
 	/****************************/
     /***** Dessin des pieds *****/
     /****************************/
-	float taille = 0.5;
-	float hauteurJambes = 3;
-	Creation::JambesPlusPieds(taille, hauteurJambes);
+	//float taille = 0.5;
+	//float hauteurJambes = 3;
+	//Creation::JambesPlusPieds(taille, hauteurJambes);
 
 	/***************************/
     /***** Dessin du corps *****/
@@ -122,6 +122,11 @@ void affichage()
     /***** Dessin des ailes *****/
     /****************************/
 	//Creation::Aile(0.1, 0.4, 0.8, 0.05);
+
+    /****************************/
+    /*****  Dessin du cou   *****/
+    /****************************/
+	Dessin::Cou(5,0.25,1, 0.2);
 
     //Repère
     //axe x en rouge
