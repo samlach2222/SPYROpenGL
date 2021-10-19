@@ -73,17 +73,8 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
         glEnd();
     }
 
-
-    //TEST
     Point p1 = Point(x[NM*2-1], y[NM*2-1], z[NM*2-1]);
     Point p2 = Point(x[NM], y[NM], z[NM]);
-    glBegin(GL_POLYGON);
-        glColor3f(0,0,0);
-        glVertex3f(p1.x, p1.y, p1.z);
-        glVertex3f(p2.x, p2.y, p2.z);
-        glVertex3f(p2.x, p2.y+0.01, p2.z);
-        glVertex3f(p1.x, p1.y+0.01, p1.z);
-    glEnd();
     std::tuple<Point, Point> tuplePointsBaseCorps(p1, p2);
 
     return tuplePointsBaseCorps;
