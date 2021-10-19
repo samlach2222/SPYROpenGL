@@ -874,6 +874,13 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
     glEnd();
 }
 
+/**
+ * @brief Méthode de dessin du cou de Spyro
+ * @param NM int nombre de subdivision du cou
+ * @param rayon float rayon du cou
+ * @param hauteur float hauteur du cou
+ * @param decallage float Décallage en avant du cou
+ */
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
 
     float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)

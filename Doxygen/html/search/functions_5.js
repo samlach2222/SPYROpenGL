@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['queue',['Queue',['../class_creation.html#a0623d1e1995d90fdf7591e38697a0938',1,'Creation']]]
+  ['pieds_0',['Pieds',['../class_creation.html#a6a59d7a08c123b17c4ff92075905b3ff',1,'Creation']]],
+  ['point_1',['Point',['../class_point.html#a719d3ca3c678ad1eeb8349576a075292',1,'Point']]],
+  ['premierepartiequeue_2',['PremierePartieQueue',['../class_dessin.html#a0bcda9bf573241cb1722d9e49d911823',1,'Dessin']]],
+  ['prisme_3',['Prisme',['../class_dessin.html#a5ed82bd5358f7a599f9520a5054f289a',1,'Dessin']]],
+  ['pyramide_4',['Pyramide',['../class_dessin.html#a935b56697e86f3eb562e6fdccd9a809f',1,'Dessin']]],
+  ['pyramidetronquee_5',['PyramideTronquee',['../class_dessin.html#ad69b7fb51691201474e6206cec517978',1,'Dessin']]]
 ];

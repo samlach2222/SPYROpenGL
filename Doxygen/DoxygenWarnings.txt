@@ -1,24 +1,3 @@
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:57: warning: Member affichage() (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:58: warning: Member clavier(unsigned char touche, int x, int y) (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:59: warning: Member reshape(int x, int y) (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:60: warning: Member idle() (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:61: warning: Member mouse(int bouton, int etat, int x, int y) (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:62: warning: Member mousemotion(int x, int y) (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:63: warning: Member specialInput(int key, int x, int y) (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:65: warning: Member main(int argc, char **argv) (function) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:31: warning: Member presse (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:32: warning: Member anglex (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:33: warning: Member angley (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:34: warning: Member x (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:35: warning: Member y (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:36: warning: Member xold (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/spyropengl.cpp:37: warning: Member yold (variable) of file spyropengl.cpp is not documented.
-/media/sf_SPYROpenGL/SPYROpenGL/include/Creation.h:24: warning: The following parameters of Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decallageCou) are not documented:
-  parameter 'rayonCou'
-  parameter 'hauteurCou'
-  parameter 'decallageCou'
-/media/sf_SPYROpenGL/SPYROpenGL/include/Creation.h:21: warning: The following parameters of Creation::Jambes(float taille, float hauteur, bool sens, float agrendissement) are not documented:
-  parameter 'agrendissement'
-/media/sf_SPYROpenGL/SPYROpenGL/include/Creation.h:23: warning: The following parameters of Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes) are not documented:
-  parameter 'agrendissementJambes'
-/media/sf_SPYROpenGL/SPYROpenGL/include/Dessin.h:35: warning: Member Cou(int NM, float rayon, float hauteur, float decallage) (function) of class Dessin is not documented.
+warning: The selected output language "french" has not been updated
+since release 1.8.15.  As a result some sentences may appear in English.
+

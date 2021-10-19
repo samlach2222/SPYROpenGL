@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['point',['Point',['../class_point.html',1,'']]]
+  ['montage_0',['Montage',['../class_montage.html',1,'']]]
 ];

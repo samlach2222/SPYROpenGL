@@ -13,6 +13,9 @@
 #include "Montage.h"
 
 
+/**
+ * @brief Méthode permettant de monter l'intégralitée des membres de Spyro
+ */
 const void Montage::MontageSpyro()
 {
     /* param Corps */
