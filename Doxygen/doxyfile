@@ -100,7 +100,7 @@ INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          =
 # RECURSIVE is used to specify whether or not subdirectories should be search
 RECURSIVE              = YES
-EXCLUDE                =
+EXCLUDE                = ../SPYROpenGL/spyropengl.cpp
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =
