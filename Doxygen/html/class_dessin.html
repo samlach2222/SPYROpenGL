@@ -97,9 +97,9 @@ $(document).ready(function(){initNavTree('class_dessin.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Fonctions membres publiques statiques</h2></td></tr>
-<tr class="memitem:aa36e6c095ab4bf1fee528728953bee98"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#aa36e6c095ab4bf1fee528728953bee98">Cylindre</a> (int NM, float rayon, float hauteur)</td></tr>
-<tr class="memdesc:aa36e6c095ab4bf1fee528728953bee98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'un cylindre.  <a href="#aa36e6c095ab4bf1fee528728953bee98">Plus de détails...</a><br /></td></tr>
-<tr class="separator:aa36e6c095ab4bf1fee528728953bee98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f113cc49a9008bcfeca1960db422b06"><td class="memItemLeft" align="right" valign="top">static const std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a6f113cc49a9008bcfeca1960db422b06">Cylindre</a> (int NM, float rayon, float hauteur)</td></tr>
+<tr class="memdesc:a6f113cc49a9008bcfeca1960db422b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'un cylindre.  <a href="#a6f113cc49a9008bcfeca1960db422b06">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6f113cc49a9008bcfeca1960db422b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e94cc30809a54cf52f8af585821d81e"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a3e94cc30809a54cf52f8af585821d81e">Sphere</a> (float taille, int NP, int NM)</td></tr>
 <tr class="memdesc:a3e94cc30809a54cf52f8af585821d81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'une sphère.  <a href="#a3e94cc30809a54cf52f8af585821d81e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3e94cc30809a54cf52f8af585821d81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,6 +112,15 @@ Fonctions membres publiques statiques</h2></td></tr>
 <tr class="memitem:a5ed82bd5358f7a599f9520a5054f289a"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a5ed82bd5358f7a599f9520a5054f289a">Prisme</a> (float longueurX, float longueurZ, float hauteur, float coeffX=1, float coeffZ=1, float decalageSX=0, float decalageSZ=0)</td></tr>
 <tr class="memdesc:a5ed82bd5358f7a599f9520a5054f289a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'un prisme (isocèle, rectangle)  <a href="#a5ed82bd5358f7a599f9520a5054f289a">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a5ed82bd5358f7a599f9520a5054f289a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bcda9bf573241cb1722d9e49d911823"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a0bcda9bf573241cb1722d9e49d911823">PremierePartieQueue</a> (float longueurRayonCorps, std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt; deuxPointsBaseCorps, float hauteur, float coeff)</td></tr>
+<tr class="memdesc:a0bcda9bf573241cb1722d9e49d911823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création de la première partie de la queue.  <a href="#a0bcda9bf573241cb1722d9e49d911823">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0bcda9bf573241cb1722d9e49d911823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46952dcff1d18cd616353d6f631d73f5"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a46952dcff1d18cd616353d6f631d73f5">DeuxiemePartieQueue</a> (float longueurX, float longueurZ, float hauteur, std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt; deuxPointsBaseCorps, float coeffX=1, float coeffZ=1, float decalageSX=0, float decalageSZ=0)</td></tr>
+<tr class="memdesc:a46952dcff1d18cd616353d6f631d73f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création de la deuxième partie de la queue.  <a href="#a46952dcff1d18cd616353d6f631d73f5">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a46952dcff1d18cd616353d6f631d73f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1c6c96d8f5cf2263597ebdc8f22b2b4"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#af1c6c96d8f5cf2263597ebdc8f22b2b4">TroisiemePartieQueue</a> (float longueurX, float longueurZ, float hauteur, std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt; deuxPointsBaseCorps, float decalageBX=0, float decalageBZ=0, float decalageSX=0, float decalageSZ=0)</td></tr>
+<tr class="memdesc:af1c6c96d8f5cf2263597ebdc8f22b2b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création de la troisième partie de la queue.  <a href="#af1c6c96d8f5cf2263597ebdc8f22b2b4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af1c6c96d8f5cf2263597ebdc8f22b2b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a0df1eb8b85685783d832e196f99bae"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a5a0df1eb8b85685783d832e196f99bae">Jambes</a> (float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement)</td></tr>
 <tr class="memdesc:a5a0df1eb8b85685783d832e196f99bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création des jambes.  <a href="#a5a0df1eb8b85685783d832e196f99bae">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a5a0df1eb8b85685783d832e196f99bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,9 +133,12 @@ Fonctions membres publiques statiques</h2></td></tr>
 <tr class="memitem:ad69b7fb51691201474e6206cec517978"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#ad69b7fb51691201474e6206cec517978">PyramideTronquee</a> (float hauteur, float largeur, float longueur, float ecart)</td></tr>
 <tr class="memdesc:ad69b7fb51691201474e6206cec517978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'une pyramide tronquée.  <a href="#ad69b7fb51691201474e6206cec517978">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ad69b7fb51691201474e6206cec517978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a935b56697e86f3eb562e6fdccd9a809f"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a935b56697e86f3eb562e6fdccd9a809f">Pyramide</a> (float largeur, float longueur, float hauteur, float translationX=0, float translationZ=0)</td></tr>
+<tr class="memitem:a935b56697e86f3eb562e6fdccd9a809f"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a935b56697e86f3eb562e6fdccd9a809f">Pyramide</a> (float largeur, float longueur, float hauteur, float <a class="el" href="spyropengl_8cpp.html#a2d18c311197216b3dd0a36a647c23546">translationX</a>=0, float <a class="el" href="spyropengl_8cpp.html#a09fd79764dbe9132a05d2e3b59e39361">translationZ</a>=0)</td></tr>
 <tr class="memdesc:a935b56697e86f3eb562e6fdccd9a809f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'une pyramide.  <a href="#a935b56697e86f3eb562e6fdccd9a809f">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a935b56697e86f3eb562e6fdccd9a809f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae25f3038e9fe235d88123455c3441219"><td class="memItemLeft" align="right" valign="top"><a id="ae25f3038e9fe235d88123455c3441219"></a>
+static const void&#160;</td><td class="memItemRight" valign="bottom"><b>Cou</b> (int NM, float rayon, float hauteur, float decallage)</td></tr>
+<tr class="separator:ae25f3038e9fe235d88123455c3441219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a182f177b3f3676b47fad13939ccd1f1d"><td class="memItemLeft" align="right" valign="top"><a id="a182f177b3f3676b47fad13939ccd1f1d"></a>
 static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a182f177b3f3676b47fad13939ccd1f1d">RandomColor3f</a> ()</td></tr>
 <tr class="memdesc:a182f177b3f3676b47fad13939ccd1f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode appelant la méthode glColor3f avec des valeurs aléatoires. <br /></td></tr>
@@ -255,8 +267,8 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 
 </div>
 </div>
-<a id="aa36e6c095ab4bf1fee528728953bee98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa36e6c095ab4bf1fee528728953bee98">&#9670;&nbsp;</a></span>Cylindre()</h2>
+<a id="a6f113cc49a9008bcfeca1960db422b06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f113cc49a9008bcfeca1960db422b06">&#9670;&nbsp;</a></span>Cylindre()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +277,7 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const void Dessin::Cylindre </td>
+          <td class="memname">const std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt; Dessin::Cylindre </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>NM</em>, </td>
@@ -298,9 +310,97 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <p>Méthode de création d'un cylindre. </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">NM</td><td>Nombre de côtés (à l'horizontale) </td></tr>
+    <tr><td class="paramname">NM</td><td>Nombre de côtés de chaque base </td></tr>
     <tr><td class="paramname">rayon</td><td>Longueur du rayon </td></tr>
     <tr><td class="paramname">hauteur</td><td>Hauteur du cylindre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un tuple de deux points correspondant à un coté du cylindre </dd></dl>
+
+</div>
+</div>
+<a id="a46952dcff1d18cd616353d6f631d73f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46952dcff1d18cd616353d6f631d73f5">&#9670;&nbsp;</a></span>DeuxiemePartieQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void Dessin::DeuxiemePartieQueue </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>longueurX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>longueurZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td>
+          <td class="paramname"><em>deuxPointsBaseCorps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeffX</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeffZ</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>decalageSX</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>decalageSZ</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode de création de la deuxième partie de la queue. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">longueurX</td><td>Longueur de la deuxième partie de la queue sur l'axe X </td></tr>
+    <tr><td class="paramname">longueurZ</td><td>Longueur de la deuxième partie de la queue sur l'axe Z </td></tr>
+    <tr><td class="paramname">hauteur</td><td>Hauteur de la deuxième partie de la queue </td></tr>
+    <tr><td class="paramname">deuxPointsBaseCorps</td><td>Tuple de deux points correspondant à un coté du corps </td></tr>
+    <tr><td class="paramname">coeffX</td><td>Coefficient d'agrandissement de la surface haute de la deuxième partie de la queue par rapport à la surface basse sur l'axe X (optionnelle, défaut: 1) </td></tr>
+    <tr><td class="paramname">coeffZ</td><td>Coefficient d'agrandissement de la surface haute de la deuxième partie de la queue par rapport à la surface basse sur l'axe Z (optionnelle, défaut: 1) </td></tr>
+    <tr><td class="paramname">decalageSX</td><td>Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">decalageSZ</td><td>Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0) </td></tr>
   </table>
   </dd>
 </dl>
@@ -367,6 +467,65 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
     <tr><td class="paramname">hauteur</td><td>Hauteur des jambes </td></tr>
     <tr><td class="paramname">sens</td><td>Sens des jambes </td></tr>
     <tr><td class="paramname">agrandissement</td><td>Agrandissement de la surface du haut </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0bcda9bf573241cb1722d9e49d911823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bcda9bf573241cb1722d9e49d911823">&#9670;&nbsp;</a></span>PremierePartieQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void Dessin::PremierePartieQueue </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>longueurRayonCorps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td>
+          <td class="paramname"><em>deuxPointsBaseCorps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode de création de la première partie de la queue. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">longueurRayonCorps</td><td>Longueur du rayon du corps </td></tr>
+    <tr><td class="paramname">deuxPointsBaseCorps</td><td>Tuple de deux points correspondant à un coté du corps </td></tr>
+    <tr><td class="paramname">hauteur</td><td>Hauteur de la première partie de la queue </td></tr>
+    <tr><td class="paramname">coeff</td><td>Coefficient d'agrandissement de la surface haute de la première partie de la queue par rapport à la surface basse sur les axes X et Z (optionnelle, défaut: 1) </td></tr>
   </table>
   </dd>
 </dl>
@@ -710,6 +869,93 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 
 </div>
 </div>
+<a id="af1c6c96d8f5cf2263597ebdc8f22b2b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c6c96d8f5cf2263597ebdc8f22b2b4">&#9670;&nbsp;</a></span>TroisiemePartieQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void Dessin::TroisiemePartieQueue </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>longueurX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>longueurZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td>
+          <td class="paramname"><em>deuxPointsBaseCorps</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>decalageBX</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>decalageBZ</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>decalageSX</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>decalageSZ</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode de création de la troisième partie de la queue. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">longueurX</td><td>Longueur du tétraèdre sur l'axe X </td></tr>
+    <tr><td class="paramname">longueurZ</td><td>Longueur du tétraèdre sur l'axe Z </td></tr>
+    <tr><td class="paramname">hauteur</td><td>Hauteur du tétraèdre </td></tr>
+    <tr><td class="paramname">deuxPointsBaseCorps</td><td>Tuple de deux points correspondant à un coté du corps </td></tr>
+    <tr><td class="paramname">decalageBX</td><td>Décalage sur l'axe X du point de la surface basse se trouvant à l'angle droit (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">decalageBZ</td><td>Décalage sur l'axe Z du point de la surface basse se trouvant à l'angle droit (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">decalageSX</td><td>Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">decalageSZ</td><td>Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
 <li><a class="el" href="_dessin_8h_source.html">Dessin.h</a></li>
 <li><a class="el" href="_dessin_8cpp.html">Dessin.cpp</a></li>
@@ -720,7 +966,7 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_dessin.html">Dessin</a></li>
-    <li class="footer">Généré le Samedi 16 Octobre 2021 16:33:42 pour SPYROpenGL par
+    <li class="footer">Généré le Mardi 19 Octobre 2021 16:59:05 pour SPYROpenGL par
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

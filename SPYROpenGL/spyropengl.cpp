@@ -35,8 +35,23 @@ int x;
 int y;
 int xold;
 int yold;
+
+/**
+ * @brief Valeur du champ de vision
+ */
 float champDeVision;  // /!\ Correspond à une valeur de dézoom
-float translationX, translationY, translationZ;
+/**
+ * @brief Valeur de la translation sur l'axe X pour tout
+ */
+float translationX;
+/**
+ * @brief Valeur de la translation sur l'axe Y pour tout
+ */
+float translationY;
+/**
+ * @brief Valeur de la translation sur l'axe Z pour tout
+ */
+float translationZ;
 
 /* Prototype des fonctions */;
 void affichage();
