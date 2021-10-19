@@ -36,7 +36,7 @@ int y;
 int xold;
 int yold;
 float champDeVision;  // /!\ Correspond à une valeur de dézoom
-float translationY;
+float translationX, translationY, translationZ;
 
 /* Prototype des fonctions */;
 void affichage();
@@ -50,7 +50,9 @@ void specialInput(int key, int x, int y);  //similaire au clavier mais avec des 
 int main(int argc,char **argv)
 {
     champDeVision = 3;  //Valeur de dézoom initiale
-    translationY = 0;  //Valeur par défaut de la translation Y sur tout
+    translationX = 0;  //Valeur par défaut de la translation sur l'axe X pour tout
+    translationY = 0;  //Valeur par défaut de la translation sur l'axe Y pour tout
+    translationZ = 0;  //Valeur par défaut de la translation sur l'axe Z pour tout
 
   /* initialisation de glut et creation
      de la fenetre */
@@ -92,7 +94,7 @@ void affichage()
     glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -1000, 1000);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
-    glTranslatef(0, translationY, 0);  //Décalage sur Y de tout
+    glTranslatef(translationX, translationY, translationZ);  //Décalage sur Y de tout
 
     srand(713705);
 
@@ -209,19 +211,40 @@ void clavier(unsigned char touche,int x,int y)
 }
 
 void specialInput(int key, int x, int y){
+
+    //Si touche ctrl ou shift ou les deux maintenues
+    bool ctrlOrShift = false;
+    switch(glutGetModifiers())
+    {
+        case GLUT_ACTIVE_CTRL:
+        case GLUT_ACTIVE_SHIFT:
+        case GLUT_ACTIVE_CTRL+GLUT_ACTIVE_SHIFT:
+            ctrlOrShift = true;
+            break;
+    }
+
+    //Si ctrlOrShift est vrai les flèches gauche/droite déplace sur l'axe Z, sinon sur l'axe X
     switch(key)
     {
         case GLUT_KEY_UP:
-        translationY += 0.1;
+        translationY += 0.05;
             break;
         case GLUT_KEY_DOWN:
-        translationY -= 0.1;
+        translationY -= 0.05;
             break;
         case GLUT_KEY_LEFT:
-        //do something here
+        if (ctrlOrShift){
+            translationZ -= 0.05;
+        } else {
+            translationX -= 0.05;
+        }
             break;
         case GLUT_KEY_RIGHT:
-        //do something here
+        if (ctrlOrShift){
+            translationZ += 0.05;
+        } else {
+            translationX += 0.05;
+        }
             break;
     }
     glutPostRedisplay();
