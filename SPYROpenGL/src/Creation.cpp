@@ -125,7 +125,7 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
         glRotatef((3*M_PI/10)*(180/M_PI), 0, 1, 0);
 
         //Dessin de la première partie de la queue de SPYRO
-        const float longueurPremierePartieQueue = 0.4;
+        const float longueurPremierePartieQueue = 0.6;
         const float coeffPremierePartieQueue = 0.15;
         glPushMatrix();
             //Dessin::Prisme(longueurRayonCorps*taille,longueurRayonCorps*taille,longueurPremierePartieQueue*taille,0.25,0.25);
@@ -174,7 +174,7 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
  * @param longueur de l'aile
  * @param hauteur de l'aile
  */
-const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur)
+const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decallageCentre)
 {
     float angleRotationRadian = atan(ecart/largeur); // TOA
     float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
@@ -185,13 +185,14 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         // Dessin de la sphère de jonction
         glPushMatrix();
             glTranslatef(0,0,largeur/4);
-            glTranslatef(largeur,0,0);
+            glTranslatef(decallageCentre,0,0);
             glTranslatef(0,hauteur/2,0); // mise au centre de l'aile
             Dessin::Sphere(largeur/2,30,30);
         glPopMatrix();
 
+        glTranslatef(decallageCentre,0,0); // décallage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
-        glTranslatef(largeur,0,0); // décallage du centre
+
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
@@ -216,13 +217,14 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         // Dessin de la sphère de jonction
         glPushMatrix();
             glTranslatef(0,0,largeur/4); // même niveau que l'aile
-            glTranslatef(largeur,0,0);
+            glTranslatef(decallageCentre,0,0);
             glTranslatef(0,hauteur/2,0); // mise au centre de l'aile
             Dessin::Sphere(largeur/2,30,30);
         glPopMatrix();
 
+        glTranslatef(decallageCentre,0,0); // décallage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
-        glTranslatef(largeur,0,0); // décallage du centre
+
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
