@@ -2,6 +2,7 @@
  * @file include/Point.h
  * @brief Contient la définition de la classe gérant un point et ses coordonnées
  * @author Samuel LACHAUD
+ * @author Loïs PAZOLA
  * @version 1.0
  * @date 15/10/2021
  */
@@ -16,8 +17,7 @@
 class Point
 {
     public:
-        Point();
-    private:
+        Point(double x = 0, double y = 0, double z = 0);
 
         //coordonnées x, y et z du point
         /**
@@ -34,22 +34,6 @@ class Point
          * @brief coordonnée z
          */
         double z;
-
-        // couleur r, v et b du point
-        /**
-         * @brief couleur rouge
-         */
-        float r;
-
-        /**
-         * @brief couleur verte
-         */
-        float g;
-
-        /**
-         * @brief couleur bleu
-         */
-        float b;
 };
 
 #endif // POINT_H
