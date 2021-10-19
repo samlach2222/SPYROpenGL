@@ -79,26 +79,33 @@ const void Creation::JambesPlusPieds(float taille, float hauteurJambes)
  * @param hauteurCorne     hauteur des cornes
  * @param largeurCorne      largeur des cornes
  */
-const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne)
+const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decallageCou)
 {
-    //Dessin de la tête de SPYRO
-    Dessin::Sphere(taille, 5, 5);
-
-    //Dessin de la crinière de SPYRO
-    Dessin::Criniere(taille);
-
-    //Dessin des cornes de SPYRO
     glPushMatrix();
-        glRotatef(15,1,0,-1);
-        glTranslatef(taille/10,0,taille/7);
-        Dessin::Cone(hauteurCorne, largeurCorne, 100);
-    glPopMatrix();
+        glTranslatef(0,taille + 0.80*hauteurCou,0);
+        //Dessin de la tête de SPYRO
+        Dessin::Sphere(taille, 5, 5);
 
-    glPushMatrix();
-        glRotatef(15,1,0,1);
-        glTranslatef(-taille/10,0,taille/7);
-        Dessin::Cone(hauteurCorne, largeurCorne, 100);
+        //Dessin de la crinière de SPYRO
+        Dessin::Criniere(taille);
+
+        //Dessin des cornes de SPYRO
+        glPushMatrix();
+            glRotatef(15,1,0,-1);
+            glTranslatef(taille/10,0,taille/7);
+            Dessin::Cone(hauteurCorne, largeurCorne, 100);
+        glPopMatrix();
+
+        glPushMatrix();
+            glRotatef(15,1,0,1);
+            glTranslatef(-taille/10,0,taille/7);
+            Dessin::Cone(hauteurCorne, largeurCorne, 100);
+        glPopMatrix();
     glPopMatrix();
+    //glTranslatef(0,-hauteurCou,0);
+    glRotatef(90,0,1,0);
+    Dessin::Cou(5,rayonCou,hauteurCou, decallageCou);
+    //Dessin du cou de Spyro
 }
 
 /**

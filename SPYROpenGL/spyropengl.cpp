@@ -99,7 +99,7 @@ void affichage()
     /*****************************/
     /***** Dessin de la tête *****/
     /*****************************/
-	//Creation::ComposantsTete(0.5, 1, 0.15);
+	Creation::ComposantsTete(0.5, 1, 0.15,0.1,0.25,0.1);
 
     /******************************/
     /***** Dessin de la queue *****/
@@ -126,7 +126,7 @@ void affichage()
     /****************************/
     /*****  Dessin du cou   *****/
     /****************************/
-	Dessin::Cou(5,0.25,1, 0.2);
+	//Dessin::Cou(5,0.25,1, 0.2);
 
     //Repère
     //axe x en rouge
