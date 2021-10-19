@@ -113,7 +113,8 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
 
 /**
  * @brief Méthode de création de la queue de Spyro
- * @param longueurCoteCorps     longueur d'un côté des bases du corps
+ * @param longueurRayonCorps     longueur du rayon du corps
+ * @param deuxPointsBaseCorps     Tuple de deux points correspondant à un coté du corps
  * @param taille     taille de la queue
  */
 const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float taille)
@@ -240,6 +241,13 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
     glPopMatrix();
 }
 
+/**
+ * @brief
+ * @param NM    Nombre de cotés de chaque base du corps
+ * @param rayon     Longueur du rayon du corps
+ * @param longueur      Longueur du corps
+ * @return un tuple de deux points correspondant à un coté du corps
+ */
 const std::tuple<Point, Point> Creation::Corps(int NM, float rayon, float longueur){
     glPushMatrix();
         glRotatef(90,1,0,0);

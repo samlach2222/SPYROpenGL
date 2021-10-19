@@ -19,9 +19,10 @@
 
 /**
  * @brief Méthode de création d'un cylindre
- * @param NM    Nombre de côtés (à l'horizontale)
+ * @param NM    Nombre de côtés de chaque base
  * @param rayon     Longueur du rayon
  * @param hauteur   Hauteur du cylindre
+ * @return un tuple de deux points correspondant à un coté du cylindre
  */
 const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur){
 
@@ -72,17 +73,8 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
         glEnd();
     }
 
-
-    //TEST
     Point p1 = Point(x[NM*2-1], y[NM*2-1], z[NM*2-1]);
     Point p2 = Point(x[NM], y[NM], z[NM]);
-    glBegin(GL_POLYGON);
-        glColor3f(0,0,0);
-        glVertex3f(p1.x, p1.y, p1.z);
-        glVertex3f(p2.x, p2.y, p2.z);
-        glVertex3f(p2.x, p2.y+0.01, p2.z);
-        glVertex3f(p1.x, p1.y+0.01, p1.z);
-    glEnd();
     std::tuple<Point, Point> tuplePointsBaseCorps(p1, p2);
 
     return tuplePointsBaseCorps;
@@ -312,9 +304,10 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
 
 /**
  * @brief Méthode de création de la première partie de la queue
- * @param longueurRayonCorps float
- * @param nombreDeCoteCorps float
- * @return const void
+ * @param longueurRayonCorps      Longueur du rayon du corps
+ * @param deuxPointsBaseCorps     Tuple de deux points correspondant à un coté du corps
+ * @param hauteur       Hauteur de la première partie de la queue
+ * @param coeff        Coefficient d'agrandissement de la surface haute de la première partie de la queue par rapport à la surface basse sur les axes X et Z (optionnelle, défaut: 1)
  */
 const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff){
 
@@ -379,6 +372,17 @@ float coordPoints[6][3] = {
     glEnd();
 }
 
+/**
+ * @brief Méthode de création de la deuxième partie de la queue
+ * @param longueurX     Longueur de la deuxième partie de la queue sur l'axe X
+ * @param longueurZ     Longueur de la deuxième partie de la queue sur l'axe Z
+ * @param hauteur       Hauteur de la deuxième partie de la queue
+ * @param deuxPointsBaseCorps     Tuple de deux points correspondant à un coté du corps
+ * @param coeffX        Coefficient d'agrandissement de la surface haute de la deuxième partie de la queue par rapport à la surface basse sur l'axe X (optionnelle, défaut: 1)
+ * @param coeffZ        Coefficient d'agrandissement de la surface haute de la deuxième partie de la queue par rapport à la surface basse sur l'axe Z (optionnelle, défaut: 1)
+ * @param decalageSX    Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0)
+ * @param decalageSZ    Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0)
+ */
 const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float coeffX, float coeffZ, float decalageSX, float decalageSZ){
 
     Point p1 = std::get<0>(deuxPointsBaseCorps);
@@ -437,6 +441,17 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
     glEnd();
 }
 
+/**
+ * @brief Méthode de création de la troisième partie de la queue
+ * @param longueurX     Longueur du tétraèdre sur l'axe X
+ * @param longueurZ     Longueur du tétraèdre sur l'axe Z
+ * @param hauteur       Hauteur du tétraèdre
+ * @param deuxPointsBaseCorps     Tuple de deux points correspondant à un coté du corps
+ * @param decalageBX    Décalage sur l'axe X du point de la surface basse se trouvant à l'angle droit (optionnelle, défaut: 0)
+ * @param decalageBZ    Décalage sur l'axe Z du point de la surface basse se trouvant à l'angle droit (optionnelle, défaut: 0)
+ * @param decalageSX    Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0)
+ * @param decalageSZ    Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0)
+ */
 const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float decalageBX, float decalageBZ, float decalageSX, float decalageSZ){
 
     Point p1 = std::get<0>(deuxPointsBaseCorps);
