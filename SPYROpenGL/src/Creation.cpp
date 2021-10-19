@@ -23,12 +23,12 @@
  * @param hauteur     hauteur de la jambe
  * @param sens      sens de la rotation de la face supérieure
  */
-const void Creation::Jambes(float taille, float hauteur, bool sens)
+const void Creation::Jambes(float taille, float hauteur, bool sens, float agrendissement)
 {
     glPushMatrix();
         glRotatef(45,0,-1,0);
         glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens,0.5);
+        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens,agrendissement);
     glPopMatrix();
 }
 
@@ -41,7 +41,7 @@ const void Creation::Pieds(float taille)
     glPushMatrix();
         glRotatef(90,0,0,1);
         glTranslatef(0,0,taille);
-        Dessin::Prisme(taille, 1, taille);
+        Dessin::Prisme(taille, 2*taille, taille);
     glPopMatrix();
 
 	glPushMatrix();
@@ -61,16 +61,14 @@ const void Creation::Pieds(float taille)
  * @param taille     taille de l'ensemble
  * @param hauteurJambes     hauteur de la jambe
  */
-const void Creation::JambesPlusPieds(float taille, float hauteurJambes)
+const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes)
 {
-    // ******** DESSIN DES PIEDS + JAMBES ********
     Creation::Pieds(taille); // PIED 1
-    Creation::Jambes(taille, hauteurJambes, false); // JAMBE 1
+    Creation::Jambes(taille, hauteurJambes, false, agrendissementJambes); // JAMBE 1
     glTranslatef(3*taille,0,0); // TRANSLATION 2EME PARTIE
     Creation::Pieds(taille); // PIED 2
-    Creation::Jambes(taille, hauteurJambes, true); // JAMBE 2
+    Creation::Jambes(taille, hauteurJambes, true, agrendissementJambes); // JAMBE 2
     glTranslatef(-3*taille,0,0); // RETOUR ORIGINE
-    // ******** FIN DESSIN PIED + JAMBES ********
 }
 
 /**

@@ -101,31 +101,13 @@ void affichage()
     /*****************************/
     /***** Dessin de la tête *****/
     /*****************************/
-	Creation::ComposantsTete(0.5, 1, 0.15,0.1,0.25,0.1);
-
-    /***************************/
-    /***** Dessin du corps *****/
-    /***************************/
-    const float rayonCorps = 0.2;
-    const float nombreDeCotesCorps = 5;
-	Creation::Corps(nombreDeCotesCorps,rayonCorps,1);
+	//Creation::ComposantsTete(0.5, 1, 0.15,0.1,0.25,0.1);
 
     /******************************/
     /***** Dessin de la queue *****/
     /******************************/
     //Creation::Queue(0.2);
 
-	/****************************/
-    /***** Dessin des pieds *****/
-    /****************************/
-	//float taille = 0.5;
-	//float hauteurJambes = 3;
-	//Creation::JambesPlusPieds(taille, hauteurJambes);
-
-	/***************************/
-    /***** Dessin du corps *****/
-    /***************************/
-	//Creation::Corps(5,0.2,1);
 
     /****************************/
     /***** Dessin des ailes *****/
@@ -136,6 +118,21 @@ void affichage()
     /*****  Dessin du cou   *****/
     /****************************/
 	//Dessin::Cou(5,0.25,1, 0.2);
+
+	/****************************/
+    /***** Dessin des pieds *****/
+    /****************************/
+	float taille = 0.1;
+	float hauteurJambes = 0.2;
+	float agrendissementJambes = 0.05;
+	Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes);
+
+	/***************************/
+    /***** Dessin du corps *****/
+    /***************************/
+    const float rayonCorps = 0.2;
+    const float longueurCorps = 1;
+	Creation::Corps(5,rayonCorps,longueurCorps);
 
     //Repère
     //axe x en rouge
