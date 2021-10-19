@@ -21,6 +21,7 @@ class Creation
         static const void ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decallageCou);
         static const void Queue(float taille = 1);
         static const void Aile(float ecart, float largeur, float longueur, float hauteur);
+        static const void Corps(int NM, float rayon, float longueur);
 };
 
 #endif // CREATION_H
