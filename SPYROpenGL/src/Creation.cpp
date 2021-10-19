@@ -63,12 +63,17 @@ const void Creation::Pieds(float taille)
  */
 const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes)
 {
-    Creation::Pieds(taille); // PIED 1
-    Creation::Jambes(taille, hauteurJambes, false, agrendissementJambes); // JAMBE 1
-    glTranslatef(3*taille,0,0); // TRANSLATION 2EME PARTIE
-    Creation::Pieds(taille); // PIED 2
-    Creation::Jambes(taille, hauteurJambes, true, agrendissementJambes); // JAMBE 2
-    glTranslatef(-3*taille,0,0); // RETOUR ORIGINE
+    glPushMatrix();
+        glTranslatef(-0.7*agrendissementJambes,0,0);
+        Creation::Pieds(taille); // PIED 1
+        Creation::Jambes(taille, hauteurJambes, false, agrendissementJambes); // JAMBE 1
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(taille,0,0); // passer de l'autre coté de l'âxe
+        glTranslatef(0.7*agrendissementJambes,0,0);
+        Creation::Pieds(taille); // PIED 2
+        Creation::Jambes(taille, hauteurJambes, true, agrendissementJambes); // JAMBE 2
+    glPopMatrix();
 }
 
 /**

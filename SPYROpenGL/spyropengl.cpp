@@ -103,12 +103,32 @@ void affichage()
     /*****************************/
 	//Creation::ComposantsTete(0.5, 1, 0.15,0.1,0.25,0.1);
 
-    /***************************/
-    /***** Dessin du corps *****/
-    /***************************/
-    const float rayonCorps = 0.2;
-    const float nombreDeCotesCorps = 5;
-	std::tuple<Point, Point> deuxPointsBaseCorps = Creation::Corps(nombreDeCotesCorps,rayonCorps,1);
+    /************************************/
+    /***** Dessin des pieds + corps *****/
+    /************************************/
+
+    // param Corps
+	const float rayonCorps = 0.2;
+    const float longueurCorps = 1;
+    const float largeurDUnCoteDuCorps = sqrt(rayonCorps*rayonCorps + rayonCorps*rayonCorps - 2*rayonCorps*rayonCorps*cos(2*M_PI/5));  //théorème d'Al-Kashi : BC²=AB²+AC²-2.AB.AC.cos(BÂC)
+
+    // param Jambes
+    float taille = 0.1;
+	float hauteurJambes = 0.2;
+	float agrendissementJambes = (sqrt((taille*taille)/2) * largeurDUnCoteDuCorps / taille) - sqrt((taille*taille)/2); // Thales : Agrendissement = coté * (hypothénuse agrendie / hypothénuse) - coté
+
+    glPushMatrix();
+        glTranslatef(0,taille+2*hauteurJambes,0); // translation verticale de la hauteur de Jambe+Pied et translation horizontale de la largeur de la jambe
+        glTranslatef(0,0,-3*sqrt(pow((sqrt((taille*taille)/2)),2)-pow(taille/2,2)));
+        Creation::Corps(5,rayonCorps,longueurCorps);
+        std::tuple<Point, Point> deuxPointsBaseCorps = Creation::Corps(5,rayonCorps,longueurCorps);
+    glPopMatrix();
+
+	Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes);
+    glTranslatef(0,0,longueurCorps);
+    glTranslatef(0,0,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2)));
+    Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes);
+    glTranslatef(0,0,-longueurCorps);
 
     /******************************/
     /***** Dessin de la queue *****/
@@ -125,14 +145,6 @@ void affichage()
     /*****  Dessin du cou   *****/
     /****************************/
 	//Dessin::Cou(5,0.25,1, 0.2);
-
-	/****************************/
-    /***** Dessin des pieds *****/
-    /****************************/
-	float taille = 0.1;
-	float hauteurJambes = 0.2;
-	float agrendissementJambes = 0.05;
-	Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes);
 
     //Repère
     //axe x en rouge
