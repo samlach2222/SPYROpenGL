@@ -9,6 +9,9 @@
 #ifndef CREATION_H
 #define CREATION_H
 
+#include <tuple>
+#include "Point.h"
+
 /**
  * @brief Classe de création des parties de Spyro
  */
@@ -19,9 +22,9 @@ class Creation
         static const void Pieds(float taille);
         static const void JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes);
         static const void ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decallageCou);
-        static const void Queue(float taille = 1);
+        static const void Queue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float taille = 1);
         static const void Aile(float ecart, float largeur, float longueur, float hauteur);
-        static const void Corps(int NM, float rayon, float longueur);
+        static const std::tuple<Point, Point> Corps(int NM, float rayon, float longueur);
 };
 
 #endif // CREATION_H

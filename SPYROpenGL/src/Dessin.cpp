@@ -8,11 +8,12 @@
  */
 
 #include "Dessin.h"
+#include <tuple>
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systemes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 #include "math.h"
 
@@ -22,9 +23,9 @@
  * @param rayon     Longueur du rayon
  * @param hauteur   Hauteur du cylindre
  */
-const void Dessin::Cylindre(int NM, float rayon, float hauteur){
+const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur){
 
-    float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
+    float x[NM*2]; // NM --> taille du nombre de subdivision d'une surface * 2 (surface du bas + surface du haut)
     float y[NM*2];
     float z[NM*2];
 
@@ -70,6 +71,21 @@ const void Dessin::Cylindre(int NM, float rayon, float hauteur){
 			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
         glEnd();
     }
+
+
+    //TEST
+    Point p1 = Point(x[NM*2-1], y[NM*2-1], z[NM*2-1]);
+    Point p2 = Point(x[NM], y[NM], z[NM]);
+    glBegin(GL_POLYGON);
+        glColor3f(0,0,0);
+        glVertex3f(p1.x, p1.y, p1.z);
+        glVertex3f(p2.x, p2.y, p2.z);
+        glVertex3f(p2.x, p2.y+0.01, p2.z);
+        glVertex3f(p1.x, p1.y+0.01, p1.z);
+    glEnd();
+    std::tuple<Point, Point> tuplePointsBaseCorps(p1, p2);
+
+    return tuplePointsBaseCorps;
 }
 
 /**
@@ -289,6 +305,178 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
         Dessin::RandomColor3f();
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+}
+
+/**
+ * @brief Méthode de création de la première partie de la queue
+ * @param longueurRayonCorps float
+ * @param nombreDeCoteCorps float
+ * @return const void
+ */
+const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff){
+
+/*  longueurRayonCorps² = moitieLongueurCoteCorps² + longueur²
+--> longueur² = longueurRayonCorps² - moitieLongueurCoteCorps²
+--> longueur = sqrt(longueurRayonCorps² - moitieLongueurCoteCorps²)*/
+//float longueur = sqrt(longueurRayonCorps*longueurRayonCorps - longueurCoteCorps/2*longueurCoteCorps/2);
+
+Point p1 = std::get<0>(deuxPointsBaseCorps);
+Point p2 = std::get<1>(deuxPointsBaseCorps);
+
+float coordPoints[6][3] = {
+        {0, 0, 0},
+        {p1.x, 0, p1.z},
+        {p2.x, 0, p2.z},
+        {0, hauteur, 0},
+        {p1.x*coeff, hauteur, p1.z*coeff},
+        {p2.x*coeff, hauteur, p2.z*coeff}
+    };
+
+    //base bas
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //base haut
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+    glEnd();
+
+    //côté hypothénuse
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+    glEnd();
+
+    //côté axe x
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //côté axe z
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+}
+
+const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float coeffX, float coeffZ, float decalageSX, float decalageSZ){
+
+    Point p1 = std::get<0>(deuxPointsBaseCorps);
+    Point p2 = std::get<1>(deuxPointsBaseCorps);
+
+    float coordPoints[6][3] = {
+        {0, 0, 0},
+        {p1.x, 0, p1.z},
+        {p2.x, 0, p2.z},
+        {decalageSX, hauteur, decalageSZ},
+        {p1.x*coeffX, hauteur, p1.z*coeffZ},
+        {p2.x*coeffX, hauteur, p2.z*coeffZ}
+    };
+
+    //base bas
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //base haut
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+    glEnd();
+
+    //côté hypothénuse
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+    glEnd();
+
+    //côté axe x
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //côté axe z
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+}
+
+const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float decalageBX, float decalageBZ, float decalageSX, float decalageSZ){
+
+    Point p1 = std::get<0>(deuxPointsBaseCorps);
+    Point p2 = std::get<1>(deuxPointsBaseCorps);
+
+    float coordPoints[4][3] = {
+        {decalageBX, 0, decalageBZ},
+        {p1.x, 0, p1.z},
+        {p2.x, 0, p2.z},
+        {longueurX/2 + decalageSX, hauteur, longueurZ/2 + decalageSZ},
+    };
+
+    //base bas
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //côté hypothénuse
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+    glEnd();
+
+    //côté axe x
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //côté axe z
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
     glEnd();
@@ -671,17 +859,6 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
     glEnd();
 }
 
-/**
- * @brief Méthode appelant la méthode glColor3f avec des valeurs aléatoires
- */
-const void Dessin::RandomColor3f(){
-    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);  //Donne une valeur entre 0.0 et 1.0 inclus
-    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-    glColor3f(r,g,b);
-}
-
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
 
     float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
@@ -731,4 +908,15 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
 			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
         glEnd();
     }
+}
+
+/**
+ * @brief Méthode appelant la méthode glColor3f avec des valeurs aléatoires
+ */
+const void Dessin::RandomColor3f(){
+    float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);  //Donne une valeur entre 0.0 et 1.0 inclus
+    float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+    glColor3f(r,g,b);
 }

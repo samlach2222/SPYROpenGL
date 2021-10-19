@@ -108,29 +108,57 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
 
 /**
  * @brief Méthode de création de la queue de Spyro
+ * @param longueurCoteCorps     longueur d'un côté des bases du corps
  * @param taille     taille de la queue
  */
-const void Creation::Queue(float taille)
+const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float taille)
 {
-    //Dessin de la première partie de la queue de SPYRO
-    srand(32);
-    const float longueurPremierePartieQueue = 2.0;
-    Dessin::Prisme(0.8*taille,0.8*taille,longueurPremierePartieQueue*taille,0.25,0.25);
-
-    //Dessin de la deuxième partie de la queue
-    srand(64);
-    const float longueurDeuxiemePartieQueue = 0.2;
     glPushMatrix();
-        glTranslatef(0,longueurPremierePartieQueue*taille,0);
-        Dessin::Prisme(0.2*taille,0.2*taille,longueurDeuxiemePartieQueue*taille,2,2,-0.1*taille,-0.1*taille);
-    glPopMatrix();
+        //Orientation de la queue à l'horizontale et avec la bonne rotation
+        glRotatef(-90,1,0,0);
+        glRotatef(180,0,1,0);
+        glRotatef((3*M_PI/10)*(180/M_PI), 0, 1, 0);
 
-    //Dessin de la troisième partie de la queue
-    srand(128);
-    const float longueurTroisiemePartieQueue = 0.4;
-    glPushMatrix();
-        glTranslatef(0, longueurPremierePartieQueue*taille + longueurDeuxiemePartieQueue*taille, 0);
-        Dessin::Tetraedre(0.4*taille, 0.4*taille, longueurTroisiemePartieQueue*taille, -0.1*taille, -0.1*taille);
+        //Dessin de la première partie de la queue de SPYRO
+        const float longueurPremierePartieQueue = 0.4;
+        const float coeffPremierePartieQueue = 0.15;
+        glPushMatrix();
+            //Dessin::Prisme(longueurRayonCorps*taille,longueurRayonCorps*taille,longueurPremierePartieQueue*taille,0.25,0.25);
+            Dessin::PremierePartieQueue(longueurRayonCorps*taille, deuxPointsBaseCorps,longueurPremierePartieQueue*taille, coeffPremierePartieQueue);
+        glPopMatrix();
+
+        //Dessin de la deuxième partie de la queue
+        const float longueurDeuxiemePartieQueue = 0.05;
+        const float coteDeuxiemePartieQueue = longueurRayonCorps*0.2;
+        glPushMatrix();
+            glTranslatef(0,longueurPremierePartieQueue*taille,0);
+
+            Point p1 = std::get<0>(deuxPointsBaseCorps);
+            Point p2 = std::get<1>(deuxPointsBaseCorps);
+            p1.x = p1.x*coeffPremierePartieQueue;
+            p1.z = p1.z*coeffPremierePartieQueue;
+            p2.x = p2.x*coeffPremierePartieQueue;
+            p2.z = p2.z*coeffPremierePartieQueue;
+            deuxPointsBaseCorps = std::make_tuple(p1, p2);
+            const float ratioDecalageSXToDecalageSZ = 0.726;
+            const float coeffDeuxiemePartieQueue = 1.8;
+            const float decalageS = 0.04;
+
+            Dessin::DeuxiemePartieQueue(coteDeuxiemePartieQueue*taille,coteDeuxiemePartieQueue*taille,longueurDeuxiemePartieQueue*taille,deuxPointsBaseCorps,coeffDeuxiemePartieQueue,coeffDeuxiemePartieQueue,-decalageS*taille,decalageS*ratioDecalageSXToDecalageSZ*taille);
+            //Pas de glPopMatrix maintenant car il reste la troisième partie de la queue à dessiner
+
+            //Dessin de la troisième partie de la queue
+            p1.x = p1.x*coeffDeuxiemePartieQueue;
+            p1.z = p1.z*coeffDeuxiemePartieQueue;
+            p2.x = p2.x*coeffDeuxiemePartieQueue;
+            p2.z = p2.z*coeffDeuxiemePartieQueue;
+            deuxPointsBaseCorps = std::make_tuple(p1, p2);
+            glTranslatef(0, longueurDeuxiemePartieQueue*taille, 0);
+
+            const float longueurTroisiemePartieQueue = 0.1;
+
+            Dessin::TroisiemePartieQueue(0.06*taille, 0.06*taille, longueurTroisiemePartieQueue*taille, deuxPointsBaseCorps, -decalageS*taille, decalageS*ratioDecalageSXToDecalageSZ*taille, -0.02*taille, -0.02*taille);
+        glPopMatrix();
     glPopMatrix();
 }
 
@@ -205,10 +233,12 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
     glPopMatrix();
 }
 
-const void Creation::Corps(int NM, float rayon, float longueur){
+const std::tuple<Point, Point> Creation::Corps(int NM, float rayon, float longueur){
     glPushMatrix();
         glRotatef(90,1,0,0);
         glRotatef((3*M_PI/10)*(180/M_PI), 0, 1, 0);  //angle en radians * 180/pi --> angle en degrés
-        Dessin::Cylindre(NM, rayon, longueur);
+        std::tuple<Point, Point> tuplePointsBaseCorps = Dessin::Cylindre(NM, rayon, longueur);
     glPopMatrix();
+
+    return tuplePointsBaseCorps;
 }
