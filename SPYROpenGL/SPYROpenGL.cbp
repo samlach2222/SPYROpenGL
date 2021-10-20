@@ -41,11 +41,13 @@
 		</Compiler>
 		<Unit filename="include/Creation.h" />
 		<Unit filename="include/Dessin.h" />
+		<Unit filename="include/IntermittentDuSpectacle.h" />
 		<Unit filename="include/Montage.h" />
 		<Unit filename="include/Point.h" />
 		<Unit filename="spyropengl.cpp" />
 		<Unit filename="src/Creation.cpp" />
 		<Unit filename="src/Dessin.cpp" />
+		<Unit filename="src/IntermittentDuSpectacle.cpp" />
 		<Unit filename="src/Montage.cpp" />
 		<Unit filename="src/Point.cpp" />
 		<Unit filename="Ressources/Audio/Dark Hollow.mp3" />

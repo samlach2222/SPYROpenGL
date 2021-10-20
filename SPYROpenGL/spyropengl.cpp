@@ -23,8 +23,10 @@
 #include <cstdlib>
 #include <math.h>
 #include <time.h>
+#include <thread>
 
 #include "Montage.h"
+#include "IntermittentDuSpectacle.h"
 
 char presse;
 int anglex;
@@ -111,20 +113,15 @@ void affichage()
 
     //srand(713705);
 
-    /*****************************/
-    /***** Dessin de la tête *****/
-    /*****************************/
-	//Creation::ComposantsTete(0.5, 1, 0.15,0.1,0.25,0.1);
+    /***************************************************************/
+    /***** L'intermittent du spectacle joue la musique de fond *****/
+    /***************************************************************/
+    std::thread t(IntermittentDuSpectacle::play_music());
 
     /*******************************************/
     /***** Dessin des pieds + corps + queue*****/
     /*******************************************/
     Montage::MontageSpyro();
-
-    /****************************/
-    /*****  Dessin du cou   *****/
-    /****************************/
-	//Dessin::Cou(5,0.25,1, 0.2);
 
     //Repère
     //axe x en rouge
