@@ -950,8 +950,8 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)
     {
-        x[i] = rayon*cos(2*i*M_PI/NM);
-        z[i] = rayon*sin(2*i*M_PI/NM);
+        x[i] = rayon*cos(2*i*M_PI/NM -M_PI/NM);
+        z[i] = rayon*sin(2*i*M_PI/NM -M_PI/NM);
 
         if (i < NM){  //Base du bas
             y[i] = 0;
