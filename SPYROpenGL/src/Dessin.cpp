@@ -19,22 +19,23 @@
 
 /**
  * @brief Méthode de création d'un cylindre
- * @param NM    Nombre de côtés de chaque base
- * @param rayon     Longueur du rayon
- * @param hauteur   Hauteur du cylindre
+ * @param NM       Nombre de côtés de chaque base
+ * @param rayon       Longueur du rayon
+ * @param hauteur       Hauteur du cylindre
+ * @param rotation       Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0)
  * @return un tuple de deux points correspondant à un coté du cylindre
  */
-const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur){
+const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur, float rotation){
 
-    float x[NM*2]; // NM --> taille du nombre de subdivision d'une surface * 2 (surface du bas + surface du haut)
+    float x[NM*2]; // NM --> taille du nombre de subdivision d'une base * 2 (base du bas + base du haut)
     float y[NM*2];
     float z[NM*2];
 
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)
     {
-        x[i] = rayon*cos(2*i*M_PI/NM);
-        z[i] = rayon*sin(2*i*M_PI/NM);
+        x[i] = rayon*cos(2*i*M_PI/NM + rotation*M_PI/NM);  //Si rotation est différent de 0, "décale" les points sur le cercle implicitement utilisé pour avoir les points des deux bases
+        z[i] = rayon*sin(2*i*M_PI/NM + rotation*M_PI/NM);
 
         if (i < NM){  //Base du bas
             y[i] = 0;
