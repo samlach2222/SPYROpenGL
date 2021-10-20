@@ -48,6 +48,9 @@
 		<Unit filename="src/Dessin.cpp" />
 		<Unit filename="src/Montage.cpp" />
 		<Unit filename="src/Point.cpp" />
+		<Unit filename="Ressources/Audio/Dark Hollow.mp3" />
+		<Unit filename="Ressources/Audio/Enchanted Towers.mp3" />
+		<Unit filename="Ressources/Audio/Sgt. Byrd's Theme.mp3" />
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
