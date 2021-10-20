@@ -247,7 +247,7 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
 }
 
 /**
- * @brief
+ * @brief Méthode permettant de créer le corps de Spyro
  * @param NM    Nombre de cotés de chaque base du corps
  * @param rayon     Longueur du rayon du corps
  * @param longueur      Longueur du corps
