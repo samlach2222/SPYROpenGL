@@ -66,11 +66,11 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
     //Dessin des faces sur les côtés
     for (int i = 0; i < NM; i++){
         glBegin(GL_POLYGON);
-			Dessin::RandomColor3f();
-			glVertex3f(x[i], y[i], z[i]);
-			glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
-			glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
-			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
+            Dessin::RandomColor3f();
+            glVertex3f(x[i], y[i], z[i]);
+            glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
+            glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
+            glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
         glEnd();
     }
 
@@ -131,11 +131,11 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
     //Dessin des faces sur les côtés
     for (int i = 0; i < NM; i++){
         glBegin(GL_POLYGON);
-			Dessin::RandomColor3f();
-			glVertex3f(x[i], y[i], z[i]);
-			glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
-			glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
-			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
+            Dessin::RandomColor3f();
+            glVertex3f(x[i], y[i], z[i]);
+            glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
+            glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
+            glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
         glEnd();
     }
 }
@@ -371,15 +371,15 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
  */
 const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff){
 
-/*  longueurRayonCorps² = moitieLongueurCoteCorps² + longueur²
---> longueur² = longueurRayonCorps² - moitieLongueurCoteCorps²
---> longueur = sqrt(longueurRayonCorps² - moitieLongueurCoteCorps²)*/
-//float longueur = sqrt(longueurRayonCorps*longueurRayonCorps - longueurCoteCorps/2*longueurCoteCorps/2);
+    /*  longueurRayonCorps² = moitieLongueurCoteCorps² + longueur²
+    --> longueur² = longueurRayonCorps² - moitieLongueurCoteCorps²
+    --> longueur = sqrt(longueurRayonCorps² - moitieLongueurCoteCorps²)*/
+    //float longueur = sqrt(longueurRayonCorps*longueurRayonCorps - longueurCoteCorps/2*longueurCoteCorps/2);
 
-Point p1 = std::get<0>(deuxPointsBaseCorps);
-Point p2 = std::get<1>(deuxPointsBaseCorps);
+    Point p1 = std::get<0>(deuxPointsBaseCorps);
+    Point p2 = std::get<1>(deuxPointsBaseCorps);
 
-float coordPoints[6][3] = {
+    float coordPoints[6][3] = {
         {0, 0, 0},
         {p1.x, 0, p1.z},
         {p2.x, 0, p2.z},
@@ -983,11 +983,11 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
     //Dessin des faces sur les côtés
     for (int i = 0; i < NM; i++){
         glBegin(GL_POLYGON);
-			Dessin::RandomColor3f();
-			glVertex3f(x[i], y[i], z[i]);
-			glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
-			glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
-			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
+            Dessin::RandomColor3f();
+            glVertex3f(x[i], y[i], z[i]);
+            glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
+            glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
+            glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
         glEnd();
     }
 }
@@ -1015,21 +1015,21 @@ const void Dessin::AxesActuelle(float translationX, float translationY, float tr
     //axe des x en rouge
     glBegin(GL_LINES);
         glColor3f(1,0,0);
-    	glVertex3f(0,0,0);
-    	glVertex3f(1,0,0);
+        glVertex3f(0,0,0);
+        glVertex3f(1,0,0);
     glEnd();
 
     //axe des y en vert
     glBegin(GL_LINES);
-    	glColor3f(0,1,0);
-    	glVertex3f(0,0,0);
-    	glVertex3f(0,1,0);
+        glColor3f(0,1,0);
+        glVertex3f(0,0,0);
+        glVertex3f(0,1,0);
     glEnd();
 
     //axe des z en bleu
     glBegin(GL_LINES);
-    	glColor3f(0,0,1);
-    	glVertex3f(0,0,0);
-    	glVertex3f(0,0,1);
+        glColor3f(0,0,1);
+        glVertex3f(0,0,0);
+        glVertex3f(0,0,1);
     glEnd();
 }
