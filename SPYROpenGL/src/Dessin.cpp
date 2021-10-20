@@ -932,6 +932,7 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
     }
 }
 
+
 /**
  * @brief Méthode appelant la méthode glColor3f avec des valeurs aléatoires
  */
@@ -941,4 +942,34 @@ const void Dessin::RandomColor3f(){
     float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
     glColor3f(r,g,b);
+}
+
+/**
+ * @brief Affiche les axes X Y Z avec des lignes R G B à l'origine par rapport aux transformations actuelles (translations, rotations, etc.)
+ * @param translationX      Translation du dessin des axes sur l'axe X
+ * @param translationY      Translation du dessin des axes sur l'axe Y
+ * @param translationZ      Translation du dessin des axes sur l'axe Z
+ */
+const void Dessin::AxesActuelle(float translationX, float translationY, float translationZ){
+
+    //axe des x en rouge
+    glBegin(GL_LINES);
+        glColor3f(1,0,0);
+    	glVertex3f(0,0,0);
+    	glVertex3f(1,0,0);
+    glEnd();
+
+    //axe des y en vert
+    glBegin(GL_LINES);
+    	glColor3f(0,1,0);
+    	glVertex3f(0,0,0);
+    	glVertex3f(0,1,0);
+    glEnd();
+
+    //axe des z en bleu
+    glBegin(GL_LINES);
+    	glColor3f(0,0,1);
+    	glVertex3f(0,0,0);
+    	glVertex3f(0,0,1);
+    glEnd();
 }
