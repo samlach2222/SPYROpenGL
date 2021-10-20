@@ -125,14 +125,14 @@ void affichage()
     /*******************************************/
     Montage::MontageSpyro();
 
-    glMatrixMode(GL_PROJECTION);
+/*glMatrixMode(GL_PROJECTION);
 glPushMatrix();
 glLoadIdentity();
 glMatrixMode(GL_MODELVIEW);
 glPushMatrix();
 glLoadIdentity();
 
- /*glBegin( GL_QUADS ); // apriori pour mettre un BG il faut texturer cette chose, mais spyro passe à travers
+ glBegin( GL_QUADS ); // apriori pour mettre un BG il faut texturer cette chose, mais spyro passe à travers
 
     glTexCoord2f(0,0);
     glVertex2f(-1.0f, -1.0f);
