@@ -128,7 +128,6 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
         //Orientation de la queue à l'horizontale et avec la bonne rotation
         glRotatef(-90,1,0,0);
         glRotatef(180,0,1,0);
-        glRotatef((3*M_PI/10)*(180/M_PI), 0, 1, 0);
 
         //Dessin de la première partie de la queue de SPYRO
         const float longueurPremierePartieQueue = 0.6;
