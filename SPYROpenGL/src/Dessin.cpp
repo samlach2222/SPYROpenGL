@@ -947,9 +947,9 @@ const void Dessin::RandomColor3f(){
 
 /**
  * @brief Affiche les axes X Y Z avec des lignes R G B à l'origine par rapport aux transformations actuelles (translations, rotations, etc.)
- * @param translationX      Translation du dessin des axes sur l'axe X
- * @param translationY      Translation du dessin des axes sur l'axe Y
- * @param translationZ      Translation du dessin des axes sur l'axe Z
+ * @param translationX      Translation du dessin des axes sur l'axe X (optionnelle, défaut: 0)
+ * @param translationY      Translation du dessin des axes sur l'axe Y (optionnelle, défaut: 0)
+ * @param translationZ      Translation du dessin des axes sur l'axe Z (optionnelle, défaut: 0)
  */
 const void Dessin::AxesActuelle(float translationX, float translationY, float translationZ){
 
