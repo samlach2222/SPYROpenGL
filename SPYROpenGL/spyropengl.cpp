@@ -92,6 +92,12 @@ int main(int argc,char **argv)
   glutSpecialFunc(specialInput);  //similaire à glutKeyboardFunc mais pour les touches non-ascii
 
   /* Entree dans la boucle principale glut */
+
+   /***************************************************************/
+   /***** L'intermittent du spectacle joue la musique de fond *****/
+   /***************************************************************/
+   std::thread t(IntermittentDuSpectacle::play_music);
+
   glutMainLoop();
   return 0;
 }
@@ -113,15 +119,36 @@ void affichage()
 
     //srand(713705);
 
-    /***************************************************************/
-    /***** L'intermittent du spectacle joue la musique de fond *****/
-    /***************************************************************/
-    std::thread t(IntermittentDuSpectacle::play_music());
 
     /*******************************************/
     /***** Dessin des pieds + corps + queue*****/
     /*******************************************/
     Montage::MontageSpyro();
+
+    glMatrixMode(GL_PROJECTION);
+glPushMatrix();
+glLoadIdentity();
+glMatrixMode(GL_MODELVIEW);
+glPushMatrix();
+glLoadIdentity();
+
+ /*glBegin( GL_QUADS ); // apriori pour mettre un BG il faut texturer cette chose, mais spyro passe à travers
+
+    glTexCoord2f(0,0);
+    glVertex2f(-1.0f, -1.0f);
+    glTexCoord2f(1,0);
+    glVertex2f(1.0f, -1.0f);
+    glTexCoord2f(1,1);
+    glVertex2f(1.0f, 1.0f);
+    glTexCoord2f(0,1);
+    glVertex2f(-1.0f, 1.0f);
+
+glEnd();
+
+glPopMatrix();
+glMatrixMode(GL_PROJECTION);
+glPopMatrix();
+glMatrixMode(GL_MODELVIEW);*/
 
     //Repère
     //axe x en rouge
