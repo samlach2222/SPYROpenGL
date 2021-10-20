@@ -12,8 +12,8 @@ https://samlach22-notes.mycozy.cloud/public/?sharecode=MuuPqmvLAbrb
 ## LOIS PAZOLA
 ### Fini
 - Queue
-### Non Fini
 - Corps
+### Non Fini
 - Bouche
 - Nez
 
