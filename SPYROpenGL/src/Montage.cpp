@@ -23,6 +23,10 @@ const void Montage::MontageSpyro()
     const float longueurCorps = 1;
     const float largeurDUnCoteDuCorps = sqrt(rayonCorps*rayonCorps + rayonCorps*rayonCorps - 2*rayonCorps*rayonCorps*cos(2*M_PI/5));  //théorème d'Al-Kashi : BC²=AB²+AC²-2.AB.AC.cos(BÂC)
 
+    /* param LiaisonCorpsCou */
+    const float coeffLiaisonCorpsCouVersLeCou = 0.5;
+    const float hauteurLiaisonCorpsCou = 0.2;
+
     /* param Jambes */
     float taille = 0.1;
 	float hauteurJambes = 0.2;
@@ -36,10 +40,13 @@ const void Montage::MontageSpyro()
 	float decallageCentre = 0.2;
 
     glPushMatrix();
-        /* Création du corps */
         glTranslatef(0,taille+2*hauteurJambes,0); // translation verticale de la hauteur de Jambe+Pied et translation horizontale de la largeur de la jambe
         glTranslatef(0,0,-3*sqrt(pow((sqrt((taille*taille)/2)),2)-pow(taille/2,2))); // translation pour placer le corps en adéquation avec les pieds
+
+        /* Création du corps */
         std::tuple<Point, Point> deuxPointsBaseCorps = Creation::Corps(5,rayonCorps,longueurCorps);
+        /* Création de la liaison corps <--> cou */
+        Creation::LiaisonCorpsCou(5,rayonCorps,hauteurLiaisonCorpsCou, -1.5, coeffLiaisonCorpsCouVersLeCou);  //La partie vers le cou se trouve
         /* Création de la queue */
         Creation::Queue(rayonCorps, deuxPointsBaseCorps, 1);
         /* Création ailes */

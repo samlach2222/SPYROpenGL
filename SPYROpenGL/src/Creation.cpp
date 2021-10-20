@@ -262,3 +262,20 @@ const std::tuple<Point, Point> Creation::Corps(int NM, float rayon, float longue
 
     return tuplePointsBaseCorps;
 }
+
+/**
+ * @brief Méthode permettant de créer la liaison du corps au cou de Spyro
+ * @param NM    Nombre de côtés de chaque base
+ * @param rayon     Longueur du rayon
+ * @param hauteur     Hauteur de la liaison corps <--> cou
+ * @param rotation       Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0)
+ * @param coeff     Coefficient d'agrandissement de la base qui sera liée au cou par rapport à la base liée au corps
+ */
+const void Creation::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation, float coeff){
+    glPushMatrix();
+        glTranslatef(0,0,1);
+        glRotatef(90,1,0,0);
+
+        Dessin::LiaisonCorpsCou(5,rayon,hauteur,rotation,coeff);  //La partie vers le cou se trouve
+    glPopMatrix();
+}

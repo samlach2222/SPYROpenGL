@@ -25,6 +25,7 @@ class Creation
         static const void Queue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float taille = 1);
         static const void Aile(float ecart, float largeur, float longueur, float hauteur,float decallageCentre);
         static const std::tuple<Point, Point> Corps(int NM, float rayon, float longueur);
+        static const void LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation = 0, float coeff = 1);
 };
 
 #endif // CREATION_H

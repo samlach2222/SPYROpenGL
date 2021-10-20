@@ -20,6 +20,7 @@ class Dessin
 {
     public:
         static const std::tuple<Point, Point> Cylindre(int NM, float rayon, float hauteur, float rotation = 0);
+        static const void LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation = 0, float coeff = 1);
         static const void Sphere(float taille, int NP, int NM);
         static const void Cone(float hauteur, float rayon, int NM);
         static const void Criniere(float rayonSphere);

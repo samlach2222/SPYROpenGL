@@ -82,6 +82,65 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
 }
 
 /**
+ * @brief Méthode de création de la liaison du corps au cou
+ * @param NM    Nombre de côtés de chaque base
+ * @param rayon     Longueur du rayon
+ * @param hauteur     Hauteur de la liaison corps <--> cou
+ * @param rotation       Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0)
+ * @param coeff     Coefficient d'agrandissement de la base qui sera liée au cou par rapport à la base liée au corps
+ */
+const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation, float coeff){
+
+    float x[NM*2]; // NM --> taille du nombre de subdivision d'une surface * 2 (surface du bas + surface du haut)
+    float y[NM*2];
+    float z[NM*2];
+
+    // Remplissage des coordonnées des points dans x et y et z;
+    for(int i = 0; i < NM*2; i++)
+    {
+        if (i < NM){  //Base du bas
+            x[i] = rayon*cos(2*i*M_PI/NM + rotation*M_PI/NM);  //Si rotation est différent de 0, "décale" les points sur le cercle implicitement utilisé pour avoir les points des deux bases
+            y[i] = 0;
+            z[i] = rayon*sin(2*i*M_PI/NM + rotation*M_PI/NM);
+        }
+        else{  //Base du haut
+            x[i] = rayon*coeff*cos(2*i*M_PI/NM + rotation*M_PI/NM);
+            y[i] = hauteur+rayon*coeff*sin(2*i*M_PI/NM + rotation*M_PI/NM);
+            z[i] = -hauteur;
+        }
+    }
+
+    //Dessin de la base bas
+    glBegin(GL_POLYGON);
+    for(int i = 0; i < NM; i++)
+    {
+        Dessin::RandomColor3f();
+        glVertex3f(x[i], y[i], z[i]);
+    }
+    glEnd();
+
+    //Dessin de la base haut
+    glBegin(GL_POLYGON);
+    for(int i = NM; i < NM*2; i++)
+    {
+        Dessin::RandomColor3f();
+        glVertex3f(x[i], y[i], z[i]);
+    }
+    glEnd();
+
+    //Dessin des faces sur les côtés
+    for (int i = 0; i < NM; i++){
+        glBegin(GL_POLYGON);
+			Dessin::RandomColor3f();
+			glVertex3f(x[i], y[i], z[i]);
+			glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
+			glVertex3f(x[((i+1)%NM)+NM], y[((i+1)%NM)+NM], z[((i+1)%NM)+NM]);
+			glVertex3f(x[i+NM], y[i+NM], z[i+NM]);
+        glEnd();
+    }
+}
+
+/**
  * @brief Méthode de création d'une sphère
  * @param taille    Taille de la sphère
  * @param NP    Nombre de côtés à la verticale
