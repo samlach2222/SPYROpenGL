@@ -1,3 +1,12 @@
+/**
+ * @file src/Montage.cpp
+ * @brief Implémentation du montage des différentes créations
+ * @author Samuel LACHAUD
+ * @author Loïs PAZOLA
+ * @version 1.0
+ * @date 20/10/2021
+ */
+
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
@@ -45,10 +54,10 @@ const void Montage::MontageSpyro()
 
         /* Création du corps */
         std::tuple<Point, Point> deuxPointsBaseCorps = Creation::Corps(5,rayonCorps,longueurCorps);
-        /* Création de la liaison corps <--> cou */
-        Creation::LiaisonCorpsCou(5,rayonCorps,hauteurLiaisonCorpsCou, -1.5, coeffLiaisonCorpsCouVersLeCou);  //La partie vers le cou se trouve
         /* Création de la queue */
         Creation::Queue(rayonCorps, deuxPointsBaseCorps, 1);
+        /* Création de la liaison corps <--> cou */
+        Creation::LiaisonCorpsCou(5,rayonCorps,hauteurLiaisonCorpsCou, -1.5, coeffLiaisonCorpsCouVersLeCou);  //La partie vers le cou se trouve
         /* Création ailes */
         glPushMatrix();
             glTranslatef(0,0,longueurCorps);
