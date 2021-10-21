@@ -206,7 +206,6 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
 
             // dessi du tétraèdre
-            srand(128);
             glTranslatef(longueur, hauteur, 0);
             glRotatef(angleRotationDegree, 0, 1, 0);
             glRotatef(90,0,0,-1);
@@ -238,7 +237,6 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
 
             // dessi du tétraèdre
-            srand(128);
             glTranslatef(longueur, hauteur, 0);
             glRotatef(angleRotationDegree, 0, 1, 0);
             glRotatef(90,0,0,-1);

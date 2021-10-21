@@ -117,7 +117,7 @@ void affichage()
     glRotatef(anglex,0.0,1.0,0.0);
     glTranslatef(translationX, translationY, translationZ);  //Décalage sur Y de tout
 
-    //srand(713705);
+    srand(713705);
 
 
     /*******************************************/
