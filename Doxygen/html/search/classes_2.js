@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['montage_0',['Montage',['../class_montage.html',1,'']]]
+  ['intermittentduspectacle_0',['IntermittentDuSpectacle',['../class_intermittent_du_spectacle.html',1,'']]]
 ];

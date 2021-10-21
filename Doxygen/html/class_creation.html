@@ -117,7 +117,11 @@ Fonctions membres publiques statiques</h2></td></tr>
 <tr class="memdesc:a65bdb42b835c5762dd98ce5c75ef24a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant de créer les deux ailes de Spyro.  <a href="class_creation.html#a65bdb42b835c5762dd98ce5c75ef24a5">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a65bdb42b835c5762dd98ce5c75ef24a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f93fade429efc975134f2ffd9d59a8c"><td class="memItemLeft" align="right" valign="top">static const std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_creation.html#a8f93fade429efc975134f2ffd9d59a8c">Corps</a> (int NM, float rayon, float longueur)</td></tr>
+<tr class="memdesc:a8f93fade429efc975134f2ffd9d59a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant de créer le corps de Spyro.  <a href="class_creation.html#a8f93fade429efc975134f2ffd9d59a8c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a8f93fade429efc975134f2ffd9d59a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae202de7b206a55e26d76a5de462b21"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_creation.html#acae202de7b206a55e26d76a5de462b21">LiaisonCorpsCou</a> (int NM, float rayon, float hauteur, float rotation=0, float coeff=1)</td></tr>
+<tr class="memdesc:acae202de7b206a55e26d76a5de462b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant de créer la liaison du corps au cou de Spyro.  <a href="class_creation.html#acae202de7b206a55e26d76a5de462b21">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acae202de7b206a55e26d76a5de462b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p >Classe de création des parties de Spyro. </p>
@@ -300,6 +304,8 @@ Fonctions membres publiques statiques</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Méthode permettant de créer le corps de Spyro. </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">NM</td><td>Nombre de cotés de chaque base du corps </td></tr>
@@ -423,6 +429,72 @@ Fonctions membres publiques statiques</h2></td></tr>
 
 </div>
 </div>
+<a id="acae202de7b206a55e26d76a5de462b21" name="acae202de7b206a55e26d76a5de462b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae202de7b206a55e26d76a5de462b21">&#9670;&nbsp;</a></span>LiaisonCorpsCou()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void Creation::LiaisonCorpsCou </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>NM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rayon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rotation</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode permettant de créer la liaison du corps au cou de Spyro. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">NM</td><td>Nombre de côtés de chaque base </td></tr>
+    <tr><td class="paramname">rayon</td><td>Longueur du rayon </td></tr>
+    <tr><td class="paramname">hauteur</td><td>Hauteur de la liaison corps &lt;--&gt; cou </td></tr>
+    <tr><td class="paramname">rotation</td><td>Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">coeff</td><td>Coefficient d'agrandissement de la base qui sera liée au cou par rapport à la base liée au corps </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6a59d7a08c123b17c4ff92075905b3ff" name="a6a59d7a08c123b17c4ff92075905b3ff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a59d7a08c123b17c4ff92075905b3ff">&#9670;&nbsp;</a></span>Pieds()</h2>
 
@@ -519,7 +591,7 @@ Fonctions membres publiques statiques</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_creation.html">Creation</a></li>
-    <li class="footer">Généré le Mardi 19 Octobre 2021 18:08:16 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Généré le Jeudi 21 Octobre 2021 10:39:12 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

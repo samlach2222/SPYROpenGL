@@ -6,6 +6,9 @@ var files_dup =
     [ "Dessin.h", "_dessin_8h.html", [
       [ "Dessin", "class_dessin.html", null ]
     ] ],
+    [ "IntermittentDuSpectacle.h", "_intermittent_du_spectacle_8h.html", [
+      [ "IntermittentDuSpectacle", "class_intermittent_du_spectacle.html", null ]
+    ] ],
     [ "Montage.h", "_montage_8h.html", [
       [ "Montage", "class_montage.html", null ]
     ] ],
@@ -14,5 +17,6 @@ var files_dup =
     ] ],
     [ "Creation.cpp", "_creation_8cpp.html", null ],
     [ "Dessin.cpp", "_dessin_8cpp.html", null ],
+    [ "Montage.cpp", "_montage_8cpp.html", null ],
     [ "Point.cpp", "_point_8cpp.html", null ]
 ];

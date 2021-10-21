@@ -98,9 +98,12 @@ $(document).ready(function(){initNavTree('class_dessin.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Fonctions membres publiques statiques</h2></td></tr>
-<tr class="memitem:a6f113cc49a9008bcfeca1960db422b06"><td class="memItemLeft" align="right" valign="top">static const std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a6f113cc49a9008bcfeca1960db422b06">Cylindre</a> (int NM, float rayon, float hauteur)</td></tr>
-<tr class="memdesc:a6f113cc49a9008bcfeca1960db422b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'un cylindre.  <a href="class_dessin.html#a6f113cc49a9008bcfeca1960db422b06">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a6f113cc49a9008bcfeca1960db422b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2c60e18954405dde57bba464e9bcca"><td class="memItemLeft" align="right" valign="top">static const std::tuple&lt; <a class="el" href="class_point.html">Point</a>, <a class="el" href="class_point.html">Point</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a4a2c60e18954405dde57bba464e9bcca">Cylindre</a> (int NM, float rayon, float hauteur, float rotation=0)</td></tr>
+<tr class="memdesc:a4a2c60e18954405dde57bba464e9bcca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'un cylindre.  <a href="class_dessin.html#a4a2c60e18954405dde57bba464e9bcca">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4a2c60e18954405dde57bba464e9bcca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919ef936791422de6b16b1b1984effcb"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a919ef936791422de6b16b1b1984effcb">LiaisonCorpsCou</a> (int NM, float rayon, float hauteur, float rotation=0, float coeff=1)</td></tr>
+<tr class="memdesc:a919ef936791422de6b16b1b1984effcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création de la liaison du corps au cou.  <a href="class_dessin.html#a919ef936791422de6b16b1b1984effcb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a919ef936791422de6b16b1b1984effcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e94cc30809a54cf52f8af585821d81e"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a3e94cc30809a54cf52f8af585821d81e">Sphere</a> (float taille, int NP, int NM)</td></tr>
 <tr class="memdesc:a3e94cc30809a54cf52f8af585821d81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'une sphère.  <a href="class_dessin.html#a3e94cc30809a54cf52f8af585821d81e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3e94cc30809a54cf52f8af585821d81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,10 +147,65 @@ Fonctions membres publiques statiques</h2></td></tr>
 static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomColor3f</b> ()</td></tr>
 <tr class="memdesc:a182f177b3f3676b47fad13939ccd1f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode appelant la méthode glColor3f avec des valeurs aléatoires. <br /></td></tr>
 <tr class="separator:a182f177b3f3676b47fad13939ccd1f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88f6ee09ec3ae99bda45c8eec60dc5f"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#af88f6ee09ec3ae99bda45c8eec60dc5f">AxesActuelle</a> (float translationX=0, float translationY=0, float translationZ=0)</td></tr>
+<tr class="memdesc:af88f6ee09ec3ae99bda45c8eec60dc5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les axes X Y Z avec des lignes R G B à l'origine par rapport aux transformations actuelles (translations, rotations, etc.)  <a href="class_dessin.html#af88f6ee09ec3ae99bda45c8eec60dc5f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af88f6ee09ec3ae99bda45c8eec60dc5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p >Classe de création des formes géométrique et sous-parties de Spyro. </p>
 </div><h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="af88f6ee09ec3ae99bda45c8eec60dc5f" name="af88f6ee09ec3ae99bda45c8eec60dc5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af88f6ee09ec3ae99bda45c8eec60dc5f">&#9670;&nbsp;</a></span>AxesActuelle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void Dessin::AxesActuelle </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>translationX</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>translationY</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>translationZ</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Affiche les axes X Y Z avec des lignes R G B à l'origine par rapport aux transformations actuelles (translations, rotations, etc.) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">translationX</td><td>Translation du dessin des axes sur l'axe X (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">translationY</td><td>Translation du dessin des axes sur l'axe Y (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">translationZ</td><td>Translation du dessin des axes sur l'axe Z (optionnelle, défaut: 0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad80eeaf0b55225c2b14cd0f9a264467d" name="ad80eeaf0b55225c2b14cd0f9a264467d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad80eeaf0b55225c2b14cd0f9a264467d">&#9670;&nbsp;</a></span>Cone()</h2>
 
@@ -327,8 +385,8 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
 
 </div>
 </div>
-<a id="a6f113cc49a9008bcfeca1960db422b06" name="a6f113cc49a9008bcfeca1960db422b06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f113cc49a9008bcfeca1960db422b06">&#9670;&nbsp;</a></span>Cylindre()</h2>
+<a id="a4a2c60e18954405dde57bba464e9bcca" name="a4a2c60e18954405dde57bba464e9bcca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2c60e18954405dde57bba464e9bcca">&#9670;&nbsp;</a></span>Cylindre()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +410,13 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>hauteur</em>&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rotation</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -373,6 +437,7 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
     <tr><td class="paramname">NM</td><td>Nombre de côtés de chaque base </td></tr>
     <tr><td class="paramname">rayon</td><td>Longueur du rayon </td></tr>
     <tr><td class="paramname">hauteur</td><td>Hauteur du cylindre </td></tr>
+    <tr><td class="paramname">rotation</td><td>Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0) </td></tr>
   </table>
   </dd>
 </dl>
@@ -527,6 +592,72 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
     <tr><td class="paramname">hauteur</td><td>Hauteur des jambes </td></tr>
     <tr><td class="paramname">sens</td><td>Sens des jambes </td></tr>
     <tr><td class="paramname">agrandissement</td><td>Agrandissement de la surface du haut </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a919ef936791422de6b16b1b1984effcb" name="a919ef936791422de6b16b1b1984effcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a919ef936791422de6b16b1b1984effcb">&#9670;&nbsp;</a></span>LiaisonCorpsCou()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const void Dessin::LiaisonCorpsCou </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>NM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rayon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>hauteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rotation</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode de création de la liaison du corps au cou. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">NM</td><td>Nombre de côtés de chaque base </td></tr>
+    <tr><td class="paramname">rayon</td><td>Longueur du rayon </td></tr>
+    <tr><td class="paramname">hauteur</td><td>Hauteur de la liaison corps &lt;--&gt; cou </td></tr>
+    <tr><td class="paramname">rotation</td><td>Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0) </td></tr>
+    <tr><td class="paramname">coeff</td><td>Coefficient d'agrandissement de la base qui sera liée au cou par rapport à la base liée au corps </td></tr>
   </table>
   </dd>
 </dl>
@@ -1026,7 +1157,7 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_dessin.html">Dessin</a></li>
-    <li class="footer">Généré le Mardi 19 Octobre 2021 18:08:16 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Généré le Jeudi 21 Octobre 2021 10:39:12 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

@@ -2,6 +2,10 @@
 #include <time.h>
 #include <cstdlib>
 
+
+/**
+ * @brief Méthode permettant de jouer le son en arrière plan de l'application, la musique boucle sans répéter la même.
+ */
 const void IntermittentDuSpectacle::play_music()
 {
     #ifdef _WIN32 || _WIN64
