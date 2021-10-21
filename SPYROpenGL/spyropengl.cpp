@@ -275,28 +275,21 @@ void specialInput(int key, int x, int y){
     }
     */
 
-    //Si ctrlOrShift est vrai les flèches gauche/droite déplace sur l'axe Z, sinon sur l'axe X
+    /*Pour la souris, des rotations de 1 minimum et uniquement d'entiers sont appliqués
+      Autant faire la même chose avec les touches fléchées*/
     switch(key)
     {
         case GLUT_KEY_UP:
-        translationY += 0.05;
+            angley -= 1;
             break;
         case GLUT_KEY_DOWN:
-        translationY -= 0.05;
+            angley += 1;
             break;
         case GLUT_KEY_LEFT:
-        if (ctrlOrShift){
-            translationZ -= 0.05;
-        } else {
-            translationX -= 0.05;
-        }
+            anglex -= 1;
             break;
         case GLUT_KEY_RIGHT:
-        if (ctrlOrShift){
-            translationZ += 0.05;
-        } else {
-            translationX += 0.05;
-        }
+            anglex += 1;
             break;
     }
     glutPostRedisplay();
