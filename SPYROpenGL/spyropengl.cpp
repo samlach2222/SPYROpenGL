@@ -178,6 +178,19 @@ void affichage()
 
 void clavier(unsigned char touche,int x,int y)
 {
+    //Si touche ctrl ou shift ou les deux maintenues
+    /*
+    bool ctrlOrShift = false;
+    switch(glutGetModifiers())
+    {
+        case GLUT_ACTIVE_CTRL:
+        case GLUT_ACTIVE_SHIFT:
+        case GLUT_ACTIVE_CTRL+GLUT_ACTIVE_SHIFT:
+            ctrlOrShift = true;
+            break;
+    }
+    */
+
     switch (touche)
     {
         case 'p': /* affichage du carre plein */
@@ -218,6 +231,30 @@ void clavier(unsigned char touche,int x,int y)
             }
             glutPostRedisplay();
             break;
+        case 'i':
+            translationY += 0.05;
+            glutPostRedisplay();
+            break;
+        case 'k':
+            translationY -= 0.05;
+            glutPostRedisplay();
+            break;
+        case 'j':
+            translationX -= 0.05;
+            glutPostRedisplay();
+            break;
+        case 'J':
+            translationZ -= 0.05;
+            glutPostRedisplay();
+            break;
+        case 'l':
+            translationX += 0.05;
+            glutPostRedisplay();
+            break;
+        case 'L':
+            translationZ += 0.05;
+            glutPostRedisplay();
+            break;
         case 'q' : /*la touche 'q' permet de quitter le programme */
             exit(0);
     }
@@ -226,6 +263,7 @@ void clavier(unsigned char touche,int x,int y)
 void specialInput(int key, int x, int y){
 
     //Si touche ctrl ou shift ou les deux maintenues
+    /*
     bool ctrlOrShift = false;
     switch(glutGetModifiers())
     {
@@ -235,6 +273,7 @@ void specialInput(int key, int x, int y){
             ctrlOrShift = true;
             break;
     }
+    */
 
     //Si ctrlOrShift est vrai les flèches gauche/droite déplace sur l'axe Z, sinon sur l'axe X
     switch(key)
