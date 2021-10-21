@@ -115,9 +115,9 @@ void affichage()
     glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -1000, 1000);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
-    glTranslatef(translationX, translationY, translationZ);  //Décalage sur Y de tout
+    glTranslatef(translationX, translationY, translationZ);  //Décalage de tout sur chaque axe
 
-    srand(713705);
+    srand(713705);  //Seed utilisé pour les couleurs aléatoires
 
 
     /*******************************************/
