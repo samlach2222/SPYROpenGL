@@ -200,7 +200,7 @@ void clavier(unsigned char touche,int x,int y)
             glDisable(GL_DEPTH_TEST);
             glutPostRedisplay();
             break;
-        case '+':
+        case 'Z':
             //Zoom
             champDeVision -= 0.05;
             if (champDeVision < 0.05){
@@ -209,7 +209,7 @@ void clavier(unsigned char touche,int x,int y)
             }
             glutPostRedisplay();
             break;
-        case '-':
+        case 'z':
             //Dézoom
             champDeVision += 0.05;
             if (champDeVision > 6){
