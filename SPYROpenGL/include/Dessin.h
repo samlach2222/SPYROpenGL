@@ -30,7 +30,7 @@ class Dessin
         static const void PremierePartieQueue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff);
         static const void DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float coeffX = 1, float coeffZ = 1, float decalageSX = 0, float decalageSZ = 0);
         static const void TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float decalageBX = 0, float decalageBZ = 0, float decalageSX = 0, float decalageSZ = 0);
-        static const void Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement);
+        static const void Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps);
         static const void Cube(float taille);
         static const void Tetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX = 0, float decalageBZ = 0, float decalageSX = 0, float decalageSZ = 0);
         static const void PyramideTronquee(float hauteur, float largeur, float longueur, float ecart);

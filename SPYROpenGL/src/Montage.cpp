@@ -39,7 +39,7 @@ const void Montage::MontageSpyro()
     /* param Jambes */
     float taille = 0.1;
 	float hauteurJambes = 0.2;
-	float agrendissementJambes = (sqrt((taille*taille)/2) * largeurDUnCoteDuCorps / taille) - sqrt((taille*taille)/2); // Thales : Agrendissement = coté * (hypothénuse agrendie / hypothénuse) - coté
+	float agrendissementJambes = (sqrt((taille*taille)/2) * largeurDUnCoteDuCorps / taille) - sqrt((taille*taille)/2);// Thales : Agrendissement = coté * (hypothénuse agrendie / hypothénuse) - coté
 
 	/* param Ailes */
 	float ecart = 0.05;
@@ -104,11 +104,11 @@ const void Montage::MontageSpyro()
     glPopMatrix();
 
     /* Création pattes arrières */
-	Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes);
+	Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes, largeurDUnCoteDuCorps);
     glTranslatef(0,0,longueurCorps);
     glTranslatef(0,0,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2))); // placer les jambes avec le corps
 
     /* Création pattes avant */
-    Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes);
+    Creation::JambesPlusPieds(taille, hauteurJambes, agrendissementJambes, largeurDUnCoteDuCorps);
     glTranslatef(0,0,-longueurCorps);
 }

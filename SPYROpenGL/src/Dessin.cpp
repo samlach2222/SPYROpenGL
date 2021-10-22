@@ -699,21 +699,47 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
  * @param sens      Sens des jambes
  * @param agrandissement    Agrandissement de la surface du haut
  */
-const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement)
+const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
     float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypothénuse du triangle du dessus
     float t = agrandissement;
     float tx = sqrt(t*t/2);
+
+    // longueurs du triangle de base et de l'agrendit
+    float hypotenuseDeBase = sqrt(2*(longueurX * longueurX));
+    float hypotenuseAgrendit = largeurDUnCoteDuCorps;
+    float coteDeBase = longueurX;
+    float coteAgrendit = coteDeBase * (hypotenuseAgrendit/hypotenuseDeBase);
+
+    // coefficients d'agrendissement
+    float coefficientAgrendissement = hypotenuseAgrendit/hypotenuseDeBase;
+    float agrendissementHypotenuseParThales = hypotenuseDeBase*(coteAgrendit/coteDeBase); // Thales
+    float diagonaleAgrendissement = (coteDeBase*(hypotenuseAgrendit/hypotenuseDeBase))-coteDeBase;
+
+    // calculs vecteurs de translation :
+    float translation = sqrt(pow(diagonaleAgrendissement,2) + pow((agrendissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /2; // Je sais pas pk, mais j'ai l'impression c'est bien /2
+    //pow((agrendissementHypotenuseParThales - hypotenuseDeBase)/2,2) - pow(diagonaleAgrendissement,2);
+
     if(sens)
     {
         float coordPoints[6][3] = {
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
+            {0-translation, hauteur, 0-translation}, // POINT A
+            {longueurX+translation, hauteur, 0-translation}, //POINT C
+            {0-translation, hauteur, longueurZ+translation} // POINT B
+        };
+
+        // SAUVEGARDE :
+        /*float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
             {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
             {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
             {0, hauteur, longueurZ+t}
-        };
+        };*/
 
         //base bas
         glBegin(GL_POLYGON);

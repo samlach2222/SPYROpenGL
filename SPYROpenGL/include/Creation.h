@@ -18,9 +18,9 @@
 class Creation
 {
     public:
-        static const void Jambes(float taille, float hauteur, bool sens, float agrendissement);
+        static const void Jambes(float taille, float hauteur, bool sens, float agrendissement, float largeurDUnCoteDuCorps);
         static const void Pieds(float taille);
-        static const void JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes);
+        static const void JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes, float largeurDUnCoteDuCorps);
         static const void ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decallageCou);
         static const void Queue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float taille = 1);
         static const void Aile(float ecart, float largeur, float longueur, float hauteur,float decallageCentre);
