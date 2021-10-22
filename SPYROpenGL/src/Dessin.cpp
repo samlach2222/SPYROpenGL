@@ -368,9 +368,10 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
  * @param hauteur     Hauteur entre le cou et la bouche
  * @param coeffX        Coefficient d'agrandissement de la surface haute (correspondant à la bouche) par rapport à la surface basse (accrochée au cou) sur l'axe X (optionnelle, défaut: 1)
  * @param coeffZ        Coefficient d'agrandissement de la surface haute (correspondant à la bouche) par rapport à la surface basse (accrochée au cou) sur l'axe Z (optionnelle, défaut: 1)
- * @param decalageSZ    Décalage sur l'axe Z du point isocèle de la surface haute (correspondant à la bouche)
+ * @param decalageSZ    Décalage sur l'axe Z du point isocèle de la surface haute (correspondant à la bouche) (optionnelle, défaut: 0)
+ * @param decalageSY    Décalage sur l'axe Y du point isocèle de la surface haute (correspondant à la bouche) (optionnelle, défaut: 0)
  */
-const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coeffZ, float decalageSZ){
+const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coeffZ, float decalageSZ, float decalageSY){
 
     const float rotationP1 = 4.5;
     const float rotationP2 = 0.5;
@@ -379,7 +380,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
         {0, 0, rayonCou},
         {rayonCou*cos(rotationP1*M_PI/5), 0, rayonCou*sin(rotationP1*M_PI/5)},
         {rayonCou*cos(rotationP2*M_PI/5), 0, rayonCou*sin(rotationP2*M_PI/5)},
-        {0, hauteur, rayonCou*coeffZ + decalageSZ},
+        {0, hauteur+decalageSY, rayonCou*coeffZ + decalageSZ},
         {rayonCou*cos(rotationP1*M_PI/5)*coeffX, hauteur, rayonCou*sin(rotationP1*M_PI/5) + decalageSZ},
         {rayonCou*cos(rotationP2*M_PI/5)*coeffX, hauteur, rayonCou*sin(rotationP2*M_PI/5) + decalageSZ},
     };

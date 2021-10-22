@@ -62,6 +62,7 @@ const void Montage::MontageSpyro()
     /* param Bouche */
     const float boucheCoeffX = 3;
     const float boucheCoeffZ = 5;
+    const float boucheInclinaison = -0.1;
 
     glPushMatrix();
         glTranslatef(0,taille+2*hauteurJambes,0); // translation verticale de la hauteur de Jambe+Pied et translation horizontale de la largeur de la jambe
@@ -81,9 +82,10 @@ const void Montage::MontageSpyro()
             glTranslatef(0, 0, hauteurLiaisonCorpsCou+longueurCorps);
             Creation::ComposantsTete(tailleTete, hauteurCorne, largeurCorne,rayonCorps*coeffLiaisonCorpsCouVersLeCou, hauteurCou,decallageCou);
 
-            //Bouche/Menton
+            //Bouche (et menton)
+            //Déplacement de l'origine sur le milieu de la surface haute du cou
             glTranslatef(0, hauteurCou, 0);
-            Dessin::Bouche(rayonCorps*coeffLiaisonCorpsCouVersLeCou, tailleTete*0.3, boucheCoeffX, boucheCoeffZ, tailleTete*0.2);
+            Dessin::Bouche(rayonCorps*coeffLiaisonCorpsCouVersLeCou, tailleTete*0.3, boucheCoeffX, boucheCoeffZ, tailleTete*0.2, tailleTete*boucheInclinaison);
         glPopMatrix();
         /* Création ailes */
         glPushMatrix();
