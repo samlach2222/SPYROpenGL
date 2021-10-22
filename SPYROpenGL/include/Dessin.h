@@ -26,6 +26,7 @@ class Dessin
         static const void Criniere(float rayonSphere);
         static const void Prisme(float longueurX, float longueurZ, float hauteur, float coeffX = 1, float coeffZ = 1, float decalageSX = 0, float decalageSZ = 0);
         static const void Bouche(float rayonCou, float hauteur, float coeffX = 1, float coeffZ = 1, float decalageSZ = 0, float decalageSY = 0);
+        static const void Nez(float rayonVersBouche, float hauteur, float boucheCoeffX, float coeffBoucheZ, float coeffIY = 1, float decalageZ = 0);
         static const void PremierePartieQueue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff);
         static const void DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float coeffX = 1, float coeffZ = 1, float decalageSX = 0, float decalageSZ = 0);
         static const void TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float decalageBX = 0, float decalageBZ = 0, float decalageSX = 0, float decalageSZ = 0);

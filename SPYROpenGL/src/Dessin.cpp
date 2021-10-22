@@ -430,6 +430,73 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 }
 
 /**
+ * @brief Méthode de création du nez
+ * @param rayonVersBouche     Rayon pour aller aux deux points sur les côtés de la bouche
+ * @param hauteur     Hauteur du nez
+ * @param boucheCoeffX        Le coefficient d'agrandissement sur l'axe X qui A ETAIT utilisé pour la surface haute de la bouche
+ * @param boucheCoeffZ        Le coefficient d'agrandissement sur l'axe Z qui A ETAIT utilisé pour la surface haute de la bouche
+ * @param coeffIY       Coefficient d'agrandissement des deux points sur les côtés sur l'axe Y (optionnelle, défaut: 1)
+ * @param decalageZ    Décalage sur l'axe Z des deux points isocèle (le point isocèle de chaque surface) (optionnelle, défaut: 0)
+ */
+const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX, float coeffBoucheZ, float coeffIY, float decalageZ){
+    const float rotationP1 = 4.5;
+    const float rotationP2 = 0.5;
+
+    float coordPoints[6][3] = {
+        {0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},
+        {rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX, 0, rayonVersBouche*sin(rotationP1*M_PI/5)},
+        {rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX, 0, rayonVersBouche*sin(rotationP2*M_PI/5)},
+        {0, hauteur*coeffIY, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints
+        //{0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints
+        {rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX, hauteur*coeffIY, rayonVersBouche*sin(rotationP1*M_PI/5)},
+        {rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX, hauteur*coeffIY, rayonVersBouche*sin(rotationP2*M_PI/5)},
+    };
+
+    //base bas
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //base haut
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+    glEnd();
+
+    //côté hypothénuse
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+    glEnd();
+
+    //côté axe x
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
+        glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+
+    //côté axe z
+    glBegin(GL_POLYGON);
+        Dessin::RandomColor3f();
+        glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
+        glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
+        glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
+        glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
+    glEnd();
+}
+
+/**
  * @brief Méthode de création de la première partie de la queue
  * @param longueurRayonCorps      Longueur du rayon du corps
  * @param deuxPointsBaseCorps     Tuple de deux points correspondant à un coté du corps
