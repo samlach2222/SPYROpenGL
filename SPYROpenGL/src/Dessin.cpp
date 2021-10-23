@@ -442,14 +442,15 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
     const float rotationP1 = 4.5;
     const float rotationP2 = 0.5;
 
+    //Le code créé un prisme, le cinquième et sixième point sont au même endroit pour faire un tétraèdre
     float coordPoints[6][3] = {
         {0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},
         {rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX, 0, rayonVersBouche*sin(rotationP1*M_PI/5)},
         {rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX, 0, rayonVersBouche*sin(rotationP2*M_PI/5)},
-        {0, hauteur*coeffIY, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints
-        //{0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints
-        {rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX, hauteur*coeffIY, rayonVersBouche*sin(rotationP1*M_PI/5)},
-        {rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX, hauteur*coeffIY, rayonVersBouche*sin(rotationP2*M_PI/5)},
+        //{0, hauteur*coeffIY, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints à la même hauteur que le cinquième et sixième
+        {0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints identique au premier
+        {0, hauteur*coeffIY, rayonVersBouche*sin(rotationP1*M_PI/5)},
+        {0, hauteur*coeffIY, rayonVersBouche*sin(rotationP2*M_PI/5)},
     };
 
     //base bas

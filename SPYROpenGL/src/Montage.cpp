@@ -65,7 +65,7 @@ const void Montage::MontageSpyro()
     const float boucheInclinaison = -0.1;
 
     /* param Nez */
-    const float nezCoeffIY = 1;
+    const float nezCoeffIY = 8;
 
     glPushMatrix();
         glTranslatef(0,taille+2*hauteurJambes,0); // translation verticale de la hauteur de Jambe+Pied et translation horizontale de la largeur de la jambe
