@@ -710,7 +710,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     float hypotenuseDeBase = sqrt(2*(longueurX * longueurX));
     float hypotenuseAgrendit = largeurDUnCoteDuCorps;
     float coteDeBase = longueurX;
-    float coteAgrendit = coteDeBase * (hypotenuseAgrendit/hypotenuseDeBase);
+    float coteAgrendit = sqrt(pow(hypotenuseAgrendit,2)/2);
 
     // coefficients d'agrendissement
     float coefficientAgrendissement = hypotenuseAgrendit/hypotenuseDeBase;
@@ -718,8 +718,13 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     float diagonaleAgrendissement = (coteDeBase*(hypotenuseAgrendit/hypotenuseDeBase))-coteDeBase;
 
     // calculs vecteurs de translation :
-    float translation = sqrt(pow(diagonaleAgrendissement,2) + pow((agrendissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /2; // Je sais pas pk, mais j'ai l'impression c'est bien /2
-    //pow((agrendissementHypotenuseParThales - hypotenuseDeBase)/2,2) - pow(diagonaleAgrendissement,2);
+    float translation = sqrt(pow(diagonaleAgrendissement,2) + pow((agrendissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75;
+
+    // calculs de rotation de la face du dessus
+    float rotationAxeVertical = sqrt(pow(largeurDUnCoteDuCorps,2) - 0.2*0.2);
+    float rotationAxeVerticalMoitie = rotationAxeVertical/2;
+    float rotationAxeHorizontal = hypotenuseAgrendit - 0.2;
+    float rotationAxeHorizontalMoitie = rotationAxeHorizontal/2;
 
     if(sens)
     {
@@ -727,9 +732,9 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
-            {0-translation, hauteur, 0-translation}, // POINT A
-            {longueurX+translation, hauteur, 0-translation}, //POINT C
-            {0-translation, hauteur, longueurZ+translation} // POINT B
+            {0-translation-rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation+rotationAxeHorizontalMoitie}, // POINT A
+            {longueurX+2*translation-2*rotationAxeHorizontal, hauteur+rotationAxeVertical*1.10, 0-translation*0.4+rotationAxeHorizontal}, //POINT C
+            {0, hauteur, longueurZ+translation} // POINT B
         };
 
         // SAUVEGARDE :
@@ -791,10 +796,41 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
-            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {longueurX+t, hauteur, 0},
-            {0, hauteur+(h/(tan(M_PI/4))), longueurZ+t} // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {0-translation+rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation-rotationAxeHorizontalMoitie}, // POINT A
+            {longueurX+2*translation-2*rotationAxeHorizontal+rotationAxeHorizontalMoitie, hauteur, 0-translation*0.4+rotationAxeHorizontal}, //POINT C
+            {0, hauteur+rotationAxeVertical*1.10, longueurZ+translation} // POINT B
         };
+
+        // SAUVEGARDE :
+        /*float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
+            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {0, hauteur, longueurZ+t}
+        };*/
+
+        // SAUVEGARDE :
+        /*float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
+            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
+            {0, hauteur, longueurZ+t}
+        };*/
+
+        // temp
+        /*float coordPoints[6][3] = {
+            {0, 0, 0},
+            {longueurX, 0, 0},
+            {0, 0, longueurZ},
+            {0-translation-rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation+rotationAxeHorizontalMoitie}, // POINT A
+            {longueurX+2*translation-2*rotationAxeHorizontal, hauteur+rotationAxeVertical*1.10, 0-translation*0.4+rotationAxeHorizontal}, //POINT C
+            {0, hauteur, longueurZ+translation} // POINT B
+        };*/
+
 
         //base bas
         glBegin(GL_POLYGON);
