@@ -35,6 +35,7 @@ int x;
 int y;
 int xold;
 int yold;
+std::thread tt;
 
 /**
  * @brief Valeur du champ de vision
@@ -254,6 +255,22 @@ void clavier(unsigned char touche,int x,int y)
         case 'L':
             translationZ += 0.05;
             glutPostRedisplay();
+            break;
+        case ' ': /* Spyro dit : "Bonjour je suis Spyro" */
+            {
+                //std::thread temp = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
+                if(tt.joinable()){
+                    tt.join();
+                    tt.~thread();
+                    tt = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
+                    //std::thread temp(IntermittentDuSpectacle::ShoutingInThePublicSquare);
+                    //std::swap(tt, temp);
+                }
+                else{
+                    tt = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
+                    //tt.detach();
+                }
+            }
             break;
         case 'q' : /*la touche 'q' permet de quitter le programme */
             exit(0);
