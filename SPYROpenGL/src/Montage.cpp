@@ -96,7 +96,7 @@ const void Montage::MontageSpyro()
         glPopMatrix();
         /* Création ailes */
         glPushMatrix();
-            glTranslatef(0,0,longueurCorps);
+            glTranslatef(0,0,longueurCorps*0.7);
             //glTranslatef(0,largeurDUnCoteDuCorps/4,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2))); // placer les jambes avec le corps
             Creation::Aile(ecart, largeur, longueur, hauteur, decallageCentre);
         glPopMatrix();
