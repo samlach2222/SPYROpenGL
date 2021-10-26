@@ -1209,24 +1209,28 @@ const void Dessin::RandomColor3f(){
  */
 const void Dessin::AxesActuelle(float translationX, float translationY, float translationZ){
 
-    //axe des x en rouge
-    glBegin(GL_LINES);
-        glColor3f(1,0,0);
-        glVertex3f(0,0,0);
-        glVertex3f(1,0,0);
-    glEnd();
+    glPushMatrix();
+        glTranslatef(translationX, translationY, translationZ);
 
-    //axe des y en vert
-    glBegin(GL_LINES);
-        glColor3f(0,1,0);
-        glVertex3f(0,0,0);
-        glVertex3f(0,1,0);
-    glEnd();
+        //axe des x en rouge
+        glBegin(GL_LINES);
+            glColor3f(1,0,0);
+            glVertex3f(0,0,0);
+            glVertex3f(1,0,0);
+        glEnd();
 
-    //axe des z en bleu
-    glBegin(GL_LINES);
-        glColor3f(0,0,1);
-        glVertex3f(0,0,0);
-        glVertex3f(0,0,1);
-    glEnd();
+        //axe des y en vert
+        glBegin(GL_LINES);
+            glColor3f(0,1,0);
+            glVertex3f(0,0,0);
+            glVertex3f(0,1,0);
+        glEnd();
+
+        //axe des z en bleu
+        glBegin(GL_LINES);
+            glColor3f(0,0,1);
+            glVertex3f(0,0,0);
+            glVertex3f(0,0,1);
+        glEnd();
+    glPopMatrix();
 }
