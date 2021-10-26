@@ -43,6 +43,7 @@
 		</Compiler>
 		<Unit filename="Ressources/Audio/Dark Hollow.wav" />
 		<Unit filename="Ressources/Audio/Enchanted Towers.wav" />
+		<Unit filename="Ressources/Audio/SaluuutMoiCSpyro.wav" />
 		<Unit filename="Ressources/Audio/Sgt. Byrd&apos;s Theme.wav" />
 		<Unit filename="include/Creation.h" />
 		<Unit filename="include/Dessin.h" />

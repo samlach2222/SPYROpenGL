@@ -35,7 +35,8 @@ int x;
 int y;
 int xold;
 int yold;
-std::thread tt;
+std::thread bgMusic;
+std::thread voice;
 
 /**
  * @brief Valeur du champ de vision
@@ -97,7 +98,7 @@ int main(int argc,char **argv)
     /***************************************************************/
     /***** L'intermittent du spectacle joue la musique de fond *****/
     /***************************************************************/
-    std::thread t(IntermittentDuSpectacle::play_music);
+    bgMusic = std::thread(IntermittentDuSpectacle::play_music);
 
     glutMainLoop();
     return 0;
@@ -256,24 +257,24 @@ void clavier(unsigned char touche,int x,int y)
             translationZ += 0.05;
             glutPostRedisplay();
             break;
-        case ' ': /* Spyro dit : "Bonjour je suis Spyro" */
+        case ' ':
             {
-                //std::thread temp = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
-                if(tt.joinable()){
-                    tt.join();
-                    tt.~thread();
-                    tt = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
-                    //std::thread temp(IntermittentDuSpectacle::ShoutingInThePublicSquare);
-                    //std::swap(tt, temp);
+                /******************************************************************************************/
+                /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
+                /******************************************************************************************/
+                if(voice.joinable()){
+                    voice.join();
+                    voice.~thread();
+                    voice = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
                 }
                 else{
-                    tt = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
-                    //tt.detach();
+                    voice = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
                 }
             }
             break;
         case 'q' : /*la touche 'q' permet de quitter le programme */
             exit(0);
+            break;
     }
 }
 
