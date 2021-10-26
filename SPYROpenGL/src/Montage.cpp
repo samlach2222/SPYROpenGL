@@ -102,12 +102,14 @@ const void Montage::MontageSpyro()
         glPopMatrix();
     glPopMatrix();
 
-    /* Création pattes arrières */
-	Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps); // agrendissement gèré en interne
-    glTranslatef(0,0,longueurCorps-2*taille);
-    //glTranslatef(0,0,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2))); // placer les jambes avec le corps
+    glPushMatrix();
+        /* Création pattes arrières */
+        Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps); // agrendissement gèré en interne
+        glTranslatef(0,0,longueurCorps-2*taille);
+        //glTranslatef(0,0,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2))); // placer les jambes avec le corps
 
-    /* Création pattes avant */
-    Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps);
-    glTranslatef(0,0,-longueurCorps);
+        /* Création pattes avant */
+        Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps);
+        //glTranslatef(0,0,-longueurCorps);
+    glPopMatrix();
 }
