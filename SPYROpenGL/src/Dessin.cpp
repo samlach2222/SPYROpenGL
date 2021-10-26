@@ -749,7 +749,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //base bas
         glBegin(GL_POLYGON);
-            Dessin::RandomColor3f();;
+            Dessin::RandomColor3f();
             glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -757,7 +757,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //base haut
         glBegin(GL_POLYGON);
-            Dessin::RandomColor3f();;
+            Dessin::RandomColor3f();
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);

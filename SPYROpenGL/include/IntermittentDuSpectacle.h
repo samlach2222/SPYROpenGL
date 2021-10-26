@@ -17,7 +17,7 @@
 class IntermittentDuSpectacle
 {
     public:
-        static const void play_music();;
+        static const void play_music();
 
 };
 
