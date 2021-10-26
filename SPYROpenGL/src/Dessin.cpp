@@ -733,7 +733,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {longueurX, 0, 0},
             {0, 0, longueurZ},
             {0-translation-rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation+rotationAxeHorizontalMoitie}, // POINT A
-            {longueurX+2*translation-2*rotationAxeHorizontal, hauteur+rotationAxeVertical*1.10, 0-translation*0.4+rotationAxeHorizontal}, //POINT C
+            {(longueurZ+translation)*0.958, hauteur+rotationAxeVertical*1.10, 0}, //POINT C
             {0, hauteur, longueurZ+translation} // POINT B
         };
 
@@ -797,19 +797,17 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {longueurX, 0, 0},
             {0, 0, longueurZ},
             {0-translation+rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation-rotationAxeHorizontalMoitie}, // POINT A
-            {longueurX+2*translation-2*rotationAxeHorizontal+rotationAxeHorizontalMoitie, hauteur, 0-translation*0.4+rotationAxeHorizontal}, //POINT C
-            {0, hauteur+rotationAxeVertical*1.10, longueurZ+translation} // POINT B
+            {longueurZ+translation, hauteur, 0}, //POINT C
+            {0, hauteur+rotationAxeVertical*1.10, (longueurZ+translation)*0.958} // POINT B
         };
 
-        // SAUVEGARDE :
-        /*float coordPoints[6][3] = {
-            {0, 0, 0},
-            {longueurX, 0, 0},
-            {0, 0, longueurZ},
-            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {0, hauteur, longueurZ+t}
-        };*/
+        /*
+            Depuis la queue :
+
+            C---B
+             \ /
+              A
+        */
 
         // SAUVEGARDE :
         /*float coordPoints[6][3] = {
@@ -820,17 +818,6 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
             {0, hauteur, longueurZ+t}
         };*/
-
-        // temp
-        /*float coordPoints[6][3] = {
-            {0, 0, 0},
-            {longueurX, 0, 0},
-            {0, 0, longueurZ},
-            {0-translation-rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation+rotationAxeHorizontalMoitie}, // POINT A
-            {longueurX+2*translation-2*rotationAxeHorizontal, hauteur+rotationAxeVertical*1.10, 0-translation*0.4+rotationAxeHorizontal}, //POINT C
-            {0, hauteur, longueurZ+translation} // POINT B
-        };*/
-
 
         //base bas
         glBegin(GL_POLYGON);

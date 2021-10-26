@@ -29,7 +29,7 @@ const void Creation::Jambes(float taille, float hauteur, bool sens, float agrend
     glPushMatrix();
         glRotatef(45,0,-1,0);
         glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens,agrendissement, largeurDUnCoteDuCorps);
+        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens, agrendissement, largeurDUnCoteDuCorps);
     glPopMatrix();
 }
 
