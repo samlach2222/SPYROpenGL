@@ -77,7 +77,7 @@ int main(int argc,char **argv)
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowPosition(200,200);
     glutInitWindowSize(1600,900);
-    glutCreateWindow("cube");
+    glutCreateWindow("SPYROpenGL");
 
     /* Initialisation d'OpenGL */
     glClearColor(0.0,0.0,0.0,0.0);
