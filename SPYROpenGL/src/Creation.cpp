@@ -63,22 +63,22 @@ const void Creation::Pieds(float taille)
  * @param hauteurJambes     hauteur de la jambe
  * @param agrendissementJambes agrandissement des jambes
  */
-const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrendissementJambes, float largeurDUnCoteDuCorps)
+const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrandissementJambes, float largeurDUnCoteDuCorps)
 {
     glPushMatrix();
         float hypotenuseDeBase = sqrt(2*(taille * taille));
-        float hypotenuseAgrendit = largeurDUnCoteDuCorps;
-        float ecartEntreCentreEtJambe = (hypotenuseAgrendit-hypotenuseDeBase)/2;
+        float hypotenuseAgrandie = largeurDUnCoteDuCorps;
+        float ecartEntreCentreEtJambe = (hypotenuseAgrandie-hypotenuseDeBase)/2;
 
         glTranslatef(-ecartEntreCentreEtJambe,0,0);
         Creation::Pieds(taille); // PIED 1
-        Creation::Jambes(taille, hauteurJambes, false, agrendissementJambes, largeurDUnCoteDuCorps); // JAMBE 1
+        Creation::Jambes(taille, hauteurJambes, false, agrandissementJambes, largeurDUnCoteDuCorps); // JAMBE 1
     glPopMatrix();
     glPushMatrix();
         glTranslatef(taille,0,0); // passer de l'autre coté de l'âxe
         glTranslatef(ecartEntreCentreEtJambe,0,0);
         Creation::Pieds(taille); // PIED 2
-        Creation::Jambes(taille, hauteurJambes, true, agrendissementJambes, largeurDUnCoteDuCorps); // JAMBE 2
+        Creation::Jambes(taille, hauteurJambes, true, agrandissementJambes, largeurDUnCoteDuCorps); // JAMBE 2
     glPopMatrix();
 }
 
@@ -91,7 +91,7 @@ const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float ag
  * @param hauteurCou hauteur du cou
  * @param decallageCou décallage du coup vers l'avant
  */
-const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decallageCou)
+const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decalageCou)
 {
     glPushMatrix();
         glPushMatrix();
@@ -117,7 +117,7 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
         glPopMatrix();
         //glTranslatef(0,-hauteurCou,0);
         glRotatef(90,0,1,0);
-        Dessin::Cou(5,rayonCou,hauteurCou, decallageCou);
+        Dessin::Cou(5,rayonCou,hauteurCou, decalageCou);
         //Dessin du cou de Spyro
     glPopMatrix();
 }
@@ -186,7 +186,7 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
  * @param hauteur de l'aile
  * @param decallageCentre décallage entre le centre et l'aile
  */
-const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decallageCentre)
+const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre)
 {
     float angleRotationRadian = atan(ecart/largeur); // TOA
     float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
@@ -197,12 +197,12 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         // Dessin de la sphère de jonction
         glPushMatrix();
             glTranslatef(0,0,largeur/4);
-            glTranslatef(decallageCentre,0,0);
+            glTranslatef(decalageCentre,0,0);
             glTranslatef(0,hauteur/2,0); // mise au centre de l'aile
             Dessin::Sphere(largeur/2,30,30);
         glPopMatrix();
 
-        glTranslatef(decallageCentre,0,0); // décallage du centre
+        glTranslatef(decalageCentre,0,0); // décallage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
 
         glPushMatrix();
@@ -228,12 +228,12 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         // Dessin de la sphère de jonction
         glPushMatrix();
             glTranslatef(0,0,largeur/4); // même niveau que l'aile
-            glTranslatef(decallageCentre,0,0);
+            glTranslatef(decalageCentre,0,0);
             glTranslatef(0,hauteur/2,0); // mise au centre de l'aile
             Dessin::Sphere(largeur/2,30,30);
         glPopMatrix();
 
-        glTranslatef(decallageCentre,0,0); // décallage du centre
+        glTranslatef(decalageCentre,0,0); // décallage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
 
         glPushMatrix();

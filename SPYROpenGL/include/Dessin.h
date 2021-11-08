@@ -38,7 +38,7 @@ class Dessin
         static const void Cou(int NM, float rayon, float hauteur, float decallage);
 
         static const void RandomColor3f();
-        static const void AxesActuelle(float translationX = 0, float translationY = 0, float translationZ = 0);
+        static const void AxesActuels(float translationX = 0, float translationY = 0, float translationZ = 0);
 };
 
 #endif // DESSIN_H

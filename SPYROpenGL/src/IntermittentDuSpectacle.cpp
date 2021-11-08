@@ -6,7 +6,7 @@
 /**
  * @brief Méthode permettant de jouer le son en arrière plan de l'application, la musique boucle sans répéter la même.
  */
-const void IntermittentDuSpectacle::play_music()
+const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
     #ifdef _WIN32 || _WIN64
     srand(time(NULL));
@@ -54,7 +54,7 @@ const void IntermittentDuSpectacle::play_music()
 /**
  * @brief Méthode permettant de jouer la voie de Spyro lors de l'appuis sur la touche associée
  */
-const void IntermittentDuSpectacle::ShoutingInThePublicSquare()
+const void IntermittentDuSpectacle::CrieSurLaVoiePublique()
 {
     #ifdef _WIN32 || _WIN64
     PlaySound("SaluuutMoiCSpyro.wav", NULL, SND_FILENAME|SND_LOOP);

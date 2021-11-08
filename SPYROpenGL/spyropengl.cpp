@@ -98,7 +98,7 @@ int main(int argc,char **argv)
     /***************************************************************/
     /***** L'intermittent du spectacle joue la musique de fond *****/
     /***************************************************************/
-    bgMusic = std::thread(IntermittentDuSpectacle::play_music);
+    bgMusic = std::thread(IntermittentDuSpectacle::JoueDeLaMusique);
 
     glutMainLoop();
     return 0;
@@ -122,9 +122,9 @@ void affichage()
     srand(713705);  //Seed utilisé pour les couleurs aléatoires
 
 
-    /*******************************************/
-    /***** Dessin des pieds + corps + queue*****/
-    /*******************************************/
+    /********************************************/
+    /***** Affichage du personnage de SPYRO *****/
+    /********************************************/
     Montage::MontageSpyro();
 
     /*glMatrixMode(GL_PROJECTION);
@@ -265,10 +265,10 @@ void clavier(unsigned char touche,int x,int y)
                 if(voice.joinable()){
                     voice.join();
                     voice.~thread();
-                    voice = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
+                    voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique);
                 }
                 else{
-                    voice = std::thread(IntermittentDuSpectacle::ShoutingInThePublicSquare);
+                    voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique);
                 }
             }
             break;

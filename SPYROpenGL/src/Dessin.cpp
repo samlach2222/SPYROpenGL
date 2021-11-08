@@ -708,22 +708,22 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
     // longueurs du triangle de base et de l'agrendit
     float hypotenuseDeBase = sqrt(2*(longueurX * longueurX));
-    float hypotenuseAgrendit = largeurDUnCoteDuCorps;
+    float hypotenuseAgrandie = largeurDUnCoteDuCorps;
     float coteDeBase = longueurX;
-    float coteAgrendit = sqrt(pow(hypotenuseAgrendit,2)/2);
+    float coteAgrandie = sqrt(pow(hypotenuseAgrandie,2)/2);
 
     // coefficients d'agrendissement
-    float coefficientAgrendissement = hypotenuseAgrendit/hypotenuseDeBase;
-    float agrendissementHypotenuseParThales = hypotenuseDeBase*(coteAgrendit/coteDeBase); // Thales
-    float diagonaleAgrendissement = (coteDeBase*(hypotenuseAgrendit/hypotenuseDeBase))-coteDeBase;
+    float coefficientAgrandissement = hypotenuseAgrandie/hypotenuseDeBase;
+    float agrandissementHypotenuseParThales = hypotenuseDeBase*(coteAgrandie/coteDeBase); // Thales
+    float diagonaleAgrandissement = (coteDeBase*(hypotenuseAgrandie/hypotenuseDeBase))-coteDeBase;
 
     // calculs vecteurs de translation :
-    float translation = sqrt(pow(diagonaleAgrendissement,2) + pow((agrendissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75;
+    float translation = sqrt(pow(diagonaleAgrandissement,2) + pow((agrandissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75;
 
     // calculs de rotation de la face du dessus
     float rotationAxeVertical = sqrt(pow(largeurDUnCoteDuCorps,2) - 0.2*0.2);
     float rotationAxeVerticalMoitie = rotationAxeVertical/2;
-    float rotationAxeHorizontal = hypotenuseAgrendit - 0.2;
+    float rotationAxeHorizontal = hypotenuseAgrandie - 0.2;
     float rotationAxeHorizontalMoitie = rotationAxeHorizontal/2;
 
     if(sens)
@@ -808,16 +808,6 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
              \ /
               A
         */
-
-        // SAUVEGARDE :
-        /*float coordPoints[6][3] = {
-            {0, 0, 0},
-            {longueurX, 0, 0},
-            {0, 0, longueurZ},
-            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {0, hauteur, longueurZ+t}
-        };*/
 
         //base bas
         glBegin(GL_POLYGON);
@@ -1125,7 +1115,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
  * @param hauteur float hauteur du cou
  * @param decallage float Décallage en avant du cou
  */
-const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
+const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
 
     float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
     float y[NM*2];
@@ -1139,7 +1129,7 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decallage){
 
         if (i < NM){  //Base du bas
             y[i] = 0;
-            x[i] += decallage;
+            x[i] += decalage;
         }
         else{  //Base du haut
             y[i] = hauteur;
@@ -1194,7 +1184,7 @@ const void Dessin::RandomColor3f(){
  * @param translationY      Translation du dessin des axes sur l'axe Y (optionnelle, défaut: 0)
  * @param translationZ      Translation du dessin des axes sur l'axe Z (optionnelle, défaut: 0)
  */
-const void Dessin::AxesActuelle(float translationX, float translationY, float translationZ){
+const void Dessin::AxesActuels(float translationX, float translationY, float translationZ){
 
     glPushMatrix();
         glTranslatef(translationX, translationY, translationZ);

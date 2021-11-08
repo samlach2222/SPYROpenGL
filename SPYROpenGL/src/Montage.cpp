@@ -45,11 +45,11 @@ const void Montage::MontageSpyro()
 	float largeur = 0.2;
 	float longueur = 0.3;
 	float hauteur = 0.02;
-	float decallageCentre = 0.2;
+	float decalageCentre = 0.2;
 
 	/* param Cou */
 	float hauteurCou = 0.25;
-	float decallageCou = 0;
+	float decalageCou = 0;
 
 	/* param Cornes */
 	float hauteurCorne = 1;
@@ -77,12 +77,12 @@ const void Montage::MontageSpyro()
         /* Création de la liaison corps <--> cou */
         Creation::LiaisonCorpsCou(5,rayonCorps,hauteurLiaisonCorpsCou, -1.5, coeffLiaisonCorpsCouVersLeCou);  //La partie vers le cou se trouve
         /* Création cou et tête*/
-        // translation hauteurLiaisonCorpsCou vers le devant (plus la longueur du corps puis vers le haut
+        // translation hauteurLiaisonCorpsCou vers le devant (plus la longueur du corps puis vers le haut)
         glPushMatrix();
             //Cou, tête, cornes, crinière
             glTranslatef(0, hauteurLiaisonCorpsCou, 0);
             glTranslatef(0, 0, hauteurLiaisonCorpsCou+longueurCorps);
-            Creation::ComposantsTete(tailleTete, hauteurCorne, largeurCorne,rayonCorps*coeffLiaisonCorpsCouVersLeCou, hauteurCou,decallageCou);
+            Creation::ComposantsTete(tailleTete, hauteurCorne, largeurCorne,rayonCorps*coeffLiaisonCorpsCouVersLeCou, hauteurCou,decalageCou);
 
             //Bouche (et menton)
             //Déplacement de l'origine sur le milieu de la surface haute du cou
@@ -97,19 +97,16 @@ const void Montage::MontageSpyro()
         /* Création ailes */
         glPushMatrix();
             glTranslatef(0,0,longueurCorps*0.7);
-            //glTranslatef(0,largeurDUnCoteDuCorps/4,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2))); // placer les jambes avec le corps
-            Creation::Aile(ecart, largeur, longueur, hauteur, decallageCentre);
+            Creation::Aile(ecart, largeur, longueur, hauteur, decalageCentre);
         glPopMatrix();
     glPopMatrix();
 
     glPushMatrix();
         /* Création pattes arrières */
         Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps); // agrendissement gèré en interne
-        //glTranslatef(0,0,-2 * sqrt(pow((sqrt((taille*taille)/2))+agrendissementJambes,2) - pow(largeurDUnCoteDuCorps/2,2))); // placer les jambes avec le corps
 
         /* Création pattes avant */
         glTranslatef(0,0,longueurCorps-2*taille);
         Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps);
-        //glTranslatef(0,0,-longueurCorps);
     glPopMatrix();
 }
