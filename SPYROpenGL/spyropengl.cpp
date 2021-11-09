@@ -93,13 +93,12 @@ int main(int argc,char **argv)
     glutMotionFunc(mousemotion);
     glutSpecialFunc(specialInput);  //similaire à glutKeyboardFunc mais pour les touches non-ascii
 
-    /* Entree dans la boucle principale glut */
-
     /***************************************************************/
     /***** L'intermittent du spectacle joue la musique de fond *****/
     /***************************************************************/
     bgMusic = std::thread(IntermittentDuSpectacle::JoueDeLaMusique);
 
+    /* Entree dans la boucle principale glut */
     glutMainLoop();
     return 0;
 }
