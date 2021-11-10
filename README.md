@@ -13,7 +13,6 @@ https://samlach22-notes.mycozy.cloud/public/?sharecode=MuuPqmvLAbrb
 ### Fini
 - Queue
 - Corps
-### Non Fini
 - Bouche
 - Nez
 
