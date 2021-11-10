@@ -24,10 +24,15 @@
 #include <math.h>
 #include <time.h>
 #include <thread>
+#include <jpeglib.h>
+#include <jerror.h>
 
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
 
+const int widthImage=256;
+const int heightImage=256;
+unsigned char image[widthImage*heightImage*4];
 char presse;
 int anglex;
 int angley;
@@ -63,6 +68,7 @@ void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void specialInput(int key, int x, int y);  //similaire au clavier mais avec des touches non-ascii
+void loadJpegImage(char *fichier);
 
 int main(int argc,char **argv)
 {
@@ -70,6 +76,9 @@ int main(int argc,char **argv)
     translationX = 0;  //Valeur par défaut de la translation sur l'axe X pour tout
     translationY = 0;  //Valeur par défaut de la translation sur l'axe Y pour tout
     translationZ = 0;  //Valeur par défaut de la translation sur l'axe Z pour tout
+
+    /* Chargement de la texture */
+    loadJpegImage("Ressources/Texture/texture.jpg");
 
     /* initialisation de glut et creation
      de la fenetre */
@@ -81,9 +90,16 @@ int main(int argc,char **argv)
 
     /* Initialisation d'OpenGL */
     glClearColor(0.0,0.0,0.0,0.0);
-    glColor3f(1.0,1.0,1.0);
+    glColor4f(1.0,1.0,1.0,1.0);
     glPointSize(2.0);
     glEnable(GL_DEPTH_TEST);
+
+    /* Parametrage du placage de textures */
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthImage,heightImage,0,GL_RGB,GL_UNSIGNED_BYTE,image);
+    //glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,widthImage,heightImage,0,GL_RGBA,GL_UNSIGNED_BYTE,image);
+    glEnable(GL_TEXTURE_2D);
 
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);
@@ -113,7 +129,7 @@ void affichage()
 
     float Wsize = (float) glutGet(GLUT_WINDOW_WIDTH)/ (float) glutGet(GLUT_WINDOW_HEIGHT);
     glLoadIdentity();
-    glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -1000, 1000);  //Gère le zoom/dézoom
+    glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -5, 1000);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
     glTranslatef(translationX, translationY, translationZ);  //Décalage de tout sur chaque axe
@@ -121,6 +137,7 @@ void affichage()
     srand(713705);  //Seed utilisé pour les couleurs aléatoires
 
 
+    glDisable(GL_TEXTURE_2D);
     /********************************************/
     /***** Affichage du personnage de SPYRO *****/
     /********************************************/
@@ -150,6 +167,53 @@ void affichage()
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);*/
+
+
+    glColor4f(1,1,1,1);
+    const float tailleBackground = 8;
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
+    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0.0,0.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
+    glTexCoord2f(0.0,1.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
+    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
+    glTexCoord2f(0.0,1.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
+    glTexCoord2f(1.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
+    glTexCoord2f(1.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
+    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
+    glTexCoord2f(1.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,0.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
+    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
+    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
+    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
+    glEnd();
 
     //Repère
     //axe x en rouge
@@ -345,4 +409,51 @@ void mousemotion(int x,int y)
 
     xold=x; /* sauvegarde des valeurs courante de le position de la souris */
     yold=y;
+}
+
+void loadJpegImage(char *fichier)
+{
+  struct jpeg_decompress_struct cinfo;
+  struct jpeg_error_mgr jerr;
+  FILE *file;
+  unsigned char *ligne;
+
+  cinfo.err = jpeg_std_error(&jerr);
+  jpeg_create_decompress(&cinfo);
+#ifdef __WIN32
+  if (fopen_s(&file,fichier,"rb") != 0)
+    {
+      fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
+      exit(1);
+    }
+#elif __GNUC__
+  if ((file = fopen(fichier,"rb")) == 0)
+    {
+      fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
+      exit(1);
+    }
+#endif
+  jpeg_stdio_src(&cinfo, file);
+  jpeg_read_header(&cinfo, TRUE);
+
+  /*
+  if ((cinfo.image_width!=256)||(cinfo.image_height!=256)) {
+    fprintf(stdout,"Erreur : l'image doit etre de taille 256x256\n");
+    exit(1);
+  }
+  */
+  if (cinfo.jpeg_color_space==JCS_GRAYSCALE) {
+    fprintf(stdout,"Erreur : l'image doit etre de type RGB\n");
+    exit(1);
+  }
+
+  jpeg_start_decompress(&cinfo);
+  ligne=image;
+  while (cinfo.output_scanline<cinfo.output_height)
+    {
+      ligne=image+3*256*cinfo.output_scanline;
+      jpeg_read_scanlines(&cinfo,&ligne,1);
+    }
+  jpeg_finish_decompress(&cinfo);
+  jpeg_destroy_decompress(&cinfo);
 }
