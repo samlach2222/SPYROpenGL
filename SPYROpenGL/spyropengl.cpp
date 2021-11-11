@@ -30,9 +30,12 @@
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
 
-const int widthImage=256;
-const int heightImage=256;
-unsigned char image[widthImage*heightImage*4];
+const int widthImage=1280;
+const int heightImage=720;
+//unsigned char image[widthImage*heightImage*4];
+unsigned char image[widthImage*heightImage*3];
+const int tailleSkybox = 13;
+const bool showSkybox = true;  //DEBUG : Désactiver permet une plus grande liberté de mouvement
 char presse;
 int anglex;
 int angley;
@@ -99,7 +102,7 @@ int main(int argc,char **argv)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthImage,heightImage,0,GL_RGB,GL_UNSIGNED_BYTE,image);
     //glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,widthImage,heightImage,0,GL_RGBA,GL_UNSIGNED_BYTE,image);
-    glEnable(GL_TEXTURE_2D);
+    //glEnable(GL_TEXTURE_2D);
 
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);
@@ -129,19 +132,11 @@ void affichage()
 
     float Wsize = (float) glutGet(GLUT_WINDOW_WIDTH)/ (float) glutGet(GLUT_WINDOW_HEIGHT);
     glLoadIdentity();
-    glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -5, 1000);  //Gère le zoom/dézoom
+    glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -3-(997*!showSkybox), 1000);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
-    glTranslatef(translationX, translationY, translationZ);  //Décalage de tout sur chaque axe
 
     srand(713705);  //Seed utilisé pour les couleurs aléatoires
-
-
-    glDisable(GL_TEXTURE_2D);
-    /********************************************/
-    /***** Affichage du personnage de SPYRO *****/
-    /********************************************/
-    Montage::MontageSpyro();
 
     /*glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -170,50 +165,66 @@ void affichage()
 
 
     glColor4f(1,1,1,1);
-    const float tailleBackground = 8;
+    const float tailleBackground = tailleSkybox;
     glEnable(GL_TEXTURE_2D);
 
-    glBegin(GL_POLYGON);
-    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
-    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
-    glEnd();
+    if (showSkybox)
+    {
+        glBegin(GL_POLYGON);
+        glTexCoord2f(3.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
+        glTexCoord2f(3.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
+        glTexCoord2f(1.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
+        glTexCoord2f(1.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
+        glEnd();
 
-    glBegin(GL_POLYGON);
-    glTexCoord2f(0.0,0.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
-    glTexCoord2f(0.0,1.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
-    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
-    glEnd();
+        glBegin(GL_POLYGON);
+        glTexCoord2f(0.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
+        glTexCoord2f(0.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
+        glTexCoord2f(1.0/4.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
+        glTexCoord2f(1.0/4.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
+        glEnd();
 
-    glBegin(GL_POLYGON);
-    glTexCoord2f(0.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
-    glTexCoord2f(0.0,1.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
-    glTexCoord2f(1.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
-    glTexCoord2f(1.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
-    glEnd();
+        glBegin(GL_POLYGON);
+        glTexCoord2f(1.0/4.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
+        glTexCoord2f(1.0/4.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
+        glTexCoord2f(2.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
+        glTexCoord2f(2.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
+        glEnd();
 
-    glBegin(GL_POLYGON);
-    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
-    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
-    glTexCoord2f(1.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,0.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
-    glEnd();
+        glBegin(GL_POLYGON);
+        glTexCoord2f(2.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
+        glTexCoord2f(2.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
+        glTexCoord2f(3.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
+        glTexCoord2f(3.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
+        glEnd();
 
-    glBegin(GL_POLYGON);
-    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
-    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
-    glEnd();
+        //Face haut
+        glBegin(GL_POLYGON);
+        glTexCoord2f(1.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
+        glTexCoord2f(1.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
+        glTexCoord2f(0.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
+        glTexCoord2f(0.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
+        glEnd();
 
-    glBegin(GL_POLYGON);
-    glTexCoord2f(0.0,0.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
-    glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
-    glTexCoord2f(1.0,0.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
-    glEnd();
+
+        //Face bas
+        glBegin(GL_POLYGON);
+        glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
+        glTexCoord2f(0.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
+        glTexCoord2f(1.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
+        glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
+        glEnd();
+    }
+
+    glDisable(GL_TEXTURE_2D);
+
+
+    glTranslatef(translationX, translationY, translationZ);  //Décalage de tout sur chaque axe
+
+    /********************************************/
+    /***** Affichage du personnage de SPYRO *****/
+    /********************************************/
+    Montage::MontageSpyro();
 
     //Repère
     //axe x en rouge
@@ -298,26 +309,50 @@ void clavier(unsigned char touche,int x,int y)
             break;
         case 'i':
             translationY += 0.05;
+            if (showSkybox && translationY > 0.2){
+                //Translation maximum
+                translationY = 0.2;
+            }
             glutPostRedisplay();
             break;
         case 'k':
             translationY -= 0.05;
+            if (showSkybox && translationY < -0.2){
+                //Translation maximum
+                translationY = -0.2;
+            }
             glutPostRedisplay();
             break;
         case 'j':
             translationX -= 0.05;
+            if (showSkybox && translationX < -0.2){
+                //Translation maximum
+                translationX = -0.2;
+            }
             glutPostRedisplay();
             break;
         case 'J':
             translationZ -= 0.05;
+            if (showSkybox && translationZ < -0.2){
+                //Translation maximum
+                translationZ = -0.2;
+            }
             glutPostRedisplay();
             break;
         case 'l':
             translationX += 0.05;
+            if (showSkybox && translationX > 0.2){
+                //Translation maximum
+                translationX = 0.2;
+            }
             glutPostRedisplay();
             break;
         case 'L':
             translationZ += 0.05;
+            if (showSkybox && translationZ > 0.2){
+                //Translation maximum
+                translationZ = 0.2;
+            }
             glutPostRedisplay();
             break;
         case ' ':
@@ -451,7 +486,7 @@ void loadJpegImage(char *fichier)
   ligne=image;
   while (cinfo.output_scanline<cinfo.output_height)
     {
-      ligne=image+3*256*cinfo.output_scanline;
+      ligne=image+3*widthImage*cinfo.output_scanline;
       jpeg_read_scanlines(&cinfo,&ligne,1);
     }
   jpeg_finish_decompress(&cinfo);
