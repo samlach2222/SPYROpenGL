@@ -26,7 +26,6 @@
 #include <thread>
 #include <jpeglib.h>
 #include <jerror.h>
-#include <ctime>
 
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
@@ -50,8 +49,7 @@ float angleRotationAiles = 0.0;
 bool sensMontantAiles = true;
 
 float angleRotationBouche = 0.0;
-float dureeAnimation = 0;
-bool sensMontantBouche = false;
+bool sensMontantBouche = false;  //false = vers le haut, true = vers le bas
 bool SPACE_PRESSED = false;
 
 // Threads pour jouer de la musique ou des sons
@@ -138,7 +136,6 @@ int main(int argc,char **argv)
 
 void affichage()
 {
-    std::clock_t c_start = std::clock(); // Début timer
     int i,j;
     /* effacement de l'image avec la couleur de fond */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -242,17 +239,33 @@ sensMontantAiles
     /*****   Check Mouvement bouche Spyro   *****/
     /********************************************/
     if(SPACE_PRESSED){
-        dureeAnimation++;
-        if(dureeAnimation >= 1842000 && angleRotationBouche == 0){ // durée >= temps du son en ms
-            dureeAnimation = 0.0; // On remet le compteur à 0.
-            SPACE_PRESSED = false; // La touche ESPACE n'est plus appuyée.
+        if (!sensMontantBouche){
+            angleRotationBouche++;
+            if (angleRotationBouche > 14)  //Angle maximum
+            {
+                sensMontantBouche = true;
+            }
         }
-        else
-        {
-            // Periode où la bouche doit bouger :
-            angleRotationBouche = RotationneBoucheSpyro(angleRotationBouche);
+        else{
+            angleRotationBouche--;
+            if (angleRotationBouche < 6)  //Angle minimum
+            {
+                sensMontantBouche = false;
+            }
         }
     }
+    else  //Fermeture de la bouche
+    {
+        if (angleRotationBouche > 0)
+        {
+            angleRotationBouche--;
+        }
+        if (sensMontantBouche)
+        {
+            sensMontantBouche = false;
+        }
+    }
+
 
     /********************************************/
     /***** Affichage du personnage de SPYRO *****/
@@ -288,10 +301,6 @@ sensMontantAiles
 
     // Pour actualiser
     glutPostRedisplay();
-
-    std::clock_t c_end = std::clock(); // fin timer
-    dureeAnimation = dureeAnimation + std::chrono::duration<double, std::milli>(c_end-c_start).count(); // durée d'une boucle "affichage" en ms
-
 }
 
 void clavier(unsigned char touche,int x,int y)
@@ -399,17 +408,18 @@ void clavier(unsigned char touche,int x,int y)
             break;
         case ' ':
             {
-                SPACE_PRESSED = true;
-                /******************************************************************************************/
-                /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
-                /******************************************************************************************/
-                if(voice.joinable()){
-                    voice.join();
-                    voice.~thread();
-                    voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique);
-                }
-                else{
-                    voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique);
+                if (!SPACE_PRESSED)
+                {
+                    SPACE_PRESSED = true;
+                    /******************************************************************************************/
+                    /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
+                    /******************************************************************************************/
+                    if(voice.joinable()){
+                        voice.join();
+                        voice.~thread();
+                    }
+                    bool* PTR_SPACE_PRESSED = &SPACE_PRESSED;
+                    voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique, PTR_SPACE_PRESSED);
                 }
             }
             break;

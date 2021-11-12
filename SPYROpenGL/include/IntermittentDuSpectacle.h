@@ -17,7 +17,7 @@
 class IntermittentDuSpectacle
 {
     public:
-        static const void CrieSurLaVoiePublique();
+        static const void CrieSurLaVoiePublique(bool* SPACE_PRESSED);
         static const void JoueDeLaMusique();
 };
 

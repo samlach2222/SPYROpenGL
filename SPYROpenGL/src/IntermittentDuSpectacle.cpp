@@ -54,7 +54,7 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 /**
  * @brief Méthode permettant de jouer la voie de Spyro lors de l'appuis sur la touche associée
  */
-const void IntermittentDuSpectacle::CrieSurLaVoiePublique()
+const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 {
     #ifdef _WIN32 || _WIN64
     PlaySound("SaluuutMoiCSpyro.wav", NULL, SND_FILENAME|SND_LOOP);
@@ -65,5 +65,7 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique()
            aplay \"SaluuutMoiCSpyro.wav\" ;'                            \
            ");
     #endif
+    *SPACE_PRESSED = false;
+
 }
 
