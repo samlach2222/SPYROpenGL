@@ -67,4 +67,3 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique()
     #endif
 }
 
-

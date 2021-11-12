@@ -25,7 +25,7 @@
 /**
  * @brief Méthode permettant de monter l'intégralitée des membres de Spyro
  */
-const void Montage::MontageSpyro()
+const void Montage::MontageSpyro(float rotationAiles)
 {
     /* param Corps */
 	const float rayonCorps = 0.2;
@@ -65,7 +65,6 @@ const void Montage::MontageSpyro()
 
     /* param Nez */
     const float nezCoeffIY = 8;
-
     glPushMatrix();
         glTranslatef(0,taille+2*hauteurJambes,0); // translation verticale de la hauteur de Jambe+Pied et translation horizontale de la largeur de la jambe
         glTranslatef(0,0,-3*sqrt(pow((sqrt((taille*taille)/2)),2)-pow(taille/2,2))); // translation pour placer le corps en adéquation avec les pieds
@@ -97,7 +96,7 @@ const void Montage::MontageSpyro()
         /* Création ailes */
         glPushMatrix();
             glTranslatef(0,0,longueurCorps*0.7);
-            Creation::Aile(ecart, largeur, longueur, hauteur, decalageCentre);
+            Creation::Aile(ecart, largeur, longueur, hauteur, decalageCentre, rotationAiles);
         glPopMatrix();
     glPopMatrix();
 

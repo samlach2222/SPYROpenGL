@@ -43,6 +43,8 @@ int x;
 int y;
 int xold;
 int yold;
+float angleRotationAiles = 0.0;
+bool sensMontant = true;
 std::thread bgMusic;
 std::thread voice;
 
@@ -72,6 +74,7 @@ void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void specialInput(int key, int x, int y);  //similaire au clavier mais avec des touches non-ascii
 void loadJpegImage(char *fichier);
+float RotationneAileSpyro(float);
 
 int main(int argc,char **argv)
 {
@@ -224,7 +227,8 @@ void affichage()
     /********************************************/
     /***** Affichage du personnage de SPYRO *****/
     /********************************************/
-    Montage::MontageSpyro();
+    angleRotationAiles = RotationneAileSpyro(angleRotationAiles);
+    Montage::MontageSpyro(angleRotationAiles);
 
     //Repère
     //axe x en rouge
@@ -250,6 +254,9 @@ void affichage()
 
     //On echange les buffers
     glutSwapBuffers();
+
+    // Pour actualiser
+    glutPostRedisplay();
 }
 
 void clavier(unsigned char touche,int x,int y)
@@ -491,4 +498,27 @@ void loadJpegImage(char *fichier)
     }
   jpeg_finish_decompress(&cinfo);
   jpeg_destroy_decompress(&cinfo);
+}
+
+float RotationneAileSpyro(float angle)
+{
+    float res = angle;
+    if(res == 50.0)
+    {
+        sensMontant = false;
+    }
+    else if(res == -50.0)
+    {
+        sensMontant = true;
+    }
+
+    if(sensMontant == true)
+    {
+        res += 0.5;
+    }
+    if(sensMontant == false)
+    {
+        res -= 0.5;
+    }
+    return res;
 }

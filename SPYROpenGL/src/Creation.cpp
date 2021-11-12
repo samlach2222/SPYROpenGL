@@ -186,7 +186,7 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
  * @param hauteur de l'aile
  * @param decallageCentre décallage entre le centre et l'aile
  */
-const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre)
+const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre, float rotationAiles)
 {
     float angleRotationRadian = atan(ecart/largeur); // TOA
     float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
@@ -205,6 +205,10 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         glTranslatef(decalageCentre,0,0); // décallage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
 
+        //animation des ailes
+        glRotatef(rotationAiles,0,0,1); // rotation pour battre verticalement
+        glRotatef(rotationAiles/2,0,-1,0); // rotation pour battre sur l'horrizontale
+
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
@@ -213,6 +217,8 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             glTranslatef(longueur, hauteur, 0);
             glRotatef(angleRotationDegree, 0, 1, 0);
             glRotatef(90,0,0,-1);
+            //animation de la seconde partie de l'aile
+            glRotatef(rotationAiles/2,0,0,1); // rotation pour battre verticalement
 
             Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
         glPopMatrix();
@@ -236,6 +242,11 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
         glTranslatef(decalageCentre,0,0); // décallage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
 
+        //animation des ailes
+        glRotatef(rotationAiles,0,0,-1); // rotation pour battre verticalement
+        glRotatef(rotationAiles/2,0,-1,0); // rotation pour battre sur l'horrizontale
+
+
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
@@ -244,6 +255,8 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             glTranslatef(longueur, hauteur, 0);
             glRotatef(angleRotationDegree, 0, 1, 0);
             glRotatef(90,0,0,-1);
+            //animation de la seconde partie de l'aile
+            glRotatef(rotationAiles/2,0,0,-1); // rotation pour battre verticalement
 
             Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, -hauteur, 0);
         glPopMatrix();

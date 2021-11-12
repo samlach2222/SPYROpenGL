@@ -35,5 +35,4 @@ class Point
          */
         double z;
 };
-
 #endif // POINT_H

@@ -15,7 +15,7 @@
 class Montage
 {
     public:
-        static const void MontageSpyro();
+        static const void MontageSpyro(float rotationAiles);
 
 };
 
