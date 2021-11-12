@@ -30,10 +30,10 @@
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
 
-const int widthImage=1280;
-const int heightImage=720;
+const int widthSkybox=1280;
+const int heightSkybox=720;
 //unsigned char image[widthImage*heightImage*4];
-unsigned char image[widthImage*heightImage*3];
+unsigned char textureSkybox[widthSkybox*heightSkybox*3];
 const int tailleSkybox = 13;
 const bool showSkybox = true;  //DEBUG : Désactiver permet une plus grande liberté de mouvement
 char presse;
@@ -81,7 +81,7 @@ void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void specialInput(int key, int x, int y);  //similaire au clavier mais avec des touches non-ascii
-void loadJpegImage(char *fichier);
+void loadJpegImage(char *fichier, unsigned char* texture);  //Un tableau est un pointeur
 float RotationneAileSpyro(float);
 float RotationneBoucheSpyro(float);
 
@@ -93,7 +93,7 @@ int main(int argc,char **argv)
     translationZ = 0;  //Valeur par défaut de la translation sur l'axe Z pour tout
 
     /* Chargement de la texture */
-    loadJpegImage("Ressources/Texture/texture.jpg");
+    loadJpegImage("Ressources/Texture/texture.jpg", textureSkybox);
 
     /* initialisation de glut et creation
      de la fenetre */
@@ -112,7 +112,6 @@ int main(int argc,char **argv)
     /* Parametrage du placage de textures */
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthImage,heightImage,0,GL_RGB,GL_UNSIGNED_BYTE,image);
     //glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,widthImage,heightImage,0,GL_RGBA,GL_UNSIGNED_BYTE,image);
     //glEnable(GL_TEXTURE_2D);
 
@@ -178,6 +177,7 @@ sensMontantAiles
 
     glColor4f(1,1,1,1);
     const float tailleBackground = tailleSkybox;
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthSkybox,heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
     glEnable(GL_TEXTURE_2D);
 
     if (showSkybox)
@@ -499,51 +499,51 @@ void mousemotion(int x,int y)
     yold=y;
 }
 
-void loadJpegImage(char *fichier)
+void loadJpegImage(char *fichier, unsigned char* texture)
 {
-  struct jpeg_decompress_struct cinfo;
-  struct jpeg_error_mgr jerr;
-  FILE *file;
-  unsigned char *ligne;
+    struct jpeg_decompress_struct cinfo;
+    struct jpeg_error_mgr jerr;
+    FILE *file;
+    unsigned char *ligne;
 
-  cinfo.err = jpeg_std_error(&jerr);
-  jpeg_create_decompress(&cinfo);
-#ifdef __WIN32
-  if (fopen_s(&file,fichier,"rb") != 0)
+    cinfo.err = jpeg_std_error(&jerr);
+    jpeg_create_decompress(&cinfo);
+    #ifdef __WIN32
+    if (fopen_s(&file,fichier,"rb") != 0)
     {
-      fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
-      exit(1);
+        fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
+        exit(1);
     }
-#elif __GNUC__
-  if ((file = fopen(fichier,"rb")) == 0)
+    #elif __GNUC__
+    if ((file = fopen(fichier,"rb")) == 0)
     {
-      fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
-      exit(1);
+        fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
+        exit(1);
     }
-#endif
-  jpeg_stdio_src(&cinfo, file);
-  jpeg_read_header(&cinfo, TRUE);
+    #endif
+    jpeg_stdio_src(&cinfo, file);
+    jpeg_read_header(&cinfo, TRUE);
 
-  /*
-  if ((cinfo.image_width!=256)||(cinfo.image_height!=256)) {
+    /*
+    if ((cinfo.image_width!=256)||(cinfo.image_height!=256)) {
     fprintf(stdout,"Erreur : l'image doit etre de taille 256x256\n");
     exit(1);
-  }
-  */
-  if (cinfo.jpeg_color_space==JCS_GRAYSCALE) {
-    fprintf(stdout,"Erreur : l'image doit etre de type RGB\n");
-    exit(1);
-  }
-
-  jpeg_start_decompress(&cinfo);
-  ligne=image;
-  while (cinfo.output_scanline<cinfo.output_height)
-    {
-      ligne=image+3*widthImage*cinfo.output_scanline;
-      jpeg_read_scanlines(&cinfo,&ligne,1);
     }
-  jpeg_finish_decompress(&cinfo);
-  jpeg_destroy_decompress(&cinfo);
+    */
+    if (cinfo.jpeg_color_space==JCS_GRAYSCALE) {
+        fprintf(stdout,"Erreur : l'image doit etre de type RGB\n");
+        exit(1);
+    }
+
+    jpeg_start_decompress(&cinfo);
+    ligne=texture;
+    while (cinfo.output_scanline<cinfo.output_height)
+    {
+        ligne=texture+3*cinfo.output_width*cinfo.output_scanline;
+        jpeg_read_scanlines(&cinfo,&ligne,1);
+    }
+    jpeg_finish_decompress(&cinfo);
+    jpeg_destroy_decompress(&cinfo);
 }
 
 float RotationneAileSpyro(float angle)
