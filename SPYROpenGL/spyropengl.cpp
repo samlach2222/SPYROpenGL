@@ -43,8 +43,16 @@ int x;
 int y;
 int xold;
 int yold;
+
+// Variables globales pour les annimations /!\ A DEPLACER QUAND POSSIBLE DANS INTERMITTENTDUSPECTACLE
 float angleRotationAiles = 0.0;
-bool sensMontant = true;
+bool sensMontantAiles = true;
+
+int angleRotationBouche = 0;
+bool sensMontantBouche = false;
+bool SPACE_PRESSED = false;
+
+// Threads pour jouer de la musique ou des sons
 std::thread bgMusic;
 std::thread voice;
 
@@ -75,6 +83,7 @@ void mousemotion(int x,int y);
 void specialInput(int key, int x, int y);  //similaire au clavier mais avec des touches non-ascii
 void loadJpegImage(char *fichier);
 float RotationneAileSpyro(float);
+float RotationneBoucheSpyro(float);
 
 int main(int argc,char **argv)
 {
@@ -158,7 +167,7 @@ void affichage()
     glVertex2f(1.0f, 1.0f);
     glTexCoord2f(0,1);
     glVertex2f(-1.0f, 1.0f);
-
+sensMontantAiles
     glEnd();
 
     glPopMatrix();
@@ -224,11 +233,27 @@ void affichage()
 
     glTranslatef(translationX, translationY, translationZ);  //Décalage de tout sur chaque axe
 
+
+
+    /********************************************/
+    /*****   Check Mouvement bouche Spyro   *****/
+    /********************************************/
+    if(SPACE_PRESSED){
+        angleRotationBouche++;
+        if(angleRotationBouche == 300){ // d'après le temps d'une boucle d'affichage --> Longueur de la piste audio.
+            exit(0); // /!\ DEBUG
+            SPACE_PRESSED == false;
+            // Periode où la bouche doit bouger
+
+        }
+    }
+
     /********************************************/
     /***** Affichage du personnage de SPYRO *****/
     /********************************************/
     angleRotationAiles = RotationneAileSpyro(angleRotationAiles);
     Montage::MontageSpyro(angleRotationAiles);
+
 
     //Repère
     //axe x en rouge
@@ -364,6 +389,7 @@ void clavier(unsigned char touche,int x,int y)
             break;
         case ' ':
             {
+                SPACE_PRESSED = true;
                 /******************************************************************************************/
                 /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
                 /******************************************************************************************/
@@ -505,18 +531,41 @@ float RotationneAileSpyro(float angle)
     float res = angle;
     if(res == 50.0)
     {
-        sensMontant = false;
+        sensMontantAiles = false;
     }
     else if(res == -50.0)
     {
-        sensMontant = true;
+        sensMontantAiles = true;
     }
 
-    if(sensMontant == true)
+    if(sensMontantAiles == true)
     {
         res += 0.5;
     }
-    if(sensMontant == false)
+    if(sensMontantAiles == false)
+    {
+        res -= 0.5;
+    }
+    return res;
+}
+
+float RotationneBoucheSpyro(float angle)
+{
+    float res = angle;
+    if(res == 0.0)
+    {
+        sensMontantBouche = false;
+    }
+    else if(res == -15.0)
+    {
+        sensMontantBouche = true;
+    }
+
+    if(sensMontantBouche == true)
+    {
+        res += 0.5;
+    }
+    if(sensMontantBouche == false)
     {
         res -= 0.5;
     }
