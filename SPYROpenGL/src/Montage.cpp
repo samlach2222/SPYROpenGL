@@ -25,7 +25,7 @@
 /**
  * @brief Méthode permettant de monter l'intégralitée des membres de Spyro
  */
-const void Montage::MontageSpyro(float rotationAiles)
+const void Montage::MontageSpyro(float rotationAiles, float rotationBouche)
 {
     /* param Corps */
 	const float rayonCorps = 0.2;
@@ -91,6 +91,7 @@ const void Montage::MontageSpyro(float rotationAiles)
             //Nez
             //Déplacement de l'origine sur le "milieu" (il n'y a pas réellement de point à cet endroit) du prolongement du cou utilisé pour la surface haute de la bouche
             glTranslatef(0,tailleTete*0.3,tailleTete*0.2);
+            glRotatef(rotationBouche,-1,0,0); // animation bouche Spyro (quand appui sur ESPACE)
             Dessin::Nez(rayonCorps*coeffLiaisonCorpsCouVersLeCou, tailleTete*0.1, boucheCoeffX, boucheCoeffZ, nezCoeffIY, 0);
         glPopMatrix();
         /* Création ailes */

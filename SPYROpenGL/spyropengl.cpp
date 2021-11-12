@@ -26,6 +26,7 @@
 #include <thread>
 #include <jpeglib.h>
 #include <jerror.h>
+#include <ctime>
 
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
@@ -48,7 +49,8 @@ int yold;
 float angleRotationAiles = 0.0;
 bool sensMontantAiles = true;
 
-int angleRotationBouche = 0;
+float angleRotationBouche = 0.0;
+float dureeAnimation = 0;
 bool sensMontantBouche = false;
 bool SPACE_PRESSED = false;
 
@@ -136,6 +138,7 @@ int main(int argc,char **argv)
 
 void affichage()
 {
+    std::clock_t c_start = std::clock(); // Début timer
     int i,j;
     /* effacement de l'image avec la couleur de fond */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -239,12 +242,15 @@ sensMontantAiles
     /*****   Check Mouvement bouche Spyro   *****/
     /********************************************/
     if(SPACE_PRESSED){
-        angleRotationBouche++;
-        if(angleRotationBouche == 300){ // d'après le temps d'une boucle d'affichage --> Longueur de la piste audio.
-            exit(0); // /!\ DEBUG
-            SPACE_PRESSED == false;
-            // Periode où la bouche doit bouger
-
+        dureeAnimation++;
+        if(dureeAnimation >= 1842000 && angleRotationBouche == 0){ // durée >= temps du son en ms
+            dureeAnimation = 0.0; // On remet le compteur à 0.
+            SPACE_PRESSED = false; // La touche ESPACE n'est plus appuyée.
+        }
+        else
+        {
+            // Periode où la bouche doit bouger :
+            angleRotationBouche = RotationneBoucheSpyro(angleRotationBouche);
         }
     }
 
@@ -252,7 +258,7 @@ sensMontantAiles
     /***** Affichage du personnage de SPYRO *****/
     /********************************************/
     angleRotationAiles = RotationneAileSpyro(angleRotationAiles);
-    Montage::MontageSpyro(angleRotationAiles);
+    Montage::MontageSpyro(angleRotationAiles, angleRotationBouche);
 
 
     //Repère
@@ -282,6 +288,10 @@ sensMontantAiles
 
     // Pour actualiser
     glutPostRedisplay();
+
+    std::clock_t c_end = std::clock(); // fin timer
+    dureeAnimation = dureeAnimation + std::chrono::duration<double, std::milli>(c_end-c_start).count(); // durée d'une boucle "affichage" en ms
+
 }
 
 void clavier(unsigned char touche,int x,int y)
@@ -556,7 +566,7 @@ float RotationneBoucheSpyro(float angle)
     {
         sensMontantBouche = false;
     }
-    else if(res == -15.0)
+    else if(res == -6.0)
     {
         sensMontantBouche = true;
     }
