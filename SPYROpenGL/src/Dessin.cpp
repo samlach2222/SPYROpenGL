@@ -165,7 +165,6 @@ const void Dessin::Sphere(float taille, int NP, int NM)
     }
     for(int j = 0; j < NP -1; j++)
     {
-
         for(int i = 0; i < NM; i++)
         {
             fSphere[j][i][0] = ((i+1)%NM) + j*NM;
@@ -177,19 +176,15 @@ const void Dessin::Sphere(float taille, int NP, int NM)
                 glRotatef(90,-1,0,0);
                 glRotatef(90,0,0,-1);
                 glBegin(GL_POLYGON);
-                    //glTexCoord2f(0,0); //texture
                     Dessin::RandomColor3f();
                     glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
 
-                    //glTexCoord2f(0,1); //texture
                     Dessin::RandomColor3f();
                     glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
 
-                    //glTexCoord2f(1,1); //texture
                     Dessin::RandomColor3f();
                     glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
 
-                    //glTexCoord2f(1,0); //texture
                     Dessin::RandomColor3f();
                     glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
                 glEnd();
