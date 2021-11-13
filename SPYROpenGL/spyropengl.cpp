@@ -44,6 +44,7 @@ int x;
 int y;
 int xold;
 int yold;
+int angleRotation = 0; // Angle de rotation de la lumière 1
 
 // Variables globales pour les annimations /!\ A DEPLACER QUAND POSSIBLE DANS INTERMITTENTDUSPECTACLE
 float angleRotationAiles = 0.0;
@@ -88,6 +89,10 @@ float RotationneBoucheSpyro(float);
 
 int main(int argc,char **argv)
 {
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+
     champDeVision = 3;  //Valeur de dézoom initiale
     translationX = 0;  //Valeur par défaut de la translation sur l'axe X pour tout
     translationY = 0;  //Valeur par défaut de la translation sur l'axe Y pour tout
@@ -150,6 +155,15 @@ void affichage()
     glRotatef(anglex,0.0,1.0,0.0);
 
     srand(713705);  //Seed utilisé pour les couleurs aléatoires
+
+
+
+    /********************************************/
+    /*****     Utilisation des lumières     *****/
+    /********************************************/
+    IntermittentDuSpectacle::PlaceLaLumiereStatique(angleRotation);
+    angleRotation++;
+
 
     /********************************************/
     /*****        Dessin de la SkyBox       *****/

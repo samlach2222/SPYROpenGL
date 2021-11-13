@@ -1,7 +1,11 @@
 #include "IntermittentDuSpectacle.h"
 #include <time.h>
 #include <cstdlib>
-
+#ifdef __APPLE__
+#include <GLUT/glut.h> /* Pour Mac OS X */
+#else
+#include <GL/glut.h>   /* Pour les autres systemes */
+#endif
 
 /**
  * @brief Méthode permettant de jouer le son en arrière plan de l'application, la musique boucle sans répéter la même.
@@ -67,5 +71,40 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
     #endif
     *SPACE_PRESSED = false;
 
+}
+
+const void PlaceLaLumiereStatique(int angle)
+{
+    // Activation des lumières
+
+    // Déclaration de la GL_LIGHT0
+    GLfloat light_position_0[] = {15.0, 5.0, 3.0, 1.0}; // position de la lumière
+    GLfloat dif_0[] = {1.0, 1.0, 1.0, 1.0}; // diffusion de la lumière
+    GLfloat amb_0[] = {1.0, 1.0, 1.0, 1.0}; // ambiance de la lumière
+    GLfloat spec_0[] = {1.0, 1.0, 1.0, 1.0}; // Specular de la lumière
+    // Déclaration de la GL_LIGHT
+    GLfloat light_position_1[] = {5.0, -5.0, 0.0, 0.0};
+    GLfloat dif_1[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat amb_1[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat spec_1[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat dir_1[] = {-1, 1, 0}; // direction de la lumière
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position_0);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, amb_0);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, dif_0);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, spec_0);
+
+
+    glPushMatrix();
+        glRotatef(angle, 0, 1, 0);
+
+        glLightfv(GL_LIGHT1, GL_POSITION, light_position_1);
+        glLightfv(GL_LIGHT1, GL_AMBIENT, amb_1);
+        glLightfv(GL_LIGHT1, GL_DIFFUSE, dif_1);
+        glLightfv(GL_LIGHT1, GL_SPECULAR, spec_1);
+        glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 60.0);
+        glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, dir_1);
+        glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);
+    glPopMatrix();
 }
 
