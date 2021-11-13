@@ -73,7 +73,7 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 
 }
 
-const void PlaceLaLumiereStatique(int angle)
+const void IntermittentDuSpectacle::PlaceLaLumiereStatique(int angle)
 {
     // Activation des lumières
 
