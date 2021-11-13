@@ -83,7 +83,7 @@ const void IntermittentDuSpectacle::PlaceLaLumiereStatique(int angle)
     GLfloat amb_0[] = {1.0, 1.0, 1.0, 1.0}; // ambiance de la lumière
     GLfloat spec_0[] = {1.0, 1.0, 1.0, 1.0}; // Specular de la lumière
     // Déclaration de la GL_LIGHT
-    GLfloat light_position_1[] = {5.0, -5.0, 0.0, 0.0};
+    GLfloat light_position_1[] = {4.0, -4.0, 0.0, 0.0};
     GLfloat dif_1[] = {1.0, 1.0, 1.0, 1.0};
     GLfloat amb_1[] = {1.0, 1.0, 1.0, 1.0};
     GLfloat spec_1[] = {1.0, 1.0, 1.0, 1.0};

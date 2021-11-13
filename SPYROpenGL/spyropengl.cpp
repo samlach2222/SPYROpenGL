@@ -156,8 +156,6 @@ void affichage()
 
     srand(713705);  //Seed utilisé pour les couleurs aléatoires
 
-
-
     /********************************************/
     /*****     Utilisation des lumières     *****/
     /********************************************/
