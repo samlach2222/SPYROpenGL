@@ -100,8 +100,10 @@ int main(int argc,char **argv)
      de la fenetre */
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-    glutInitWindowPosition(200,200);
-    glutInitWindowSize(1600,900);
+    const int initWindowWidth = 1600;
+    const int initWindowHeight = 900;
+    glutInitWindowPosition(glutGet(GLUT_SCREEN_WIDTH)/2 - initWindowWidth/2, glutGet(GLUT_SCREEN_HEIGHT)/2 - initWindowHeight/2);  //La fonction gère automatiquement les valeurs négatives en utilisant 0
+    glutInitWindowSize(initWindowWidth,initWindowHeight);
     glutCreateWindow("SPYROpenGL");
 
     /* Initialisation d'OpenGL */
