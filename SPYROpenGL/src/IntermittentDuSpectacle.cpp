@@ -73,27 +73,28 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 
 }
 
-const void IntermittentDuSpectacle::PlaceLaLumiereStatique(int angle)
+const void IntermittentDuSpectacle::PlaceLaLumiereStatique()
 {
-    // Activation des lumières
-
     // Déclaration de la GL_LIGHT0
     GLfloat light_position_0[] = {15.0, 5.0, 3.0, 1.0}; // position de la lumière
     GLfloat dif_0[] = {1.0, 1.0, 1.0, 1.0}; // diffusion de la lumière
     GLfloat amb_0[] = {1.0, 1.0, 1.0, 1.0}; // ambiance de la lumière
     GLfloat spec_0[] = {1.0, 1.0, 1.0, 1.0}; // Specular de la lumière
-    // Déclaration de la GL_LIGHT
-    GLfloat light_position_1[] = {4.0, -4.0, 0.0, 0.0};
-    GLfloat dif_1[] = {1.0, 1.0, 1.0, 1.0};
-    GLfloat amb_1[] = {1.0, 1.0, 1.0, 1.0};
-    GLfloat spec_1[] = {1.0, 1.0, 1.0, 1.0};
-    GLfloat dir_1[] = {-1, 1, 0}; // direction de la lumière
 
     glLightfv(GL_LIGHT0, GL_POSITION, light_position_0);
     glLightfv(GL_LIGHT0, GL_AMBIENT, amb_0);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, dif_0);
     glLightfv(GL_LIGHT0, GL_SPECULAR, spec_0);
+}
 
+const void IntermittentDuSpectacle::PlaceLaLumiereQuiBouge(int angle)
+{
+    // Déclaration de la GL_LIGHT1
+    GLfloat light_position_1[] = {4.0, -4.0, 0.0, 0.0};
+    GLfloat dif_1[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat amb_1[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat spec_1[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat dir_1[] = {-1, 1, 0}; // direction de la lumière
 
     glPushMatrix();
         glRotatef(angle, 0, 1, 0);
@@ -107,4 +108,3 @@ const void IntermittentDuSpectacle::PlaceLaLumiereStatique(int angle)
         glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);
     glPopMatrix();
 }
-

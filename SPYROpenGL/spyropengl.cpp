@@ -159,7 +159,8 @@ void affichage()
     /********************************************/
     /*****     Utilisation des lumières     *****/
     /********************************************/
-    IntermittentDuSpectacle::PlaceLaLumiereStatique(angleRotation);
+    IntermittentDuSpectacle::PlaceLaLumiereStatique();
+    IntermittentDuSpectacle::PlaceLaLumiereQuiBouge(angleRotation);
     angleRotation++;
 
 
@@ -525,11 +526,11 @@ float RotationneAileSpyro(float angle)
 
     if(sensMontantAiles == true)
     {
-        res += 0.5;
+        res += 1.0;
     }
     if(sensMontantAiles == false)
     {
-        res -= 0.5;
+        res -= 1.0;
     }
     return res;
 }

@@ -19,7 +19,8 @@ class IntermittentDuSpectacle
     public:
         static const void CrieSurLaVoiePublique(bool* SPACE_PRESSED);
         static const void JoueDeLaMusique();
-        static const void PlaceLaLumiereStatique(int angle);
+        static const void PlaceLaLumiereStatique();
+        static const void PlaceLaLumiereQuiBouge(int angle);
 };
 
 #endif // INTERMITTENTDUSPECTACLE_H
