@@ -34,7 +34,8 @@ const int widthSkybox=1280;
 const int heightSkybox=720;
 //unsigned char image[widthImage*heightImage*4];
 unsigned char textureSkybox[widthSkybox*heightSkybox*3];
-const int tailleSkybox = 13;
+const int tailleSkybox = 14;
+const int nombreFacesSkybox = 30;
 const bool showSkybox = true;  //DEBUG : Désactiver permet une plus grande liberté de mouvement
 char presse;
 int anglex;
@@ -93,7 +94,7 @@ int main(int argc,char **argv)
     translationZ = 0;  //Valeur par défaut de la translation sur l'axe Z pour tout
 
     /* Chargement de la texture */
-    loadJpegImage("Ressources/Texture/texture.jpg", textureSkybox);
+    loadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
 
     /* initialisation de glut et creation
      de la fenetre */
@@ -113,7 +114,6 @@ int main(int argc,char **argv)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
     //glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,widthImage,heightImage,0,GL_RGBA,GL_UNSIGNED_BYTE,image);
-    //glEnable(GL_TEXTURE_2D);
 
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);
@@ -176,56 +176,55 @@ sensMontantAiles
 
 
     glColor4f(1,1,1,1);
-    const float tailleBackground = tailleSkybox;
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthSkybox,heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
     glEnable(GL_TEXTURE_2D);
 
     if (showSkybox)
     {
-        glBegin(GL_POLYGON);
-        glTexCoord2f(3.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
-        glTexCoord2f(3.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
-        glTexCoord2f(1.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
-        glTexCoord2f(1.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
-        glEnd();
+        float x[nombreFacesSkybox*nombreFacesSkybox];
+        float y[nombreFacesSkybox*nombreFacesSkybox];
+        float z[nombreFacesSkybox*nombreFacesSkybox];
 
-        glBegin(GL_POLYGON);
-        glTexCoord2f(0.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
-        glTexCoord2f(0.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
-        glTexCoord2f(1.0/4.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
-        glTexCoord2f(1.0/4.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
-        glEnd();
+        float fSphere[nombreFacesSkybox][nombreFacesSkybox][4];
 
-        glBegin(GL_POLYGON);
-        glTexCoord2f(1.0/4.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
-        glTexCoord2f(1.0/4.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
-        glTexCoord2f(2.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
-        glTexCoord2f(2.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
-        glEnd();
+        for(int j = 0; j < nombreFacesSkybox; j++)
+        {
+            for(int i = 0; i < nombreFacesSkybox; i++)
+            {
+                x[i+j*nombreFacesSkybox] = tailleSkybox*cos(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1));
+                y[i+j*nombreFacesSkybox] = tailleSkybox*sin(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1));
+                z[i+j*nombreFacesSkybox] = tailleSkybox*sin(-M_PI/2+j*M_PI/(nombreFacesSkybox-1));
+            }
+        }
+        for(int j = 0; j < nombreFacesSkybox - 1; j++)
+        {
+            for(int i = 0; i < nombreFacesSkybox; i++)
+            {
+                fSphere[j][i][0] = ((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox;
+                fSphere[j][i][1] = ((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox;
+                fSphere[j][i][2] = i+(j+1)*nombreFacesSkybox;
+                fSphere[j][i][3] = i+j*nombreFacesSkybox;
 
-        glBegin(GL_POLYGON);
-        glTexCoord2f(2.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
-        glTexCoord2f(2.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
-        glTexCoord2f(3.0/4.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
-        glTexCoord2f(3.0/4.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
-        glEnd();
+                glPushMatrix();
+                    glRotatef(90,-1,0,0);
+                    glRotatef(90,0,0,-1);
+                    glBegin(GL_POLYGON);
+                        //glTexCoord2f(x, y); avec x et y de 0 à 1 et le point d'origine dans le coin haut gauche
+                        glTexCoord2f(1 - (float) (i+1)/nombreFacesSkybox, 1 - (float) j/nombreFacesSkybox);
+                        glVertex3f(x[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox], y[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox], z[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox]);
 
-        //Face haut
-        glBegin(GL_POLYGON);
-        glTexCoord2f(1.0,0.0);   glVertex3f(-tailleBackground, tailleBackground,-tailleBackground);
-        glTexCoord2f(1.0,1.0/3.0);   glVertex3f(-tailleBackground, tailleBackground, tailleBackground);
-        glTexCoord2f(0.0,1.0/3.0);   glVertex3f( tailleBackground, tailleBackground, tailleBackground);
-        glTexCoord2f(0.0,0.0);   glVertex3f( tailleBackground, tailleBackground,-tailleBackground);
-        glEnd();
+                        glTexCoord2f(1 - (float) (i+1)/nombreFacesSkybox, 1 - (float) (j+1)/nombreFacesSkybox);
+                        glVertex3f(x[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox], y[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox], z[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox]);
 
+                        glTexCoord2f(1 - (float) i/nombreFacesSkybox, 1 - (float) (j+1)/nombreFacesSkybox);
+                        glVertex3f(x[i+(j+1)*nombreFacesSkybox], y[i+(j+1)*nombreFacesSkybox], z[i+(j+1)*nombreFacesSkybox]);
 
-        //Face bas
-        glBegin(GL_POLYGON);
-        glTexCoord2f(0.0,1.0);   glVertex3f(-tailleBackground,-tailleBackground,-tailleBackground);
-        glTexCoord2f(0.0,2.0/3.0);   glVertex3f(-tailleBackground,-tailleBackground, tailleBackground);
-        glTexCoord2f(1.0,2.0/3.0);   glVertex3f( tailleBackground,-tailleBackground, tailleBackground);
-        glTexCoord2f(1.0,1.0);   glVertex3f( tailleBackground,-tailleBackground,-tailleBackground);
-        glEnd();
+                        glTexCoord2f(1 - (float) i/nombreFacesSkybox, 1 - (float) j/nombreFacesSkybox);
+                        glVertex3f(x[i+j*nombreFacesSkybox], y[i+j*nombreFacesSkybox], z[i+j*nombreFacesSkybox]);
+                    glEnd();
+                glPopMatrix();
+            }
+        }
     }
 
     glDisable(GL_TEXTURE_2D);
