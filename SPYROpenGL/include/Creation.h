@@ -2,8 +2,8 @@
  * @file include/Creation.h
  * @brief Contient les définition des méthodes de création des parties de Spyro
  * @author Samuel LACHAUD
- * @version 1.0
- * @date 15/10/2021
+ * @version 2.4
+ * @date 26/10/2021
  */
 
 #ifndef CREATION_H

@@ -3,8 +3,8 @@
  * @brief Gère le démarrage de l'application
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 1.0
- * @date 16/10/2021
+ * @version 2.1
+ * @date 13/11/2021
  */
 
 /********************************************************/
@@ -151,31 +151,9 @@ void affichage()
 
     srand(713705);  //Seed utilisé pour les couleurs aléatoires
 
-    /*glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glBegin( GL_QUADS ); // apriori pour mettre un BG il faut texturer cette chose, mais spyro passe à travers
-
-    glTexCoord2f(0,0);
-    glVertex2f(-1.0f, -1.0f);
-    glTexCoord2f(1,0);
-    glVertex2f(1.0f, -1.0f);
-    glTexCoord2f(1,1);
-    glVertex2f(1.0f, 1.0f);
-    glTexCoord2f(0,1);
-    glVertex2f(-1.0f, 1.0f);
-sensMontantAiles
-    glEnd();
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);*/
-
+    /********************************************/
+    /*****        Dessin de la SkyBox       *****/
+    /********************************************/
 
     glColor4f(1,1,1,1);
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthSkybox,heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
@@ -306,19 +284,6 @@ sensMontantAiles
 
 void clavier(unsigned char touche,int x,int y)
 {
-    //Si touche ctrl ou shift ou les deux maintenues
-    /*
-    bool ctrlOrShift = false;
-    switch(glutGetModifiers())
-    {
-        case GLUT_ACTIVE_CTRL:
-        case GLUT_ACTIVE_SHIFT:
-        case GLUT_ACTIVE_CTRL+GLUT_ACTIVE_SHIFT:
-            ctrlOrShift = true;
-            break;
-    }
-    */
-
     switch (touche)
     {
         case 'p': /* affichage du carre plein */
@@ -430,21 +395,8 @@ void clavier(unsigned char touche,int x,int y)
     }
 }
 
-void specialInput(int key, int x, int y){
-
-    //Si touche ctrl ou shift ou les deux maintenues
-    /*
-    bool ctrlOrShift = false;
-    switch(glutGetModifiers())
-    {
-        case GLUT_ACTIVE_CTRL:
-        case GLUT_ACTIVE_SHIFT:
-        case GLUT_ACTIVE_CTRL+GLUT_ACTIVE_SHIFT:
-            ctrlOrShift = true;
-            break;
-    }
-    */
-
+void specialInput(int key, int x, int y)
+{
     /*Pour la souris, des rotations de 1 minimum et uniquement d'entiers sont appliqués
       Autant faire la même chose avec les touches fléchées*/
     switch(key)

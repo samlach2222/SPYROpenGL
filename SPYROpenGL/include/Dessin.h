@@ -2,8 +2,9 @@
  * @file include/Dessin.h
  * @brief Contient les définition des méthodes de création des formes géométrique et sous-parties de Spyro
  * @author Loïs PAZOLA
- * @version 1.0
- * @date 16/10/2021
+ * @author Samuel LACHAUD
+ * @version 3.2
+ * @date 12/11/2021
  */
 
 #ifndef DESSIN_H

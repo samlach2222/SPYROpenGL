@@ -3,8 +3,8 @@
  * @brief Implémentation des méthodes de création des formes géométrique et sous-parties de Spyro
  * @author Loïs PAZOLA
  * @author Samuel LACHAUD
- * @version 1.0
- * @date 16/10/2021
+ * @version 3.2
+ * @date 12/11/2021
  */
 
 #include "Dessin.h"

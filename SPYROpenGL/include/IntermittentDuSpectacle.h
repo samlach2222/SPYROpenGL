@@ -3,8 +3,8 @@
  * @brief Contient la définition de la classe gérant les sons et lumières
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 1.0
- * @date 20/10/2021
+ * @version 1.2
+ * @date 12/11/2021
  */
 
 #ifndef INTERMITTENTDUSPECTACLE_H

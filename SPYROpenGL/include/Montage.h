@@ -2,8 +2,8 @@
  * @file include/Montage.h
  * @brief Contient la définition de la classe gérant le montage des différentes créations
  * @author Samuel LACHAUD
- * @version 1.0
- * @date 19/10/2021
+ * @version 2.0
+ * @date 12/11/2021
  */
 
 #ifndef MONTAGE_H

@@ -3,8 +3,8 @@
  * @brief Implémentation du montage des différentes créations
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 1.0
- * @date 20/10/2021
+ * @version 2.0
+ * @date 12/11/2021
  */
 
 #ifdef __APPLE__

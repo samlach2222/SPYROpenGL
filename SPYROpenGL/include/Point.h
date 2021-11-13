@@ -1,7 +1,6 @@
 /**
  * @file include/Point.h
  * @brief Contient la définition de la classe gérant un point et ses coordonnées
- * @author Samuel LACHAUD
  * @author Loïs PAZOLA
  * @version 1.0
  * @date 15/10/2021
