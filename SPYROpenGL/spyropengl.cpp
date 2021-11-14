@@ -22,7 +22,7 @@
 #endif
 #include <cstdlib>
 #include <math.h>
-#include <time.h>
+//#include <time.h>
 #include <thread>
 
 #include "Montage.h"
@@ -160,7 +160,7 @@ void affichage()
 
 
     /********************************************/
-    /*****        Dessin de la SkyBox       *****/
+    /*****        Dessin de la Skybox       *****/
     /********************************************/
 
     /* Chargement de la texture */
@@ -220,11 +220,6 @@ void affichage()
 
     glDisable(GL_TEXTURE_2D);
 
-
-    glTranslatef(translationX, translationY, translationZ);  //Décalage de tout sur chaque axe
-
-
-
     /********************************************/
     /*****   Check Mouvement bouche Spyro   *****/
     /********************************************/
@@ -260,6 +255,8 @@ void affichage()
     /********************************************/
     /***** Affichage du personnage de SPYRO *****/
     /********************************************/
+    glTranslatef(translationX, translationY, translationZ);  //Décalage de spyro et des axes
+
     angleRotationAiles = RotationneAileSpyro(angleRotationAiles);
     Montage::MontageSpyro(angleRotationAiles, angleRotationBouche);
 
