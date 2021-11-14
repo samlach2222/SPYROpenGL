@@ -24,11 +24,10 @@
 #include <math.h>
 #include <time.h>
 #include <thread>
-#include <jpeglib.h>
-#include <jerror.h>
 
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
+#include "Textures.h"
 
 const int widthSkybox=1280;
 const int heightSkybox=720;
@@ -83,7 +82,6 @@ void idle();
 void mouse(int bouton,int etat,int x,int y);
 void mousemotion(int x,int y);
 void specialInput(int key, int x, int y);  //similaire au clavier mais avec des touches non-ascii
-void loadJpegImage(char *fichier, unsigned char* texture);  //Un tableau est un pointeur
 float RotationneAileSpyro(float);
 float RotationneBoucheSpyro(float);
 
@@ -97,9 +95,6 @@ int main(int argc,char **argv)
     translationX = 0;  //Valeur par défaut de la translation sur l'axe X pour tout
     translationY = 0;  //Valeur par défaut de la translation sur l'axe Y pour tout
     translationZ = 0;  //Valeur par défaut de la translation sur l'axe Z pour tout
-
-    /* Chargement de la texture */
-    loadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
 
     /* initialisation de glut et creation
      de la fenetre */
@@ -167,6 +162,9 @@ void affichage()
     /********************************************/
     /*****        Dessin de la SkyBox       *****/
     /********************************************/
+
+    /* Chargement de la texture */
+    Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
 
     glColor4f(1,1,1,1);
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthSkybox,heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
@@ -463,53 +461,6 @@ void mousemotion(int x,int y)
 
     xold=x; /* sauvegarde des valeurs courante de le position de la souris */
     yold=y;
-}
-
-void loadJpegImage(char *fichier, unsigned char* texture)
-{
-    struct jpeg_decompress_struct cinfo;
-    struct jpeg_error_mgr jerr;
-    FILE *file;
-    unsigned char *ligne;
-
-    cinfo.err = jpeg_std_error(&jerr);
-    jpeg_create_decompress(&cinfo);
-    #ifdef __WIN32
-    if (fopen_s(&file,fichier,"rb") != 0)
-    {
-        fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
-        exit(1);
-    }
-    #elif __GNUC__
-    if ((file = fopen(fichier,"rb")) == 0)
-    {
-        fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
-        exit(1);
-    }
-    #endif
-    jpeg_stdio_src(&cinfo, file);
-    jpeg_read_header(&cinfo, TRUE);
-
-    /*
-    if ((cinfo.image_width!=256)||(cinfo.image_height!=256)) {
-    fprintf(stdout,"Erreur : l'image doit etre de taille 256x256\n");
-    exit(1);
-    }
-    */
-    if (cinfo.jpeg_color_space==JCS_GRAYSCALE) {
-        fprintf(stdout,"Erreur : l'image doit etre de type RGB\n");
-        exit(1);
-    }
-
-    jpeg_start_decompress(&cinfo);
-    ligne=texture;
-    while (cinfo.output_scanline<cinfo.output_height)
-    {
-        ligne=texture+3*cinfo.output_width*cinfo.output_scanline;
-        jpeg_read_scanlines(&cinfo,&ligne,1);
-    }
-    jpeg_finish_decompress(&cinfo);
-    jpeg_destroy_decompress(&cinfo);
 }
 
 float RotationneAileSpyro(float angle)
