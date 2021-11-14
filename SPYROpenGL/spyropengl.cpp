@@ -117,6 +117,9 @@ int main(int argc,char **argv)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     //glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,widthImage,heightImage,0,GL_RGBA,GL_UNSIGNED_BYTE,image);
 
+    /* Chargement de la texture */
+    Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
+
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);
     glutKeyboardFunc(clavier);
@@ -162,10 +165,6 @@ void affichage()
     /********************************************/
     /*****        Dessin de la Skybox       *****/
     /********************************************/
-
-    /* Chargement de la texture */
-    Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
-
     glColor4f(1,1,1,1);
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthSkybox,heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
     glEnable(GL_TEXTURE_2D);
