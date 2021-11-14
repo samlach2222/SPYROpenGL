@@ -57,6 +57,7 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 
 /**
  * @brief Méthode permettant de jouer la voie de Spyro lors de l'appuis sur la touche associée
+ * @param SPACE_PRESSED indique si la barre espace à été appuyée (true pour oui, false pour non)
  */
 const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 {
@@ -73,6 +74,9 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 
 }
 
+/**
+ * @brief Méthode permettant d'appliquer la lumière statique
+ */
 const void IntermittentDuSpectacle::PlaceLaLumiereStatique()
 {
     // Déclaration de la GL_LIGHT0
@@ -87,6 +91,10 @@ const void IntermittentDuSpectacle::PlaceLaLumiereStatique()
     glLightfv(GL_LIGHT0, GL_SPECULAR, spec_0);
 }
 
+/**
+ * @brief Méthode permettant d'appliquer la lumière en rotation autour de Spyro
+ * @param angle de rotation de la lumière
+ */
 const void IntermittentDuSpectacle::PlaceLaLumiereQuiBouge(int angle)
 {
     // Déclaration de la GL_LIGHT1

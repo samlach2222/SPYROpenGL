@@ -23,6 +23,7 @@
  * @param hauteur     hauteur de la jambe
  * @param sens      sens de la rotation de la face supérieure
  * @param agrendissement agrendissement de la jambe
+ * @param largeurDUnCoteDuCorps donne la largeur d'un coté du cylindre formant le corps de Spyro
  */
 const void Creation::Jambes(float taille, float hauteur, bool sens, float agrendissement, float largeurDUnCoteDuCorps)
 {
@@ -61,7 +62,8 @@ const void Creation::Pieds(float taille)
  * @brief Méthode de combinaison des pieds et des jambes de Spyro
  * @param taille     taille de l'ensemble
  * @param hauteurJambes     hauteur de la jambe
- * @param agrendissementJambes agrandissement des jambes
+ * @param agrandissementJambes agrandissement des jambes
+ * @param largeurDUnCoteDuCorps donne la largeur du cylindre formant le corps
  */
 const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrandissementJambes, float largeurDUnCoteDuCorps)
 {
@@ -89,7 +91,7 @@ const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float ag
  * @param largeurCorne      largeur des cornes
  * @param rayonCou  rayon du coup
  * @param hauteurCou hauteur du cou
- * @param decallageCou décallage du coup vers l'avant
+ * @param decalageCou décallage du coup vers l'avant
  */
 const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decalageCou)
 {
@@ -184,7 +186,8 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
  * @param largeur largeur de l'aile
  * @param longueur de l'aile
  * @param hauteur de l'aile
- * @param decallageCentre décallage entre le centre et l'aile
+ * @param decalageCentre décallage entre le centre et l'aile
+ * @param rotationAiles correspond à l'angle de rotation de l'aile
  */
 const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre, float rotationAiles)
 {

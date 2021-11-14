@@ -430,7 +430,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
  * @param rayonVersBouche     Rayon pour aller aux deux points sur les côtés de la bouche
  * @param hauteur     Hauteur du nez
  * @param boucheCoeffX        Le coefficient d'agrandissement sur l'axe X qui A ETAIT utilisé pour la surface haute de la bouche
- * @param boucheCoeffZ        Le coefficient d'agrandissement sur l'axe Z qui A ETAIT utilisé pour la surface haute de la bouche
+ * @param coeffBoucheZ        Le coefficient d'agrandissement sur l'axe Z qui A ETAIT utilisé pour la surface haute de la bouche
  * @param coeffIY       Coefficient d'agrandissement des deux points sur les côtés sur l'axe Y (optionnelle, défaut: 1)
  * @param decalageZ    Décalage sur l'axe Z des deux points isocèle (le point isocèle de chaque surface) (optionnelle, défaut: 0)
  */
@@ -695,6 +695,7 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
  * @param hauteur   Hauteur des jambes
  * @param sens      Sens des jambes
  * @param agrandissement    Agrandissement de la surface du haut
+ * @param largeurDUnCoteDuCorps donne la largeur d'un coté du cylindre formant le corps
  */
 const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
@@ -732,16 +733,6 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {(longueurZ+translation)*0.958, hauteur+rotationAxeVertical*1.10, 0}, //POINT C
             {0, hauteur, longueurZ+translation} // POINT B
         };
-
-        // SAUVEGARDE :
-        /*float coordPoints[6][3] = {
-            {0, 0, 0},
-            {longueurX, 0, 0},
-            {0, 0, longueurZ},
-            {0-tx, hauteur+((h/2)/(tan(M_PI/4))), 0-tx}, // On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {longueurX+t, hauteur+(h/(tan(M_PI/4))), 0}, //On translate les points de leurs distance avec l'angle de tanslation avec une relation Tan = Opp / Adj
-            {0, hauteur, longueurZ+t}
-        };*/
 
         //base bas
         glBegin(GL_POLYGON);
@@ -1109,7 +1100,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
  * @param NM int nombre de subdivision du cou
  * @param rayon float rayon du cou
  * @param hauteur float hauteur du cou
- * @param decallage float Décallage en avant du cou
+ * @param decalage float Décallage en avant du cou
  */
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
 

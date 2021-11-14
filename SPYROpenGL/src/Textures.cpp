@@ -1,9 +1,22 @@
+/**
+ * @file src/Textures.cpp
+ * @brief Implémentation de la classe gérant l'application des textures sur Spyro
+ * @author Loïs PAZOLA
+ * @version 1.0
+ * @date 14/11/2021
+ */
+
 #include "Textures.h"
 
 #include <thread>  //Nécessaire pour les textures
 #include <jpeglib.h>
 #include <jerror.h>
 
+/**
+ * @brief Méthode permettant de charger un fichier JPEG
+ * @param *fichier  pointeur vers le nom du fichier
+ * @param *texture  pointeur vers la texture
+ */
 const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
 {
     struct jpeg_decompress_struct cinfo;
