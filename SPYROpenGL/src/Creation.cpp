@@ -22,15 +22,15 @@
  * @param taille     largeur de la jambe
  * @param hauteur     hauteur de la jambe
  * @param sens      sens de la rotation de la face supérieure
- * @param agrendissement agrendissement de la jambe
+ * @param agrandissement agrandissement de la jambe
  * @param largeurDUnCoteDuCorps donne la largeur d'un coté du cylindre formant le corps de Spyro
  */
-const void Creation::Jambes(float taille, float hauteur, bool sens, float agrendissement, float largeurDUnCoteDuCorps)
+const void Creation::Jambes(float taille, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
     glPushMatrix();
         glRotatef(45,0,-1,0);
         glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens, agrendissement, largeurDUnCoteDuCorps);
+        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens, agrandissement, largeurDUnCoteDuCorps);
     glPopMatrix();
 }
 

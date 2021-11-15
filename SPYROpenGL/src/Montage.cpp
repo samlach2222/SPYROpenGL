@@ -105,7 +105,7 @@ const void Montage::MontageSpyro(float rotationAiles, float rotationBouche)
 
     glPushMatrix();
         /* Création pattes arrières */
-        Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps); // agrendissement gèré en interne
+        Creation::JambesPlusPieds(taille, hauteurJambes, 0, largeurDUnCoteDuCorps); // agrandissement gèré en interne
 
         /* Création pattes avant */
         glTranslatef(0,0,longueurCorps-2*taille);
