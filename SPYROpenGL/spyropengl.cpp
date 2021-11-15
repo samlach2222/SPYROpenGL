@@ -32,6 +32,7 @@
 /* Déclaration des variables extern des textures */
 unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];
 unsigned char textureSkybox[Textures::widthSkybox*Textures::heightSkybox*3];
+unsigned char textureCriniere[Textures::widthCriniere*Textures::heightCriniere*3];
 
 const int tailleSkybox = 14;
 const int nombreFacesSkybox = 30;
@@ -120,6 +121,7 @@ int main(int argc,char **argv)
     /* Chargement des textures */
     Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
     Textures::LoadJpegImage("Ressources/Texture/oeil.jpg", textureOeil);
+    Textures::LoadJpegImage("Ressources/Texture/criniere.jpg", textureCriniere);
 
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);
