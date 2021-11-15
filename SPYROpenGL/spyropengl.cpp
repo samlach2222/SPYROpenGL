@@ -263,7 +263,7 @@ void affichage()
     Montage::MontageSpyro(angleRotationAiles, angleRotationBouche);
 
 
-    //Repère
+    /*//Repère
     //axe x en rouge
     glBegin(GL_LINES);
         glColor3f(1.0,0.0,0.0);
@@ -281,7 +281,7 @@ void affichage()
         glColor3f(0.0,0.0,1.0);
         glVertex3f(0, 0,0.0);
         glVertex3f(0, 0,1.0);
-    glEnd();
+    glEnd();*/
 
     glFlush();
 
