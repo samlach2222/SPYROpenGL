@@ -17,6 +17,7 @@
 #include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 #include "math.h"
+#include "Textures.h"
 
 /**
  * @brief Méthode de création d'un cylindre
@@ -161,8 +162,12 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
  * @param NP    Nombre de côtés à la verticale
  * @param NM    Nombre de côtés à l'horizontale
  */
-const void Dessin::Sphere(float taille, int NP, int NM)
+const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
 {
+    if (yeux){
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,Textures::widthOeil,Textures::heightOeil,0,GL_RGB,GL_UNSIGNED_BYTE,textureOeil);
+    }
+
     float x[NM*NP];
     float y[NM*NP];
     float z[NM*NP];
@@ -190,19 +195,58 @@ const void Dessin::Sphere(float taille, int NP, int NM)
             glPushMatrix();
                 glRotatef(90,-1,0,0);
                 glRotatef(90,0,0,-1);
-                glBegin(GL_POLYGON);
-                    glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
-                    glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
 
-                    glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
-                    glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
+                if (yeux && j==2 && (i == 0 || i == 4))
+                {
+                    glColor4f(1,1,1,1);
+                    glEnable(GL_TEXTURE_2D);
 
-                    glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
-                    glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
+                    glBegin(GL_POLYGON);
+                        if (i==0)
+                        {
+                            glTexCoord2f(1,1);
+                            glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
 
-                    glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
-                    glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
-                glEnd();
+                            glTexCoord2f(1,0);
+                            glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
+
+                            glTexCoord2f(0,0);
+                            glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
+
+                            glTexCoord2f(0,1);
+                            glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
+                        }
+                        if (i==4)
+                        {
+                            glTexCoord2f(0,1);
+                            glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
+
+                            glTexCoord2f(0,0);
+                            glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
+
+                            glTexCoord2f(1,0);
+                            glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
+
+                            glTexCoord2f(1,1);
+                            glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
+                        }
+                    glEnd();
+
+                    glDisable(GL_TEXTURE_2D);
+                }
+                else
+                {
+                    glBegin(GL_POLYGON);
+                        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+                        glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
+
+                        glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
+
+                        glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
+
+                        glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
+                    glEnd();
+                }
             glPopMatrix();
         }
     }

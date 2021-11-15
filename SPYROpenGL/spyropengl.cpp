@@ -119,6 +119,7 @@ int main(int argc,char **argv)
 
     /* Chargement de la texture */
     Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
+    Textures::LoadJpegImage("Ressources/Texture/oeil.jpg", textureOeil);
 
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);

@@ -99,7 +99,7 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
         glPushMatrix();
             glTranslatef(0,taille + 0.80*hauteurCou,0);
             //Dessin de la tête de SPYRO
-            Dessin::Sphere(taille, 5, 5);
+            Dessin::Sphere(taille, 5, 5, true);
 
             //Dessin de la crinière de SPYRO
             Dessin::Criniere(taille);

@@ -19,8 +19,11 @@ class Textures
 
         static const int widthSkybox=1280;
         static const int heightSkybox=720;
+        static const int widthOeil = 32;
+        static const int heightOeil = 32;
 };
 
 #endif // TEXTURES_H
 
 extern unsigned char textureSkybox[Textures::widthSkybox*Textures::heightSkybox*3];
+extern unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];
