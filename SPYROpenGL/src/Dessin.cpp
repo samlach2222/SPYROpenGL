@@ -336,19 +336,48 @@ const void Dessin::Criniere(float rayonSphere)
            \ |  |
             \|
     */
+
+    unsigned char textureCriniereTransparente[Textures::widthCriniere*Textures::heightCriniere*4];
+    for (unsigned int i = 0; i < Textures::widthCriniere*Textures::heightCriniere; i++){
+        unsigned char bleuCourant = textureCriniere[i*3 + 2];
+
+        if (bleuCourant > 150) {
+            //Pixel transparent
+            textureCriniereTransparente[i*4 + 3] = 0;  //Alpha
+        }
+        else
+        {
+            //Pixel normal
+            textureCriniereTransparente[i*4] = textureCriniere[i*3];  //Rouge
+            textureCriniereTransparente[i*4 + 1] = textureCriniere[i*3 + 1];  //Vert
+            textureCriniereTransparente[i*4 + 2] = bleuCourant;  //Bleu
+            textureCriniereTransparente[i*4 + 3] = 255;  //Alpha
+        }
+    }
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,Textures::widthCriniere,Textures::heightCriniere,0,GL_RGBA,GL_UNSIGNED_BYTE,textureCriniereTransparente);
+    glColor4f(1,1,1,1);
+    glEnable(GL_TEXTURE_2D);
+
     glPushMatrix();
-        glTranslatef(0,-rayonSphere*3/4, -rayonSphere);
+        glTranslatef(0,-rayonSphere*2.0/4, -rayonSphere);
         glBegin(GL_POLYGON);
-            glColor3f(0.99607, 0.70196, 0.31372);
-            glVertex3f(0, 0, 0); // Point du bas (à l'origine)
+            glTexCoord2f(1,1);
+            glVertex3f(0, 0, 0); // Point bas droit (à l'origine)
 
-            glColor3f(0.99607, 0.70196, 0.31372);
-            glVertex3f(0, 2*rayonSphere, 0); // Point haut droit
+            glTexCoord2f(1,0);
+            glVertex3f(0, 1.7*rayonSphere, 0); // Point haut droit
 
-            glColor3f(0.99607, 0.70196, 0.31372);
-            glVertex3f(0, 2*rayonSphere, 2*rayonSphere); // Point haut gauche
+            glTexCoord2f(0,0);
+            glVertex3f(0, 1.7*rayonSphere, 1.8*rayonSphere); // Point haut gauche
+
+            glTexCoord2f(0,1);
+            glVertex3f(0, 0, 1.8*rayonSphere); // Point bas gauche
         glEnd();
     glPopMatrix();
+
+    glDisable(GL_TEXTURE_2D);
+
+    glColor4f(1,1,1,1);
 }
 
 /**

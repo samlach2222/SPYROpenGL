@@ -115,8 +115,8 @@ int main(int argc,char **argv)
     /* Paramétrage du placage de textures */
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);  //Filtre
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);  //Filtre
-    glEnable(GL_BLEND);  //Transparence
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  //Transparence
+    glAlphaFunc(GL_GREATER, 0.5);  //Rend transparent les pixels avec plus de 0,5 d'alpha
+    glEnable(GL_ALPHA_TEST);  //Active la transparence
 
     /* Chargement des textures */
     Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);

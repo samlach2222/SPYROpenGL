@@ -102,7 +102,7 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
             Dessin::Sphere(taille, 5, 5, true);
 
             //Dessin de la crinière de SPYRO
-            Dessin::Criniere(taille);
+            Dessin::Criniere(taille*1.3);
 
             //Dessin des cornes de SPYRO
             glPushMatrix();
