@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SPYROpenGL:  Fichier source de Dessin.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Logo_SPYROpenGL.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">SPYROpenGL<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Projet SPYROpenGL</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_dessin_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Dessin.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_dessin_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef DESSIN_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define DESSIN_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_point_8h.html">Point.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_dessin.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="class_dessin.html">Dessin</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">static</span> <span class="keyword">const</span> std::tuple&lt;Point, Point&gt; <a class="code hl_function" href="class_dessin.html#a4a2c60e18954405dde57bba464e9bcca">Cylindre</a>(<span class="keywordtype">int</span> NM, <span class="keywordtype">float</span> rayon, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> rotation = 0);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a919ef936791422de6b16b1b1984effcb">LiaisonCorpsCou</a>(<span class="keywordtype">int</span> NM, <span class="keywordtype">float</span> rayon, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> rotation = 0, <span class="keywordtype">float</span> coeff = 1);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#acd4e9028e0dbd512a8a95d1cbd7e0b01">Sphere</a>(<span class="keywordtype">float</span> taille, <span class="keywordtype">int</span> NP, <span class="keywordtype">int</span> NM, <span class="keywordtype">bool</span> yeux = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#ad80eeaf0b55225c2b14cd0f9a264467d">Cone</a>(<span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> rayon, <span class="keywordtype">int</span> NM);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a9c3bb8f5e291f4aca07faf54a675bfd5">Criniere</a>(<span class="keywordtype">float</span> rayonSphere);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a5ed82bd5358f7a599f9520a5054f289a">Prisme</a>(<span class="keywordtype">float</span> longueurX, <span class="keywordtype">float</span> longueurZ, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> coeffX = 1, <span class="keywordtype">float</span> coeffZ = 1, <span class="keywordtype">float</span> decalageSX = 0, <span class="keywordtype">float</span> decalageSZ = 0);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a835e02ae595f7e00dc24faa556ef1a21">Bouche</a>(<span class="keywordtype">float</span> rayonCou, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> coeffX = 1, <span class="keywordtype">float</span> coeffZ = 1, <span class="keywordtype">float</span> decalageSZ = 0, <span class="keywordtype">float</span> decalageSY = 0);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a65883e0b071a6a140618d28334991314">Nez</a>(<span class="keywordtype">float</span> rayonVersBouche, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> boucheCoeffX, <span class="keywordtype">float</span> coeffBoucheZ, <span class="keywordtype">float</span> coeffIY = 1, <span class="keywordtype">float</span> decalageZ = 0);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a0bcda9bf573241cb1722d9e49d911823">PremierePartieQueue</a>(<span class="keywordtype">float</span> longueurRayonCorps, std::tuple&lt;Point, Point&gt; deuxPointsBaseCorps, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> coeff);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a46952dcff1d18cd616353d6f631d73f5">DeuxiemePartieQueue</a>(<span class="keywordtype">float</span> longueurX, <span class="keywordtype">float</span> longueurZ, <span class="keywordtype">float</span> hauteur, std::tuple&lt;Point, Point&gt; deuxPointsBaseCorps, <span class="keywordtype">float</span> coeffX = 1, <span class="keywordtype">float</span> coeffZ = 1, <span class="keywordtype">float</span> decalageSX = 0, <span class="keywordtype">float</span> decalageSZ = 0);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#af1c6c96d8f5cf2263597ebdc8f22b2b4">TroisiemePartieQueue</a>(<span class="keywordtype">float</span> longueurX, <span class="keywordtype">float</span> longueurZ, <span class="keywordtype">float</span> hauteur, std::tuple&lt;Point, Point&gt; deuxPointsBaseCorps, <span class="keywordtype">float</span> decalageBX = 0, <span class="keywordtype">float</span> decalageBZ = 0, <span class="keywordtype">float</span> decalageSX = 0, <span class="keywordtype">float</span> decalageSZ = 0);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#aded1987a6a544bacf98c0cd14e2c4619">Jambes</a>(<span class="keywordtype">float</span> longueurX, <span class="keywordtype">float</span> longueurZ, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">bool</span> sens, <span class="keywordtype">float</span> agrandissement, <span class="keywordtype">float</span> largeurDUnCoteDuCorps);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a332bce5d8a1cb064390dda15967d99ab">Cube</a>(<span class="keywordtype">float</span> taille);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#ad98b691c69141bfdab33c03fdf9e50ff">Tetraedre</a>(<span class="keywordtype">float</span> longueurX, <span class="keywordtype">float</span> longueurZ, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> decalageBX = 0, <span class="keywordtype">float</span> decalageBZ = 0, <span class="keywordtype">float</span> decalageSX = 0, <span class="keywordtype">float</span> decalageSZ = 0);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#ad69b7fb51691201474e6206cec517978">PyramideTronquee</a>(<span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> largeur, <span class="keywordtype">float</span> longueur, <span class="keywordtype">float</span> ecart);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a935b56697e86f3eb562e6fdccd9a809f">Pyramide</a>(<span class="keywordtype">float</span> largeur, <span class="keywordtype">float</span> longueur, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> translationX = 0, <span class="keywordtype">float</span> translationZ = 0);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#ae25f3038e9fe235d88123455c3441219">Cou</a>(<span class="keywordtype">int</span> NM, <span class="keywordtype">float</span> rayon, <span class="keywordtype">float</span> hauteur, <span class="keywordtype">float</span> decallage);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#a182f177b3f3676b47fad13939ccd1f1d">RandomColor3f</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_dessin.html#abd5b98857fd5446820a59dfcf9c51795">AxesActuels</a>(<span class="keywordtype">float</span> translationX = 0, <span class="keywordtype">float</span> translationY = 0, <span class="keywordtype">float</span> translationZ = 0);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif </span><span class="comment">// DESSIN_H</span></div>
+<div class="ttc" id="a_point_8h_html"><div class="ttname"><a href="_point_8h.html">Point.h</a></div><div class="ttdoc">Contient la définition de la classe gérant un point et ses coordonnées.</div></div>
+<div class="ttc" id="aclass_dessin_html"><div class="ttname"><a href="class_dessin.html">Dessin</a></div><div class="ttdoc">Classe de création des formes géométrique et sous-parties de Spyro.</div><div class="ttdef"><b>Definition:</b> Dessin.h:21</div></div>
+<div class="ttc" id="aclass_dessin_html_a0bcda9bf573241cb1722d9e49d911823"><div class="ttname"><a href="class_dessin.html#a0bcda9bf573241cb1722d9e49d911823">Dessin::PremierePartieQueue</a></div><div class="ttdeci">static const void PremierePartieQueue(float longueurRayonCorps, std::tuple&lt; Point, Point &gt; deuxPointsBaseCorps, float hauteur, float coeff)</div><div class="ttdoc">Méthode de création de la première partie de la queue.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:591</div></div>
+<div class="ttc" id="aclass_dessin_html_a182f177b3f3676b47fad13939ccd1f1d"><div class="ttname"><a href="class_dessin.html#a182f177b3f3676b47fad13939ccd1f1d">Dessin::RandomColor3f</a></div><div class="ttdeci">static const void RandomColor3f()</div><div class="ttdoc">Méthode appelant la méthode glColor3f avec des valeurs aléatoires.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:1255</div></div>
+<div class="ttc" id="aclass_dessin_html_a332bce5d8a1cb064390dda15967d99ab"><div class="ttname"><a href="class_dessin.html#a332bce5d8a1cb064390dda15967d99ab">Dessin::Cube</a></div><div class="ttdeci">static const void Cube(float taille)</div><div class="ttdoc">Méthode de création d'un cube.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:936</div></div>
+<div class="ttc" id="aclass_dessin_html_a46952dcff1d18cd616353d6f631d73f5"><div class="ttname"><a href="class_dessin.html#a46952dcff1d18cd616353d6f631d73f5">Dessin::DeuxiemePartieQueue</a></div><div class="ttdeci">static const void DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple&lt; Point, Point &gt; deuxPointsBaseCorps, float coeffX=1, float coeffZ=1, float decalageSX=0, float decalageSZ=0)</div><div class="ttdoc">Méthode de création de la deuxième partie de la queue.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:665</div></div>
+<div class="ttc" id="aclass_dessin_html_a4a2c60e18954405dde57bba464e9bcca"><div class="ttname"><a href="class_dessin.html#a4a2c60e18954405dde57bba464e9bcca">Dessin::Cylindre</a></div><div class="ttdeci">static const std::tuple&lt; Point, Point &gt; Cylindre(int NM, float rayon, float hauteur, float rotation=0)</div><div class="ttdoc">Méthode de création d'un cylindre.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:30</div></div>
+<div class="ttc" id="aclass_dessin_html_a5ed82bd5358f7a599f9520a5054f289a"><div class="ttname"><a href="class_dessin.html#a5ed82bd5358f7a599f9520a5054f289a">Dessin::Prisme</a></div><div class="ttdeci">static const void Prisme(float longueurX, float longueurZ, float hauteur, float coeffX=1, float coeffZ=1, float decalageSX=0, float decalageSZ=0)</div><div class="ttdoc">Méthode de création d'un prisme (isocèle, rectangle)</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:394</div></div>
+<div class="ttc" id="aclass_dessin_html_a65883e0b071a6a140618d28334991314"><div class="ttname"><a href="class_dessin.html#a65883e0b071a6a140618d28334991314">Dessin::Nez</a></div><div class="ttdeci">static const void Nez(float rayonVersBouche, float hauteur, float boucheCoeffX, float coeffBoucheZ, float coeffIY=1, float decalageZ=0)</div><div class="ttdoc">Méthode de création du nez.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:525</div></div>
+<div class="ttc" id="aclass_dessin_html_a835e02ae595f7e00dc24faa556ef1a21"><div class="ttname"><a href="class_dessin.html#a835e02ae595f7e00dc24faa556ef1a21">Dessin::Bouche</a></div><div class="ttdeci">static const void Bouche(float rayonCou, float hauteur, float coeffX=1, float coeffZ=1, float decalageSZ=0, float decalageSY=0)</div><div class="ttdoc">Méthode de création de la bouche.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:458</div></div>
+<div class="ttc" id="aclass_dessin_html_a919ef936791422de6b16b1b1984effcb"><div class="ttname"><a href="class_dessin.html#a919ef936791422de6b16b1b1984effcb">Dessin::LiaisonCorpsCou</a></div><div class="ttdeci">static const void LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation=0, float coeff=1)</div><div class="ttdoc">Méthode de création de la liaison du corps au cou.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:101</div></div>
+<div class="ttc" id="aclass_dessin_html_a935b56697e86f3eb562e6fdccd9a809f"><div class="ttname"><a href="class_dessin.html#a935b56697e86f3eb562e6fdccd9a809f">Dessin::Pyramide</a></div><div class="ttdeci">static const void Pyramide(float largeur, float longueur, float hauteur, float translationX=0, float translationZ=0)</div><div class="ttdoc">Méthode de création d'une pyramide.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:1129</div></div>
+<div class="ttc" id="aclass_dessin_html_a9c3bb8f5e291f4aca07faf54a675bfd5"><div class="ttname"><a href="class_dessin.html#a9c3bb8f5e291f4aca07faf54a675bfd5">Dessin::Criniere</a></div><div class="ttdeci">static const void Criniere(float rayonSphere)</div><div class="ttdoc">Méthode de création d'une crinière.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:302</div></div>
+<div class="ttc" id="aclass_dessin_html_abd5b98857fd5446820a59dfcf9c51795"><div class="ttname"><a href="class_dessin.html#abd5b98857fd5446820a59dfcf9c51795">Dessin::AxesActuels</a></div><div class="ttdeci">static const void AxesActuels(float translationX=0, float translationY=0, float translationZ=0)</div><div class="ttdoc">Affiche les axes X Y Z avec des lignes R G B à l'origine par rapport aux transformations actuelles (t...</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:1269</div></div>
+<div class="ttc" id="aclass_dessin_html_acd4e9028e0dbd512a8a95d1cbd7e0b01"><div class="ttname"><a href="class_dessin.html#acd4e9028e0dbd512a8a95d1cbd7e0b01">Dessin::Sphere</a></div><div class="ttdeci">static const void Sphere(float taille, int NP, int NM, bool yeux=false)</div><div class="ttdoc">Méthode de création d'une sphère.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:166</div></div>
+<div class="ttc" id="aclass_dessin_html_ad69b7fb51691201474e6206cec517978"><div class="ttname"><a href="class_dessin.html#ad69b7fb51691201474e6206cec517978">Dessin::PyramideTronquee</a></div><div class="ttdeci">static const void PyramideTronquee(float hauteur, float largeur, float longueur, float ecart)</div><div class="ttdoc">Méthode de création d'une pyramide tronquée.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:1052</div></div>
+<div class="ttc" id="aclass_dessin_html_ad80eeaf0b55225c2b14cd0f9a264467d"><div class="ttname"><a href="class_dessin.html#ad80eeaf0b55225c2b14cd0f9a264467d">Dessin::Cone</a></div><div class="ttdeci">static const void Cone(float hauteur, float rayon, int NM)</div><div class="ttdoc">Méthode de création d'un cône.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:262</div></div>
+<div class="ttc" id="aclass_dessin_html_ad98b691c69141bfdab33c03fdf9e50ff"><div class="ttname"><a href="class_dessin.html#ad98b691c69141bfdab33c03fdf9e50ff">Dessin::Tetraedre</a></div><div class="ttdeci">static const void Tetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX=0, float decalageBZ=0, float decalageSX=0, float decalageSZ=0)</div><div class="ttdoc">Méthode de création d'un tétraèdre (le sommet se trouve par défaut au milieu de l'hypoténuse)</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:1003</div></div>
+<div class="ttc" id="aclass_dessin_html_aded1987a6a544bacf98c0cd14e2c4619"><div class="ttname"><a href="class_dessin.html#aded1987a6a544bacf98c0cd14e2c4619">Dessin::Jambes</a></div><div class="ttdeci">static const void Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)</div><div class="ttdoc">Méthode de création des jambes.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:788</div></div>
+<div class="ttc" id="aclass_dessin_html_ae25f3038e9fe235d88123455c3441219"><div class="ttname"><a href="class_dessin.html#ae25f3038e9fe235d88123455c3441219">Dessin::Cou</a></div><div class="ttdeci">static const void Cou(int NM, float rayon, float hauteur, float decallage)</div><div class="ttdoc">Méthode de dessin du cou de Spyro.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:1193</div></div>
+<div class="ttc" id="aclass_dessin_html_af1c6c96d8f5cf2263597ebdc8f22b2b4"><div class="ttname"><a href="class_dessin.html#af1c6c96d8f5cf2263597ebdc8f22b2b4">Dessin::TroisiemePartieQueue</a></div><div class="ttdeci">static const void TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple&lt; Point, Point &gt; deuxPointsBaseCorps, float decalageBX=0, float decalageBZ=0, float decalageSX=0, float decalageSZ=0)</div><div class="ttdoc">Méthode de création de la troisième partie de la queue.</div><div class="ttdef"><b>Definition:</b> Dessin.cpp:734</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="_dessin_8h.html">Dessin.h</a></li>
+    <li class="footer">Généré le Lundi 15 Novembre 2021 07:51:54 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
+</body>
+</html>
