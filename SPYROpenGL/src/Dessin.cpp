@@ -218,16 +218,16 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
                         }
                         if (i==4)
                         {
-                            glTexCoord2f(0,1);
+                            glTexCoord2f(1,1);
                             glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
 
-                            glTexCoord2f(0,0);
+                            glTexCoord2f(1,0);
                             glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
 
-                            glTexCoord2f(1,0);
+                            glTexCoord2f(0,0);
                             glVertex3f(x[i+(j+1)*NM], y[i+(j+1)*NM], z[i+(j+1)*NM]);
 
-                            glTexCoord2f(1,1);
+                            glTexCoord2f(0,1);
                             glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
                         }
                     glEnd();
