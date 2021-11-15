@@ -203,7 +203,7 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
                     glEnable(GL_TEXTURE_2D);
 
                     glBegin(GL_POLYGON);
-                        if (i==0)
+                        if (i==0)  //oeil gauche
                         {
                             glTexCoord2f(1,1);
                             glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
@@ -217,7 +217,7 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
                             glTexCoord2f(0,1);
                             glVertex3f(x[i+j*NM], y[i+j*NM], z[i+j*NM]);
                         }
-                        if (i==4)
+                        if (i==4)  //oeil droite
                         {
                             glTexCoord2f(1,1);
                             glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
@@ -787,19 +787,19 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
  */
 const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
-    float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypothénuse du triangle du dessus
+    float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypoténuse du triangle du dessus
     float t = agrandissement;
     float tx = sqrt(t*t/2);
 
-    // longueurs du triangle de base et de l'agrendit
+    // longueurs du triangle de base et de l'agrandit
     float hypotenuseDeBase = sqrt(2*(longueurX * longueurX));
     float hypotenuseAgrandie = largeurDUnCoteDuCorps;
     float coteDeBase = longueurX;
     float coteAgrandie = sqrt(pow(hypotenuseAgrandie,2)/2);
 
-    // coefficients d'agrendissement
+    // coefficients d'agrandissement
     float coefficientAgrandissement = hypotenuseAgrandie/hypotenuseDeBase;
-    float agrandissementHypotenuseParThales = hypotenuseDeBase*(coteAgrandie/coteDeBase); // Thales
+    float agrandissementHypotenuseParThales = hypotenuseDeBase*(coteAgrandie/coteDeBase); // Thalès
     float diagonaleAgrandissement = (coteDeBase*(hypotenuseAgrandie/hypotenuseDeBase))-coteDeBase;
 
     // calculs vecteurs de translation :
@@ -1188,7 +1188,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
  * @param NM int nombre de subdivision du cou
  * @param rayon float rayon du cou
  * @param hauteur float hauteur du cou
- * @param decalage float Décallage en avant du cou
+ * @param decalage float Décalage en avant du cou
  */
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
 
