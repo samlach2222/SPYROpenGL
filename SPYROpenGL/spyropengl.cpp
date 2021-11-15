@@ -10,19 +10,17 @@
 /********************************************************/
 /*                     spyropengl.cpp                   */
 /********************************************************/
-/*       Affiche une version rédute de Spyro en 3D     */
+/*       Affiche une version réduite de Spyro en 3D     */
 /********************************************************/
 
-/* inclusion des fichiers d'en-tete freeglut */
-
+/* inclusion des fichiers d'en-tête freeglut */
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systemes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 #include <cstdlib>
 #include <math.h>
-//#include <time.h>
 #include <thread>
 
 #include "Montage.h"
@@ -46,7 +44,7 @@ int xold;
 int yold;
 int angleRotation = 0; // Angle de rotation de la lumière 1
 
-// Variables globales pour les annimations /!\ A DEPLACER QUAND POSSIBLE DANS INTERMITTENTDUSPECTACLE
+// Variables globales pour les animations /!\ A DEPLACER QUAND POSSIBLE DANS INTERMITTENTDUSPECTACLE
 float angleRotationAiles = 0.0;
 bool sensMontantAiles = true;
 
