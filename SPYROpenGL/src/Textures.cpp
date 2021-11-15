@@ -11,6 +11,7 @@
 #include <thread>  //Nécessaire pour les textures
 #include <jpeglib.h>
 #include <jerror.h>
+#include <cstring>
 
 /**
  * @brief Méthode permettant de charger un fichier JPEG
@@ -29,25 +30,31 @@ const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
     #ifdef __WIN32
     if (fopen_s(&file,fichier,"rb") != 0)
     {
-        fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
+        //variable du message d'erreur avec nom de fichier
+        char message[strlen(fichier)+66];
+        strcpy(message, "Erreur : impossible d'ouvrir le fichier ");
+        strcat(message, fichier);
+        strcat(message, "\n");
+
+        fprintf(stderr,message);
         exit(1);
     }
     #elif __GNUC__
     if ((file = fopen(fichier,"rb")) == 0)
     {
-        fprintf(stderr,"Erreur : impossible d'ouvrir le fichier texture.jpg\n");
+        //variable du message d'erreur avec nom de fichier
+        char message[strlen(fichier)+66];
+        strcpy(message, "Erreur : impossible d'ouvrir le fichier ");
+        strcat(message, fichier);
+        strcat(message, "\n");
+
+        fprintf(stderr,message);
         exit(1);
     }
     #endif
     jpeg_stdio_src(&cinfo, file);
     jpeg_read_header(&cinfo, TRUE);
 
-    /*
-    if ((cinfo.image_width!=256)||(cinfo.image_height!=256)) {
-    fprintf(stdout,"Erreur : l'image doit etre de taille 256x256\n");
-    exit(1);
-    }
-    */
     if (cinfo.jpeg_color_space==JCS_GRAYSCALE) {
         fprintf(stdout,"Erreur : l'image doit etre de type RGB\n");
         exit(1);
