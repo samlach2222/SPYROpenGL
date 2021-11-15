@@ -4,7 +4,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systemes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
 /**
@@ -56,7 +56,7 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 }
 
 /**
- * @brief Méthode permettant de jouer la voie de Spyro lors de l'appuis sur la touche associée
+ * @brief Méthode permettant de jouer la voix de Spyro lors de l'appui sur la touche associée
  * @param SPACE_PRESSED indique si la barre espace à été appuyée (true pour oui, false pour non)
  */
 const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)

@@ -10,7 +10,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systemes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
 #include "Creation.h"
@@ -91,7 +91,7 @@ const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float ag
  * @param largeurCorne      largeur des cornes
  * @param rayonCou  rayon du coup
  * @param hauteurCou hauteur du cou
- * @param decalageCou décallage du coup vers l'avant
+ * @param decalageCou décalage du coup vers l'avant
  */
 const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decalageCou)
 {
@@ -182,11 +182,11 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
 
 /**
  * @brief Méthode permettant de créer les deux ailes de Spyro
- * @param ecart écart du rectaugle au trapèze
+ * @param ecart écart du rectangle au trapèze
  * @param largeur largeur de l'aile
  * @param longueur de l'aile
  * @param hauteur de l'aile
- * @param decalageCentre décallage entre le centre et l'aile
+ * @param decalageCentre décalage entre le centre et l'aile
  * @param rotationAiles correspond à l'angle de rotation de l'aile
  */
 const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre, float rotationAiles)
@@ -205,12 +205,12 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             Dessin::Sphere(largeur/2,30,30);
         glPopMatrix();
 
-        glTranslatef(decalageCentre,0,0); // décallage du centre
+        glTranslatef(decalageCentre,0,0); // décalage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
 
         //animation des ailes
         glRotatef(rotationAiles,0,0,1); // rotation pour battre verticalement
-        glRotatef(rotationAiles/2,0,-1,0); // rotation pour battre sur l'horrizontale
+        glRotatef(rotationAiles/2,0,-1,0); // rotation pour battre sur l'horizontale
 
         glPushMatrix();
             // Dessin de la pyramide tronquée
@@ -242,19 +242,19 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             Dessin::Sphere(largeur/2,30,30);
         glPopMatrix();
 
-        glTranslatef(decalageCentre,0,0); // décallage du centre
+        glTranslatef(decalageCentre,0,0); // décalage du centre
         glRotatef(angleRotationDegree, 0, 1, 0);
 
         //animation des ailes
         glRotatef(rotationAiles,0,0,-1); // rotation pour battre verticalement
-        glRotatef(rotationAiles/2,0,-1,0); // rotation pour battre sur l'horrizontale
+        glRotatef(rotationAiles/2,0,-1,0); // rotation pour battre sur l'horizontale
 
 
         glPushMatrix();
             // Dessin de la pyramide tronquée
             Dessin::PyramideTronquee(hauteur,largeur,longueur,ecart);
 
-            // dessi du tétraèdre
+            // Dessin du tétraèdre
             glTranslatef(longueur, hauteur, 0);
             glRotatef(angleRotationDegree, 0, 1, 0);
             glRotatef(90,0,0,-1);

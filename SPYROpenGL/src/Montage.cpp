@@ -10,7 +10,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systemes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 #include <cstdlib>
 #include <math.h>
@@ -23,7 +23,7 @@
 
 
 /**
- * @brief Méthode permettant de monter l'intégralitée des membres de Spyro
+ * @brief Méthode permettant de monter l'intégralité des membres de Spyro
  * @param rotationAiles donne l'angle de rotation des ailes
  * @param rotationBouche donne l'angle de rotation de la bouche
  */
