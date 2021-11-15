@@ -134,7 +134,7 @@ int main(int argc,char **argv)
     /***************************************************************/
     bgMusic = std::thread(IntermittentDuSpectacle::JoueDeLaMusique);
 
-    /* Entree dans la boucle principale glut */
+    /* Entrée dans la boucle principale glut */
     glutMainLoop();
     return 0;
 }
@@ -153,7 +153,7 @@ void affichage()
     glRotatef(angley,1.0,0.0,0.0);
     glRotatef(anglex,0.0,1.0,0.0);
 
-    srand(713705);  //Seed utilisé pour les couleurs aléatoires
+    //srand(713705);  //Seed utilisé pour les couleurs aléatoires
 
     /********************************************/
     /*****     Utilisation des lumières     *****/
@@ -255,7 +255,7 @@ void affichage()
     /********************************************/
     /***** Affichage du personnage de SPYRO *****/
     /********************************************/
-    glTranslatef(translationX, translationY, translationZ);  //Décalage de spyro et des axes
+    glTranslatef(translationX, translationY, translationZ);  //Décalage de Spyro
 
     angleRotationAiles = RotationneAileSpyro(angleRotationAiles);
     Montage::MontageSpyro(angleRotationAiles, angleRotationBouche);
@@ -283,7 +283,7 @@ void affichage()
 
     glFlush();
 
-    //On echange les buffers
+    //On échange les buffers
     glutSwapBuffers();
 
     // Pour actualiser
@@ -294,11 +294,11 @@ void clavier(unsigned char touche,int x,int y)
 {
     switch (touche)
     {
-        case 'p': /* affichage du carre plein */
+        case 'p': /* Affichage du carré plein */
             glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
             glutPostRedisplay();
             break;
-        case 'f': /* affichage en mode fil de fer */
+        case 'f': /* Affichage en mode fil de fer */
             glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
             glutPostRedisplay();
             break;
@@ -397,7 +397,7 @@ void clavier(unsigned char touche,int x,int y)
                 }
             }
             break;
-        case 'q' : /*la touche 'q' permet de quitter le programme */
+        case 'q' : /* La touche 'q' permet de quitter le programme */
             exit(0);
             break;
     }
@@ -405,8 +405,8 @@ void clavier(unsigned char touche,int x,int y)
 
 void specialInput(int key, int x, int y)
 {
-    /*Pour la souris, des rotations de 1 minimum et uniquement d'entiers sont appliqués
-      Autant faire la même chose avec les touches fléchées*/
+    /* Pour la souris, des rotations de 1 minimum et uniquement d'entiers sont appliqués.
+       Autant faire la même chose avec les touches fléchées */
     switch(key)
     {
         case GLUT_KEY_UP:
@@ -435,13 +435,13 @@ void mouse(int button, int state,int x,int y)
     /* si on appuie sur le bouton gauche */
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
-        presse = 1; /* le booleen presse passe a 1 (vrai) */
+        presse = 1; /* le booléen presse passe à 1 (vrai) */
         xold = x; /* on sauvegarde la position de la souris */
         yold=y;
     }
-    /* si on relache le bouton gauche */
+    /* si on relâche le bouton gauche */
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
-        presse=0; /* le booleen presse passe a 0 (faux) */
+        presse=0; /* le booléen presse passe à 0 (faux) */
 }
 
 void mousemotion(int x,int y)
@@ -449,14 +449,14 @@ void mousemotion(int x,int y)
     if (presse) /* si le bouton gauche est presse */
     {
         /* on modifie les angles de rotation de l'objet
-        en fonction de la position actuelle de la souris et de la derniere
-        position sauvegardee */
+        en fonction de la position actuelle de la souris et de la dernière
+        position sauvegardée */
         anglex=anglex+(x-xold);
         angley=angley+(y-yold);
-        glutPostRedisplay(); /* on demande un rafraichissement de l'affichage */
+        glutPostRedisplay(); /* on demande un rafraîchissement de l'affichage */
     }
 
-    xold=x; /* sauvegarde des valeurs courante de le position de la souris */
+    xold=x; /* sauvegarde des valeurs courantes de la position de la souris */
     yold=y;
 }
 
@@ -479,29 +479,6 @@ float RotationneAileSpyro(float angle)
     if(sensMontantAiles == false)
     {
         res -= 1.0;
-    }
-    return res;
-}
-
-float RotationneBoucheSpyro(float angle)
-{
-    float res = angle;
-    if(res == 0.0)
-    {
-        sensMontantBouche = false;
-    }
-    else if(res == -6.0)
-    {
-        sensMontantBouche = true;
-    }
-
-    if(sensMontantBouche == true)
-    {
-        res += 0.5;
-    }
-    if(sensMontantBouche == false)
-    {
-        res -= 0.5;
     }
     return res;
 }
