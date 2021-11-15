@@ -29,10 +29,10 @@
 #include "IntermittentDuSpectacle.h"
 #include "Textures.h"
 
-const int widthSkybox=1280;
-const int heightSkybox=720;
-//unsigned char image[widthImage*heightImage*4];
-unsigned char textureSkybox[widthSkybox*heightSkybox*3];
+/* Déclaration des variables externes */
+unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];
+unsigned char textureSkybox[Textures::widthSkybox*Textures::heightSkybox*3];
+
 const int tailleSkybox = 14;
 const int nombreFacesSkybox = 30;
 const bool showSkybox = true;  //DEBUG : Désactiver permet une plus grande liberté de mouvement
@@ -166,7 +166,7 @@ void affichage()
     /*****        Dessin de la Skybox       *****/
     /********************************************/
     glColor4f(1,1,1,1);
-    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,widthSkybox,heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,Textures::widthSkybox,Textures::heightSkybox,0,GL_RGB,GL_UNSIGNED_BYTE,textureSkybox);
     glEnable(GL_TEXTURE_2D);
 
     if (showSkybox)
