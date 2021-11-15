@@ -33,6 +33,7 @@ var menudata={children:[
 {text:"b",url:"functions.html#index_b"},
 {text:"c",url:"functions.html#index_c"},
 {text:"d",url:"functions.html#index_d"},
+{text:"h",url:"functions.html#index_h"},
 {text:"j",url:"functions.html#index_j"},
 {text:"l",url:"functions.html#index_l"},
 {text:"m",url:"functions.html#index_m"},
@@ -42,6 +43,7 @@ var menudata={children:[
 {text:"r",url:"functions.html#index_r"},
 {text:"s",url:"functions.html#index_s"},
 {text:"t",url:"functions.html#index_t"},
+{text:"w",url:"functions.html#index_w"},
 {text:"x",url:"functions.html#index_x"},
 {text:"y",url:"functions.html#index_y"},
 {text:"z",url:"functions.html#index_z"}]},
@@ -61,4 +63,7 @@ var menudata={children:[
 {text:"t",url:"functions_func.html#index_t"}]},
 {text:"Variables",url:"functions_vars.html"}]}]},
 {text:"Fichiers",url:"files.html",children:[
-{text:"Liste des fichiers",url:"files.html"}]}]}
+{text:"Liste des fichiers",url:"files.html"},
+{text:"Membres de fichier",url:"globals.html",children:[
+{text:"Tout",url:"globals.html"},
+{text:"Variables",url:"globals_vars.html"}]}]}]}

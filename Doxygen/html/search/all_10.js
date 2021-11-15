@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_0',['z',['../class_point.html#a05ba3b1dfcb19430582ae953cbbfbded',1,'Point']]]
+  ['x_0',['x',['../class_point.html#ab99c56589bc8ad5fa5071387110a5bc7',1,'Point']]]
 ];

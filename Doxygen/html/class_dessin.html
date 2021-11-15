@@ -104,9 +104,9 @@ Fonctions membres publiques statiques</h2></td></tr>
 <tr class="memitem:a919ef936791422de6b16b1b1984effcb"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a919ef936791422de6b16b1b1984effcb">LiaisonCorpsCou</a> (int NM, float rayon, float hauteur, float rotation=0, float coeff=1)</td></tr>
 <tr class="memdesc:a919ef936791422de6b16b1b1984effcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création de la liaison du corps au cou.  <a href="class_dessin.html#a919ef936791422de6b16b1b1984effcb">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a919ef936791422de6b16b1b1984effcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e94cc30809a54cf52f8af585821d81e"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#a3e94cc30809a54cf52f8af585821d81e">Sphere</a> (float taille, int NP, int NM)</td></tr>
-<tr class="memdesc:a3e94cc30809a54cf52f8af585821d81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'une sphère.  <a href="class_dessin.html#a3e94cc30809a54cf52f8af585821d81e">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a3e94cc30809a54cf52f8af585821d81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd4e9028e0dbd512a8a95d1cbd7e0b01"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#acd4e9028e0dbd512a8a95d1cbd7e0b01">Sphere</a> (float taille, int NP, int NM, bool yeux=false)</td></tr>
+<tr class="memdesc:acd4e9028e0dbd512a8a95d1cbd7e0b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'une sphère.  <a href="class_dessin.html#acd4e9028e0dbd512a8a95d1cbd7e0b01">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acd4e9028e0dbd512a8a95d1cbd7e0b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad80eeaf0b55225c2b14cd0f9a264467d"><td class="memItemLeft" align="right" valign="top">static const void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dessin.html#ad80eeaf0b55225c2b14cd0f9a264467d">Cone</a> (float hauteur, float rayon, int NM)</td></tr>
 <tr class="memdesc:ad80eeaf0b55225c2b14cd0f9a264467d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode de création d'un cône.  <a href="class_dessin.html#ad80eeaf0b55225c2b14cd0f9a264467d">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ad80eeaf0b55225c2b14cd0f9a264467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1087,8 +1087,8 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
 
 </div>
 </div>
-<a id="a3e94cc30809a54cf52f8af585821d81e" name="a3e94cc30809a54cf52f8af585821d81e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e94cc30809a54cf52f8af585821d81e">&#9670;&nbsp;</a></span>Sphere()</h2>
+<a id="acd4e9028e0dbd512a8a95d1cbd7e0b01" name="acd4e9028e0dbd512a8a95d1cbd7e0b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd4e9028e0dbd512a8a95d1cbd7e0b01">&#9670;&nbsp;</a></span>Sphere()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1112,7 +1112,13 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>NM</em>&#160;</td>
+          <td class="paramname"><em>NM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>yeux</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1133,6 +1139,7 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
     <tr><td class="paramname">taille</td><td>Taille de la sphère </td></tr>
     <tr><td class="paramname">NP</td><td>Nombre de côtés à la verticale </td></tr>
     <tr><td class="paramname">NM</td><td>Nombre de côtés à l'horizontale </td></tr>
+    <tr><td class="paramname">yeux</td><td>Applique une texture d'œil sur 2 faces symétriques </td></tr>
   </table>
   </dd>
 </dl>
@@ -1316,7 +1323,7 @@ static const void&#160;</td><td class="memItemRight" valign="bottom"><b>RandomCo
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_dessin.html">Dessin</a></li>
-    <li class="footer">Généré le Dimanche 14 Novembre 2021 22:42:02 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">Généré le Lundi 15 Novembre 2021 06:41:39 pour SPYROpenGL par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

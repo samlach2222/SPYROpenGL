@@ -15,9 +15,7 @@ var files_dup =
     [ "Point.h", "_point_8h.html", [
       [ "Point", "class_point.html", "class_point" ]
     ] ],
-    [ "Textures.h", "_textures_8h.html", [
-      [ "Textures", "class_textures.html", null ]
-    ] ],
+    [ "Textures.h", "_textures_8h.html", "_textures_8h" ],
     [ "Creation.cpp", "_creation_8cpp.html", null ],
     [ "Dessin.cpp", "_dessin_8cpp.html", null ],
     [ "Montage.cpp", "_montage_8cpp.html", null ],

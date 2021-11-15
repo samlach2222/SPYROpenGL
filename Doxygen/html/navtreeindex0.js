@@ -16,6 +16,9 @@ var NAVTREEINDEX0 =
 "_point_8h_source.html":[1,0,4],
 "_textures_8cpp.html":[1,0,10],
 "_textures_8h.html":[1,0,5],
+"_textures_8h.html#a0021e2ba4708e8b899bd52a12e697e46":[1,0,5,2],
+"_textures_8h.html#aa26d5030df4b9aef2aa962a421252cf6":[1,0,5,3],
+"_textures_8h.html#afe95eb4314139341a92789252d3efe4c":[1,0,5,1],
 "_textures_8h_source.html":[1,0,5],
 "annotated.html":[0,0],
 "class_creation.html":[0,0,0],
@@ -33,6 +36,8 @@ var NAVTREEINDEX0 =
 "functions.html":[0,2,0],
 "functions_func.html":[0,2,1],
 "functions_vars.html":[0,2,2],
+"globals.html":[1,1,0],
+"globals_vars.html":[1,1,1],
 "index.html":[],
 "pages.html":[]
 };

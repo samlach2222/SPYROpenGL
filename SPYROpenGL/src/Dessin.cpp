@@ -161,6 +161,7 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
  * @param taille    Taille de la sphère
  * @param NP    Nombre de côtés à la verticale
  * @param NM    Nombre de côtés à l'horizontale
+ * @param yeux    Applique une texture d'œil sur 2 faces symétriques
  */
 const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
 {
