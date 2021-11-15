@@ -29,7 +29,7 @@
 #include "IntermittentDuSpectacle.h"
 #include "Textures.h"
 
-/* Déclaration des variables externes */
+/* Déclaration des variables extern des textures */
 unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];
 unsigned char textureSkybox[Textures::widthSkybox*Textures::heightSkybox*3];
 
@@ -96,8 +96,7 @@ int main(int argc,char **argv)
     translationY = 0;  //Valeur par défaut de la translation sur l'axe Y pour tout
     translationZ = 0;  //Valeur par défaut de la translation sur l'axe Z pour tout
 
-    /* initialisation de glut et creation
-     de la fenetre */
+    /* initialisation de glut et création de la fenêtre */
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     const int initWindowWidth = 1600;
@@ -112,12 +111,11 @@ int main(int argc,char **argv)
     glPointSize(2.0);
     glEnable(GL_DEPTH_TEST);
 
-    /* Parametrage du placage de textures */
+    /* Paramétrage du placage de textures */
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    //glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,widthImage,heightImage,0,GL_RGBA,GL_UNSIGNED_BYTE,image);
 
-    /* Chargement de la texture */
+    /* Chargement des textures */
     Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
     Textures::LoadJpegImage("Ressources/Texture/oeil.jpg", textureOeil);
 
