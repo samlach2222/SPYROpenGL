@@ -21,7 +21,7 @@ class Textures
         static const int heightSkybox=720;
         static const int widthOeil=32;
         static const int heightOeil=32;
-        static const int widthCriniere=494;
+        static const int widthCriniere=428;
         static const int heightCriniere=428;
 };
 
