@@ -74,7 +74,7 @@ Afin de réaliser le pied de Spyro, je le découpe en trois parties :
 * Le centre du pied en un **cube**
 * Le talon/attache de la jambe en un **prisme triangulaire équilatéral**
 
-[![Image Conception Pieds](Conception/Readme/ConceptionPied.png)
+[![Image Conception Pieds](Conception/readme/ConceptionPied.png)
 
 #### Diagramme de classe
 
@@ -84,7 +84,7 @@ avec les différentes méthodes nécessaires à la bonne réalisation du projet.
 Chacune des classes de ce diagramme est une classe statique (sauf la classe Point). Les classes sont
 expliquées à la suite du diagramme UML.
 
-[![Image Conception UML](Conception/Readme/ConceptionUML.png)
+[![Image Conception UML](Conception/readme/ConceptionUML.png)
 
 ##### 1. Classe Point :
 
@@ -146,7 +146,7 @@ de chaque solides.
 
 Voici donc Spyro dans sa première phase :
 
-[![Spyro Phase 1](Conception/Readme/SpyroPhase1.png)
+[![Spyro Phase 1](Conception/readme/SpyroPhase1.png)
 
 Nous sommes cependant loin de l’aspect réel de Spyro, et la première chose à modifier ce sont ses couleurs, 
 nous utilisons pour cela deux couleurs :
@@ -168,7 +168,7 @@ dominantes et nous leurs appliquons un filtre composé d’un ajustement et d’
 Nous obtenons donc notre version colorisée de Spyro :
 
 
-[![Spyro Phase 2](Conception/Readme/SpyroPhase2.png)
+[![Spyro Phase 2](Conception/readme/SpyroPhase2.png)
 
 
 #### Application des textures
@@ -185,7 +185,7 @@ suffisamment haute on met l'alpha à 0 (totalement transparent) et sinon à 255 
 noter que le triangle de crinière est maintenant un rectangle afin de mettre plus facilement une texture.
 Voici donc Spyro avec ses yeux et sa crinière :
 
-[![Spyro Phase 3](Conception/Readme/SpyroPhase3.png)
+[![Spyro Phase 3](Conception/readme/SpyroPhase3.png)
 
 La deuxième texture est une texture enveloppante, sur une sphère. Spyro se situe dans la sphère,
 on appelle cette texture donnant une zone de ciel une Skybox. Spyro se trouve alors maintenant dans un
@@ -193,7 +193,7 @@ environnement.
 
 Voici donc Spyro avec son environnement :
 
-[![Spyro Phase 4](Conception/Readme/SpyroPhase4.png)
+[![Spyro Phase 4](Conception/readme/SpyroPhase4.png)
 
 
 #### Animation du modèle
@@ -209,7 +209,7 @@ rotation en X.
 La deuxième animation s’effectue lors de l’appui sur la touche de clavier, Spyro bouge alors sa partie supérieure de sa
 bouche de haut en bas jusqu’à la fin de l’animation sonore.
 
-[![Spyro Phase 5](Conception/Readme/SpyroPhase5.png)
+[![Spyro Phase 5](Conception/readme/SpyroPhase5.png)
 
 ### IV) Utilisation du projet
 
@@ -241,7 +241,7 @@ prend le relais, mais jamais la même d’affilé, évitant donc la redondance p
 de l’exécution nous avons donc l’affichage suivant permettant de savoir les informations de la musique
 jouée actuellement :
 
-[![TerminalMusique](Conception/Readme/TerminalMusique.png)
+[![TerminalMusique](Conception/readme/TerminalMusique.png)
 
 #### Membres du projet :
 
