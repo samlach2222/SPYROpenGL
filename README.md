@@ -83,7 +83,7 @@ avec les différentes méthodes nécessaires à la bonne réalisation du projet.
 Chacune des classes de ce diagramme est une classe statique (sauf la classe Point). Les classes sont
 expliquées à la suite du diagramme UML.
 
-![Image Conception UML](Conception/readme/ConceptionUML.png "Conception de l'UML")
+![Image Conception UML](Conception/readme/ConceptionUML.png "Conception UML")
 
 ##### 1. Classe Point :
 
