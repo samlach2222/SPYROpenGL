@@ -4,14 +4,14 @@
 [![GitHub version](https://img.shields.io/badge/version-1.0-purple.svg)](https://img.shields.io/badge)
 [![Discord](https://img.shields.io/discord/756176190603132959.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/BMKwM5eYzY)
 
-## Projet de Synthèse d'image portant sur la création d'un dragon (ici Spyro en version PS1) avec c++ et OpenGL.
+## Projet de Synthèse d'image portant sur la création d'un dragon (ici Spyro en version PS1) avec C++ et OpenGL.
 
 [![Affiche du projet](Conception/SPYROpenGL_LACHAUD_PAZOLA.png)
 
 ### I) Introduction
 
 Le projet SPYROpenGL est le projet demandé dans la matière Synthèse d’Image. Ce nom est la
-concaténation de SPYRO, notre dragon modélisé, et d’OpenGL, le langage (avec c++) pour modéliser ce
+concaténation de SPYRO, notre dragon modélisé, et d’OpenGL, le langage (avec C++) pour modéliser ce
 personnage. Dans ce document, nous allons voir pourquoi nous avons choisis ce sujet, les étapes de
 conceptions de celui-ci ainsi que quelques informations supplémentaires.
 #### Pourquoi Spyro?
