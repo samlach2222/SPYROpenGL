@@ -30,15 +30,17 @@ suivantes :
 * Fichiers textures et obj
    * Fichier texture provenant du jeu Spyro 2 sur PS1 (Officiel)
    * Fichier obj provenant du jeu Spyro 2 sur PS1 (Officiel)
-   * Lien vers le site →
+   * [Lien vers le site](https://www.models-resource.com/playstation/spyro2riptosrage/model/26411/ "The Models Resource")
 * Fichiers de musique
    * Dark Hollow (Spyro The Dragon Reignited - 1 )
    * Enchanted Towers (Spyro The Dragon Reignited - 3 )
    * Sgt. Byrd's Theme (Spyro The Dragon Reignited - 3 )
-   * Lien vers le site →
+   * [Lien vers le site](https://www.youtube.com/watch?v=L7Rqf4s8KQ0&list=PLo6SSHo84XM6OOrVDvXmms5jdiOeyC0wg "YouTube")
 * Fichier audio
    * « Salut moi c’est Spyro » d’une cinématique (Spyro The Dragon Reignited - 2)
-   * Lien vers le site → Bien sur le fichier OBJ à uniquement été utilisé lors de l’étape de conception du projet comme modèle.
+   * [Lien vers le site](https://www.youtube.com/watch?v=ovA1417TuOM&t=75s "YouTube")
+
+Bien sûr le fichier OBJ à uniquement été utilisé lors de l’étape de conception du projet comme modèle.
 
 ### II) Conception
 
