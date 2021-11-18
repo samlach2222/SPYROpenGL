@@ -222,14 +222,14 @@ une utilisation plus personnalisée du projet SPYROpenGL.
 
 De nombreuses touches du clavier permettent d’utiliser facilement SPYROpenGL, voici la liste des
 commandes permettant la navigation ou l’utilisation de fonctionnalités :
-* 'z’ → Permet de zoomer sur Spyro
-* ‘Z’ → Permet de dézoomer sur Spyro
-* ‘i’ et ‘k’ → Permettent de déplacer Spyro sur l’axe Y
-* ‘j’ et ‘l’ → Permettent de déplacer Spyro sur l’axe X
-* ‘J’ et ‘L’ → Permettent de déplacer Spyro sur l’axe Z
-* ‘q’ → Permet de quitter l’application
-* ‘ ESPACE’ → Permet de faire bouger la bouche de Spyro avec le son de sa voix
-* Touches fléchées → Permettent de rotationner la caméra autour de Spyro
+* ‘**z**’ → Permet de zoomer sur Spyro
+* ‘**Z**’ → Permet de dézoomer sur Spyro
+* ‘**i**’ et ‘**k**’ → Permettent de déplacer Spyro sur l’axe Y
+* ‘**j**’ et ‘**l**’ → Permettent de déplacer Spyro sur l’axe X
+* ‘**J**’ et ‘**L**’ → Permettent de déplacer Spyro sur l’axe Z
+* ‘**q**’ → Permet de quitter l’application
+* ‘**ESPACE**’ → Permet de faire bouger la bouche de Spyro avec le son de sa voix
+* **Touches fléchées** → Permettent de rotationner la caméra autour de Spyro
 
 #### Changement de musique de fond
 
