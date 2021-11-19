@@ -1,7 +1,7 @@
 # SPYROpenGL
 
 
-[![Version du projet](https://img.shields.io/badge/version-1.0-purple.svg)](https://img.shields.io/badge "Version du projet")
+[![Version du projet](https://img.shields.io/badge/version-1.1-purple.svg)](https://img.shields.io/badge "Version du projet")
 
 ## Projet de Synthèse d'image portant sur la création d'un dragon (ici Spyro en version PS1) avec C++ et OpenGL.
 
