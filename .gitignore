@@ -22,3 +22,5 @@ SPYROpenGL/*.depend
 
 # Backup files when merging
 SPYROpenGL/**/*.orig
+
+desktop.ini
