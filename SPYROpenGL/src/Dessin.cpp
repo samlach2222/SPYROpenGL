@@ -7,17 +7,25 @@
  * @date 12/11/2021
  */
 
-#include "Dessin.h"
+#include "../include/Dessin.h"
 
 #include <tuple>
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systèmes */
+#include "GL/glut.h"   /* Pour les autres systèmes */
 #endif
+
+#ifndef __WIN32
+#define M_PI 3.14159265358979323846
+#define __WIN32
+#endif
+
 #include "math.h"
-#include "Textures.h"
+#include "../include/Textures.h"
+#include <vector>
+using namespace std;
 
 /**
  * @brief Méthode de création d'un cylindre
@@ -29,9 +37,9 @@
  */
 const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur, float rotation){
 
-    float x[NM*2]; // NM --> taille du nombre de subdivision d'une base * 2 (base du bas + base du haut)
-    float y[NM*2];
-    float z[NM*2];
+    vector<float> x(NM * 2); // NM --> taille du nombre de subdivision d'une base * 2 (base du bas + base du haut)
+    vector<float> y(NM * 2);
+    vector<float> z(NM * 2);
 
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)
@@ -100,9 +108,9 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
  */
 const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation, float coeff){
 
-    float x[NM*2]; // NM --> taille du nombre de subdivision d'une surface * 2 (surface du bas + surface du haut)
-    float y[NM*2];
-    float z[NM*2];
+    vector<float> x(NM * 2); // NM --> taille du nombre de subdivision d'une surface * 2 (surface du bas + surface du haut)
+    vector<float> y(NM * 2);
+    vector<float> z(NM * 2);
 
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)
@@ -169,11 +177,12 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
         glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,Textures::widthOeil,Textures::heightOeil,0,GL_RGB,GL_UNSIGNED_BYTE,textureOeil);
     }
 
-    float x[NM*NP];
-    float y[NM*NP];
-    float z[NM*NP];
+    vector<float> x(NM*NP);
+    vector<float> y(NM * NP);
+    vector<float> z(NM * NP);
 
-    float fSphere[NP][NM][4];
+    //float fSphere[NP][NM][4];
+    vector<vector<vector<float>>> fSphere(NP, vector<vector<float>>(NM, vector<float>(4)));
 
     for(int j = 0; j < NP; j++)
     {
@@ -261,8 +270,8 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
  */
 const void Dessin::Cone(float hauteur, float rayon, int NM)
 {
-    float x[NM]; // NM --> taille du nombre de subdivison de la base
-    float z[NM];
+    vector<float> x(NM); // NM --> taille du nombre de subdivison de la base
+    vector<float> z(NM);
 
     // dessin de la base
     for(int i = 0; i < NM; i++)
@@ -462,11 +471,11 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 
     float coordPoints[6][3] = {
         {0, 0, rayonCou},
-        {rayonCou*cos(rotationP1*M_PI/5), 0, rayonCou*sin(rotationP1*M_PI/5)},
-        {rayonCou*cos(rotationP2*M_PI/5), 0, rayonCou*sin(rotationP2*M_PI/5)},
+        {static_cast<float>(rayonCou*cos(rotationP1*M_PI/5)), 0, static_cast<float>(rayonCou*sin(rotationP1*M_PI/5))},
+        {static_cast<float>(rayonCou*cos(rotationP2*M_PI/5)), 0, static_cast<float>(rayonCou*sin(rotationP2*M_PI/5))},
         {0, hauteur+decalageSY, rayonCou*coeffZ + decalageSZ},
-        {rayonCou*cos(rotationP1*M_PI/5)*coeffX, hauteur, rayonCou*sin(rotationP1*M_PI/5) + decalageSZ},
-        {rayonCou*cos(rotationP2*M_PI/5)*coeffX, hauteur, rayonCou*sin(rotationP2*M_PI/5) + decalageSZ},
+        {static_cast<float>(rayonCou*cos(rotationP1*M_PI/5)*coeffX), hauteur, static_cast<float>(rayonCou*sin(rotationP1*M_PI/5) + decalageSZ)},
+        {static_cast<float>(rayonCou*cos(rotationP2*M_PI/5)*coeffX), hauteur, static_cast<float>(rayonCou*sin(rotationP2*M_PI/5) + decalageSZ)},
     };
 
     //base bas
@@ -529,12 +538,12 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
     //Le code créé un prisme, le cinquième et sixième point sont au même endroit pour faire un tétraèdre
     float coordPoints[6][3] = {
         {0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},
-        {rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX, 0, rayonVersBouche*sin(rotationP1*M_PI/5)},
-        {rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX, 0, rayonVersBouche*sin(rotationP2*M_PI/5)},
+        {static_cast<float>(rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX), 0, static_cast<float>(rayonVersBouche*sin(rotationP1*M_PI/5))},
+        {static_cast<float>(rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX), 0, static_cast<float>(rayonVersBouche*sin(rotationP2*M_PI/5))},
         //{0, hauteur*coeffIY, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints à la même hauteur que le cinquième et sixième
         {0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},  //Quatrième coordPoints identique au premier
-        {0, hauteur*coeffIY, rayonVersBouche*sin(rotationP1*M_PI/5)},
-        {0, hauteur*coeffIY, rayonVersBouche*sin(rotationP2*M_PI/5)},
+        {0, hauteur*coeffIY, static_cast<float>(rayonVersBouche*sin(rotationP1*M_PI/5))},
+        {0, hauteur*coeffIY, static_cast<float>(rayonVersBouche*sin(rotationP2*M_PI/5))},
     };
 
     //base bas
@@ -600,11 +609,11 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
 
     float coordPoints[6][3] = {
         {0, 0, 0},
-        {p1.x, 0, p1.z},
-        {p2.x, 0, p2.z},
+        {static_cast<float>(p1.x), 0, static_cast<float>(p1.z)},
+        {static_cast<float>(p2.x), 0, static_cast<float>(p2.z)},
         {0, hauteur, 0},
-        {p1.x*coeff, hauteur, p1.z*coeff},
-        {p2.x*coeff, hauteur, p2.z*coeff}
+        {static_cast<float>(p1.x*coeff), hauteur, static_cast<float>(p1.z*coeff)},
+        {static_cast<float>(p2.x*coeff), hauteur, static_cast<float>(p2.z*coeff)}
     };
 
     //base bas
@@ -669,11 +678,11 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
 
     float coordPoints[6][3] = {
         {0, 0, 0},
-        {p1.x, 0, p1.z},
-        {p2.x, 0, p2.z},
+        {static_cast<float>(p1.x), 0, static_cast<float>(p1.z)},
+        {static_cast<float>(p2.x), 0, static_cast<float>(p2.z)},
         {decalageSX, hauteur, decalageSZ},
-        {p1.x*coeffX, hauteur, p1.z*coeffZ},
-        {p2.x*coeffX, hauteur, p2.z*coeffZ}
+        {static_cast<float>(p1.x*coeffX), hauteur, static_cast<float>(p1.z*coeffZ)},
+        {static_cast<float>(p2.x*coeffX), hauteur, static_cast<float>(p2.z*coeffZ)}
     };
 
     //base bas
@@ -738,8 +747,8 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
 
     float coordPoints[4][3] = {
         {decalageBX, 0, decalageBZ},
-        {p1.x, 0, p1.z},
-        {p2.x, 0, p2.z},
+        {static_cast<float>(p1.x), 0, static_cast<float>(p1.z)},
+        {static_cast<float>(p2.x), 0, static_cast<float>(p2.z)},
         {longueurX/2 + decalageSX, hauteur, longueurZ/2 + decalageSZ},
     };
 
@@ -818,7 +827,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {longueurX, 0, 0},
             {0, 0, longueurZ},
             {0-translation-rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation+rotationAxeHorizontalMoitie}, // POINT A
-            {(longueurZ+translation)*0.958, hauteur+rotationAxeVertical*1.10, 0}, //POINT C
+            {static_cast<float>((longueurZ+translation)*0.958), static_cast<float>(hauteur+rotationAxeVertical*1.10), 0}, //POINT C
             {0, hauteur, longueurZ+translation} // POINT B
         };
 
@@ -873,7 +882,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
             {0, 0, longueurZ},
             {0-translation+rotationAxeHorizontalMoitie, hauteur+rotationAxeVerticalMoitie, 0-translation-rotationAxeHorizontalMoitie}, // POINT A
             {longueurZ+translation, hauteur, 0}, //POINT C
-            {0, hauteur+rotationAxeVertical*1.10, (longueurZ+translation)*0.958} // POINT B
+            {0, static_cast<float>(hauteur+rotationAxeVertical*1.10), static_cast<float>((longueurZ+translation)*0.958)} // POINT B
         };
 
         /*
@@ -1192,9 +1201,9 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
  */
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
 
-    float x[NM*2]; // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
-    float y[NM*2];
-    float z[NM*2];
+    vector<float> x(NM * 2); // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
+    vector<float> y(NM * 2);
+    vector<float> z(NM * 2);
 
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)

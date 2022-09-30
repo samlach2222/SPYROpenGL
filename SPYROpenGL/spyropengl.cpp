@@ -19,13 +19,19 @@
 #else
 #include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
+
+#ifndef __WIN32
+#define M_PI 3.14159265358979323846
+#define __WIN32
+#endif
+
 #include <cstdlib>
 #include <math.h>
 #include <thread>
 
-#include "Montage.h"
-#include "IntermittentDuSpectacle.h"
-#include "Textures.h"
+#include "include/Montage.h"
+#include "include/IntermittentDuSpectacle.h"
+#include "include/Textures.h"
 
 /* Déclaration des variables extern des textures */
 unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];
@@ -117,9 +123,18 @@ int main(int argc,char **argv)
     glEnable(GL_ALPHA_TEST);  //Active la transparence
 
     /* Chargement des textures */
-    Textures::LoadJpegImage("Ressources/Texture/skybox.jpg", textureSkybox);
-    Textures::LoadJpegImage("Ressources/Texture/oeil.jpg", textureOeil);
-    Textures::LoadJpegImage("Ressources/Texture/criniere.jpg", textureCriniere);
+    #ifdef _WIN64
+    char* t1 = _strdup("Ressources/Texture/skybox.jpg");
+    char* t2 = _strdup("Ressources/Texture/oeil.jpg");
+    char* t3 = _strdup("Ressources/Texture/criniere.jpg");
+    #elif __GNUC__
+    char* t1 = "Ressources/Texture/skybox.jpg";
+    char* t2 = "Ressources/Texture/oeil.jpg";
+    char* t3 = "Ressources/Texture/criniere.jpg";
+    #endif
+    Textures::LoadJpegImage(t1, textureSkybox);
+    Textures::LoadJpegImage(t2, textureOeil);
+    Textures::LoadJpegImage(t3, textureCriniere);
 
     /* enregistrement des fonctions de rappel */
     glutDisplayFunc(affichage);
@@ -197,22 +212,22 @@ void affichage()
                 fSphere[j][i][3] = i+j*nombreFacesSkybox;
 
                 glPushMatrix();
-                    glRotatef(90,-1,0,0);
-                    glRotatef(90,0,0,-1);
-                    glBegin(GL_POLYGON);
-                        //glTexCoord2f(x, y); avec x et y de 0 à 1 et le point d'origine dans le coin haut gauche
-                        glTexCoord2f(1 - (float) (i+1)/nombreFacesSkybox, 1 - (float) j/nombreFacesSkybox);
-                        glVertex3f(x[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox], y[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox], z[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox]);
+                glRotatef(90,-1,0,0);
+                glRotatef(90,0,0,-1);
+                glBegin(GL_POLYGON);
+                //glTexCoord2f(x, y); avec x et y de 0 à 1 et le point d'origine dans le coin haut gauche
+                glTexCoord2f(1 - (float) (i+1)/nombreFacesSkybox, 1 - (float) j/nombreFacesSkybox);
+                glVertex3f(x[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox], y[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox], z[((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox]);
 
-                        glTexCoord2f(1 - (float) (i+1)/nombreFacesSkybox, 1 - (float) (j+1)/nombreFacesSkybox);
-                        glVertex3f(x[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox], y[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox], z[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox]);
+                glTexCoord2f(1 - (float) (i+1)/nombreFacesSkybox, 1 - (float) (j+1)/nombreFacesSkybox);
+                glVertex3f(x[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox], y[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox], z[((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox]);
 
-                        glTexCoord2f(1 - (float) i/nombreFacesSkybox, 1 - (float) (j+1)/nombreFacesSkybox);
-                        glVertex3f(x[i+(j+1)*nombreFacesSkybox], y[i+(j+1)*nombreFacesSkybox], z[i+(j+1)*nombreFacesSkybox]);
+                glTexCoord2f(1 - (float) i/nombreFacesSkybox, 1 - (float) (j+1)/nombreFacesSkybox);
+                glVertex3f(x[i+(j+1)*nombreFacesSkybox], y[i+(j+1)*nombreFacesSkybox], z[i+(j+1)*nombreFacesSkybox]);
 
-                        glTexCoord2f(1 - (float) i/nombreFacesSkybox, 1 - (float) j/nombreFacesSkybox);
-                        glVertex3f(x[i+j*nombreFacesSkybox], y[i+j*nombreFacesSkybox], z[i+j*nombreFacesSkybox]);
-                    glEnd();
+                glTexCoord2f(1 - (float) i/nombreFacesSkybox, 1 - (float) j/nombreFacesSkybox);
+                glVertex3f(x[i+j*nombreFacesSkybox], y[i+j*nombreFacesSkybox], z[i+j*nombreFacesSkybox]);
+                glEnd();
                 glPopMatrix();
             }
         }
@@ -381,21 +396,21 @@ void clavier(unsigned char touche,int x,int y)
             glutPostRedisplay();
             break;
         case ' ':
+        {
+            if (!SPACE_PRESSED)
             {
-                if (!SPACE_PRESSED)
-                {
-                    SPACE_PRESSED = true;
-                    /******************************************************************************************/
-                    /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
-                    /******************************************************************************************/
-                    if(voice.joinable()){
-                        voice.join();
-                        voice.~thread();
-                    }
-                    bool* PTR_SPACE_PRESSED = &SPACE_PRESSED;
-                    voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique, PTR_SPACE_PRESSED);
+                SPACE_PRESSED = true;
+                /******************************************************************************************/
+                /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
+                /******************************************************************************************/
+                if(voice.joinable()){
+                    voice.join();
+                    voice.~thread();
                 }
+                bool* PTR_SPACE_PRESSED = &SPACE_PRESSED;
+                voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique, PTR_SPACE_PRESSED);
             }
+        }
             break;
         case 'q' : /* La touche 'q' permet de quitter le programme */
             exit(0);

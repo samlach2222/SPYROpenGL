@@ -15,7 +15,7 @@
 class Textures
 {
     public:
-        static const void LoadJpegImage(char *fichier, unsigned char* texture);
+        static void LoadJpegImage(char *fichier, unsigned char* texture);
 
         /**
          * @brief Largeur de l'image de la skybox

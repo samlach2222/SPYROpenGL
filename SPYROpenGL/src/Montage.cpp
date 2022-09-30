@@ -10,16 +10,22 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systèmes */
+#include "GL/glut.h"   /* Pour les autres systèmes */
 #endif
+
+#ifndef __WIN32
+#define M_PI 3.14159265358979323846
+#define __WIN32
+#endif
+
 #include <cstdlib>
 #include <math.h>
 #include <tuple>
 
-#include "Point.h"
-#include "Dessin.h"
-#include "Creation.h"
-#include "Montage.h"
+#include "../include/Point.h"
+#include "../include/Dessin.h"
+#include "../include/Creation.h"
+#include "../include/Montage.h"
 
 
 /**

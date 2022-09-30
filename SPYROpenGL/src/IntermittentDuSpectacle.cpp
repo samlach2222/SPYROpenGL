@@ -1,10 +1,21 @@
-#include "IntermittentDuSpectacle.h"
+#include "../include/IntermittentDuSpectacle.h"
 #include <time.h>
 #include <cstdlib>
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include <GL/glut.h>   /* Pour les autres systèmes */
+
+#ifndef _WIN64
+#define M_PI 3.14159265358979323846
+#define _WIN64
+#endif
+
+#ifdef _WIN32
+#include <windows.h>
+#include <MMSystem.h>
+#endif
+
+#include "GL/glut.h"   /* Pour les autres systèmes */
 #endif
 
 /**
@@ -12,19 +23,22 @@
  */
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
-    #ifdef _WIN32 || _WIN64
+    #ifdef _WIN64
     srand(time(NULL));
     int randNum = (rand() % 3) + 1;
     switch(randNum)
     {
         case 1 :
-            PlaySound("Dark Hollow.wav", NULL, SND_FILENAME|SND_LOOP);
+            system("powershell -c (New-Object Media.SoundPlayer 'Ressources\\Audio\\Dark Hollow.wav').PlaySync()");
+            //PlaySound(TEXT("Ressources/Audio/Dark Hollow.wav"), FALSE, SND_ASYNC |SND_LOOP);
             break;
         case 2 :
-            PlaySound("Enchanted Towers.wav", NULL, SND_FILENAME|SND_LOOP);
+            system("powershell -c (New-Object Media.SoundPlayer 'Ressources\\Audio\\Dark Hollow.wav').PlaySync()");
+            //PlaySound(TEXT("Ressources/Audio/Enchanted Towers.wav"), FALSE, SND_ASYNC | SND_LOOP);
             break;
         case 3 :
-            PlaySound("Sgt. Byrd's Theme.wav", NULL, SND_FILENAME|SND_LOOP);
+            system("powershell -c (New-Object Media.SoundPlayer 'Ressources\\Audio\\Dark Hollow.wav').PlaySync()");
+            //PlaySound(TEXT("Ressources/Audio/Sgt. Byrd's Theme.wav"), FALSE, SND_ASYNC | SND_LOOP);
             break;
     }
     #elif __linux__ || __unix || __unix__
@@ -61,8 +75,8 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
  */
 const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 {
-    #ifdef _WIN32 || _WIN64
-    PlaySound("SaluuutMoiCSpyro.wav", NULL, SND_FILENAME|SND_LOOP);
+    #ifdef _WIN32
+    PlaySound(TEXT("Ressources/Audio/SaluuutMoiCSpyro.wav"), FALSE, SND_FILENAME);
     #elif __linux__ || __unix || __unix__
     system("                                                            \
            cd Ressources/Audio ;                                        \
@@ -70,6 +84,7 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
            aplay \"SaluuutMoiCSpyro.wav\" ;'                            \
            ");
     #endif
+
     *SPACE_PRESSED = false;
 
 }
