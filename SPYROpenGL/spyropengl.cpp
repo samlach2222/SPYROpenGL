@@ -24,13 +24,13 @@
 #define _USE_MATH_DEFINES
 #endif
 
-#include <cstdlib>
-#include <math.h>
-#include <thread>
-
 #include "include/Montage.h"
 #include "include/IntermittentDuSpectacle.h"
 #include "include/Textures.h"
+
+#include <cstdlib>
+#include <math.h>
+#include <thread>
 
 /* Déclaration des variables extern des textures */
 unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];

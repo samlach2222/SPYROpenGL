@@ -7,22 +7,21 @@
  * @date 12/11/2021
  */
 
-#include "../include/Dessin.h"
-
-#include <tuple>
-
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include "GL/glut.h"   /* Pour les autres systèmes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
 #ifdef _WIN32
 #define _USE_MATH_DEFINES
 #endif
 
-#include "math.h"
+#include "../include/Dessin.h"
 #include "../include/Textures.h"
+
+#include <tuple>
+#include <math.h>
 #include <vector>
 using namespace std;
 

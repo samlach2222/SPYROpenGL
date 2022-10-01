@@ -9,7 +9,6 @@
 
 #ifndef INTERMITTENTDUSPECTACLE_H
 #define INTERMITTENTDUSPECTACLE_H
-#include <string>
 
 /**
  * @brief Classe de gestion des sons et lumières

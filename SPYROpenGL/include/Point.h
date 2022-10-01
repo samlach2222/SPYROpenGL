@@ -9,7 +9,6 @@
 #ifndef POINT_H
 #define POINT_H
 
-
 /**
  * @brief Classe de création d'un point
  */
@@ -34,4 +33,5 @@ class Point
          */
         double z;
 };
+
 #endif // POINT_H

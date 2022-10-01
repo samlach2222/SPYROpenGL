@@ -9,8 +9,9 @@
 #ifndef CREATION_H
 #define CREATION_H
 
-#include <tuple>
 #include "Point.h"
+
+#include <tuple>
 
 /**
  * @brief Classe de création des parties de Spyro

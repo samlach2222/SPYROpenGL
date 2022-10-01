@@ -11,8 +11,8 @@
 #define DESSIN_H
 
 #include "Point.h"
-#include <tuple>
 
+#include <tuple>
 
 /**
  * @brief Classe de création des formes géométrique et sous-parties de Spyro

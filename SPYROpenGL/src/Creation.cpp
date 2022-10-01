@@ -10,7 +10,7 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include "GL/glut.h"   /* Pour les autres systèmes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
 #ifdef _WIN32
@@ -19,7 +19,8 @@
 
 #include "../include/Creation.h"
 #include "../include/Dessin.h"
-#include "math.h"
+
+#include <math.h>
 
 /**
  * @brief Méthode de création des jambes de Spyro

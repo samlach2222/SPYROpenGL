@@ -10,22 +10,21 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-#include "GL/glut.h"   /* Pour les autres systèmes */
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
 #ifdef _WIN32
 #define _USE_MATH_DEFINES
 #endif
 
-#include <cstdlib>
-#include <math.h>
-#include <tuple>
-
 #include "../include/Point.h"
 #include "../include/Dessin.h"
 #include "../include/Creation.h"
 #include "../include/Montage.h"
 
+#include <cstdlib>
+#include <math.h>
+#include <tuple>
 
 /**
  * @brief Méthode permettant de monter l'intégralité des membres de Spyro

@@ -15,7 +15,7 @@
 class Textures
 {
     public:
-        static void LoadJpegImage(char *fichier, unsigned char* texture);
+        static const void LoadJpegImage(char *fichier, unsigned char* texture);
 
         /**
          * @brief Largeur de l'image de la skybox
@@ -43,8 +43,6 @@ class Textures
         static const int heightCriniere=428;
 };
 
-#endif // TEXTURES_H
-
 /**
  * @brief Variable stockant la texture de la skybox
  */
@@ -57,3 +55,5 @@ extern unsigned char textureOeil[Textures::widthOeil*Textures::heightOeil*3];
  * @brief Variable stockant la texture de la crinière
  */
 extern unsigned char textureCriniere[Textures::widthCriniere*Textures::heightCriniere*3];
+
+#endif // TEXTURES_H

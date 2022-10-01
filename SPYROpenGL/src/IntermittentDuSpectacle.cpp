@@ -1,16 +1,15 @@
-#include "../include/IntermittentDuSpectacle.h"
-#include <time.h>
-#include <cstdlib>
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
-
-#ifdef _WIN32
-#include <windows.h>
-#include <MMSystem.h>
+#include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
-#include "GL/glut.h"   /* Pour les autres systèmes */
+#include "../include/IntermittentDuSpectacle.h"
+
+#include <time.h>
+#include <cstdlib>
+#ifdef _WIN32
+#include <MMSystem.h>
 #endif
 
 /**

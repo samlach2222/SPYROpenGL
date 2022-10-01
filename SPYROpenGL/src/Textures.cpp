@@ -12,17 +12,13 @@
 #include <jpeglib.h>
 #include <jerror.h>
 #include <cstring>
-#include <cstdio>
-#include <cwchar>
-#include <fstream>
-#include <utility>
 
 /**
  * @brief Méthode permettant de charger un fichier JPEG
  * @param *fichier  pointeur vers le nom du fichier
  * @param *texture  pointeur vers la texture
  */
-void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
+const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
 {
     struct jpeg_decompress_struct cinfo{};
     struct jpeg_error_mgr jerr{};
@@ -53,7 +49,7 @@ void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
     }
     #endif
     jpeg_stdio_src(&cinfo, file);
-    jpeg_read_header(&cinfo, TRUE); // TODO : ICI cinfo n'a pas de width et de height, le header ne peux pa être lu
+    jpeg_read_header(&cinfo, TRUE);
 
     if (cinfo.jpeg_color_space==JCS_GRAYSCALE) {
         fwprintf(stdout,L"Erreur : l'image doit etre de type RGB\n");
