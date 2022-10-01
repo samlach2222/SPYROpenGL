@@ -6,7 +6,7 @@
  * @date 14/11/2021
  */
 
-#include "../include/Textures.h"
+#include "Textures.h"
 
 #include <thread>  //Nécessaire pour les textures
 #include <jpeglib.h>

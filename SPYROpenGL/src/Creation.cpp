@@ -17,8 +17,8 @@
 #define _USE_MATH_DEFINES
 #endif
 
-#include "../include/Creation.h"
-#include "../include/Dessin.h"
+#include "Creation.h"
+#include "Dessin.h"
 
 #include <math.h>
 

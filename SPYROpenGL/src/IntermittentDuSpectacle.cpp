@@ -4,7 +4,7 @@
 #include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
-#include "../include/IntermittentDuSpectacle.h"
+#include "IntermittentDuSpectacle.h"
 
 #include <time.h>
 #include <cstdlib>

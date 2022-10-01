@@ -24,9 +24,9 @@
 #define _USE_MATH_DEFINES
 #endif
 
-#include "include/Montage.h"
-#include "include/IntermittentDuSpectacle.h"
-#include "include/Textures.h"
+#include "Montage.h"
+#include "IntermittentDuSpectacle.h"
+#include "Textures.h"
 
 #include <cstdlib>
 #include <math.h>

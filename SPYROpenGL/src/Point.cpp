@@ -6,7 +6,7 @@
  * @date 16/10/2021
  */
 
-#include "../include/Point.h"
+#include "Point.h"
 
 /**
  * @brief Constructeur de point

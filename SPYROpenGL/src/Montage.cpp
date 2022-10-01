@@ -17,10 +17,10 @@
 #define _USE_MATH_DEFINES
 #endif
 
-#include "../include/Point.h"
-#include "../include/Dessin.h"
-#include "../include/Creation.h"
-#include "../include/Montage.h"
+#include "Point.h"
+#include "Dessin.h"
+#include "Creation.h"
+#include "Montage.h"
 
 #include <cstdlib>
 #include <math.h>

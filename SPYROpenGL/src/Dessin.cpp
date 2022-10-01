@@ -17,8 +17,8 @@
 #define _USE_MATH_DEFINES
 #endif
 
-#include "../include/Dessin.h"
-#include "../include/Textures.h"
+#include "Dessin.h"
+#include "Textures.h"
 
 #include <tuple>
 #include <math.h>
