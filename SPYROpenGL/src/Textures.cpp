@@ -8,10 +8,6 @@
 
 #include "../include/Textures.h"
 
-#ifdef _WIN32
-#define M_PI 3.14159265358979323846
-#endif
-
 #include <thread>  //Nécessaire pour les textures
 #include <jpeglib.h>
 #include <jerror.h>
