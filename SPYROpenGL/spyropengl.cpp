@@ -20,9 +20,8 @@
 #include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
-#ifndef __WIN32
+#ifdef _WIN32
 #define M_PI 3.14159265358979323846
-#define __WIN32
 #endif
 
 #include <cstdlib>
@@ -123,7 +122,7 @@ int main(int argc,char **argv)
     glEnable(GL_ALPHA_TEST);  //Active la transparence
 
     /* Chargement des textures */
-    #ifdef _WIN64
+    #ifdef _WIN32
     char* t1 = _strdup("Ressources/Texture/skybox.jpg");
     char* t2 = _strdup("Ressources/Texture/oeil.jpg");
     char* t3 = _strdup("Ressources/Texture/criniere.jpg");

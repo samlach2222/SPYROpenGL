@@ -5,12 +5,8 @@
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
 
-#ifndef _WIN64
-#define M_PI 3.14159265358979323846
-#define _WIN64
-#endif
-
 #ifdef _WIN32
+#define M_PI 3.14159265358979323846
 #include <windows.h>
 #include <MMSystem.h>
 #endif
@@ -23,7 +19,7 @@
  */
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
-    #ifdef _WIN64
+    #ifdef _WIN32
     srand(time(NULL));
     int randNum = (rand() % 3) + 1;
     switch(randNum)

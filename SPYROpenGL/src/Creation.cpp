@@ -13,9 +13,8 @@
 #include "GL/glut.h"   /* Pour les autres systèmes */
 #endif
 
-#ifndef __WIN32
+#ifdef _WIN32
 #define M_PI 3.14159265358979323846
-#define __WIN32
 #endif
 
 #include "../include/Creation.h"
