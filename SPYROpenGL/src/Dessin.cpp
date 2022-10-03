@@ -344,7 +344,13 @@ const void Dessin::Criniere(float rayonSphere)
             \|
     */
 
-    unsigned char textureCriniereTransparente[Textures::widthCriniere * Textures::heightCriniere * 4]{};
+    //On ne peut pas utiliser un vector pour textureCriniereTransparente car
+    //la fonction glTexImage2D (quelques lignes plus bas) ne le supporte pas
+    unsigned char *textureCriniereTransparente = (unsigned char*) malloc(Textures::widthCriniere * Textures::heightCriniere * 4);
+    if (!textureCriniereTransparente) {
+        //malloc retourne null quand l'allocation de mémoire n'a pas pu avoir lieu (par exemple mémoire insuffisante)
+        throw bad_alloc();
+    }
     for (unsigned int i = 0; i < Textures::widthCriniere*Textures::heightCriniere; i++){
         unsigned char bleuCourant = textureCriniere[i*3 + 2];
 
@@ -362,6 +368,8 @@ const void Dessin::Criniere(float rayonSphere)
         }
     }
     glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,Textures::widthCriniere,Textures::heightCriniere,0,GL_RGBA,GL_UNSIGNED_BYTE,textureCriniereTransparente);
+    free(textureCriniereTransparente);
+
     glColor4f(1,1,1,1);
     glEnable(GL_TEXTURE_2D);
 
@@ -1197,7 +1205,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
  * @param decalage float Décalage en avant du cou
  */
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
-	
+
     vector<float> x(NM * 2); // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
     vector<float> y(NM * 2);
     vector<float> z(NM * 2);
