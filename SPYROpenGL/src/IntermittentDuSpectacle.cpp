@@ -6,7 +6,6 @@
 
 #include "IntermittentDuSpectacle.h"
 
-#include <time.h>
 #include <cstdlib>
 #ifdef _WIN32
 #include <MMSystem.h>

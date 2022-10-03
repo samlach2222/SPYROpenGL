@@ -33,7 +33,7 @@ using namespace std;
  * @param rotation       Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0)
  * @return un tuple de deux points correspondant à un coté du cylindre
  */
-const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur, float rotation){
+const tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float hauteur, float rotation){
 
     vector<float> x(NM * 2); // NM --> taille du nombre de subdivision d'une base * 2 (base du bas + base du haut)
     vector<float> y(NM * 2);
@@ -91,7 +91,7 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
 
     Point p1 = Point(x[NM*2-1], y[NM*2-1], z[NM*2-1]);
     Point p2 = Point(x[NM], y[NM], z[NM]);
-    std::tuple<Point, Point> tuplePointsBaseCorps(p1, p2);
+    tuple<Point, Point> tuplePointsBaseCorps(p1, p2);
 
     return tuplePointsBaseCorps;
 }
@@ -179,7 +179,6 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
     vector<float> y(NM * NP);
     vector<float> z(NM * NP);
 
-    //float fSphere[NP][NM][4];
     vector<vector<vector<float>>> fSphere(NP, vector<vector<float>>(NM, vector<float>(4)));
 
     for(int j = 0; j < NP; j++)
@@ -400,7 +399,7 @@ const void Dessin::Criniere(float rayonSphere)
  */
 const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float coeffX, float coeffZ, float decalageSX, float decalageSZ)
 {
-    float coordPoints[6][3] = {
+    vector<vector<float>> coordPoints{
         {0, 0, 0},
         {longueurX, 0, 0},
         {0, 0, longueurZ},
@@ -467,7 +466,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
     const float rotationP1 = 4.5;
     const float rotationP2 = 0.5;
 
-    float coordPoints[6][3] = {
+    vector<vector<float>> coordPoints{
         {0, 0, rayonCou},
         {static_cast<float>(rayonCou*cos(rotationP1*M_PI/5)), 0, static_cast<float>(rayonCou*sin(rotationP1*M_PI/5))},
         {static_cast<float>(rayonCou*cos(rotationP2*M_PI/5)), 0, static_cast<float>(rayonCou*sin(rotationP2*M_PI/5))},
@@ -534,7 +533,7 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
     const float rotationP2 = 0.5;
 
     //Le code créé un prisme, le cinquième et sixième point sont au même endroit pour faire un tétraèdre
-    float coordPoints[6][3] = {
+    vector<vector<float>> coordPoints{
         {0, 0, rayonVersBouche*coeffBoucheZ + decalageZ},
         {static_cast<float>(rayonVersBouche*cos(rotationP1*M_PI/5)*boucheCoeffX), 0, static_cast<float>(rayonVersBouche*sin(rotationP1*M_PI/5))},
         {static_cast<float>(rayonVersBouche*cos(rotationP2*M_PI/5)*boucheCoeffX), 0, static_cast<float>(rayonVersBouche*sin(rotationP2*M_PI/5))},
@@ -595,17 +594,17 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
  * @param hauteur       Hauteur de la première partie de la queue
  * @param coeff        Coefficient d'agrandissement de la surface haute de la première partie de la queue par rapport à la surface basse sur les axes X et Z (optionnelle, défaut: 1)
  */
-const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff){
+const void Dessin::PremierePartieQueue(float longueurRayonCorps, tuple<Point, Point> deuxPointsBaseCorps, float hauteur, float coeff){
 
     /*  longueurRayonCorps² = moitieLongueurCoteCorps² + longueur²
     --> longueur² = longueurRayonCorps² - moitieLongueurCoteCorps²
     --> longueur = sqrt(longueurRayonCorps² - moitieLongueurCoteCorps²)*/
     //float longueur = sqrt(longueurRayonCorps*longueurRayonCorps - longueurCoteCorps/2*longueurCoteCorps/2);
 
-    Point p1 = std::get<0>(deuxPointsBaseCorps);
-    Point p2 = std::get<1>(deuxPointsBaseCorps);
+    Point p1 = get<0>(deuxPointsBaseCorps);
+    Point p2 = get<1>(deuxPointsBaseCorps);
 
-    float coordPoints[6][3] = {
+    vector<vector<float>> coordPoints{
         {0, 0, 0},
         {static_cast<float>(p1.x), 0, static_cast<float>(p1.z)},
         {static_cast<float>(p2.x), 0, static_cast<float>(p2.z)},
@@ -669,12 +668,12 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
  * @param decalageSX    Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0)
  * @param decalageSZ    Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0)
  */
-const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float coeffX, float coeffZ, float decalageSX, float decalageSZ){
+const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float hauteur, tuple<Point, Point> deuxPointsBaseCorps, float coeffX, float coeffZ, float decalageSX, float decalageSZ){
 
-    Point p1 = std::get<0>(deuxPointsBaseCorps);
-    Point p2 = std::get<1>(deuxPointsBaseCorps);
+    Point p1 = get<0>(deuxPointsBaseCorps);
+    Point p2 = get<1>(deuxPointsBaseCorps);
 
-    float coordPoints[6][3] = {
+    vector<vector<float>> coordPoints{
         {0, 0, 0},
         {static_cast<float>(p1.x), 0, static_cast<float>(p1.z)},
         {static_cast<float>(p2.x), 0, static_cast<float>(p2.z)},
@@ -738,12 +737,12 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
  * @param decalageSX    Décalage sur l'axe X du point du sommet (optionnelle, défaut: 0)
  * @param decalageSZ    Décalage sur l'axe Z du point du sommet (optionnelle, défaut: 0)
  */
-const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, std::tuple<Point, Point> deuxPointsBaseCorps, float decalageBX, float decalageBZ, float decalageSX, float decalageSZ){
+const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float hauteur, tuple<Point, Point> deuxPointsBaseCorps, float decalageBX, float decalageBZ, float decalageSX, float decalageSZ){
 
-    Point p1 = std::get<0>(deuxPointsBaseCorps);
-    Point p2 = std::get<1>(deuxPointsBaseCorps);
+    Point p1 = get<0>(deuxPointsBaseCorps);
+    Point p2 = get<1>(deuxPointsBaseCorps);
 
-    float coordPoints[4][3] = {
+    vector<vector<float>> coordPoints{
         {decalageBX, 0, decalageBZ},
         {static_cast<float>(p1.x), 0, static_cast<float>(p1.z)},
         {static_cast<float>(p2.x), 0, static_cast<float>(p2.z)},
@@ -820,7 +819,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
     if(sens)
     {
-        float coordPoints[6][3] = {
+        vector<vector<float>> coordPoints{
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
@@ -874,7 +873,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     }
     else
     {
-        float coordPoints[6][3] = {
+        vector<vector<float>> coordPoints{
             {0, 0, 0},
             {longueurX, 0, 0},
             {0, 0, longueurZ},
@@ -1009,7 +1008,7 @@ const void Dessin::Cube(float taille)
  */
 const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, float decalageBX, float decalageBZ, float decalageSX, float decalageSZ)
 {
-    float coordPoints[4][3] = {
+    vector<vector<float>> coordPoints{
         {decalageBX, 0, decalageBZ},
         {longueurX, 0, 0},
         {0, 0, longueurZ},

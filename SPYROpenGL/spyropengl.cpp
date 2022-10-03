@@ -27,6 +27,8 @@
 #include "Montage.h"
 #include "IntermittentDuSpectacle.h"
 #include "Textures.h"
+using namespace std;
+#include <vector>
 
 #include <cstdlib>
 #include <math.h>
@@ -58,8 +60,8 @@ bool sensMontantBouche = false;  //false = vers le haut, true = vers le bas
 bool SPACE_PRESSED = false;
 
 // Threads pour jouer de la musique ou des sons
-std::thread bgMusic;
-std::thread voice;
+thread bgMusic;
+thread voice;
 
 /**
  * @brief Valeur du champ de vision
@@ -146,7 +148,7 @@ int main(int argc,char **argv)
     /***************************************************************/
     /***** L'intermittent du spectacle joue la musique de fond *****/
     /***************************************************************/
-    bgMusic = std::thread(IntermittentDuSpectacle::JoueDeLaMusique);
+    bgMusic = thread(IntermittentDuSpectacle::JoueDeLaMusique);
 
     /* Entrée dans la boucle principale glut */
     glutMainLoop();
@@ -185,11 +187,11 @@ void affichage()
 
     if (showSkybox)
     {
-        float x[nombreFacesSkybox * nombreFacesSkybox]{};
-        float y[nombreFacesSkybox*nombreFacesSkybox]{};
-        float z[nombreFacesSkybox*nombreFacesSkybox]{};
+        vector<float> x(nombreFacesSkybox*nombreFacesSkybox);
+        vector<float> y(nombreFacesSkybox*nombreFacesSkybox);
+        vector<float> z(nombreFacesSkybox*nombreFacesSkybox);
 
-        float fSphere[nombreFacesSkybox][nombreFacesSkybox][4]{};
+        vector<vector<vector<double>>> fSphere(nombreFacesSkybox, vector<vector<double>>(nombreFacesSkybox, vector<double>(4)));
 
         for(int j = 0; j < nombreFacesSkybox; j++)
         {
@@ -407,7 +409,7 @@ void clavier(unsigned char touche,int x,int y)
                     voice.~thread();
                 }
                 bool* PTR_SPACE_PRESSED = &SPACE_PRESSED;
-                voice = std::thread(IntermittentDuSpectacle::CrieSurLaVoiePublique, PTR_SPACE_PRESSED);
+                voice = thread(IntermittentDuSpectacle::CrieSurLaVoiePublique, PTR_SPACE_PRESSED);
             }
         }
             break;
