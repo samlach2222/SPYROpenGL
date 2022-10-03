@@ -41,8 +41,8 @@ const int tailleSkybox = 14;
 const int nombreFacesSkybox = 30;
 const bool showSkybox = true;  //DEBUG : Désactiver permet une plus grande liberté de mouvement
 char presse;
-int anglex;
-int angley;
+GLfloat anglex;
+GLfloat angley;
 int x;
 int y;
 int xold;
@@ -155,7 +155,6 @@ int main(int argc,char **argv)
 
 void affichage()
 {
-    int i,j;
     /* effacement de l'image avec la couleur de fond */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glShadeModel(GL_SMOOTH);
@@ -186,29 +185,30 @@ void affichage()
 
     if (showSkybox)
     {
-        float x[nombreFacesSkybox*nombreFacesSkybox];
-        float y[nombreFacesSkybox*nombreFacesSkybox];
-        float z[nombreFacesSkybox*nombreFacesSkybox];
+        float x[nombreFacesSkybox * nombreFacesSkybox]{};
+        float y[nombreFacesSkybox*nombreFacesSkybox]{};
+        float z[nombreFacesSkybox*nombreFacesSkybox]{};
 
-        float fSphere[nombreFacesSkybox][nombreFacesSkybox][4];
+        float fSphere[nombreFacesSkybox][nombreFacesSkybox][4]{};
 
         for(int j = 0; j < nombreFacesSkybox; j++)
         {
             for(int i = 0; i < nombreFacesSkybox; i++)
             {
-                x[i+j*nombreFacesSkybox] = tailleSkybox*cos(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1));
-                y[i+j*nombreFacesSkybox] = tailleSkybox*sin(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1));
-                z[i+j*nombreFacesSkybox] = tailleSkybox*sin(-M_PI/2+j*M_PI/(nombreFacesSkybox-1));
+				// convert double to float
+                x[i+j*nombreFacesSkybox] = (float) (tailleSkybox*cos(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1)));
+                y[i+j*nombreFacesSkybox] = (float) (tailleSkybox*sin(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1)));
+                z[i+j*nombreFacesSkybox] = (float) (tailleSkybox*sin(-M_PI/2+j*M_PI/(nombreFacesSkybox-1)));
             }
         }
         for(int j = 0; j < nombreFacesSkybox - 1; j++)
         {
             for(int i = 0; i < nombreFacesSkybox; i++)
             {
-                fSphere[j][i][0] = ((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox;
-                fSphere[j][i][1] = ((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox;
-                fSphere[j][i][2] = i+(j+1)*nombreFacesSkybox;
-                fSphere[j][i][3] = i+j*nombreFacesSkybox;
+                fSphere[j][i][0] = (float) (((i+1)%nombreFacesSkybox) + j*nombreFacesSkybox);
+                fSphere[j][i][1] = (float) (((i+1)%nombreFacesSkybox) + (j+1)*nombreFacesSkybox);
+                fSphere[j][i][2] = (float) (i+(j+1)*nombreFacesSkybox);
+                fSphere[j][i][3] = (float) (i+j*nombreFacesSkybox);
 
                 glPushMatrix();
                 glRotatef(90,-1,0,0);
@@ -330,16 +330,16 @@ void clavier(unsigned char touche,int x,int y)
             break;
         case 'z':
             //Zoom
-            champDeVision -= 0.05;
+            champDeVision -= 0.05f;
             if (champDeVision < 0.05){
                 //Zoom maximum
-                champDeVision = 0.05;
+                champDeVision = 0.05f;
             }
             glutPostRedisplay();
             break;
         case 'Z':
             //Dézoom
-            champDeVision += 0.05;
+            champDeVision += 0.05f;
             if (champDeVision > 6){
                 //Dézoom maximum
                 champDeVision = 6;
@@ -347,50 +347,50 @@ void clavier(unsigned char touche,int x,int y)
             glutPostRedisplay();
             break;
         case 'i':
-            translationY += 0.05;
+            translationY += 0.05f;
             if (showSkybox && translationY > 0.2){
                 //Translation maximum
-                translationY = 0.2;
+                translationY = 0.2f;
             }
             glutPostRedisplay();
             break;
         case 'k':
-            translationY -= 0.05;
+            translationY -= 0.05f;
             if (showSkybox && translationY < -0.2){
                 //Translation maximum
-                translationY = -0.2;
+                translationY = -0.2f;
             }
             glutPostRedisplay();
             break;
         case 'j':
-            translationX -= 0.05;
+            translationX -= 0.05f;
             if (showSkybox && translationX < -0.2){
                 //Translation maximum
-                translationX = -0.2;
+                translationX = -0.2f;
             }
             glutPostRedisplay();
             break;
         case 'J':
-            translationZ -= 0.05;
+            translationZ -= 0.05f;
             if (showSkybox && translationZ < -0.2){
                 //Translation maximum
-                translationZ = -0.2;
+                translationZ = -0.2f;
             }
             glutPostRedisplay();
             break;
         case 'l':
-            translationX += 0.05;
+            translationX += 0.05f;
             if (showSkybox && translationX > 0.2){
                 //Translation maximum
-                translationX = 0.2;
+                translationX = 0.2f;
             }
             glutPostRedisplay();
             break;
         case 'L':
-            translationZ += 0.05;
+            translationZ += 0.05f;
             if (showSkybox && translationZ > 0.2){
                 //Translation maximum
-                translationZ = 0.2;
+                translationZ = 0.2f;
             }
             glutPostRedisplay();
             break;

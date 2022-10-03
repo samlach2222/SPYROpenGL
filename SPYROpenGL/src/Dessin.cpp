@@ -42,8 +42,8 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)
     {
-        x[i] = rayon*cos(2*i*M_PI/NM + rotation*M_PI/NM);  //Si rotation est différent de 0, "décale" les points sur le cercle implicitement utilisé pour avoir les points des deux bases
-        z[i] = rayon*sin(2*i*M_PI/NM + rotation*M_PI/NM);
+        x[i] = (float) (rayon*cos(2*i*M_PI/NM + rotation*M_PI/NM));  //Si rotation est différent de 0, "décale" les points sur le cercle implicitement utilisé pour avoir les points des deux bases
+        z[i] = (float) (rayon*sin(2*i*M_PI/NM + rotation*M_PI/NM));
 
         if (i < NM){  //Base du bas
             y[i] = 0;
@@ -57,7 +57,7 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
     glBegin(GL_POLYGON);
     for(int i = 0; i < NM; i++)
     {
-        glColor3f(0.40784, 0.19607, 0.50980);
+        glColor3f(0.40784f, 0.19607f, 0.50980f);
         glVertex3f(x[i], y[i], z[i]);
     }
     glEnd();
@@ -66,7 +66,7 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
     glBegin(GL_POLYGON);
     for(int i = NM; i < NM*2; i++)
     {
-        glColor3f(0.40784, 0.19607, 0.50980);
+        glColor3f(0.40784f, 0.19607f, 0.50980f);
         glVertex3f(x[i], y[i], z[i]);
     }
     glEnd();
@@ -76,11 +76,11 @@ const std::tuple<Point, Point> Dessin::Cylindre(int NM, float rayon, float haute
         glBegin(GL_POLYGON);
             if(i == 1 || i == 2)
             {
-                glColor3f(0.99607+0.05, 0.70196+0.05, 0.31372+0.05);
+                glColor3f(0.99607f+0.05f, 0.70196f+0.05f, 0.31372f+0.05f);
             }
             else
             {
-               glColor3f(0.40784, 0.19607, 0.50980);
+               glColor3f(0.40784f, 0.19607f, 0.50980f);
             }
             glVertex3f(x[i], y[i], z[i]);
             glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
@@ -114,13 +114,13 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
     for(int i = 0; i < NM*2; i++)
     {
         if (i < NM){  //Base du bas
-            x[i] = rayon*cos(2*i*M_PI/NM + rotation*M_PI/NM);  //Si rotation est différent de 0, "décale" les points sur le cercle implicitement utilisé pour avoir les points des deux bases
+            x[i] = (float)(rayon*cos(2*i*M_PI/NM + rotation*M_PI/NM));  //Si rotation est différent de 0, "décale" les points sur le cercle implicitement utilisé pour avoir les points des deux bases
             y[i] = 0;
-            z[i] = rayon*sin(2*i*M_PI/NM + rotation*M_PI/NM);
+            z[i] = (float)(rayon*sin(2*i*M_PI/NM + rotation*M_PI/NM));
         }
         else{  //Base du haut
-            x[i] = rayon*coeff*cos(2*i*M_PI/NM + rotation*M_PI/NM);
-            y[i] = hauteur+rayon*coeff*sin(2*i*M_PI/NM + rotation*M_PI/NM);
+            x[i] = (float)(rayon*coeff*cos(2*i*M_PI/NM + rotation*M_PI/NM));
+            y[i] = (float)(hauteur+rayon*coeff*sin(2*i*M_PI/NM + rotation*M_PI/NM));
             z[i] = -hauteur;
         }
     }
@@ -129,7 +129,7 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
     glBegin(GL_POLYGON);
     for(int i = 0; i < NM; i++)
     {
-        glColor3f(0.40784, 0.19607, 0.50980);
+        glColor3f(0.40784f, 0.19607f, 0.50980f);
         glVertex3f(x[i], y[i], z[i]);
     }
     glEnd();
@@ -138,7 +138,7 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
     glBegin(GL_POLYGON);
     for(int i = NM; i < NM*2; i++)
     {
-        glColor3f(0.40784, 0.19607, 0.50980);
+        glColor3f(0.40784f, 0.19607f, 0.50980f);
         glVertex3f(x[i], y[i], z[i]);
     }
     glEnd();
@@ -148,11 +148,11 @@ const void Dessin::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rot
         glBegin(GL_POLYGON);
             if(i == 1 || i == 2)
             {
-                glColor3f(0.99607+0.05, 0.70196+0.05, 0.31372+0.05);
+                glColor3f(0.99607f+0.05f, 0.70196f+0.05f, 0.31372f+0.05f);
             }
             else
             {
-               glColor3f(0.40784, 0.19607, 0.50980);
+               glColor3f(0.40784f, 0.19607f, 0.50980f);
             }
             glVertex3f(x[i], y[i], z[i]);
             glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);
@@ -186,19 +186,19 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
     {
         for(int i = 0; i < NM; i++)
         {
-            x[i+j*NM] = taille*cos(2*i*M_PI/NM)*cos(-M_PI/2+j*M_PI/(NP-1));
-            y[i+j*NM] = taille*sin(2*i*M_PI/NM)*cos(-M_PI/2+j*M_PI/(NP-1));
-            z[i+j*NM] = taille*sin(-M_PI/2+j*M_PI/(NP-1));
+            x[i+j*NM] = (float)(taille*cos(2*i*M_PI/NM)*cos(-M_PI/2+j*M_PI/(NP-1)));
+            y[i+j*NM] = (float)(taille*sin(2*i*M_PI/NM)*cos(-M_PI/2+j*M_PI/(NP-1)));
+            z[i+j*NM] = (float)(taille*sin(-M_PI/2+j*M_PI/(NP-1)));
         }
     }
     for(int j = 0; j < NP -1; j++)
     {
         for(int i = 0; i < NM; i++)
         {
-            fSphere[j][i][0] = ((i+1)%NM) + j*NM;
-            fSphere[j][i][1] = ((i+1)%NM) + (j+1)*NM;
-            fSphere[j][i][2] = i+(j+1)*NM;
-            fSphere[j][i][3] = i+j*NM;
+            fSphere[j][i][0] = (float)(((i+1)%NM) + j*NM);
+            fSphere[j][i][1] = (float)(((i+1)%NM) + (j+1)*NM);
+            fSphere[j][i][2] = (float)(i+(j+1)*NM);
+            fSphere[j][i][3] = (float)(i+j*NM);
 
             glPushMatrix();
                 glRotatef(90,-1,0,0);
@@ -245,7 +245,7 @@ const void Dessin::Sphere(float taille, int NP, int NM, bool yeux)
                 else
                 {
                     glBegin(GL_POLYGON);
-                        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+                        glColor3f(0.40784f+0.05f, 0.19607f+0.05f, 0.50980f+0.05f);
                         glVertex3f(x[((i+1)%NM) + j*NM], y[((i+1)%NM) + j*NM], z[((i+1)%NM) + j*NM]);
 
                         glVertex3f(x[((i+1)%NM) + (j+1)*NM], y[((i+1)%NM) + (j+1)*NM], z[((i+1)%NM) + (j+1)*NM]);
@@ -274,14 +274,14 @@ const void Dessin::Cone(float hauteur, float rayon, int NM)
     // dessin de la base
     for(int i = 0; i < NM; i++)
     {
-        x[i] = rayon*cos(2*i*M_PI/NM);
-        z[i] = rayon*sin(2*i*M_PI/NM);
+        x[i] = (float)(rayon*cos(2*i*M_PI/NM));
+        z[i] = (float)(rayon*sin(2*i*M_PI/NM));
     }
 
     glBegin(GL_POLYGON);
     for(int i = 0; i < NM; i++)
     {
-        glColor3f(0.99607, 0.70196, 0.31372);
+        glColor3f(0.99607f, 0.70196f, 0.31372f);
         glVertex3f(x[i], 0, z[i]);  // y toujours égal à 0 car le pentagone est en 2D
     }
     glEnd();
@@ -290,13 +290,13 @@ const void Dessin::Cone(float hauteur, float rayon, int NM)
     for(int i = 0; i < NM; i++)
     {
         glBegin(GL_POLYGON);
-            glColor3f(0.99607, 0.70196, 0.31372);
+            glColor3f(0.99607f, 0.70196f, 0.31372f);
             glVertex3f(x[i], 0, z[i]); // Premier point du triangle
 
-            glColor3f(0.99607, 0.70196, 0.31372);
+            glColor3f(0.99607f, 0.70196f, 0.31372f);
             glVertex3f(x[(i+1)%NM], 0, z[(i+1)%NM]); // Deuxième point du triangle
 
-            glColor3f(0.99607, 0.70196, 0.31372);
+            glColor3f(0.99607f, 0.70196f, 0.31372f);
             glVertex3f(0, hauteur, 0);  // Sommet du triangle
         glEnd();
     }
@@ -329,9 +329,9 @@ const void Dessin::Criniere(float rayonSphere)
 
         Je construit mon triangle avec le point du bas en 0,0,0 afin d'avoir des coordonnées faciles.
     */
-    float x;
-    float y;
-    float z;
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
 
     /*
         J'effectue une translation afin de positionner mon triangle :
@@ -345,7 +345,7 @@ const void Dessin::Criniere(float rayonSphere)
             \|
     */
 
-    unsigned char textureCriniereTransparente[Textures::widthCriniere*Textures::heightCriniere*4];
+    unsigned char textureCriniereTransparente[Textures::widthCriniere * Textures::heightCriniere * 4]{};
     for (unsigned int i = 0; i < Textures::widthCriniere*Textures::heightCriniere; i++){
         unsigned char bleuCourant = textureCriniere[i*3 + 2];
 
@@ -367,19 +367,19 @@ const void Dessin::Criniere(float rayonSphere)
     glEnable(GL_TEXTURE_2D);
 
     glPushMatrix();
-        glTranslatef(0,-rayonSphere*2.0/4, -rayonSphere);
+        glTranslatef(0,-rayonSphere*2.0f/4, -rayonSphere);
         glBegin(GL_POLYGON);
             glTexCoord2f(1,1);
             glVertex3f(0, 0, 0); // Point bas droit (à l'origine)
 
             glTexCoord2f(1,0);
-            glVertex3f(0, 1.7*rayonSphere, 0); // Point haut droit
+            glVertex3f(0, 1.7f*rayonSphere, 0); // Point haut droit
 
             glTexCoord2f(0,0);
-            glVertex3f(0, 1.7*rayonSphere, 1.8*rayonSphere); // Point haut gauche
+            glVertex3f(0, 1.7f*rayonSphere, 1.8f*rayonSphere); // Point haut gauche
 
             glTexCoord2f(0,1);
-            glVertex3f(0, 0, 1.8*rayonSphere); // Point bas gauche
+            glVertex3f(0, 0, 1.8f*rayonSphere); // Point bas gauche
         glEnd();
     glPopMatrix();
 
@@ -411,7 +411,7 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+        glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -419,7 +419,7 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
 
     //base haut
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+        glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -427,7 +427,7 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+        glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -436,7 +436,7 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+        glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -445,7 +445,7 @@ const void Dessin::Prisme(float longueurX, float longueurZ, float hauteur, float
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+        glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -478,7 +478,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+        glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -486,7 +486,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 
     //base haut
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+        glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -494,7 +494,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+        glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -503,7 +503,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+        glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -512,7 +512,7 @@ const void Dessin::Bouche(float rayonCou, float hauteur, float coeffX, float coe
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+        glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -546,7 +546,7 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+        glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -554,7 +554,7 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
 
     //base haut
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+        glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -562,7 +562,7 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+        glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -571,7 +571,7 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+        glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -580,7 +580,7 @@ const void Dessin::Nez(float rayonVersBouche, float hauteur, float boucheCoeffX,
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+        glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -616,7 +616,7 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+        glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -624,7 +624,7 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
 
     //base haut
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+        glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -632,7 +632,7 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+        glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -641,7 +641,7 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+        glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -650,7 +650,7 @@ const void Dessin::PremierePartieQueue(float longueurRayonCorps, std::tuple<Poin
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+        glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -685,7 +685,7 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*0, 0.70196+0.05*0, 0.31372+0.05*0);
+        glColor3f(0.99607f+0.05f*0, 0.70196f+0.05f*0, 0.31372f+0.05f*0);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -693,7 +693,7 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
 
     //base haut
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*1, 0.70196+0.05*1, 0.31372+0.05*1);
+        glColor3f(0.99607f+0.05f*1, 0.70196f+0.05f*1, 0.31372f+0.05f*1);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -701,7 +701,7 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*2, 0.70196+0.05*2, 0.31372+0.05*2);
+        glColor3f(0.99607f+0.05f*2, 0.70196f+0.05f*2, 0.31372f+0.05f*2);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -710,7 +710,7 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*3, 0.70196+0.05*3, 0.31372+0.05*3);
+        glColor3f(0.99607f+0.05f*3, 0.70196f+0.05f*3, 0.31372f+0.05f*3);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -719,7 +719,7 @@ const void Dessin::DeuxiemePartieQueue(float longueurX, float longueurZ, float h
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*4, 0.70196+0.05*4, 0.31372+0.05*4);
+        glColor3f(0.99607f+0.05f*4, 0.70196f+0.05f*4, 0.31372f+0.05f*4);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -752,7 +752,7 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*3, 0.70196+0.05*3, 0.31372+0.05*3);
+        glColor3f(0.99607f+0.05f*3, 0.70196f+0.05f*3, 0.31372f+0.05f*3);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -760,7 +760,7 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*2, 0.70196+0.05*2, 0.31372+0.05*2);
+        glColor3f(0.99607f+0.05f*2, 0.70196f+0.05f*2, 0.31372f+0.05f*2);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
@@ -768,7 +768,7 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*1, 0.70196+0.05*1, 0.31372+0.05*1);
+        glColor3f(0.99607f+0.05f*1, 0.70196f+0.05f*1, 0.31372f+0.05f*1);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -776,7 +776,7 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*0, 0.70196+0.05*0, 0.31372+0.05*0);
+        glColor3f(0.99607f+0.05f*0, 0.70196f+0.05f*0, 0.31372f+0.05f*0);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -794,15 +794,15 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
  */
 const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
-    float h = sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypoténuse du triangle du dessus
+    float h = (float) sqrt(longueurX*longueurX + longueurZ*longueurZ); // hypoténuse du triangle du dessus
     float t = agrandissement;
-    float tx = sqrt(t*t/2);
+    float tx = (float) sqrt(t*t/2);
 
     // longueurs du triangle de base et de l'agrandit
-    float hypotenuseDeBase = sqrt(2*(longueurX * longueurX));
+    float hypotenuseDeBase = (float) sqrt(2*(longueurX * longueurX));
     float hypotenuseAgrandie = largeurDUnCoteDuCorps;
     float coteDeBase = longueurX;
-    float coteAgrandie = sqrt(pow(hypotenuseAgrandie,2)/2);
+    float coteAgrandie = (float) sqrt(pow(hypotenuseAgrandie,2)/2);
 
     // coefficients d'agrandissement
     float coefficientAgrandissement = hypotenuseAgrandie/hypotenuseDeBase;
@@ -810,12 +810,12 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     float diagonaleAgrandissement = (coteDeBase*(hypotenuseAgrandie/hypotenuseDeBase))-coteDeBase;
 
     // calculs vecteurs de translation :
-    float translation = sqrt(pow(diagonaleAgrandissement,2) + pow((agrandissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75;
+    float translation = (float) (sqrt(pow(diagonaleAgrandissement,2) + pow((agrandissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75);
 
     // calculs de rotation de la face du dessus
-    float rotationAxeVertical = sqrt(pow(largeurDUnCoteDuCorps,2) - 0.2*0.2);
+    float rotationAxeVertical = (float) (sqrt(pow(largeurDUnCoteDuCorps,2) - 0.2*0.2));
     float rotationAxeVerticalMoitie = rotationAxeVertical/2;
-    float rotationAxeHorizontal = hypotenuseAgrandie - 0.2;
+    float rotationAxeHorizontal = hypotenuseAgrandie - 0.2f;
     float rotationAxeHorizontalMoitie = rotationAxeHorizontal/2;
 
     if(sens)
@@ -831,7 +831,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //base bas
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+            glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
             glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -839,7 +839,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //base haut
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+            glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -847,7 +847,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //côté hypothénuse
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+            glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -856,7 +856,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //côté axe x
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+            glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
             glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -865,7 +865,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //côté axe z
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+            glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -893,7 +893,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //base bas
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+            glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
             glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -901,7 +901,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //base haut
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+            glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -909,7 +909,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //côté hypothénuse
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+            glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
@@ -918,7 +918,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //côté axe x
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+            glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
             glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
             glVertex3f(coordPoints[4][0], coordPoints[4][1], coordPoints[4][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -927,7 +927,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 
         //côté axe z
         glBegin(GL_POLYGON);
-            glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+            glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
             glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
             glVertex3f(coordPoints[5][0], coordPoints[5][1], coordPoints[5][2]);
             glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
@@ -944,7 +944,7 @@ const void Dessin::Cube(float taille)
 {
     // base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+        glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
         glVertex3f(0, 0, 0);
         glVertex3f(0, 0, taille);
         glVertex3f(taille, 0, taille);
@@ -953,7 +953,7 @@ const void Dessin::Cube(float taille)
 
     // base haut
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+        glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
         glVertex3f(0, taille, 0);
         glVertex3f(0, taille, taille);
         glVertex3f(taille, taille, taille);
@@ -962,7 +962,7 @@ const void Dessin::Cube(float taille)
 
     // face devant
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+        glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
         glVertex3f(0, 0, taille);
         glVertex3f(taille, 0, taille);
         glVertex3f(taille, taille, taille);
@@ -971,7 +971,7 @@ const void Dessin::Cube(float taille)
 
     // face droite
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+        glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
         glVertex3f(taille, 0, taille);
         glVertex3f(taille, 0, 0);
         glVertex3f(taille, taille, 0);
@@ -980,7 +980,7 @@ const void Dessin::Cube(float taille)
 
     // face derrière
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*4, 0.19607+0.05*4, 0.50980+0.05*4);
+        glColor3f(0.40784f+0.05f*4, 0.19607f+0.05f*4, 0.50980f+0.05f*4);
         glVertex3f(taille, 0, 0);
         glVertex3f(0, 0, 0);
         glVertex3f(0, taille, 0);
@@ -989,7 +989,7 @@ const void Dessin::Cube(float taille)
 
     // face gauche
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*5, 0.19607+0.05*5, 0.50980+0.05*5);
+        glColor3f(0.40784f+0.05f*5, 0.19607f+0.05f*5, 0.50980f+0.05f*5);
         glVertex3f(0, 0, 0);
         glVertex3f(0, 0, taille);
         glVertex3f(0, taille, taille);
@@ -1018,7 +1018,7 @@ const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, fl
 
     //base bas
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*0, 0.19607+0.05*0, 0.50980+0.05*0);
+        glColor3f(0.40784f+0.05f*0, 0.19607f+0.05f*0, 0.50980f+0.05f*0);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -1026,7 +1026,7 @@ const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, fl
 
     //côté hypothénuse
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*1, 0.19607+0.05*1, 0.50980+0.05*1);
+        glColor3f(0.40784f+0.05f*1, 0.19607f+0.05f*1, 0.50980f+0.05f*1);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
@@ -1034,7 +1034,7 @@ const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, fl
 
     //côté axe x
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*2, 0.19607+0.05*2, 0.50980+0.05*2);
+        glColor3f(0.40784f+0.05f*2, 0.19607f+0.05f*2, 0.50980f+0.05f*2);
         glVertex3f(coordPoints[1][0], coordPoints[1][1], coordPoints[1][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -1042,7 +1042,7 @@ const void Dessin::Tetraedre(float longueurX, float longueurZ, float hauteur, fl
 
     //côté axe z
     glBegin(GL_POLYGON);
-        glColor3f(0.40784+0.05*3, 0.19607+0.05*3, 0.50980+0.05*3);
+        glColor3f(0.40784f+0.05f*3, 0.19607f+0.05f*3, 0.50980f+0.05f*3);
         glVertex3f(coordPoints[2][0], coordPoints[2][1], coordPoints[2][2]);
         glVertex3f(coordPoints[3][0], coordPoints[3][1], coordPoints[3][2]);
         glVertex3f(coordPoints[0][0], coordPoints[0][1], coordPoints[0][2]);
@@ -1072,7 +1072,7 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
 
     // base bas (0,1,2,3)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*0, 0.70196+0.05*0, 0.31372+0.05*0);
+        glColor3f(0.99607f+0.05f*0, 0.70196f+0.05f*0, 0.31372f+0.05f*0);
         glVertex3f(0, 0, 0);
         glVertex3f(0-ecart, 0, largeur);
         glVertex3f(longueur+ecart, 0, largeur);
@@ -1081,7 +1081,7 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
 
     // base haut (4,5,6,7)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*1, 0.70196+0.05*1, 0.31372+0.05*1);
+        glColor3f(0.99607f+0.05f*1, 0.70196f+0.05f*1, 0.31372f+0.05f*1);
         glVertex3f(0, hauteur, 0);
         glVertex3f(0-ecart, hauteur, largeur);
         glVertex3f(longueur+ecart, hauteur, largeur);
@@ -1090,7 +1090,7 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
 
     // face devant (1,2,6,5)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*2, 0.70196+0.05*2, 0.31372+0.05*2);
+        glColor3f(0.99607f+0.05f*2, 0.70196f+0.05f*2, 0.31372f+0.05f*2);
         glVertex3f(0-ecart, 0, largeur);
         glVertex3f(longueur+ecart, 0, largeur);
         glVertex3f(longueur+ecart, hauteur, largeur);
@@ -1099,7 +1099,7 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
 
     // face droite (2,3,7,6)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*3, 0.70196+0.05*3, 0.31372+0.05*3);
+        glColor3f(0.99607f+0.05f*3, 0.70196f+0.05f*3, 0.31372f+0.05f*3);
         glVertex3f(longueur+ecart, 0, largeur);
         glVertex3f(longueur, 0, 0);
         glVertex3f(longueur, hauteur, 0);
@@ -1108,7 +1108,7 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
 
     // face derrière (3,0,4,7)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*4, 0.70196+0.05*4, 0.31372+0.05*4);
+        glColor3f(0.99607f+0.05f*4, 0.70196f+0.05f*4, 0.31372f+0.05f*4);
         glVertex3f(longueur, 0, 0);
         glVertex3f(0, 0, 0);
         glVertex3f(0, hauteur, 0);
@@ -1117,7 +1117,7 @@ const void Dessin::PyramideTronquee(float hauteur, float largeur, float longueur
 
     // face gauche (0,1,5,4)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*5, 0.70196+0.05*5, 0.31372+0.05*5);
+        glColor3f(0.99607f+0.05f*5, 0.70196f+0.05f*5, 0.31372f+0.05f*5);
         glVertex3f(0, 0, 0);
         glVertex3f(0-ecart, 0, largeur);
         glVertex3f(0-ecart, hauteur, largeur);
@@ -1150,7 +1150,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
 
     // base bas (0,1,2,3)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*4, 0.70196+0.05*4, 0.31372+0.05*4);
+        glColor3f(0.99607f+0.05f*4, 0.70196f+0.05f*4, 0.31372f+0.05f*4);
         glVertex3f(0, 0, 0);
         glVertex3f(0, 0, largeur);
         glVertex3f(longueur, 0, largeur);
@@ -1159,7 +1159,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
 
     // base gauche (1,4,0)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*3, 0.70196+0.05*3, 0.31372+0.05*3);
+        glColor3f(0.99607f+0.05f*3, 0.70196f+0.05f*3, 0.31372f+0.05f*3);
         glVertex3f(0, 0, largeur);
         glVertex3f(translationX, hauteur, translationZ);
         glVertex3f(0, 0, 0);
@@ -1167,7 +1167,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
 
     // face devant (2,4,1)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*2, 0.70196+0.05*2, 0.31372+0.05*2);
+        glColor3f(0.99607f+0.05f*2, 0.70196f+0.05f*2, 0.31372f+0.05f*2);
         glVertex3f(longueur, 0, largeur);
         glVertex3f(translationX, hauteur, translationZ);
         glVertex3f(0, 0, largeur);
@@ -1175,7 +1175,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
 
     // face droite (3,4,2)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*1, 0.70196+0.05*1, 0.31372+0.05*1);
+        glColor3f(0.99607f+0.05f*1, 0.70196f+0.05f*1, 0.31372f+0.05f*1);
         glVertex3f(longueur, 0, 0);
         glVertex3f(translationX, hauteur, translationZ);
         glVertex3f(longueur, 0, largeur);
@@ -1183,7 +1183,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
 
     // face derrière (0,4,3)
     glBegin(GL_POLYGON);
-        glColor3f(0.99607+0.05*0, 0.70196+0.05*0, 0.31372+0.05*0);
+        glColor3f(0.99607f+0.05f*0, 0.70196f+0.05f*0, 0.31372f+0.05f*0);
         glVertex3f(0, 0, 0);
         glVertex3f(translationX, hauteur, translationZ);
         glVertex3f(longueur, 0, 0);
@@ -1198,7 +1198,7 @@ const void Dessin::Pyramide(float largeur, float longueur, float hauteur, float 
  * @param decalage float Décalage en avant du cou
  */
 const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
-
+	
     vector<float> x(NM * 2); // NM --> taille du nombre de subdivison d'une base * 2 (base du bas + base du haut)
     vector<float> y(NM * 2);
     vector<float> z(NM * 2);
@@ -1206,8 +1206,8 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
     // Remplissage des coordonnées des points dans x et y et z;
     for(int i = 0; i < NM*2; i++)
     {
-        x[i] = rayon*cos(2*i*M_PI/NM -M_PI/NM);
-        z[i] = rayon*sin(2*i*M_PI/NM -M_PI/NM);
+        x[i] = (float)(rayon*cos(2*i*M_PI/NM -M_PI/NM));
+        z[i] = (float)(rayon*sin(2*i*M_PI/NM -M_PI/NM));
 
         if (i < NM){  //Base du bas
             y[i] = 0;
@@ -1222,7 +1222,7 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
     glBegin(GL_POLYGON);
     for(int i = 0; i < NM; i++)
     {
-        glColor3f(0.40784, 0.19607, 0.50980);
+        glColor3f(0.40784f, 0.19607f, 0.50980f);
         glVertex3f(x[i], y[i], z[i]);
     }
     glEnd();
@@ -1231,7 +1231,7 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
     glBegin(GL_POLYGON);
     for(int i = NM; i < NM*2; i++)
     {
-        glColor3f(0.40784, 0.19607, 0.50980);
+        glColor3f(0.40784f, 0.19607f, 0.50980f);
         glVertex3f(x[i], y[i], z[i]);
     }
     glEnd();
@@ -1241,11 +1241,11 @@ const void Dessin::Cou(int NM, float rayon, float hauteur, float decalage){
         glBegin(GL_POLYGON);
             if(i == 3 || i == 2)
             {
-                glColor3f(0.99607+0.05, 0.70196+0.05, 0.31372+0.05);
+                glColor3f(0.99607f+0.05f, 0.70196f+0.05f, 0.31372f+0.05f);
             }
             else
             {
-               glColor3f(0.40784, 0.19607, 0.50980);
+               glColor3f(0.40784f, 0.19607f, 0.50980f);
             }
             glVertex3f(x[i], y[i], z[i]);
             glVertex3f(x[(i+1)%NM], y[(i+1)%NM], z[(i+1)%NM]);

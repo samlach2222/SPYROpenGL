@@ -34,8 +34,8 @@ const void Creation::Jambes(float taille, float hauteur, bool sens, float agrand
 {
     glPushMatrix();
         glRotatef(45,0,-1,0);
-        glTranslatef(-sqrt((taille*taille)/2),taille,0);
-        Dessin::Jambes(sqrt((taille*taille)/2), sqrt((taille*taille)/2), hauteur, sens, agrandissement, largeurDUnCoteDuCorps);
+        glTranslatef((float) -sqrt((taille*taille)/2),taille,0);
+        Dessin::Jambes((float) sqrt((taille*taille)/2), (float) sqrt((taille*taille)/2), hauteur, sens, agrandissement, largeurDUnCoteDuCorps);
     glPopMatrix();
 }
 
@@ -58,8 +58,8 @@ const void Creation::Pieds(float taille)
 
 	glPushMatrix();
         glRotatef(45,0,-1,0);
-        glTranslatef(-sqrt((taille*taille)/2),0,0);
-        Dessin::Prisme(sqrt((taille*taille)/2), sqrt((taille*taille)/2), taille);
+        glTranslatef((float) - sqrt((taille * taille) / 2), 0, 0);
+        Dessin::Prisme((float) sqrt((taille*taille)/2), (float) sqrt((taille*taille)/2), taille);
     glPopMatrix();
 }
 
@@ -73,7 +73,7 @@ const void Creation::Pieds(float taille)
 const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrandissementJambes, float largeurDUnCoteDuCorps)
 {
     glPushMatrix();
-        float hypotenuseDeBase = sqrt(2*(taille * taille));
+        float hypotenuseDeBase = (float) sqrt(2*(taille * taille));
         float hypotenuseAgrandie = largeurDUnCoteDuCorps;
         float ecartEntreCentreEtJambe = (hypotenuseAgrandie-hypotenuseDeBase)/2;
 
@@ -102,12 +102,12 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
 {
     glPushMatrix();
         glPushMatrix();
-            glTranslatef(0,taille + 0.80*hauteurCou,0);
+            glTranslatef(0,taille + 0.80f*hauteurCou,0);
             //Dessin de la tête de SPYRO
             Dessin::Sphere(taille, 5, 5, true);
 
             //Dessin de la crinière de SPYRO
-            Dessin::Criniere(taille*1.3);
+            Dessin::Criniere(taille*1.3f);
 
             //Dessin des cornes de SPYRO
             glPushMatrix();
@@ -143,16 +143,16 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
         glRotatef(180,0,1,0);
 
         //Dessin de la première partie de la queue de SPYRO
-        const float longueurPremierePartieQueue = 0.6;
-        const float coeffPremierePartieQueue = 0.15;
+        const float longueurPremierePartieQueue = 0.6f;
+        const float coeffPremierePartieQueue = 0.15f;
         glPushMatrix();
             //Dessin::Prisme(longueurRayonCorps*taille,longueurRayonCorps*taille,longueurPremierePartieQueue*taille,0.25,0.25);
             Dessin::PremierePartieQueue(longueurRayonCorps*taille, deuxPointsBaseCorps,longueurPremierePartieQueue*taille, coeffPremierePartieQueue);
         glPopMatrix();
 
         //Dessin de la deuxième partie de la queue
-        const float longueurDeuxiemePartieQueue = 0.05;
-        const float coteDeuxiemePartieQueue = longueurRayonCorps*0.2;
+        const float longueurDeuxiemePartieQueue = 0.05f;
+        const float coteDeuxiemePartieQueue = longueurRayonCorps*0.2f;
         glPushMatrix();
             glTranslatef(0,longueurPremierePartieQueue*taille,0);
 
@@ -163,9 +163,9 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
             p2.x = p2.x*coeffPremierePartieQueue;
             p2.z = p2.z*coeffPremierePartieQueue;
             deuxPointsBaseCorps = std::make_tuple(p1, p2);
-            const float ratioDecalageSXToDecalageSZ = 0.726;
-            const float coeffDeuxiemePartieQueue = 1.8;
-            const float decalageS = 0.04;
+            const float ratioDecalageSXToDecalageSZ = 0.726f;
+            const float coeffDeuxiemePartieQueue = 1.8f;
+            const float decalageS = 0.04f;
 
             Dessin::DeuxiemePartieQueue(coteDeuxiemePartieQueue*taille,coteDeuxiemePartieQueue*taille,longueurDeuxiemePartieQueue*taille,deuxPointsBaseCorps,coeffDeuxiemePartieQueue,coeffDeuxiemePartieQueue,-decalageS*taille,decalageS*ratioDecalageSXToDecalageSZ*taille);
             //Pas de glPopMatrix maintenant car il reste la troisième partie de la queue à dessiner
@@ -178,9 +178,9 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
             deuxPointsBaseCorps = std::make_tuple(p1, p2);
             glTranslatef(0, longueurDeuxiemePartieQueue*taille, 0);
 
-            const float longueurTroisiemePartieQueue = 0.1;
+            const float longueurTroisiemePartieQueue = 0.1f;
 
-            Dessin::TroisiemePartieQueue(0.06*taille, 0.06*taille, longueurTroisiemePartieQueue*taille, deuxPointsBaseCorps, -decalageS*taille, decalageS*ratioDecalageSXToDecalageSZ*taille, -0.02*taille, -0.02*taille);
+            Dessin::TroisiemePartieQueue(0.06f*taille, 0.06f*taille, longueurTroisiemePartieQueue*taille, deuxPointsBaseCorps, -decalageS*taille, decalageS*ratioDecalageSXToDecalageSZ*taille, -0.02f*taille, -0.02f*taille);
         glPopMatrix();
     glPopMatrix();
 }
@@ -196,8 +196,8 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
  */
 const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre, float rotationAiles)
 {
-    float angleRotationRadian = atan(ecart/largeur); // TOA
-    float angleRotationDegree = angleRotationRadian*180/M_PI; // Rad --> Deg
+    float angleRotationRadian = (float) atan(ecart/largeur); // TOA
+    float angleRotationDegree = (float) (angleRotationRadian*180/M_PI); // Rad --> Deg
 
     // Aile 1
 
@@ -228,7 +228,7 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             //animation de la seconde partie de l'aile
             glRotatef(rotationAiles/2,0,0,1); // rotation pour battre verticalement
 
-            Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
+            Dessin::Pyramide((float) sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
         glPopMatrix();
     glPopMatrix();
 
@@ -266,7 +266,7 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             //animation de la seconde partie de l'aile
             glRotatef(rotationAiles/2,0,0,-1); // rotation pour battre verticalement
 
-            Dessin::Pyramide(sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, -hauteur, 0);
+            Dessin::Pyramide((float) sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, -hauteur, 0);
         glPopMatrix();
     glPopMatrix();
 }

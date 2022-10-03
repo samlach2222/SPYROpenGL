@@ -18,7 +18,7 @@
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
     #ifdef _WIN32
-    srand(time(NULL));
+    srand((unsigned int) time(NULL));
     int randNum = (rand() % 3) + 1;
     switch(randNum)
     {
@@ -114,7 +114,7 @@ const void IntermittentDuSpectacle::PlaceLaLumiereQuiBouge(int angle)
     GLfloat dir_1[] = {-1, 1, 0}; // direction de la lumière
 
     glPushMatrix();
-        glRotatef(angle, 0, 1, 0);
+        glRotatef((float) angle, 0, 1, 0);
 
         glLightfv(GL_LIGHT1, GL_POSITION, light_position_1);
         glLightfv(GL_LIGHT1, GL_AMBIENT, amb_1);
