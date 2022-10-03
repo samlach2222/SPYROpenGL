@@ -18,48 +18,49 @@
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
     #ifdef _WIN32
-    srand((unsigned int) time(NULL));
-    int randNum = (rand() % 3) + 1;
-    switch(randNum)
-    {
-        case 1 :
-            system("powershell -c (New-Object Media.SoundPlayer 'Ressources\\Audio\\Dark Hollow.wav').PlaySync()");
-            //PlaySound(TEXT("Ressources/Audio/Dark Hollow.wav"), FALSE, SND_ASYNC |SND_LOOP);
-            break;
-        case 2 :
-            system("powershell -c (New-Object Media.SoundPlayer 'Ressources\\Audio\\Dark Hollow.wav').PlaySync()");
-            //PlaySound(TEXT("Ressources/Audio/Enchanted Towers.wav"), FALSE, SND_ASYNC | SND_LOOP);
-            break;
-        case 3 :
-            system("powershell -c (New-Object Media.SoundPlayer 'Ressources\\Audio\\Dark Hollow.wav').PlaySync()");
-            //PlaySound(TEXT("Ressources/Audio/Sgt. Byrd's Theme.wav"), FALSE, SND_ASYNC | SND_LOOP);
-            break;
-    }
+    // Il ne semble pas être possible d'intercepter CTRL-C sur Windows
+    // Le ^ pour ^| est nécessaire car | doit être échappé du CMD
+    system("                                                                \
+        cd Ressources\\Audio &                                              \
+        powershell -c                                                       \
+            FOR () {                                                        \
+                while ($RANDOM_VALUE -eq $LAST_VALUE) {                     \
+                    $RANDOM_VALUE =                                         \
+                        'Dark Hollow.wav',                                  \
+                        'Enchanted Towers.wav',                             \
+                        'Sgt. Byrd''s Theme.wav'                            \
+                        ^| get-random                                       \
+                };                                                          \
+                echo $RANDOM_VALUE;                                         \
+                $LAST_VALUE = $RANDOM_VALUE;                                \
+                (New-Object Media.SoundPlayer $RANDOM_VALUE).PlaySync();    \
+            }                                                               \
+    ");
     #elif __linux__ || __unix || __unix__
-    system("                                                            \
-           cd Ressources/Audio ;                                        \
-           bash -c '                                                    \
-           while : ;                                                    \
-                do while : ;                                            \
-                    do RANDOM_VALUE=$(($RANDOM % 3)) ;                  \
-                    if [[ \"$RANDOM_VALUE\" != \"$LAST_VALUE\" ]] ;     \
-                        then LAST_VALUE=$RANDOM_VALUE ;                 \
-                        break ;                                         \
-                    fi ;                                                \
-                done ;                                                  \
-                case $RANDOM_VALUE in                                   \
-                    0)                                                  \
-                        aplay \"Dark Hollow.wav\" ;                     \
-                        ;;                                              \
-                    1)                                                  \
-                        aplay \"Enchanted Towers.wav\" ;                \
-                        ;;                                              \
-                    2)                                                  \
-                        aplay \"Sgt. Byrd'\"'\"'s Theme.wav\" ;         \
-                        ;;                                              \
-                esac ; LAST_VALUE=$RANDOM_VALUE ;                       \
-           done ;'                                                      \
-           ");
+    system("                                                        \
+        cd Ressources/Audio ;                                       \
+        bash -c '                                                   \
+        while : ;                                                   \
+            do while : ;                                            \
+                do RANDOM_VALUE=$(($RANDOM % 3)) ;                  \
+                if [[ \"$RANDOM_VALUE\" != \"$LAST_VALUE\" ]] ;     \
+                    then LAST_VALUE=$RANDOM_VALUE ;                 \
+                    break ;                                         \
+                fi ;                                                \
+            done ;                                                  \
+            case $RANDOM_VALUE in                                   \
+                0)                                                  \
+                    aplay \"Dark Hollow.wav\" ;                     \
+                    ;;                                              \
+                1)                                                  \
+                    aplay \"Enchanted Towers.wav\" ;                \
+                    ;;                                              \
+                2)                                                  \
+                    aplay \"Sgt. Byrd's Theme.wav\" ;               \
+                    ;;                                              \
+            esac ; LAST_VALUE=$RANDOM_VALUE ;                       \
+        done ;'                                                     \
+    ");
     #endif
 }
 
