@@ -34,8 +34,8 @@ const void Creation::Jambes(float taille, float hauteur, bool sens, float agrand
 {
     glPushMatrix();
         glRotatef(45,0,-1,0);
-        glTranslatef((float) -sqrt((taille*taille)/2),taille,0);
-        Dessin::Jambes((float) sqrt((taille*taille)/2), (float) sqrt((taille*taille)/2), hauteur, sens, agrandissement, largeurDUnCoteDuCorps);
+        glTranslatef(-sqrtf((taille*taille)/2),taille,0);
+        Dessin::Jambes(sqrtf((taille*taille)/2), sqrtf((taille*taille)/2), hauteur, sens, agrandissement, largeurDUnCoteDuCorps);
     glPopMatrix();
 }
 
@@ -58,8 +58,8 @@ const void Creation::Pieds(float taille)
 
 	glPushMatrix();
         glRotatef(45,0,-1,0);
-        glTranslatef((float) - sqrt((taille * taille) / 2), 0, 0);
-        Dessin::Prisme((float) sqrt((taille*taille)/2), (float) sqrt((taille*taille)/2), taille);
+        glTranslatef(-sqrtf((taille * taille) / 2), 0, 0);
+        Dessin::Prisme(sqrtf((taille*taille)/2), sqrtf((taille*taille)/2), taille);
     glPopMatrix();
 }
 
@@ -73,7 +73,7 @@ const void Creation::Pieds(float taille)
 const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrandissementJambes, float largeurDUnCoteDuCorps)
 {
     glPushMatrix();
-        float hypotenuseDeBase = (float) sqrt(2*(taille * taille));
+        float hypotenuseDeBase = sqrtf(2*(taille * taille));
         float hypotenuseAgrandie = largeurDUnCoteDuCorps;
         float ecartEntreCentreEtJambe = (hypotenuseAgrandie-hypotenuseDeBase)/2;
 
@@ -196,7 +196,7 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
  */
 const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre, float rotationAiles)
 {
-    float angleRotationRadian = (float) atan(ecart/largeur); // TOA
+    float angleRotationRadian = atanf(ecart/largeur); // TOA
     float angleRotationDegree = (float) (angleRotationRadian*180/M_PI); // Rad --> Deg
 
     // Aile 1
@@ -228,7 +228,7 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             //animation de la seconde partie de l'aile
             glRotatef(rotationAiles/2,0,0,1); // rotation pour battre verticalement
 
-            Dessin::Pyramide((float) sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
+            Dessin::Pyramide(sqrtf(ecart*ecart + largeur*largeur),hauteur,longueur*2, hauteur, 0);
         glPopMatrix();
     glPopMatrix();
 
@@ -266,7 +266,7 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
             //animation de la seconde partie de l'aile
             glRotatef(rotationAiles/2,0,0,-1); // rotation pour battre verticalement
 
-            Dessin::Pyramide((float) sqrt(ecart*ecart + largeur*largeur),hauteur,longueur*2, -hauteur, 0);
+            Dessin::Pyramide(sqrtf(ecart*ecart + largeur*largeur),hauteur,longueur*2, -hauteur, 0);
         glPopMatrix();
     glPopMatrix();
 }

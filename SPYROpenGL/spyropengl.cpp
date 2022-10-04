@@ -162,7 +162,7 @@ void affichage()
     glShadeModel(GL_SMOOTH);
 
 
-    float Wsize = (float) glutGet(GLUT_WINDOW_WIDTH)/ (float) glutGet(GLUT_WINDOW_HEIGHT);
+    float Wsize = (float) glutGet(GLUT_WINDOW_WIDTH) / (float) glutGet(GLUT_WINDOW_HEIGHT);
     glLoadIdentity();
     glOrtho(-champDeVision*Wsize, champDeVision*Wsize, -champDeVision, champDeVision, -3-(997*!showSkybox), 1000);  //Gère le zoom/dézoom
     glRotatef(angley,1.0,0.0,0.0);
