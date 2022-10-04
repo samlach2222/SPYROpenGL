@@ -51,12 +51,12 @@ const void Creation::Pieds(float taille)
         Dessin::Prisme(taille, 2*taille, taille);
     glPopMatrix();
 
-	glPushMatrix();
+    glPushMatrix();
         glTranslatef(-taille,0,0);
         Dessin::Cube(taille);
-	glPopMatrix();
+    glPopMatrix();
 
-	glPushMatrix();
+    glPushMatrix();
         glRotatef(45,0,-1,0);
         glTranslatef(-sqrtf((taille * taille) / 2), 0, 0);
         Dessin::Prisme(sqrtf((taille*taille)/2), sqrtf((taille*taille)/2), taille);

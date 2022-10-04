@@ -197,7 +197,7 @@ void affichage()
         {
             for(int i = 0; i < nombreFacesSkybox; i++)
             {
-				// convert double to float
+                // convert double to float
                 x[i+j*nombreFacesSkybox] = (float) (tailleSkybox*cos(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1)));
                 y[i+j*nombreFacesSkybox] = (float) (tailleSkybox*sin(2*i*M_PI/nombreFacesSkybox)*cos(-M_PI/2+j*M_PI/(nombreFacesSkybox-1)));
                 z[i+j*nombreFacesSkybox] = (float) (tailleSkybox*sin(-M_PI/2+j*M_PI/(nombreFacesSkybox-1)));

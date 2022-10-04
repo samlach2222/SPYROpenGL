@@ -31,8 +31,8 @@ const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
     if (fopen_s(&file,fichier,"rb") != 0)
     {
         //variable du message d'erreur avec nom de fichier
-		char message[100] = "Impossible d'ouvrir le fichier ";
-		strcat_s(message, fichier);
+        char message[100] = "Impossible d'ouvrir le fichier ";
+        strcat_s(message, fichier);
         printf("%s", message);
     }
     #elif __GNUC__

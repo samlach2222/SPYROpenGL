@@ -34,7 +34,7 @@
 const void Montage::MontageSpyro(float rotationAiles, float rotationBouche)
 {
     /* param Corps */
-	const float rayonCorps = 0.2f;
+    const float rayonCorps = 0.2f;
     const float longueurCorps = 1;
     const float largeurDUnCoteDuCorps = sqrtf(rayonCorps*rayonCorps + rayonCorps*rayonCorps - 2*rayonCorps*rayonCorps*cos(2*M_PI/5));  //théorème d'Al-Kashi : BC²=AB²+AC²-2.AB.AC.cos(BÂC)
 
@@ -44,24 +44,24 @@ const void Montage::MontageSpyro(float rotationAiles, float rotationBouche)
 
     /* param Jambes */
     float taille = 0.1f;
-	float hauteurJambes = 0.2f;
+    float hauteurJambes = 0.2f;
 
-	/* param Ailes */
-	float ecart = 0.05f;
-	float largeur = 0.2f;
-	float longueur = 0.3f;
-	float hauteur = 0.02f;
-	float decalageCentre = 0.2f;
+    /* param Ailes */
+    float ecart = 0.05f;
+    float largeur = 0.2f;
+    float longueur = 0.3f;
+    float hauteur = 0.02f;
+    float decalageCentre = 0.2f;
 
-	/* param Cou */
-	float hauteurCou = 0.25f;
-	float decalageCou = 0.0f;
+    /* param Cou */
+    float hauteurCou = 0.25f;
+    float decalageCou = 0.0f;
 
-	/* param Cornes */
-	float hauteurCorne = 1.0f;
-	float largeurCorne = 0.15f;
+    /* param Cornes */
+    float hauteurCorne = 1.0f;
+    float largeurCorne = 0.15f;
 
-	/* param Tête */
+    /* param Tête */
     float tailleTete = 0.5;
 
     /* param Bouche */
