@@ -3,8 +3,8 @@
  * @brief Gère le démarrage de l'application
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 2.1
- * @date 13/11/2021
+ * @version 2.2
+ * @date 05/10/2022
  */
 
 /********************************************************/

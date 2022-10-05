@@ -3,8 +3,8 @@
  * @brief Implémentation des méthodes de création des parties de Spyro
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 2.4
- * @date 26/10/2021
+ * @version 2.5
+ * @date 04/10/2022
  */
 
 #ifdef __APPLE__

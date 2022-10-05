@@ -1,3 +1,0 @@
-warning: The selected output language "french" has not been updated
-since release 1.8.15.  As a result some sentences may appear in English.
-

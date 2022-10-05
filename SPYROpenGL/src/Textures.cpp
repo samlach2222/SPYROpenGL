@@ -2,8 +2,8 @@
  * @file src/Textures.cpp
  * @brief Implémentation de la classe gérant l'application des textures sur Spyro
  * @author Loïs PAZOLA
- * @version 1.0
- * @date 14/11/2021
+ * @version 1.1
+ * @date 04/10/2022
  */
 
 #include "Textures.h"

@@ -1,14 +1,23 @@
+/**
+ * @file src/IntermittentDuSpectacle.cpp
+ * @brief Implémentation de la classe gérant les sons et lumières du projet
+ * @author Loïs PAZOLA
+ * @author Samuel LACHAUD
+ * @version 1.1
+ * @date 05/10/2022
+ */
+
 #ifdef __APPLE__
 #include <GLUT/glut.h> /* Pour Mac OS X */
 #else
 #include <GL/glut.h>   /* Pour les autres systèmes */
 #endif
 
-#include "IntermittentDuSpectacle.h"
-
 #ifdef _WIN32
 #include <MMSystem.h>
 #endif
+
+#include "IntermittentDuSpectacle.h"
 
 /**
  * @brief Méthode permettant de jouer le son en arrière plan de l'application, la musique boucle sans répéter la même.
