@@ -6,7 +6,6 @@
 
 #include "IntermittentDuSpectacle.h"
 
-#include <cstdlib>
 #ifdef _WIN32
 #include <MMSystem.h>
 #endif
@@ -36,29 +35,30 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
             }                                                               \
     ");
     #elif __linux__ || __unix || __unix__
-    system("                                                        \
-        cd Ressources/Audio ;                                       \
-        bash -c '                                                   \
-        while : ;                                                   \
-            do while : ;                                            \
-                do RANDOM_VALUE=$(($RANDOM % 3)) ;                  \
-                if [[ \"$RANDOM_VALUE\" != \"$LAST_VALUE\" ]] ;     \
-                    then LAST_VALUE=$RANDOM_VALUE ;                 \
-                    break ;                                         \
-                fi ;                                                \
-            done ;                                                  \
-            case $RANDOM_VALUE in                                   \
-                0)                                                  \
-                    aplay \"Dark Hollow.wav\" ;                     \
-                    ;;                                              \
-                1)                                                  \
-                    aplay \"Enchanted Towers.wav\" ;                \
-                    ;;                                              \
-                2)                                                  \
-                    aplay \"Sgt. Byrd's Theme.wav\" ;               \
-                    ;;                                              \
-            esac ; LAST_VALUE=$RANDOM_VALUE ;                       \
-        done ;'                                                     \
+    system("                                                            \
+        cd Ressources/Audio ;                                           \
+        bash -c '                                                       \
+            while : ;                                                   \
+                do while : ;                                            \
+                    do RANDOM_VALUE=$(($RANDOM % 3)) ;                  \
+                    if [[ \"$RANDOM_VALUE\" != \"$LAST_VALUE\" ]] ;     \
+                        then LAST_VALUE=$RANDOM_VALUE ;                 \
+                        break ;                                         \
+                    fi ;                                                \
+                done ;                                                  \
+                case $RANDOM_VALUE in                                   \
+                    0)                                                  \
+                        aplay \"Dark Hollow.wav\" ;                     \
+                        ;;                                              \
+                    1)                                                  \
+                        aplay \"Enchanted Towers.wav\" ;                \
+                        ;;                                              \
+                    2)                                                  \
+                        aplay \"Sgt. Byrd'\"'\"'s Theme.wav\" ;         \
+                        ;;                                              \
+                esac ; LAST_VALUE=$RANDOM_VALUE ;                       \
+            done ;                                                      \
+        '                                                               \
     ");
     #endif
 }
@@ -72,11 +72,7 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
     #ifdef _WIN32
     PlaySound(TEXT("Ressources/Audio/SaluuutMoiCSpyro.wav"), FALSE, SND_FILENAME);
     #elif __linux__ || __unix || __unix__
-    system("                                                            \
-           cd Ressources/Audio ;                                        \
-           bash -c '                                                    \
-           aplay \"SaluuutMoiCSpyro.wav\" ;'                            \
-           ");
+    system("bash -c 'aplay \"Ressources/Audio/SaluuutMoiCSpyro.wav\" ;'");
     #endif
 
     *SPACE_PRESSED = false;
