@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SPYROpenGL", "SPYROpenGL.vcxproj", "{22295F49-0960-47BA-91B4-85EFE2F9D36F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SPYROpenGL_Installer", "..\SPYROpenGL_Installer\SPYROpenGL_Installer.vdproj", "{CE9C1363-FF88-471D-9460-B74E8D35F8DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,10 @@ Global
 		{22295F49-0960-47BA-91B4-85EFE2F9D36F}.Release|x64.Build.0 = Release|x64
 		{22295F49-0960-47BA-91B4-85EFE2F9D36F}.Release|x86.ActiveCfg = Release|Win32
 		{22295F49-0960-47BA-91B4-85EFE2F9D36F}.Release|x86.Build.0 = Release|Win32
+		{CE9C1363-FF88-471D-9460-B74E8D35F8DB}.Debug|x64.ActiveCfg = Debug
+		{CE9C1363-FF88-471D-9460-B74E8D35F8DB}.Debug|x86.ActiveCfg = Debug
+		{CE9C1363-FF88-471D-9460-B74E8D35F8DB}.Release|x64.ActiveCfg = Release
+		{CE9C1363-FF88-471D-9460-B74E8D35F8DB}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

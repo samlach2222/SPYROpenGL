@@ -428,3 +428,7 @@ FodyWeavers.xsd
 SPYROpenGL/**/*.orig
 
 desktop.ini
+
+# Not Important Installer files
+SPYROpenGL_Installer/SPYROpenGL Windows Installer.exe
+SPYROpenGL_Installer/~SPYROpenGL Windows Installer.DDF

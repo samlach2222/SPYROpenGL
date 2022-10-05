@@ -56,6 +56,9 @@
     <ClInclude Include="include\Textures.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Ressources\Audio\Dark Hollow.wav">
@@ -81,5 +84,13 @@
     <Image Include="Ressources\Texture\skybox.jpg">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="Ressources\SPYROpenGL.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SPYROpenGL.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

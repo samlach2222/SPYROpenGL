@@ -809,7 +809,7 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     float hypotenuseDeBase = sqrtf(2*(longueurX * longueurX));
     float hypotenuseAgrandie = largeurDUnCoteDuCorps;
     float coteDeBase = longueurX;
-    float coteAgrandie = sqrtf(pow(hypotenuseAgrandie,2)/2);
+    float coteAgrandie = sqrtf(powf(hypotenuseAgrandie,2)/2);
 
     // coefficients d'agrandissement
     float coefficientAgrandissement = hypotenuseAgrandie/hypotenuseDeBase;
@@ -817,10 +817,10 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
     float diagonaleAgrandissement = (coteDeBase*(hypotenuseAgrandie/hypotenuseDeBase))-coteDeBase;
 
     // calculs vecteurs de translation :
-    float translation = sqrtf(pow(diagonaleAgrandissement,2) + pow((agrandissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75;
+    float translation = sqrtf(powf(diagonaleAgrandissement,2) + powf((agrandissementHypotenuseParThales-hypotenuseDeBase)/2,2)) /1.75f;
 
     // calculs de rotation de la face du dessus
-    float rotationAxeVertical = sqrtf(pow(largeurDUnCoteDuCorps,2) - 0.2*0.2);
+    float rotationAxeVertical = sqrtf(powf(largeurDUnCoteDuCorps,2) - 0.2f*0.2f);
     float rotationAxeVerticalMoitie = rotationAxeVertical/2;
     float rotationAxeHorizontal = hypotenuseAgrandie - 0.2f;
     float rotationAxeHorizontalMoitie = rotationAxeHorizontal/2;

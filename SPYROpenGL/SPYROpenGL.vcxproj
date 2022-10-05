@@ -154,6 +154,7 @@
     <ClInclude Include="include\Montage.h" />
     <ClInclude Include="include\Point.h" />
     <ClInclude Include="include\Textures.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Ressources\Audio\Dark Hollow.wav" />
@@ -162,9 +163,13 @@
     <Media Include="Ressources\Audio\Sgt. Byrd%27s Theme.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Ressources\SPYROpenGL.ico" />
     <Image Include="Ressources\Texture\criniere.jpg" />
     <Image Include="Ressources\Texture\oeil.jpg" />
     <Image Include="Ressources\Texture\skybox.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SPYROpenGL.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

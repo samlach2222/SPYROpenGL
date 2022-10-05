@@ -35,7 +35,7 @@ const void Montage::MontageSpyro(float rotationAiles, float rotationBouche)
     /* param Corps */
     const float rayonCorps = 0.2f;
     const float longueurCorps = 1;
-    const float largeurDUnCoteDuCorps = sqrtf(rayonCorps*rayonCorps + rayonCorps*rayonCorps - 2*rayonCorps*rayonCorps*cos(2*M_PI/5));  //théorème d'Al-Kashi : BC²=AB²+AC²-2.AB.AC.cos(BÂC)
+    const float largeurDUnCoteDuCorps = sqrtf(rayonCorps*rayonCorps + rayonCorps*rayonCorps - 2*rayonCorps*rayonCorps*cosf((float) (2 * M_PI / 5)));  //théorème d'Al-Kashi : BC²=AB²+AC²-2.AB.AC.cos(BÂC)
 
     /* param LiaisonCorpsCou */
     const float coeffLiaisonCorpsCouVersLeCou = 0.5f;
