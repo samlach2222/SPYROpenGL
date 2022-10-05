@@ -38,7 +38,6 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
                         'Sgt. Byrd''s Theme.wav'                            \
                         ^| get-random                                       \
                 };                                                          \
-                echo $RANDOM_VALUE;                                         \
                 $LAST_VALUE = $RANDOM_VALUE;                                \
                 (New-Object Media.SoundPlayer $RANDOM_VALUE).PlaySync();    \
             }                                                               \
