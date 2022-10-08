@@ -554,7 +554,7 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEE924312466444CB43419EA8A2B4A6A"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\Téléchargement\\SPYROpenGL.ico"
+            "SourcePath" = "8:..\\SPYROpenGL\\Ressources\\SPYROpenGL.ico"
             "TargetName" = "8:SPYROpenGL.ico"
             "Tag" = "8:"
             "Folder" = "8:_B73882EBDE524A2780D970CCB5A63BFF"

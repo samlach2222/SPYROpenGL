@@ -5,7 +5,7 @@ SEDVersion=3
 PackagePurpose=InstallApp
 ShowInstallProgramWindow=0
 HideExtractAnimation=0
-UseLongFileName=0
+UseLongFileName=1
 InsideCompressed=0
 CAB_FixedSize=0
 CAB_ResvCodeSigning=0
@@ -24,7 +24,7 @@ SourceFiles=SourceFiles
 InstallPrompt=
 DisplayLicense=
 FinishMessage=
-TargetName=D:\WINDOWS\Documents\GitHub\SPYROpenGL\SPYROpenGL_Installer\SPYROpenGL Windows Installer.exe
+TargetName=SPYROpenGL Windows Installer.exe
 FriendlyName=SPYROpenGL
 AppLaunched=setup.exe
 PostInstallCmd=<None>
@@ -33,7 +33,7 @@ UserQuietInstCmd=
 FILE0="setup.exe"
 FILE1="SPYROpenGL_Installer.msi"
 [SourceFiles]
-SourceFiles0=D:\WINDOWS\Documents\GitHub\SPYROpenGL\SPYROpenGL_Installer\Release\
+SourceFiles0=Release\
 [SourceFiles0]
 %FILE0%=
 %FILE1%=
