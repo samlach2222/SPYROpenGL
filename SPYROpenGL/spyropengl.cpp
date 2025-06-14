@@ -3,8 +3,8 @@
  * @brief Gère le démarrage de l'application
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 2.2
- * @date 05/10/2022
+ * @version 2.3
+ * @date 14/06/2024
  */
 
 /********************************************************/
@@ -15,9 +15,13 @@
 
 /* inclusion des fichiers d'en-tête freeglut */
 #ifdef __APPLE__
-#include <GLUT/glut.h> /* Pour Mac OS X */
+/* Pour Mac OS X */
+#include <GLUT/glut.h>
+#include <GLUT/freeglut_ext.h>
 #else
-#include <GL/glut.h>   /* Pour les autres systèmes */
+/* Pour les autres systèmes */
+#include <GL/glut.h>
+#include <GL/freeglut_ext.h>
 #endif
 
 #ifdef _WIN32
@@ -109,6 +113,9 @@ int main(int argc,char **argv)
     glutInitWindowPosition(glutGet(GLUT_SCREEN_WIDTH)/2 - initWindowWidth/2, glutGet(GLUT_SCREEN_HEIGHT)/2 - initWindowHeight/2);  //La fonction gère automatiquement les valeurs négatives en utilisant 0
     glutInitWindowSize(initWindowWidth,initWindowHeight);
     glutCreateWindow("SPYROpenGL");
+    // Par défaut l'application quitte immédiatement à la fermeture de la fenêtre, avec cette commande elle sort de glutMainLoop
+    // Cela permet de quitter proprement sans crash
+    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
     /* Initialisation d'OpenGL */
     glClearColor(0.0,0.0,0.0,0.0);
@@ -151,6 +158,8 @@ int main(int argc,char **argv)
 
     /* Entrée dans la boucle principale glut */
     glutMainLoop();
+    // Si Spyro est en train de crier sur la voie publique à la fermeture de SPYROpenGL un crash se produit
+    IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(voice);
     return 0;
 }
 
@@ -403,17 +412,14 @@ void clavier(unsigned char touche,int x,int y)
                 /******************************************************************************************/
                 /***** L'intermittent du spectacle crie sur la place publique : Bonjour je suis Spyro *****/
                 /******************************************************************************************/
-                if(voice.joinable()){
-                    voice.join();
-                    voice.~thread();
-                }
+                IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(voice);
                 bool* PTR_SPACE_PRESSED = &SPACE_PRESSED;
                 voice = thread(IntermittentDuSpectacle::CrieSurLaVoiePublique, PTR_SPACE_PRESSED);
             }
         }
             break;
         case 'q' : /* La touche 'q' permet de quitter le programme */
-            exit(0);
+            glutLeaveMainLoop();
             break;
     }
 }

@@ -3,8 +3,8 @@
  * @brief Implémentation de la classe gérant les sons et lumières du projet
  * @author Loïs PAZOLA
  * @author Samuel LACHAUD
- * @version 1.1
- * @date 05/10/2022
+ * @version 1.2
+ * @date 14/06/2024
  */
 
 #ifdef __APPLE__
@@ -18,6 +18,8 @@
 #endif
 
 #include "IntermittentDuSpectacle.h"
+
+#include <thread>
 
 /**
  * @brief Méthode permettant de jouer le son en arrière plan de l'application, la musique boucle sans répéter la même.
@@ -69,6 +71,18 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
         '                                                               \
     ");
     #endif
+}
+
+/**
+ * @brief Méthode permettant de fermer la voix de Spyro après qu'il est fini de crier
+ * @param voice thread utilisé pour la voix de Spyro
+ */
+const void IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(std::thread& voice)
+{
+    if (voice.joinable()) {
+        voice.join(); // Attend que le son est fini avant de fermer le thread
+        voice.~thread();
+    }
 }
 
 /**
