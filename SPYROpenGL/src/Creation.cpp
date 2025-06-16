@@ -22,14 +22,6 @@
 
 #include <math.h>
 
-/**
- * @brief Méthode de création des jambes de Spyro
- * @param taille     largeur de la jambe
- * @param hauteur     hauteur de la jambe
- * @param sens      sens de la rotation de la face supérieure
- * @param agrandissement agrandissement de la jambe
- * @param largeurDUnCoteDuCorps donne la largeur d'un coté du cylindre formant le corps de Spyro
- */
 const void Creation::Jambes(float taille, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
     glPushMatrix();
@@ -39,10 +31,6 @@ const void Creation::Jambes(float taille, float hauteur, bool sens, float agrand
     glPopMatrix();
 }
 
-/**
- * @brief Méthode des créations des pieds de Spyro
- * @param taille     taille des éléments du pieds
- */
 const void Creation::Pieds(float taille)
 {
     glPushMatrix();
@@ -63,13 +51,6 @@ const void Creation::Pieds(float taille)
     glPopMatrix();
 }
 
-/**
- * @brief Méthode de combinaison des pieds et des jambes de Spyro
- * @param taille     taille de l'ensemble
- * @param hauteurJambes     hauteur de la jambe
- * @param agrandissementJambes agrandissement des jambes
- * @param largeurDUnCoteDuCorps donne la largeur du cylindre formant le corps
- */
 const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float agrandissementJambes, float largeurDUnCoteDuCorps)
 {
     glPushMatrix();
@@ -89,15 +70,6 @@ const void Creation::JambesPlusPieds(float taille, float hauteurJambes, float ag
     glPopMatrix();
 }
 
-/**
- * @brief Méthode de combinaison de la têtes, des cornes et de la crinière
- * @param taille     rayon de la tête
- * @param hauteurCorne     hauteur des cornes
- * @param largeurCorne      largeur des cornes
- * @param rayonCou  rayon du coup
- * @param hauteurCou hauteur du cou
- * @param decalageCou décalage du coup vers l'avant
- */
 const void Creation::ComposantsTete(float taille, float hauteurCorne, float largeurCorne, float rayonCou, float hauteurCou, float decalageCou)
 {
     glPushMatrix();
@@ -129,12 +101,6 @@ const void Creation::ComposantsTete(float taille, float hauteurCorne, float larg
     glPopMatrix();
 }
 
-/**
- * @brief Méthode de création de la queue de Spyro
- * @param longueurRayonCorps     longueur du rayon du corps
- * @param deuxPointsBaseCorps     Tuple de deux points correspondant à un coté du corps
- * @param taille     taille de la queue
- */
 const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> deuxPointsBaseCorps, float taille)
 {
     glPushMatrix();
@@ -185,15 +151,6 @@ const void Creation::Queue(float longueurRayonCorps, std::tuple<Point, Point> de
     glPopMatrix();
 }
 
-/**
- * @brief Méthode permettant de créer les deux ailes de Spyro
- * @param ecart écart du rectangle au trapèze
- * @param largeur largeur de l'aile
- * @param longueur de l'aile
- * @param hauteur de l'aile
- * @param decalageCentre décalage entre le centre et l'aile
- * @param rotationAiles correspond à l'angle de rotation de l'aile
- */
 const void Creation::Aile(float ecart, float largeur, float longueur, float hauteur,float decalageCentre, float rotationAiles)
 {
     float angleRotationRadian = atanf(ecart/largeur); // TOA
@@ -271,13 +228,6 @@ const void Creation::Aile(float ecart, float largeur, float longueur, float haut
     glPopMatrix();
 }
 
-/**
- * @brief Méthode permettant de créer le corps de Spyro
- * @param NM    Nombre de cotés de chaque base du corps
- * @param rayon     Longueur du rayon du corps
- * @param longueur      Longueur du corps
- * @return un tuple de deux points correspondant à un coté du corps
- */
 const std::tuple<Point, Point> Creation::Corps(int NM, float rayon, float longueur){
     glPushMatrix();
         glRotatef(90,1,0,0);
@@ -288,14 +238,6 @@ const std::tuple<Point, Point> Creation::Corps(int NM, float rayon, float longue
     return tuplePointsBaseCorps;
 }
 
-/**
- * @brief Méthode permettant de créer la liaison du corps au cou de Spyro
- * @param NM    Nombre de côtés de chaque base
- * @param rayon     Longueur du rayon
- * @param hauteur     Hauteur de la liaison corps <--> cou
- * @param rotation       Rotation supplémentaire de "rotation*pi / NM" (optionnelle, défaut: 0)
- * @param coeff     Coefficient d'agrandissement de la base qui sera liée au cou par rapport à la base liée au corps
- */
 const void Creation::LiaisonCorpsCou(int NM, float rayon, float hauteur, float rotation, float coeff){
     glPushMatrix();
         glTranslatef(0,0,1);

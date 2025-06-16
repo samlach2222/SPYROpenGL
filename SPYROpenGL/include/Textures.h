@@ -15,6 +15,11 @@
 class Textures
 {
     public:
+        /**
+        * @brief Méthode permettant de charger un fichier JPEG
+        * @param *fichier  pointeur vers le nom du fichier
+        * @param *texture  pointeur vers la texture
+        */
         static const void LoadJpegImage(char *fichier, unsigned char* texture);
 
         /**

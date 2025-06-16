@@ -15,6 +15,11 @@
 class Montage
 {
     public:
+        /**
+        * @brief Méthode permettant de monter l'intégralité des membres de Spyro
+        * @param rotationAiles donne l'angle de rotation des ailes
+        * @param rotationBouche donne l'angle de rotation de la bouche
+        */
         static const void MontageSpyro(float rotationAiles, float rotationBouche);
 
 };

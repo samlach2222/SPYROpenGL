@@ -13,11 +13,6 @@
 #include <jerror.h>
 #include <cstring>
 
-/**
- * @brief Méthode permettant de charger un fichier JPEG
- * @param *fichier  pointeur vers le nom du fichier
- * @param *texture  pointeur vers la texture
- */
 const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
 {
     struct jpeg_decompress_struct cinfo{};

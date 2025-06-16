@@ -15,6 +15,12 @@
 class Point
 {
     public:
+        /**
+        * @brief Constructeur de point
+        * @param x     Valeur d'initialisation des coordonnées du point en X
+        * @param y     Valeur d'initialisation des coordonnées du point en Y
+        * @param z     Valeur d'initialisation des coordonnées du point en Z
+        */
         Point(double x = 0, double y = 0, double z = 0);
 
         //coordonnées x, y et z du point

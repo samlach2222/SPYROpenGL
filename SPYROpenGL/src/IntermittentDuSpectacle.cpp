@@ -21,9 +21,6 @@
 
 #include <thread>
 
-/**
- * @brief Méthode permettant de jouer le son en arrière plan de l'application, la musique boucle sans répéter la même.
- */
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
     #ifdef _WIN32
@@ -107,10 +104,6 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
     #endif
 }
 
-/**
- * @brief Méthode permettant de fermer la voix de Spyro après qu'il est fini de crier
- * @param voice thread utilisé pour la voix de Spyro
- */
 const void IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(std::thread& voice)
 {
     if (voice.joinable()) {
@@ -119,10 +112,6 @@ const void IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(std::thread& voi
     }
 }
 
-/**
- * @brief Méthode permettant de fermer le son en arrière plan de l'application immédiatement.
- * @param bgMusic thread utilisé pour le son en arrière plan de l'application.
- */
 const void IntermittentDuSpectacle::ArreteJoueDeLaMusique(std::thread& bgMusic)
 {
 #ifdef _WIN32
@@ -144,10 +133,6 @@ const void IntermittentDuSpectacle::ArreteJoueDeLaMusique(std::thread& bgMusic)
 #endif
 }
 
-/**
- * @brief Méthode permettant de jouer la voix de Spyro lors de l'appui sur la touche associée
- * @param SPACE_PRESSED indique si la barre espace à été appuyée (true pour oui, false pour non)
- */
 const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 {
     #ifdef _WIN32
@@ -160,9 +145,6 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 
 }
 
-/**
- * @brief Méthode permettant d'appliquer la lumière statique
- */
 const void IntermittentDuSpectacle::PlaceLaLumiereStatique()
 {
     // Déclaration de la GL_LIGHT0
@@ -177,10 +159,6 @@ const void IntermittentDuSpectacle::PlaceLaLumiereStatique()
     glLightfv(GL_LIGHT0, GL_SPECULAR, spec_0);
 }
 
-/**
- * @brief Méthode permettant d'appliquer la lumière en rotation autour de Spyro
- * @param angle de rotation de la lumière
- */
 const void IntermittentDuSpectacle::PlaceLaLumiereQuiBouge(int angle)
 {
     // Déclaration de la GL_LIGHT1
