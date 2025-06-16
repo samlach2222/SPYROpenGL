@@ -3,8 +3,8 @@
  * @brief Contient la définition de la classe gérant les sons et lumières
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 1.3
- * @date 14/06/2024
+ * @version 1.4
+ * @date 16/06/2024
  */
 
 #ifndef INTERMITTENTDUSPECTACLE_H
@@ -21,6 +21,7 @@ class IntermittentDuSpectacle
         static const void CrieSurLaVoiePublique(bool* SPACE_PRESSED);
         static const void JoueDeLaMusique();
         static const void ArreteCrieSurLaVoiePublique(std::thread& voice);
+        static const void ArreteJoueDeLaMusique(std::thread& bgMusic);
         static const void PlaceLaLumiereStatique();
         static const void PlaceLaLumiereQuiBouge(int angle);
 };

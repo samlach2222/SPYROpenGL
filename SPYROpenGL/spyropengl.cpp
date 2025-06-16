@@ -3,8 +3,8 @@
  * @brief Gère le démarrage de l'application
  * @author Samuel LACHAUD
  * @author Loïs PAZOLA
- * @version 2.3
- * @date 14/06/2024
+ * @version 2.4
+ * @date 16/06/2024
  */
 
 /********************************************************/
@@ -158,8 +158,10 @@ int main(int argc,char **argv)
 
     /* Entrée dans la boucle principale glut */
     glutMainLoop();
-    // Si Spyro est en train de crier sur la voie publique à la fermeture de SPYROpenGL un crash se produit
+    // Si Spyro est en train de crier sur la voie publique à la fermeture de SPYROpenGL un crash se produit, idem avec la musique
+    // Une alternative plus propre mais verbeuse serait d'englober les deux threads dans des classes avec leur propre destructeur
     IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(voice);
+    IntermittentDuSpectacle::ArreteJoueDeLaMusique(bgMusic);
     return 0;
 }
 
