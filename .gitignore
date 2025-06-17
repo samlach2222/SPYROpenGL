@@ -432,3 +432,12 @@ desktop.ini
 # Not Important Installer files
 SPYROpenGL_Installer/SPYROpenGL Windows Installer.exe
 SPYROpenGL_Installer/~SPYROpenGL Windows Installer.DDF
+
+!Conception/Modèle Spyro (Spyro 2 PS1)/spyro.obj
+
+# Doxygen output, but exclude symbolic link
+Doxygen/html/*
+!Doxygen/html/Conception/
+Doxygen/html/Conception/*
+# readme is technically a file so readme/ does not work
+!Doxygen/html/Conception/readme
