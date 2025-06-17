@@ -5,7 +5,7 @@
 
 ## Projet de Synthèse d'image portant sur la création d'un dragon (ici Spyro en version PS1) avec C++ et OpenGL.
 
-![Affiche du projet](Conception/SPYROpenGL_LACHAUD_PAZOLA.png "Comparaison entre le modèle de Spyro sur PS1 et notre Spyro")
+![Affiche du projet](Conception/readme/SPYROpenGL_LACHAUD_PAZOLA.png "Comparaison entre le modèle de Spyro sur PS1 et notre Spyro")
 
 ### I) Introduction
 
