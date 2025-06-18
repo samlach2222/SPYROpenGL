@@ -1,11 +1,13 @@
 # SPYROpenGL
 
 
-[![Version du projet](https://img.shields.io/badge/version-1.1-purple.svg)](https://img.shields.io/badge "Version du projet")
+[![Version du projet](https://img.shields.io/badge/version-1.2-purple.svg)](https://img.shields.io/badge "Version du projet")
+
+SPYROpenGL a une documentation Doxygen [disponible en ligne](https://samlach2222.github.io/SPYROpenGL/) !
 
 ## Projet de Synthèse d'image portant sur la création d'un dragon (ici Spyro en version PS1) avec C++ et OpenGL.
 
-![Affiche du projet](Conception/SPYROpenGL_LACHAUD_PAZOLA.png "Comparaison entre le modèle de Spyro sur PS1 et notre Spyro")
+<img src="Conception/readme/SPYROpenGL_LACHAUD_PAZOLA.png" alt="Affiche du projet" title="Comparaison entre le modèle de Spyro sur PS1 et notre Spyro" width="100%">
 
 ### I) Introduction
 

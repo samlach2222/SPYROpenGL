@@ -1,0 +1,16 @@
+# Fichier .editorconfig généré par Visual Studio avec les paramètres C++.
+root = true
+
+[*.{c++,cc,cpp,cppm,cxx,h,h++,hh,hpp,hxx,inl,ipp,ixx,tlh,tli}]
+
+# Paramètres de style de code Visual C++
+
+cpp_generate_documentation_comments = doxygen_slash_star
+
+# Paramètres de mise en forme Visual C++
+
+indent_style = tab
+indent_size = 4
+tab_width= 4
+trim_trailing_whitespace = true
+insert_final_newline = true

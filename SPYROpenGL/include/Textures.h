@@ -14,33 +14,38 @@
  */
 class Textures
 {
-    public:
-        static const void LoadJpegImage(char *fichier, unsigned char* texture);
+	public:
+		/**
+		* @brief Méthode permettant de charger un fichier JPEG
+		* @param *fichier  pointeur vers le nom du fichier
+		* @param *texture  pointeur vers la texture
+		*/
+		static const void LoadJpegImage(char *fichier, unsigned char* texture);
 
-        /**
-         * @brief Largeur de l'image de la skybox
-         */
-        static const int widthSkybox=1280;
-        /**
-         * @brief Hauteur de l'image de la skybox
-         */
-        static const int heightSkybox=720;
-        /**
-         * @brief Largeur de l'image d'un œil (identique pour chaque)
-         */
-        static const int widthOeil=32;
-        /**
-         * @brief Hauteur de l'image d'un œil (identique pour chaque)
-         */
-        static const int heightOeil=32;
-        /**
-         * @brief Largeur de l'image de la crinière
-         */
-        static const int widthCriniere=428;
-        /**
-         * @brief Hauteur de l'image de la crinière
-         */
-        static const int heightCriniere=428;
+		/**
+		 * @brief Largeur de l'image de la skybox
+		 */
+		static const int widthSkybox=1280;
+		/**
+		 * @brief Hauteur de l'image de la skybox
+		 */
+		static const int heightSkybox=720;
+		/**
+		 * @brief Largeur de l'image d'un œil (identique pour chaque)
+		 */
+		static const int widthOeil=32;
+		/**
+		 * @brief Hauteur de l'image d'un œil (identique pour chaque)
+		 */
+		static const int heightOeil=32;
+		/**
+		 * @brief Largeur de l'image de la crinière
+		 */
+		static const int widthCriniere=428;
+		/**
+		 * @brief Hauteur de l'image de la crinière
+		 */
+		static const int heightCriniere=428;
 };
 
 /**
