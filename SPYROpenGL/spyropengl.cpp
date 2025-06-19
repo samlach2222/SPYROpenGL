@@ -135,9 +135,9 @@ int main(int argc,char **argv)
 	char* t2 = _strdup("Ressources/Texture/oeil.jpg");
 	char* t3 = _strdup("Ressources/Texture/criniere.jpg");
 	#elif __GNUC__
-	char* t1 = "Ressources/Texture/skybox.jpg";
-	char* t2 = "Ressources/Texture/oeil.jpg";
-	char* t3 = "Ressources/Texture/criniere.jpg";
+	char const* t1 = "Ressources/Texture/skybox.jpg";
+	char const* t2 = "Ressources/Texture/oeil.jpg";
+	char const* t3 = "Ressources/Texture/criniere.jpg";
 	#endif
 	Textures::LoadJpegImage(t1, textureSkybox);
 	Textures::LoadJpegImage(t2, textureOeil);

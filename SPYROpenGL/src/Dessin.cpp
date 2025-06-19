@@ -294,12 +294,7 @@ const void Dessin::Criniere(float rayonSphere)
 		Elle est en 2D située sur l'axe Z, Y. En effet X est nul.
 
 		Je construit mon triangle avec le point du bas en 0,0,0 afin d'avoir des coordonnées faciles.
-	*/
-	float x = 0.0f;
-	float y = 0.0f;
-	float z = 0.0f;
 
-	/*
 		J'effectue une translation afin de positionner mon triangle :
 		Je recule sur le derrière de la tête le triangle d'une longueur du rayon de la sphère.
 		Je descend sur le dessous de la tête le triangle des 3/4 du rayon de la sphère afin de garder une partie débordante de la crinière
@@ -702,10 +697,6 @@ const void Dessin::TroisiemePartieQueue(float longueurX, float longueurZ, float 
 
 const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool sens, float agrandissement, float largeurDUnCoteDuCorps)
 {
-	float h = sqrtf(longueurX*longueurX + longueurZ*longueurZ); // hypoténuse du triangle du dessus
-	float t = agrandissement;
-	float tx = sqrtf(t*t/2);
-
 	// longueurs du triangle de base et de l'agrandit
 	float hypotenuseDeBase = sqrtf(2*(longueurX * longueurX));
 	float hypotenuseAgrandie = largeurDUnCoteDuCorps;
@@ -713,7 +704,6 @@ const void Dessin::Jambes(float longueurX, float longueurZ, float hauteur, bool 
 	float coteAgrandie = sqrtf(powf(hypotenuseAgrandie,2)/2);
 
 	// coefficients d'agrandissement
-	float coefficientAgrandissement = hypotenuseAgrandie/hypotenuseDeBase;
 	float agrandissementHypotenuseParThales = hypotenuseDeBase*(coteAgrandie/coteDeBase); // Thalès
 	float diagonaleAgrandissement = (coteDeBase*(hypotenuseAgrandie/hypotenuseDeBase))-coteDeBase;
 
