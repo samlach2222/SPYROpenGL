@@ -21,6 +21,10 @@
 
 #include <thread>
 
+// Désactive les warnings causés par l'absence d'utilisation de la valeur retournée par system()
+// Seulement appliqué sur le fichier
+#pragma GCC diagnostic ignored "-Wunused-result"
+
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
 	#ifdef _WIN32
