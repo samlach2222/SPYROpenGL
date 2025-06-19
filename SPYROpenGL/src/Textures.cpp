@@ -12,6 +12,8 @@
 #include <jpeglib.h>
 #include <jerror.h>
 #include <cstring>
+#include <cstdio>
+#include <cstdlib>
 
 const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
 {
