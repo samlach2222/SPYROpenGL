@@ -27,8 +27,8 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 	// Note : Puisqu'il est impossible de commenter à l'intérieur de la commande ci-dessous, tous les commentaires se trouvent ici
 	// - title n'est pas nécessaire mais est utile pour l'utilisateur. Récupérer le processus par nom de fenêtre serait trop
 	//   risqué car sur Windows Terminal il s'agit uniquement de l'onglet actif
-	// - <#SPYROpenGL_Music_CommandLine#> est très important : c'est ce qui permet de détecter le processus en regardant
-	//   sa CommandLine et ainsi de le fermer à la fermeture de SPYROpenGL, sinon la musique continue de jouer en arrière plan
+	// - <#SPYROpenGL_Music_Command#> est très important : c'est ce qui permet de détecter le processus en regardant sa
+	//   CommandLine et ainsi de le fermer à la fermeture de SPYROpenGL, sinon la musique continue de jouer en arrière plan
 	// - [System.Console]::TreatControlCAsInput sert à ne pas quitter le script si l'utilisateur appuie sur CTRL-C
 	// - RANDOM_VALUE -eq $LAST_VALUE ne fonctionne pas car il n'est pas possible de comparer 2 arrays, on compare donc une
 	//   valeur à l'intérieur. @() permet d'éviter une erreur (impossible à cacher) d'index dans null en forçant un array vide
@@ -47,7 +47,7 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 		& echo Ctrl-C : Changer de musique                                  \
 		& powershell.exe -NoProfile -NonInteractive                         \
 		-ExecutionPolicy Bypass -Command \"& {                              \
-			<#SPYROpenGL_Music_CommandLine#>                                \
+			<#SPYROpenGL_Music_Command#>                                    \
 			[System.Console]::TreatControlCAsInput = $true;                 \
 			while ($true) {                                                 \
 				while (@($RANDOM_VALUE)[1] -eq @($LAST_VALUE)[1]) {         \
@@ -76,9 +76,16 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 		}\"                                                                 \
 	");
 	#elif __linux__ || __unix || __unix__
+	// Note : Puisqu'il est impossible de commenter à l'intérieur de la commande ci-dessous, tous les commentaires se trouvent ici
+	// - echo SPYROpenGL_Music_Command > /dev/null est très important : c'est ce qui permet de détecter le processus en regardant
+	//   sa commande et ainsi de le fermer à la fermeture de SPYROpenGL, sinon la musique continue de jouer en arrière plan
+	// - setsid est également nécessaire pour avoir un session ID exclusif au processus bash ainsi qu'à son processus aplay,
+	//   permettant de kill spécifiquement eux. La session ID de ces processus sera l'ID du processus bash
+	// - Lorsque bash sera kill, le processus exécutant system() finira ensuite sa commande normalement
 	system("                                                            \
 		cd Ressources/Audio ;                                           \
-		bash -c '                                                       \
+		setsid bash -c '                                                \
+			echo SPYROpenGL_Music_Command > /dev/null;                  \
 			while : ;                                                   \
 				do while : ;                                            \
 					do RANDOM_VALUE=$(($RANDOM % 3)) ;                  \
@@ -114,7 +121,7 @@ const void IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(std::thread& voi
 
 const void IntermittentDuSpectacle::ArreteJoueDeLaMusique(std::thread& bgMusic)
 {
-#ifdef _WIN32
+	#ifdef _WIN32
 	// Where-Object .CommandLine prend beaucoup de temps. Un premier tri rapide est fait sur le Name
 	system("                                                            \
 		powershell.exe -NoProfile -NonInteractive                       \
@@ -122,15 +129,21 @@ const void IntermittentDuSpectacle::ArreteJoueDeLaMusique(std::thread& bgMusic)
 			Get-Process -Name powershell | Where-Object {               \
 				(Get-CimInstance Win32_Process -Filter                  \
 					('ProcessId = ' + $_.Id)                            \
-				).CommandLine -like '*SPYROpenGL_Music_CommandLine*'    \
+				).CommandLine -like '*SPYROpenGL_Music_Command*'        \
 			} | Stop-Process -Force                                     \
 		}\"                                                             \
 	");
+	#elif __linux__ || __unix || __unix__
+	// Kill tous les processus ayant comme session ID le plus récent processus ID dont la commande contient
+	// SPYROpenGL_Music_Command, écrit comme 'SPYROpenGL'_Music_Command pour ne pas détecter le processus exécutant le system()
+	// ci-dessous. pgrep peut également exclure les processus trop récent (en secondes) mais cela causerait problème si SPYROpenGL
+	// est lancé et quitté très vite
+	system("pkill --session $(pgrep --full --newest 'SPYROpenGL'_Music_Command)");
+	#endif
 	if (bgMusic.joinable()) {
 		bgMusic.join();
 		bgMusic.~thread();
 	}
-#endif
 }
 
 const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
