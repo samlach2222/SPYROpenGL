@@ -155,7 +155,7 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 	#ifdef _WIN32
 	PlaySound(TEXT("Ressources/Audio/SaluuutMoiCSpyro.wav"), FALSE, SND_FILENAME);
 	#elif __linux__ || __unix || __unix__
-	system("bash -c 'aplay \"Ressources/Audio/SaluuutMoiCSpyro.wav\" ;'");
+	system("aplay 'Ressources/Audio/SaluuutMoiCSpyro.wav'");
 	#endif
 
 	*SPACE_PRESSED = false;
