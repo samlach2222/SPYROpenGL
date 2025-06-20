@@ -20,7 +20,7 @@ class Textures
 		* @param *fichier  pointeur vers le nom du fichier
 		* @param *texture  pointeur vers la texture
 		*/
-		static const void LoadJpegImage(char *fichier, unsigned char* texture);
+		static const void LoadJpegImage(const char *fichier, unsigned char* texture);
 
 		/**
 		 * @brief Largeur de l'image de la skybox

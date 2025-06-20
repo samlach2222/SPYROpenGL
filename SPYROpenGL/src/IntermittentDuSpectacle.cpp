@@ -21,14 +21,19 @@
 
 #include <thread>
 
+// Désactive les warnings causés par l'absence d'utilisation de la valeur retournée par system()
+// Seulement appliqué sur le fichier
+#pragma GCC diagnostic ignored "-Wunused-result"
+
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
 	#ifdef _WIN32
 	// Note : Puisqu'il est impossible de commenter à l'intérieur de la commande ci-dessous, tous les commentaires se trouvent ici
 	// - title n'est pas nécessaire mais est utile pour l'utilisateur. Récupérer le processus par nom de fenêtre serait trop
 	//   risqué car sur Windows Terminal il s'agit uniquement de l'onglet actif
-	// - <#SPYROpenGL_Music_CommandLine#> est très important : c'est ce qui permet de détecter le processus en regardant
-	//   sa CommandLine et ainsi de le fermer à la fermeture de SPYROpenGL, sinon la musique continue de jouer en arrière plan
+	// - SPYROpenGL_Music_Command est très important : c'est ce qui permet de détecter le processus en regardant sa
+	//   CommandLine et ainsi de le fermer à la fermeture de SPYROpenGL, sinon la musique continue de jouer en arrière plan
+	// - <#SPYROpenGL_Music_Command#> enveloppe SPYROpenGL_Music_Command dans un commentaire
 	// - [System.Console]::TreatControlCAsInput sert à ne pas quitter le script si l'utilisateur appuie sur CTRL-C
 	// - RANDOM_VALUE -eq $LAST_VALUE ne fonctionne pas car il n'est pas possible de comparer 2 arrays, on compare donc une
 	//   valeur à l'intérieur. @() permet d'éviter une erreur (impossible à cacher) d'index dans null en forçant un array vide
@@ -47,7 +52,7 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 		& echo Ctrl-C : Changer de musique                                  \
 		& powershell.exe -NoProfile -NonInteractive                         \
 		-ExecutionPolicy Bypass -Command \"& {                              \
-			<#SPYROpenGL_Music_CommandLine#>                                \
+			<#SPYROpenGL_Music_Command#>                                    \
 			[System.Console]::TreatControlCAsInput = $true;                 \
 			while ($true) {                                                 \
 				while (@($RANDOM_VALUE)[1] -eq @($LAST_VALUE)[1]) {         \
@@ -76,17 +81,25 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 		}\"                                                                 \
 	");
 	#elif __linux__ || __unix || __unix__
+	// Note : Puisqu'il est impossible de commenter à l'intérieur de la commande ci-dessous, tous les commentaires se trouvent ici
+	// - SPYROpenGL_Music_Command est très important : c'est ce qui permet de détecter les processus en regardant
+	//   leur commande et ainsi de les fermer à la fermeture de SPYROpenGL, sinon la musique continue de jouer en arrière plan
+	// - SPYROpenGL_Music_Command= sert uniquement à avoir le texte SPYROpenGL_Music_Command dans le script, la commande elle-même
+	//   affecte une valeur vide à SPYROpenGL_Music_Command. Techniquement tout ce script se trouve sur une seule ligne et bash
+	//   supporte uniquement les commentaires # en fin de ligne
+	// - Si bash est kill, le processus exécutant system() finira ensuite sa commande normalement
+	// - $(()) est une expansion arithmétique, différent de $()
+	// - $RANDOM n'est disponible qu'en bash. Alternative : $(od -vAn -N1 -tu1 < /dev/urandom)
+	// - '\\'' est transformé en un ' (le backslash est échappé du string system())
 	system("                                                            \
 		cd Ressources/Audio ;                                           \
 		bash -c '                                                       \
-			while : ;                                                   \
-				do while : ;                                            \
-					do RANDOM_VALUE=$(($RANDOM % 3)) ;                  \
-					if [[ \"$RANDOM_VALUE\" != \"$LAST_VALUE\" ]] ;     \
-						then LAST_VALUE=$RANDOM_VALUE ;                 \
-						break ;                                         \
-					fi ;                                                \
+			SPYROpenGL_Music_Command= ;                                 \
+			while true ; do                                             \
+				while [ \"$RANDOM_VALUE\" = \"$LAST_VALUE\" ] ; do      \
+					RANDOM_VALUE=$(($RANDOM % 3)) ;                     \
 				done ;                                                  \
+				LAST_VALUE=$RANDOM_VALUE ;                              \
 				case $RANDOM_VALUE in                                   \
 					0)                                                  \
 						aplay \"Dark Hollow.wav\" ;                     \
@@ -95,10 +108,10 @@ const void IntermittentDuSpectacle::JoueDeLaMusique()
 						aplay \"Enchanted Towers.wav\" ;                \
 						;;                                              \
 					2)                                                  \
-						aplay \"Sgt. Byrd'\"'\"'s Theme.wav\" ;         \
+						aplay \"Sgt. Byrd'\\''s Theme.wav\" ;           \
 						;;                                              \
-				esac ; LAST_VALUE=$RANDOM_VALUE ;                       \
-			done ;                                                      \
+				esac ;                                                  \
+			done                                                        \
 		'                                                               \
 	");
 	#endif
@@ -114,7 +127,7 @@ const void IntermittentDuSpectacle::ArreteCrieSurLaVoiePublique(std::thread& voi
 
 const void IntermittentDuSpectacle::ArreteJoueDeLaMusique(std::thread& bgMusic)
 {
-#ifdef _WIN32
+	#ifdef _WIN32
 	// Where-Object .CommandLine prend beaucoup de temps. Un premier tri rapide est fait sur le Name
 	system("                                                            \
 		powershell.exe -NoProfile -NonInteractive                       \
@@ -122,15 +135,28 @@ const void IntermittentDuSpectacle::ArreteJoueDeLaMusique(std::thread& bgMusic)
 			Get-Process -Name powershell | Where-Object {               \
 				(Get-CimInstance Win32_Process -Filter                  \
 					('ProcessId = ' + $_.Id)                            \
-				).CommandLine -like '*SPYROpenGL_Music_CommandLine*'    \
+				).CommandLine -like '*SPYROpenGL_Music_Command*'        \
 			} | Stop-Process -Force                                     \
 		}\"                                                             \
 	");
+	#elif __linux__ || __unix || __unix__
+	// Récupère dans une variable le PID du aplay de la musique de fond, sans toucher à des aplay extérieur à SPYROpenGL. Pour
+	// cela on récupère les PID des processus dont leur parent (parent direct uniquement, pas récursif) est le processus le plus
+	// récent dont la commande contient SPYROpenGL_Music_Command (écrit comme 'SPYROpenGL'_Music_Command pour ne pas détecter le
+	// processus exécutant le system())
+	// Ensuite tous les processus dont la commande contient SPYROpenGL_Music_Command sont kill
+	// Enfin le processus aplay de la musique de fond est kill
+	system("                                                            \
+		PID_APLAY=$(pgrep --parent $(pgrep --full --newest              \
+		'SPYROpenGL'_Music_Command)) ;                                  \
+		pkill --full 'SPYROpenGL'_Music_Command ;                       \
+		kill $PID_APLAY                                                 \
+	");
+	#endif
 	if (bgMusic.joinable()) {
 		bgMusic.join();
 		bgMusic.~thread();
 	}
-#endif
 }
 
 const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
@@ -138,7 +164,7 @@ const void IntermittentDuSpectacle::CrieSurLaVoiePublique(bool* SPACE_PRESSED)
 	#ifdef _WIN32
 	PlaySound(TEXT("Ressources/Audio/SaluuutMoiCSpyro.wav"), FALSE, SND_FILENAME);
 	#elif __linux__ || __unix || __unix__
-	system("bash -c 'aplay \"Ressources/Audio/SaluuutMoiCSpyro.wav\" ;'");
+	system("aplay 'Ressources/Audio/SaluuutMoiCSpyro.wav'");
 	#endif
 
 	*SPACE_PRESSED = false;
