@@ -13,14 +13,9 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pthread" />
-					<Add library="GL" />
-					<Add library="glut" />
-					<Add library="GLU" />
-					<Add library="jpeg" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -30,7 +25,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -40,7 +34,14 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="include" />
 		</Compiler>
+		<Linker>
+			<Add library="GL" />
+			<Add library="glut" />
+			<Add library="GLU" />
+			<Add library="jpeg" />
+		</Linker>
 		<Unit filename="Ressources/Audio/Dark Hollow.wav" />
 		<Unit filename="Ressources/Audio/Enchanted Towers.wav" />
 		<Unit filename="Ressources/Audio/SaluuutMoiCSpyro.wav" />

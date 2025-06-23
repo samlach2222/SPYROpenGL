@@ -12,8 +12,10 @@
 #include <jpeglib.h>
 #include <jerror.h>
 #include <cstring>
+#include <cstdio>
+#include <cstdlib>
 
-const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
+const void Textures::LoadJpegImage(const char *fichier, unsigned char* texture)
 {
 	struct jpeg_decompress_struct cinfo{};
 	struct jpeg_error_mgr jerr{};
@@ -39,7 +41,7 @@ const void Textures::LoadJpegImage(char *fichier, unsigned char* texture)
 		strcat(message, fichier);
 		strcat(message, "\n");
 
-		fprintf(stderr,message);
+		fprintf(stderr,"%s",message);
 		exit(1);
 	}
 	#endif
