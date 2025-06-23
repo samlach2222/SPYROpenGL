@@ -21,9 +21,12 @@
 
 #include <thread>
 
+// Visual Studio affiche un warning car il ne reconnait pas le pragma GCC
+#if defined(__GNUC__) && !defined(__clang__)
 // Désactive les warnings causés par l'absence d'utilisation de la valeur retournée par system()
 // Seulement appliqué sur le fichier
 #pragma GCC diagnostic ignored "-Wunused-result"
+#endif
 
 const void IntermittentDuSpectacle::JoueDeLaMusique()
 {
