@@ -35,7 +35,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          sparse-checkout: |
+            Conception/readme
+            Doxygen
+            SPYROpenGL/include
+            SPYROpenGL/src
       - name: Doxygen build
         uses: mattnotmitt/doxygen-action@v1
         with:
@@ -45,7 +51,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           # Upload Doxygen output only (with symbolic link to Conception for README.md)
           path: 'Doxygen/html'
