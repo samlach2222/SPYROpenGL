@@ -1,4 +1,5 @@
-cd "$(dirname "$0")"
+#!/bin/bash
+cd "$(dirname "$0")" || exit
 echo "Installation des divers packages nécessaires"
 sudo apt update
 sudo apt install alsa-utils freeglut3-dev libasound2-plugins libjpeg-turbo8-dev
@@ -13,7 +14,7 @@ then
 	echo "ctl.default pulse"
 	echo -e "pcm.default pulse\nctl.default pulse" | clip.exe
 	echo "Lignes copiés dans le presse-papiers"
-	read -p "Exécuter nano ~/.asoundrc ? [Y/y/O/o pour oui] : " -n1 executerNano
+	read -r -p "Exécuter nano ~/.asoundrc ? [Y/y/O/o pour oui] : " -n1 executerNano
 	echo
 	if [[ $executerNano =~ ^[YyOo]$ ]]
 	then
@@ -27,7 +28,7 @@ echo
 
 if ! command -v codeblocks >/dev/null 2>&1
 then
-	read -p "Voulez-vous installer Code::Blocks ? Un fichier de projet est disponible [Y/y/O/o pour oui] : " -n1 installerCodeBlocks
+	read -r -p "Voulez-vous installer Code::Blocks ? Un fichier de projet est disponible [Y/y/O/o pour oui] : " -n1 installerCodeBlocks
 	echo
 	if [[ $installerCodeBlocks =~ ^[YyOo]$ ]]
 	then
@@ -41,7 +42,7 @@ echo
 
 if command -v codeblocks >/dev/null 2>&1
 then
-	read -p "Voulez-vous ouvrir le projet dans Code::Blocks ? [Y/y/O/o pour oui] : " -n1 executerCodeBlocks
+	read -r -p "Voulez-vous ouvrir le projet dans Code::Blocks ? [Y/y/O/o pour oui] : " -n1 executerCodeBlocks
 	echo
 	echo
 fi
