@@ -37,6 +37,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
+          # Example "A/B" with A and B both directories :
+          # - The directory A will have all its files but none of its directories except B
+          # - The directory B will have all its files and directories recursively
           sparse-checkout: |
             Conception/readme
             Doxygen
